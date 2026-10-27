@@ -1,6 +1,15 @@
 {
   "league": "Forbidden Rites",
-  "customSounds": false,
+  "customSounds": true,
+  "sounds": {
+    "value": "0161.wav",
+    "chaos": "0090.wav",
+    "maps": "0398.wav",
+    "exceptional": "0397.wav",
+    "pinnacle": "777.wav",
+    "ab": "0103.wav",
+    "low": "0011.wav"
+  },
   "profiles": [
     { "file": "Personal-01-ILvl-1-79.filter", "sourceMode": "Leveling", "minItemLevel": 1, "maxItemLevel": 79 },
     { "file": "Personal-02-ILvl-80-81.filter", "sourceMode": "Endgame", "minItemLevel": 80, "maxItemLevel": 81 },
