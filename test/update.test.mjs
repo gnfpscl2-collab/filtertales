@@ -5,8 +5,9 @@ import path from 'node:path';
 import os from 'node:os';
 import { ROOT, loadProject, publishFiles, update } from '../src/update.mjs';
 import { DIVINE, EXALTED } from '../src/economy.mjs';
+import { DEFAULT_SOUNDS } from '../src/filter.mjs';
 
-const SOUND_FILES = ['tw-rare-drop.wav', 'tw-level-up.wav', 'tw-quest-reward.wav'];
+const SOUND_FILES = Object.values(DEFAULT_SOUNDS).sort();
 async function scratch(t) {
   const directory = await fs.mkdtemp(path.join(os.tmpdir(), 'poe2-github-test-'));
   t.after(async () => {
@@ -36,11 +37,36 @@ test('project validates pinned sources and all three profiles', async () => {
   const project = await loadProject();
   assert.equal(project.sources.size, 2);
   assert.equal(project.mapping.length, 28);
-  assert.equal(project.config.customSounds, false);
+  assert.equal(project.config.customSounds, true);
+  assert.deepEqual(project.config.sounds, DEFAULT_SOUNDS);
   assert.deepEqual(project.config.profiles.map(p => [p.minItemLevel, p.maxItemLevel]), [[1, 79], [80, 81], [81, 0]]);
 });
 
-test('default offline build uses native audio without reading assets and preserves unrelated files', async t => {
+test('the seven supplied files contain complete PCM audio with the exact configured filenames', async () => {
+  assert.equal(SOUND_FILES.length, 7);
+  for (const name of SOUND_FILES) {
+    const bytes = await fs.readFile(path.join(ROOT, 'assets', 'sounds', name));
+    assert.equal(bytes.toString('ascii', 0, 4), 'RIFF', name);
+    assert.equal(bytes.toString('ascii', 8, 12), 'WAVE', name);
+    assert.equal(bytes.readUInt32LE(4) + 8, bytes.length, `${name}: complete RIFF container`);
+    const chunks = new Map();
+    for (let offset = 12; offset + 8 <= bytes.length;) {
+      const id = bytes.toString('ascii', offset, offset + 4);
+      const length = bytes.readUInt32LE(offset + 4);
+      assert.ok(offset + 8 + length <= bytes.length, `${name}: complete ${id} chunk`);
+      chunks.set(id, bytes.subarray(offset + 8, offset + 8 + length));
+      offset += 8 + length + (length % 2);
+    }
+    assert.ok(chunks.get('fmt ')?.length >= 16, `${name}: format chunk`);
+    assert.equal(chunks.get('fmt ').readUInt16LE(0), 1, `${name}: PCM encoding`);
+    assert.equal(chunks.get('fmt ').readUInt16LE(2), 2, `${name}: stereo`);
+    assert.equal(chunks.get('fmt ').readUInt32LE(4), 22050, `${name}: sample rate`);
+    assert.equal(chunks.get('fmt ').readUInt16LE(14), 16, `${name}: bits per sample`);
+    assert.ok(chunks.get('data')?.length > 0, `${name}: audible sample data`);
+  }
+});
+
+test('native offline build works without audio assets and preserves unrelated files', async t => {
   const root = await copyProject(t, false, false);
   const output = await scratch(t);
   await fs.mkdir(path.join(output, 'sounds'));
@@ -61,27 +87,35 @@ test('default offline build uses native audio without reading assets and preserv
   for (const name of SOUND_FILES.slice(1)) await assert.rejects(fs.readFile(path.join(output, 'sounds', name)), { code: 'ENOENT' });
 });
 
-test('explicit future custom audio mode copies assets while preserving installed custom audio', async t => {
+test('custom audio build installs all seven WAVs and preserves valid installed replacements', async t => {
   const root = await copyProject(t, true);
   const output = await scratch(t);
   await fs.mkdir(path.join(output, 'sounds'));
-  await fs.writeFile(path.join(output, 'sounds', SOUND_FILES[0]), 'user-provided-audio');
+  const installed = await fs.readFile(path.join(root, 'assets', 'sounds', SOUND_FILES[0]));
+  installed[installed.length - 1] ^= 1;
+  await fs.writeFile(path.join(output, 'sounds', SOUND_FILES[0]), installed);
   const report = await update({ root, output, offline: true });
   assert.equal(report.CustomSoundsEnabled, true);
   assert.deepEqual(report.SoundFiles, SOUND_FILES);
-  assert.equal(await fs.readFile(path.join(output, 'sounds', SOUND_FILES[0]), 'utf8'), 'user-provided-audio');
-  for (const name of SOUND_FILES.slice(1)) assert.equal((await fs.readFile(path.join(output, 'sounds', name))).subarray(0, 4).toString(), 'RIFF');
-  for (const profile of report.Profiles) assert.match(await fs.readFile(path.join(output, profile.file), 'utf8'), /CustomAlertSoundOptional "sounds\/tw-rare-drop.wav"/);
+  assert.deepEqual(report.SoundMapping, DEFAULT_SOUNDS);
+  assert.deepEqual(await fs.readFile(path.join(output, 'sounds', SOUND_FILES[0])), installed);
+  for (const name of SOUND_FILES.slice(1)) assert.deepEqual(await fs.readFile(path.join(output, 'sounds', name)), await fs.readFile(path.join(root, 'assets', 'sounds', name)));
+  for (const profile of report.Profiles) {
+    const text = await fs.readFile(path.join(output, profile.file), 'utf8');
+    const references = [...new Set([...text.matchAll(/CustomAlertSoundOptional "sounds\/([^"\r\n]+)"/g)].map(match => match[1]))].sort();
+    assert.deepEqual(references, SOUND_FILES, 'every referenced filename exists with matching case');
+  }
 });
 
 test('online generator renders fetched high-value currency and emits provenance', async t => {
+  const root = await copyProject(t, false, false);
   const output = await scratch(t);
   const id = 'Metadata/Items/Currency/CurrencyFractureRare';
   const rows = [
     { league: 'Forbidden Rites', market_pair: [EXALTED, DIVINE], volume_traded: { [EXALTED]: 1000, [DIVINE]: 10 } },
     { league: 'Forbidden Rites', market_pair: [id, DIVINE], volume_traded: { [id]: 100, [DIVINE]: 200 } },
   ];
-  const report = await update({ output, now: 15000, fetchImpl: async url => new Response(JSON.stringify({ next_change_id: Number(url.split('/').at(-1)) + 3600, markets: rows })) });
+  const report = await update({ root, output, now: 15000, fetchImpl: async url => new Response(JSON.stringify({ next_change_id: Number(url.split('/').at(-1)) + 3600, markets: rows })) });
   assert.equal(report.Offline, false);
   assert.equal(report.Hours.length, 3);
   assert.equal(report.AcceptedPrices.find(p => p.BaseType === 'Fracturing Orb').DivinePerItem, 2);
@@ -115,6 +149,60 @@ test('changed upstream source hash is rejected', async t => {
 test('custom audio mode requires a boolean setting', async t => {
   const root = await copyProject(t, 'false');
   await assert.rejects(loadProject(root), /customSounds|custom sound/i);
+});
+
+test('sound mappings reject missing categories, unexpected categories and unsafe filenames', async t => {
+  const root = await copyProject(t, true, false);
+  const configFile = path.join(root, 'config.json');
+  const config = JSON.parse(await fs.readFile(configFile, 'utf8'));
+  const { maps, ...missingMaps } = DEFAULT_SOUNDS;
+  for (const sounds of [
+    missingMaps,
+    { ...DEFAULT_SOUNDS, extra: 'extra.wav' },
+    { ...DEFAULT_SOUNDS, value: '../0161.wav' },
+    { ...DEFAULT_SOUNDS, value: '0161.wav\nHide' },
+    { ...DEFAULT_SOUNDS, value: '0161.mp3' },
+  ]) {
+    await fs.writeFile(configFile, JSON.stringify({ ...config, sounds }));
+    await assert.rejects(loadProject(root), /Invalid sound filenames or categories/);
+  }
+});
+
+test('missing or corrupt source audio cannot replace an existing valid build', async t => {
+  for (const scenario of ['missing', 'bad header', 'truncated']) {
+    await t.test(scenario, async t => {
+      const root = await copyProject(t, false);
+      const output = await scratch(t);
+      const first = await update({ root, output, offline: true });
+      const names = [...first.Profiles.map(p => p.file), 'last-update.json'];
+      const before = await Promise.all(names.map(name => fs.readFile(path.join(output, name))));
+      const configFile = path.join(root, 'config.json');
+      const config = JSON.parse(await fs.readFile(configFile, 'utf8'));
+      await fs.writeFile(configFile, JSON.stringify({ ...config, customSounds: true }));
+      const audioFile = path.join(root, 'assets', 'sounds', DEFAULT_SOUNDS.pinnacle);
+      if (scenario === 'missing') await fs.unlink(audioFile);
+      else if (scenario === 'bad header') await fs.writeFile(audioFile, 'not a WAV file');
+      else {
+        const original = await fs.readFile(audioFile);
+        await fs.writeFile(audioFile, original.subarray(0, 44));
+      }
+      await assert.rejects(update({ root, output, offline: true }), scenario === 'missing' ? { code: 'ENOENT' } : /Invalid WAV audio/);
+      for (const [index, name] of names.entries()) assert.deepEqual(await fs.readFile(path.join(output, name)), before[index]);
+      assert.deepEqual((await fs.readdir(output)).sort(), names.sort(), 'no partial audio or staged files were published');
+    });
+  }
+});
+
+test('corrupt installed audio is rejected before filters or the update report change', async t => {
+  const root = await copyProject(t, true);
+  const output = await scratch(t);
+  const first = await update({ root, output, offline: true });
+  const names = [...first.Profiles.map(p => p.file), 'last-update.json'];
+  const before = await Promise.all(names.map(name => fs.readFile(path.join(output, name))));
+  await fs.writeFile(path.join(output, 'sounds', DEFAULT_SOUNDS.value), 'damaged installed file');
+  await assert.rejects(update({ root, output, offline: true }), /Invalid WAV audio/);
+  for (const [index, name] of names.entries()) assert.deepEqual(await fs.readFile(path.join(output, name)), before[index]);
+  assert.equal(await fs.readFile(path.join(output, 'sounds', DEFAULT_SOUNDS.value), 'utf8'), 'damaged installed file');
 });
 
 test('staging errors leave existing files unchanged and clean temporary files', async t => {

@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import {
-  baselineFloors, renderFilter, applyVisualPolicy, addItemLevelRange, applyCategorySounds,
+  baselineFloors, renderFilter, applyVisualPolicy, addItemLevelRange, applyCategorySounds, DEFAULT_SOUNDS, validateSounds,
 } from '../src/filter.mjs';
 
 const root = new URL('../', import.meta.url);
@@ -16,6 +16,7 @@ const prices = [
   { BaseType: 'Chaos Orb', DivinePerItem: 0.2 },
   { BaseType: 'Vaal Orb', DivinePerItem: 0.02 },
   { BaseType: 'Fracturing Orb', DivinePerItem: 2 },
+  { BaseType: "Hinekora's Lock", DivinePerItem: 1000 },
   { BaseType: "Perfect Jeweller's Orb", DivinePerItem: 0.34 },
 ];
 const sourceMarker = '# BEGIN NEVERSINK (personal visual policy and optional sounds; conditions preserved)\n';
@@ -24,8 +25,10 @@ const logic = text => text.split(/\r?\n/).filter(line => line.trim()
   && !/^[ \t]*(?:SetFontSize|SetTextColor|SetBorderColor|SetBackgroundColor|PlayAlertSound|CustomAlertSoundOptional|PlayEffect|MinimapIcon)\b/.test(line)).join('\n');
 const render = (profile, overrides = {}) => renderFilter({
   source: sources.get(profile.sourceMode), prices, league: 'Test League', profile,
-  release: config.upstream.release, dataLabel: 'test fixture; not current market data', customSounds: true, ...overrides,
+  release: config.upstream.release, dataLabel: 'test fixture; not current market data', customSounds: true, sounds: config.sounds ?? DEFAULT_SOUNDS, ...overrides,
 });
+const audio = block => block.match(/CustomAlertSoundOptional "sounds\/([^"\r\n]+)"/)?.[1];
+const colourLines = block => block.split(/\r?\n/).filter(line => /^\s*Set(?:TextColor|BorderColor|BackgroundColor)\b/.test(line)).map(line => line.trim());
 
 test('pinned upstream bytes and top currency floors remain intact', () => {
   assert.equal(config.profiles.length, 3);
@@ -52,12 +55,12 @@ for (const profile of config.profiles) {
       release: config.upstream.release, dataLabel: 'native sound fixture',
     });
     assert.doesNotMatch(text, /^[ \t]*CustomAlertSound\w*\b/m);
-    assert.doesNotMatch(text, /BEGIN PERSONAL TABLET SOUND|sounds\/tw-/);
+    assert.doesNotMatch(text, /BEGIN PERSONAL TABLET SOUND|sounds\/[^"\r\n]+\.wav/);
     const [prefix, suffix] = text.split(sourceMarker);
     for (const name of ['Mirror of Kalandra', 'Divine Orb', 'Chaos Orb', 'Fracturing Orb']) {
       const rule = blocks(prefix).find(block => block.includes(`"${name}"`));
       assert.ok(rule, `${name} keeps its priority rule`);
-      assert.match(rule, /PlayAlertSound [1-9][0-6]? 250/);
+      assert.match(rule, /PlayAlertSound [1-9][0-6]? (?:250|300)/);
     }
     const customRange = render(profile).match(/^# BEGIN PERSONAL ITEMLEVEL RANGE.*?^# END PERSONAL ITEMLEVEL RANGE\r?\n/ms)?.[0];
     const nativeRange = suffix.match(/^# BEGIN PERSONAL ITEMLEVEL RANGE.*?^# END PERSONAL ITEMLEVEL RANGE\r?\n/ms)?.[0];
@@ -110,51 +113,108 @@ for (const profile of config.profiles) {
     const [prefix] = render(profile).split(sourceMarker);
     const rules = blocks(prefix);
     const divine = rules.find(block => /BaseType == "Divine Orb"/.test(block));
-    assert.match(divine, /tw-rare-drop\.wav/);
-    assert.match(divine, /PlayEffect Orange/);
-    const mirror = rules.find(block => /BaseType == "Mirror of Kalandra"/.test(block));
-    assert.match(mirror, /PlayEffect Red/);
-    assert.match(mirror, /tw-rare-drop\.wav/);
+    assert.equal(audio(divine), '0161.wav');
+    assert.match(divine, /PlayEffect Red/);
+    const pinnacle = rules.find(block => block.includes('"Mirror of Kalandra"'));
+    assert.ok(pinnacle.includes('"Hinekora\'s Lock"'));
+    assert.match(pinnacle, /PlayEffect Red/);
+    assert.equal(audio(pinnacle), '777.wav');
     const rare = rules.find(block => /Verified unit value >= 1 Divine/.test(block));
     assert.match(rare, /"Fracturing Orb"/);
-    assert.match(rare, /tw-rare-drop\.wav/);
-    assert.doesNotMatch(rare, /Perfect Jeweller's Orb|AreaLevel|ItemLevel/);
+    assert.equal(audio(rare), '0161.wav');
+    assert.doesNotMatch(rare, /Perfect Jeweller's Orb|Hinekora's Lock|AreaLevel|ItemLevel/);
     const chaos = rules.find(block => /BaseType == "Chaos Orb"/.test(block));
-    assert.match(chaos, /tw-level-up\.wav/);
+    assert.equal(audio(chaos), '0090.wav');
     assert.match(prefix, /BaseType == "Vaal Orb"/);
     assert.match(prefix, /AreaLevel >= 65/, 'lower-value visual promotion preserves campaign exceptions');
   });
 
-  test(`${profile.file}: ordinary map/tablet sounds do not affect exceptional drops`, () => {
+  test(`${profile.file}: all seven sounds follow category and exceptional priorities`, () => {
     const [, suffix] = render(profile).split(sourceMarker);
     const rules = blocks(suffix);
     const ordinary = rules.filter(block => /\$type->waystones \$tier->waystone_t(?:[1-9]|1[0-5])\b/.test(block));
     assert.equal(ordinary.length, 15);
-    for (const rule of ordinary) assert.match(rule, /tw-quest-reward\.wav/);
+    for (const rule of ordinary) assert.equal(audio(rule), '0398.wav');
     const specials = rules.filter(block => /\$type->waystone/.test(block)
-      && !/waystone_t(?:[1-9]|1[0-5])\b/.test(block));
+      && /waystone_t16\b|maps_special[bc]\b/.test(block));
     assert.ok(specials.some(block => /waystone_t16\b/.test(block)), 'T16 exists as a native exception');
-    for (const rule of specials) assert.doesNotMatch(rule, /CustomAlertSound/);
-    const tablets = [...suffix.matchAll(/^# BEGIN PERSONAL TABLET SOUND.*?^# END PERSONAL TABLET SOUND/gms)];
-    assert.equal(tablets.length, 2);
-    for (const [subset] of tablets) {
+    for (const rule of specials) assert.equal(audio(rule), '0397.wav');
+    const tablets = [...suffix.matchAll(/^# BEGIN PERSONAL TABLET SOUND.*?^# END PERSONAL TABLET SOUND/gms)].map(match => match[0]);
+    const genericTablets = tablets.filter(subset => /\$type->fragments->generic/.test(subset));
+    assert.equal(genericTablets.length, 2);
+    for (const subset of genericTablets) {
       assert.match(subset, /Class == "Tablet"/);
-      assert.match(subset, /Rarity Normal Magic Rare/);
-      assert.match(subset, /tw-level-up\.wav/);
+      assert.equal(audio(subset), '0398.wav');
       assert.doesNotMatch(subset, /Sacred Bloom/);
     }
-    const native = rules.filter(block => /\$type->exotic->(?:exceptional|state)|\$type->exoticmods|\$type->ut->|\$tier->restex/.test(block));
-    assert.ok(native.length > 0);
-    for (const rule of native) assert.doesNotMatch(rule, /CustomAlertSound/);
-    assert.ok(native.some(block => /PlayEffect Pink/.test(block)), 'unknown item warnings survive');
+    const uniqueTablets = tablets.filter(subset => /Rarity Unique/.test(subset));
+    const originalUniqueTablets = blocks(sources.get(profile.sourceMode)).filter(block => /Rarity Unique/.test(block)
+      && /^\s*BaseType ==[^\r\n]* Tablet"/m.test(block) && !/!uniques_exceptional/.test(block));
+    assert.ok(uniqueTablets.length > 0);
+    assert.equal(uniqueTablets.length, originalUniqueTablets.length, 'all ordinary Unique Tablet categories receive the tablet sound');
+    for (const subset of uniqueTablets) {
+      const names = [...subset.match(/^\s*BaseType == ([^\r\n]+)/m)[1].matchAll(/"([^"]+)"/g)].map(match => match[1]);
+      assert.ok(names.every(name => name.endsWith(' Tablet')), 'mixed non-tablet unique bases keep the original fallback');
+      assert.equal(audio(subset), '0398.wav');
+      assert.doesNotMatch(subset, /Rarity Normal Magic Rare/);
+    }
+    const exceptional = rules.filter(block => !/^\s*Continue\b/m.test(block)
+      && (/\$type->exotic->(?:exceptional|state)|\$type->exoticmods|\$tier->restex/.test(block)
+        || (/\$type->ut->/.test(block) && /UnidentifiedItemTier >= [3-9]/.test(block))));
+    assert.ok(exceptional.length > 0);
+    for (const rule of exceptional) assert.equal(audio(rule), '0397.wav');
+    assert.ok(exceptional.some(block => /PlayEffect Pink/.test(block)), 'unknown item warnings survive');
+    const cCurrency = rules.find(block => /\$type->currency \$tier->c\b/.test(block));
+    const bCurrency = rules.find(block => /\$type->currency \$tier->b\b/.test(block));
+    const unpricedS = rules.find(block => /\$type->currency \$tier->s\b/.test(block));
+    assert.equal(audio(cCurrency), '0011.wav');
+    assert.equal(audio(bCurrency), '0103.wav');
+    assert.equal(audio(unpricedS), '0103.wav', 'static S is not proof of a one-Divine price');
+    const full = render(profile);
+    const used = new Set([...full.matchAll(/CustomAlertSoundOptional "sounds\/([^"\r\n]+)"/g)].map(match => match[1]));
+    assert.deepEqual([...used].sort(), Object.values(DEFAULT_SOUNDS).sort());
+    for (const block of rules.filter(block => /^\s*Continue\b/m.test(block))) assert.equal(audio(block), undefined);
+    for (const block of rules.filter(block => /\$type->gold\b|BaseType == "Gold"/.test(block))) assert.equal(audio(block), undefined);
+    const hides = [...full.matchAll(/^Hide[^\r\n]*\r?\n(?:[ \t]+\S[^\r\n]*(?:\r?\n|$))+/gm)].map(match => match[0]);
+    for (const block of hides) assert.equal(audio(block), undefined);
   });
 }
 
 test('verified Chaos price at one Divine wins before the category sound', () => {
   const text = render(config.profiles[2], { prices: [{ BaseType: 'Chaos Orb', DivinePerItem: 1 }] });
   const chaos = blocks(text).filter(block => /BaseType == "Chaos Orb"/.test(block));
-  assert.match(chaos[0], /tw-rare-drop\.wav/);
-  assert.match(chaos[1], /tw-level-up\.wav/);
+  assert.equal(audio(chaos[0]), '0161.wav');
+  assert.equal(audio(chaos[1]), '0090.wav');
+});
+
+test('Unique Tablet sound subsets preserve original conditions and exceptional alerts take priority', () => {
+  const mixed = [
+    'Show # $type->uniques $tier->t2 !uniques_a',
+    '    Rarity Unique',
+    '    Class == "Tablet" "Belts"',
+    '    BaseType == "Abyss Tablet" "Heavy Belt"',
+    '    Identified False',
+    '    ItemLevel >= 80',
+    '    PlayAlertSound 1 300',
+    '',
+  ].join('\n');
+  const transformed = applyCategorySounds(mixed);
+  const [tablet, fallback] = blocks(transformed);
+  assert.equal(blocks(transformed).length, 2);
+  assert.equal(audio(tablet), '0398.wav');
+  assert.match(tablet, /BaseType == "Abyss Tablet"\n/);
+  assert.doesNotMatch(tablet, /Heavy Belt|Rarity Normal Magic Rare/);
+  for (const condition of ['Rarity Unique', 'Class == "Tablet" "Belts"', 'Identified False', 'ItemLevel >= 80']) {
+    assert.ok(tablet.includes(condition), `tablet subset preserves ${condition}`);
+  }
+  assert.equal(audio(fallback), '0103.wav');
+  assert.equal(logic(fallback), logic(mixed), 'mixed non-tablet items retain the original matching rule');
+  const exceptional = mixed.replace('$tier->t2 !uniques_a', '$tier->exceptional !uniques_exceptional');
+  const exceptionalResult = applyCategorySounds(exceptional);
+  assert.equal(blocks(exceptionalResult).length, 1);
+  assert.equal(audio(exceptionalResult), '0397.wav');
+  assert.doesNotMatch(exceptionalResult, /PERSONAL TABLET SOUND/);
+  assert.equal(logic(exceptionalResult), logic(exceptional));
 });
 
 test('visual policy preserves all original Hide rules and applies the agreed colours', () => {
@@ -163,14 +223,42 @@ test('visual policy preserves all original Hide rules and applies the agreed col
     const hides = text => [...text.matchAll(/^Hide[^\r\n]*\r?\n(?:[ \t]+\S[^\r\n]*(?:\r?\n|$))+/gm)].map(match => match[0]);
     assert.deepEqual(hides(styled), hides(source));
     const rules = blocks(styled);
-    assert.match(rules.find(block => /\$type->currency \$tier->s\b/.test(block)), /SetTextColor 255 215 80[\s\S]*PlayEffect Orange/);
-    assert.match(rules.find(block => /\$type->sockets->general \$tier->s\b/.test(block)), /MinimapIcon 1 Purple Diamond/);
-    assert.match(rules.find(block => /\$type->endgame->normalcraft->economy/.test(block)), /SetBorderColor 70 150 255/);
-    const soundOnly = applyCategorySounds(source)
-      .replace(/^# BEGIN PERSONAL TABLET SOUND.*?^# END PERSONAL TABLET SOUND\r?\n/gms, '')
-      .replace(/^[ \t]*CustomAlertSoundOptional[^\r\n]*\r?\n/gm, '');
-    assert.equal(soundOnly, source, 'category sound edits can be removed without altering original bytes');
+    const s = rules.find(block => /\$type->currency \$tier->s\b/.test(block));
+    assert.match(s, /SetTextColor 255 0 0(?: 255)?\r?\n/);
+    assert.match(s, /SetBorderColor 255 0 0(?: 255)?\r?\n/);
+    assert.match(s, /SetBackgroundColor 255 255 255(?: 255)?\r?\n/);
+    for (const a of rules.filter(block => /\$type->currency \$tier->a\b|\$type->sockets->general \$tier->[sa]\b/.test(block))) {
+      assert.match(a, /SetTextColor 255 255 255(?: 255)?\r?\n/);
+      assert.match(a, /SetBorderColor 255 165 0(?: 255)?\r?\n/);
+      assert.match(a, /SetBackgroundColor 255 165 0(?: 255)?\r?\n/);
+    }
+    const original = blocks(source);
+    for (const block of rules.filter(block => /\$type->currency \$tier->[bcde]\b|\$type->endgame->normalcraft->economy|\$type->exoticbases\b/.test(block))) {
+      const header = block.split(/\r?\n/, 1)[0];
+      assert.deepEqual(colourLines(block), colourLines(original.find(rule => rule.startsWith(header))), 'B and lower colours follow the upstream rule');
+    }
   }
+});
+
+test('pinnacle and dynamic S/A styles follow the same red/white and orange policy', () => {
+  const text = render(config.profiles[0], { prices: [...prices, { BaseType: "Arcanist's Etcher", DivinePerItem: 0.2 }] });
+  const [prefix] = text.split(sourceMarker);
+  const rules = blocks(prefix);
+  for (const rule of rules.filter(block => /pinnacle|Mirror of Kalandra|Fixed Divine Orb|Verified unit value >= 1 Divine/.test(block))) {
+    assert.match(rule, /SetTextColor 255 0 0(?: 255)?\r?\n/);
+    assert.match(rule, /SetBorderColor 255 0 0(?: 255)?\r?\n/);
+    assert.match(rule, /SetBackgroundColor 255 255 255(?: 255)?\r?\n/);
+  }
+  const a = rules.find(block => block.includes('"Arcanist\'s Etcher"'));
+  assert.match(a, /SetTextColor 255 255 255(?: 255)?\r?\n/);
+  assert.match(a, /SetBorderColor 255 165 0(?: 255)?\r?\n/);
+  assert.match(a, /SetBackgroundColor 255 165 0(?: 255)?\r?\n/);
+  assert.equal(audio(a), '0103.wav');
+  const sourceB = blocks(sources.get('Leveling')).find(block => /\$type->currency \$tier->b\b/.test(block));
+  const dynamicB = rules.find(block => block.includes('"Vaal Orb"'));
+  const chaos = rules.find(block => /BaseType == "Chaos Orb"/.test(block));
+  assert.deepEqual(colourLines(dynamicB), colourLines(sourceB));
+  assert.deepEqual(colourLines(chaos), colourLines(sourceB));
 });
 
 test('invalid ranges, changed anchors, malformed prices and header injection fail closed', () => {
@@ -183,4 +271,7 @@ test('invalid ranges, changed anchors, malformed prices and header injection fai
   assert.throws(() => render(config.profiles[0], { league: 'Test\nHide' }), /Invalid filter header/);
   assert.throws(() => render(config.profiles[0], { prices: [{ BaseType: 'Chaos Orb', DivinePerItem: NaN }] }), /Invalid\/unrecognized currency price/);
   assert.throws(() => render(config.profiles[0], { prices: [{ BaseType: 'Unknown Currency', DivinePerItem: 1 }] }), /Invalid\/unrecognized currency price/);
+  assert.throws(() => validateSounds({ ...DEFAULT_SOUNDS, value: '../0161.wav' }), /sound/i);
+  assert.throws(() => validateSounds({ ...DEFAULT_SOUNDS, value: '0161.wav\nHide' }), /sound/i);
+  assert.throws(() => validateSounds({ value: '0161.wav' }), /sound/i);
 });
