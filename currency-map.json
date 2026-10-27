@@ -1,0 +1,142 @@
+[
+  {
+    "base_type": "Arcanist's Etcher",
+    "metadata_id": "Metadata/Items/Currency/CurrencyMagicQuality",
+    "source": "https://poe2db.tw/us/Arcanists_Etcher"
+  },
+  {
+    "base_type": "Armourer's Scrap",
+    "metadata_id": "Metadata/Items/Currency/CurrencyArmourQuality",
+    "source": "https://poe2db.tw/us/Armourers_Scrap"
+  },
+  {
+    "base_type": "Artificer's Orb",
+    "metadata_id": "Metadata/Items/Currency/CurrencyAddEquipmentSocket",
+    "source": "https://poe2db.tw/us/Artificers_Orb"
+  },
+  {
+    "base_type": "Blacksmith's Whetstone",
+    "metadata_id": "Metadata/Items/Currency/CurrencyWeaponQuality",
+    "source": "https://poe2db.tw/us/Blacksmiths_Whetstone"
+  },
+  {
+    "base_type": "Chaos Orb",
+    "metadata_id": "Metadata/Items/Currency/CurrencyRerollRare",
+    "source": "https://poe2db.tw/us/Chaos_Orb"
+  },
+  {
+    "base_type": "Divine Orb",
+    "metadata_id": "Metadata/Items/Currency/CurrencyModValues",
+    "source": "https://poe2db.tw/us/Divine_Orb"
+  },
+  {
+    "base_type": "Exalted Orb",
+    "metadata_id": "Metadata/Items/Currency/CurrencyAddModToRare",
+    "source": "https://poe2db.tw/us/Exalted_Orb"
+  },
+  {
+    "base_type": "Fracturing Orb",
+    "metadata_id": "Metadata/Items/Currency/CurrencyFractureRare",
+    "source": "https://poe2db.tw/us/Fracturing_Orb"
+  },
+  {
+    "base_type": "Gemcutter's Prism",
+    "metadata_id": "Metadata/Items/Currency/CurrencyGemQuality",
+    "source": "https://poe2db.tw/us/Gemcutters_Prism"
+  },
+  {
+    "base_type": "Glassblower's Bauble",
+    "metadata_id": "Metadata/Items/Currency/CurrencyFlaskQuality",
+    "source": "https://poe2db.tw/us/Glassblowers_Bauble"
+  },
+  {
+    "base_type": "Greater Chaos Orb",
+    "metadata_id": "Metadata/Items/Currency/CurrencyRerollRare2",
+    "source": "https://poe2db.tw/us/Greater_Chaos_Orb"
+  },
+  {
+    "base_type": "Greater Exalted Orb",
+    "metadata_id": "Metadata/Items/Currency/CurrencyAddModToRare2",
+    "source": "https://poe2db.tw/us/Greater_Exalted_Orb"
+  },
+  {
+    "base_type": "Greater Jeweller's Orb",
+    "metadata_id": "Metadata/Items/Currency/CurrencyAddSkillGemSocket4",
+    "source": "https://poe2db.tw/us/Greater_Jewellers_Orb"
+  },
+  {
+    "base_type": "Greater Regal Orb",
+    "metadata_id": "Metadata/Items/Currency/CurrencyUpgradeMagicToRare2",
+    "source": "https://poe2db.tw/us/Greater_Regal_Orb"
+  },
+  {
+    "base_type": "Hinekora's Lock",
+    "metadata_id": "Metadata/Items/Currency/CurrencyHinekorasLock",
+    "source": "https://poe2db.tw/us/Hinekoras_Lock"
+  },
+  {
+    "base_type": "Lesser Jeweller's Orb",
+    "metadata_id": "Metadata/Items/Currency/CurrencyAddSkillGemSocket3",
+    "source": "https://poe2db.tw/us/Lesser_Jewellers_Orb"
+  },
+  {
+    "base_type": "Mirror of Kalandra",
+    "metadata_id": "Metadata/Items/Currency/CurrencyDuplicate",
+    "source": "https://poe2db.tw/us/Mirror_of_Kalandra"
+  },
+  {
+    "base_type": "Orb of Alchemy",
+    "metadata_id": "Metadata/Items/Currency/CurrencyUpgradeToRare",
+    "source": "https://poe2db.tw/us/Orb_of_Alchemy"
+  },
+  {
+    "base_type": "Orb of Annulment",
+    "metadata_id": "Metadata/Items/Currency/CurrencyRemoveMod",
+    "source": "https://poe2db.tw/us/Orb_of_Annulment"
+  },
+  {
+    "base_type": "Orb of Augmentation",
+    "metadata_id": "Metadata/Items/Currency/CurrencyAddModToMagic",
+    "source": "https://poe2db.tw/us/Orb_of_Augmentation"
+  },
+  {
+    "base_type": "Orb of Chance",
+    "metadata_id": "Metadata/Items/Currency/CurrencyUpgradeRandomly",
+    "source": "https://poe2db.tw/us/Orb_of_Chance"
+  },
+  {
+    "base_type": "Orb of Transmutation",
+    "metadata_id": "Metadata/Items/Currency/CurrencyUpgradeToMagic",
+    "source": "https://poe2db.tw/us/Orb_of_Transmutation"
+  },
+  {
+    "base_type": "Perfect Chaos Orb",
+    "metadata_id": "Metadata/Items/Currency/CurrencyRerollRare3",
+    "source": "https://poe2db.tw/us/Perfect_Chaos_Orb"
+  },
+  {
+    "base_type": "Perfect Exalted Orb",
+    "metadata_id": "Metadata/Items/Currency/CurrencyAddModToRare3",
+    "source": "https://poe2db.tw/us/Perfect_Exalted_Orb"
+  },
+  {
+    "base_type": "Perfect Jeweller's Orb",
+    "metadata_id": "Metadata/Items/Currency/CurrencyAddSkillGemSocket5",
+    "source": "https://poe2db.tw/us/Perfect_Jewellers_Orb"
+  },
+  {
+    "base_type": "Perfect Regal Orb",
+    "metadata_id": "Metadata/Items/Currency/CurrencyUpgradeMagicToRare3",
+    "source": "https://poe2db.tw/us/Perfect_Regal_Orb"
+  },
+  {
+    "base_type": "Regal Orb",
+    "metadata_id": "Metadata/Items/Currency/CurrencyUpgradeMagicToRare",
+    "source": "https://poe2db.tw/us/Regal_Orb"
+  },
+  {
+    "base_type": "Vaal Orb",
+    "metadata_id": "Metadata/Items/Currency/CurrencyCorrupt",
+    "source": "https://poe2db.tw/us/Vaal_Orb"
+  }
+]

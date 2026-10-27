@@ -1,0 +1,25 @@
+{
+  "league": "Forbidden Rites",
+  "customSounds": false,
+  "profiles": [
+    { "file": "Personal-01-ILvl-1-79.filter", "sourceMode": "Leveling", "minItemLevel": 1, "maxItemLevel": 79 },
+    { "file": "Personal-02-ILvl-80-81.filter", "sourceMode": "Endgame", "minItemLevel": 80, "maxItemLevel": 81 },
+    { "file": "Personal-03-Endgame-ILvl-81plus.filter", "sourceMode": "Endgame", "minItemLevel": 81, "maxItemLevel": 0 }
+  ],
+  "upstream": {
+    "release": "0.10.4a",
+    "commit": "1fc5b3ab99644388263fc991f832d9fac24a1f5d",
+    "files": [
+      {
+        "mode": "Leveling",
+        "file": "Regular.filter",
+        "sha256": "4600483A99C018A0B03A928CF3F21E067FD8DA19A486189055DB68E08863367A"
+      },
+      {
+        "mode": "Endgame",
+        "file": "SemiStrict.filter",
+        "sha256": "6892E2BF3E45FC550E1610AA7A914B7DBCA213C943E8D78312FF76CC85C8A766"
+      }
+    ]
+  }
+}

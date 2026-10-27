@@ -1,0 +1,3 @@
+dist/
+.poe2-*.tmp
+node_modules/

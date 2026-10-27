@@ -1,0 +1,6 @@
+*.filter -text
+*.wav -text
+*.mjs text eol=lf
+*.json text eol=lf
+*.yml text eol=lf
+*.md text eol=lf
