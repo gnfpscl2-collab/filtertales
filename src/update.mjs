@@ -3,15 +3,15 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createHash, randomUUID } from 'node:crypto';
 import { fetchHours, getPrices } from './economy.mjs';
-import { renderFilter, baselineFloors } from './filter.mjs';
+import { renderFilter, baselineFloors, DEFAULT_SOUNDS, validateSounds } from './filter.mjs';
 
 export const ROOT = fileURLToPath(new URL('../', import.meta.url));
-const SOUND_FILES = ['tw-rare-drop.wav', 'tw-level-up.wav', 'tw-quest-reward.wav'];
 
 export async function loadProject(root = ROOT) {
   const config = JSON.parse(await fs.readFile(path.join(root, 'config.json'), 'utf8'));
   const mapping = JSON.parse(await fs.readFile(path.join(root, 'currency-map.json'), 'utf8'));
   if (typeof config.customSounds !== 'boolean') throw new Error('config.customSounds must be a boolean.');
+  config.sounds = validateSounds(config.sounds ?? { ...DEFAULT_SOUNDS });
   if (!config.upstream || !Array.isArray(config.upstream.files) || config.upstream.files.length !== 2 || !Array.isArray(config.profiles) || config.profiles.length !== 3) {
     throw new Error('Expected two pinned upstream sources and three profiles.');
   }
@@ -88,8 +88,9 @@ export async function update({ root = ROOT, output = path.join(root, 'dist'), le
   const dataLabel = offline ? 'offline baseline; no live economy' : `hour starts UTC unix: ${hours.map(h => h.Hour).join(',')}`;
   const files = new Map();
   for (const profile of config.profiles) {
-    files.set(profile.file, renderFilter({ source: sources.get(profile.sourceMode), prices, league, profile, release: config.upstream.release, dataLabel, customSounds: config.customSounds }));
+    files.set(profile.file, renderFilter({ source: sources.get(profile.sourceMode), prices, league, profile, release: config.upstream.release, dataLabel, customSounds: config.customSounds, sounds: config.sounds }));
   }
+  const soundFiles = config.customSounds ? [...new Set(Object.values(config.sounds))].sort() : [];
   const report = {
     GeneratedUtc: new Date().toISOString(), League: league, Offline: offline,
     UpstreamRelease: config.upstream.release, UpstreamCommit: config.upstream.commit,
@@ -98,13 +99,17 @@ export async function update({ root = ROOT, output = path.join(root, 'dist'), le
     Guards: 'At least 2 hours, 10 item units, 1 Divine equivalent volume; max/min hourly price <=3.',
     Hours: hours.map(h => ({ StartUnix: h.Hour, Url: h.Url })), AcceptedPrices: prices,
     Profiles: config.profiles, CustomSoundsEnabled: config.customSounds,
-    SoundFiles: config.customSounds ? SOUND_FILES : [],
-    AudioStatus: config.customSounds ? 'Custom audio enabled; actual supplied audio must be checked separately.' : 'Built-in PoE2 alerts only. Custom audio is disabled.',
+    SoundFiles: soundFiles, SoundMapping: config.sounds,
+    AudioStatus: config.customSounds ? 'User-supplied WAV audio enabled; missing audio falls back to built-in alerts.' : 'Built-in PoE2 alerts only. Custom audio is disabled.',
   };
   files.set('last-update.json', JSON.stringify(report, null, 2) + '\n');
-  for (const name of config.customSounds ? SOUND_FILES : []) {
+  for (const name of soundFiles) {
     const existing = await readExisting(path.join(output, 'sounds', name));
-    files.set(`sounds/${name}`, existing ?? await fs.readFile(path.join(root, 'assets', 'sounds', name)));
+    const bytes = existing ?? await fs.readFile(path.join(root, 'assets', 'sounds', name));
+    if (bytes.length < 44 || bytes.toString('ascii', 0, 4) !== 'RIFF' || bytes.toString('ascii', 8, 12) !== 'WAVE' || bytes.readUInt32LE(4) + 8 > bytes.length) {
+      throw new Error(`Invalid WAV audio: ${name}`);
+    }
+    files.set(`sounds/${name}`, bytes);
   }
   await publishFiles(output, files);
   return report;
