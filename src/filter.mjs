@@ -9,7 +9,7 @@ const showBlocks = /^Show[^\r\n]*\r?\n(?:[ \t]+\S[^\r\n]*(?:\r?\n|$))+/gm;
 const quoteNames = names => [...new Set(names)].sort().map(name => `"${name}"`).join(' ');
 export const DEFAULT_SOUNDS = Object.freeze({
   value: '0161.wav', chaos: '0090.wav', maps: '0398.wav', exceptional: '0397.wav',
-  pinnacle: '777.wav', ab: '0103.wav', low: '0011.wav',
+  pinnacle: '777.wav', ab: '0103.wav',
 });
 
 export function validateSounds(sounds) {
@@ -25,7 +25,8 @@ export function validateSounds(sounds) {
 function grade(block) {
   const header = block.split(/\r?\n/, 1)[0];
   if (/\$tier->restex\b|\$type->gold\b/.test(header)) return 0;
-  if (/\$type->uniques\b/.test(header) || /\$type->sockets->general \$tier->[sa]\b/.test(header)) return 2;
+  if (/\$type->uniques\b/.test(header)) return 0;
+  if (/\$type->sockets->general \$tier->[sa]\b/.test(header)) return 2;
   if (/\$type->exoticbases\b|\$type->endgame->normalcraft->economy\b/.test(header)) return 1;
   if (/\$tier->s\b|!apex_stier\b/.test(header)) return 3;
   if (/\$tier->a\b|!(?:currency|fragments|xeno)_a\b/.test(header)) return 2;
@@ -146,7 +147,7 @@ export function applyCategorySounds(source, sounds = DEFAULT_SOUNDS) {
     const newline = block.includes('\r\n') ? '\r\n' : '\n';
     if (exceptional(block)) return customAlert(block, sounds.exceptional);
     if (/\$type->waystones\b/.test(header)) return customAlert(block, sounds.maps);
-    const fallback = customAlert(block, grade(block) >= 1 ? sounds.ab : sounds.low);
+    const fallback = grade(block) >= 1 ? customAlert(block, sounds.ab) : block;
     const baseLine = block.match(/^[ \t]*BaseType[ \t]+==[ \t]+([^\r\n]+)/m);
     if (!baseLine) return fallback;
     const tablets = [...baseLine[1].matchAll(/"([^"]+)"/g)].filter(match => match[1].endsWith(' Tablet'));
@@ -208,10 +209,10 @@ export function renderFilter({ source, prices, league, profile, release, dataLab
     lines.push('');
   };
   addRule('S+ Mirror of Kalandra and Hinekora\'s Lock', fixed.slice(0, 2), { ...sActions, PlayAlertSound: '6 250' }, sounds.pinnacle);
-  addRule('Fixed Divine Orb = one Divine, all areas', ['Divine Orb'], { ...sActions, PlayAlertSound: '1 250' }, sounds.value);
+  addRule('S+ Divine Orb = one Divine, all areas', ['Divine Orb'], { ...sActions, PlayAlertSound: '1 250' }, sounds.value);
   lines.push('# BEGIN PERSONAL ECONOMY');
   if (rareNames.length) {
-    addRule('Verified unit value >= 1 Divine, regardless of upstream tier, all areas', rareNames,
+    addRule('S+ Verified unit value >= 1 Divine, regardless of upstream tier, all areas', rareNames,
       { ...sActions, PlayAlertSound: '1 250' }, sounds.value);
   }
   for (const rank of [2, 1]) {

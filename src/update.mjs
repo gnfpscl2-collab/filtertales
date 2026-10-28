@@ -95,7 +95,7 @@ export async function update({ root = ROOT, output = path.join(root, 'dist'), le
     GeneratedUtc: new Date().toISOString(), League: league, Offline: offline,
     UpstreamRelease: config.upstream.release, UpstreamCommit: config.upstream.commit,
     Source: 'GGG public currency-exchange/poe2 hourly executed-volume digests',
-    Method: 'Direct Divine first; otherwise same-hour Exalted conversion. >=1 Divine rare sound in all areas; preserve upstream visual floors.',
+    Method: 'Direct Divine first; otherwise same-hour Exalted conversion. >=1 Divine is S+ with value audio in all areas; preserve upstream visual floors.',
     Guards: 'At least 2 hours, 10 item units, 1 Divine equivalent volume; max/min hourly price <=3.',
     Hours: hours.map(h => ({ StartUnix: h.Hour, Url: h.Url })), AcceptedPrices: prices,
     Profiles: config.profiles, CustomSoundsEnabled: config.customSounds,
