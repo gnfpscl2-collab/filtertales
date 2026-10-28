@@ -1,5 +1,6 @@
 export const DIVINE = 'Metadata/Items/Currency/CurrencyModValues';
 export const EXALTED = 'Metadata/Items/Currency/CurrencyAddModToRare';
+export const CHAOS = 'Metadata/Items/Currency/CurrencyRerollRare';
 const BASE_URL = 'https://web.poecdn.com/api/currency-exchange/poe2';
 
 function volume(market, id) {
@@ -81,47 +82,59 @@ export function getPrices(hours, league, mapping) {
       if (byPair.has(pairKey)) throw new Error('Duplicate market pair in one hour.');
       byPair.set(pairKey, market);
     }
-    const anchor = byPair.get(key(DIVINE, EXALTED));
-    let divinePerExalted = 0;
-    if (anchor) {
-      const exaltedUnits = volume(anchor, EXALTED);
-      const divineUnits = volume(anchor, DIVINE);
-      if (exaltedUnits > 0 && divineUnits >= 1) divinePerExalted = divineUnits / exaltedUnits;
-    }
+    const rate = (from, to) => {
+      const market = byPair.get(key(from, to));
+      if (!market) return 0;
+      const fromUnits = volume(market, from);
+      const toUnits = volume(market, to);
+      return fromUnits > 0 && toUnits > 0 ? toUnits / fromUnits : 0;
+    };
+    const divinePerExalted = rate(EXALTED, DIVINE);
+    const directDivinePerChaos = rate(CHAOS, DIVINE);
+    const divinePerChaos = directDivinePerChaos || rate(CHAOS, EXALTED) * divinePerExalted;
     for (const item of mapping) {
       const id = item.metadata_id;
       if (id === DIVINE) continue;
-      let market = byPair.get(key(id, DIVINE));
-      let units = market ? volume(market, id) : 0;
-      let divineUnits = market ? volume(market, DIVINE) : 0;
-      let route = 'direct-divine';
-      if (!(units > 0 && divineUnits > 0)) {
-        if (id === EXALTED || divinePerExalted <= 0) continue;
-        market = byPair.get(key(id, EXALTED));
+      for (const [quote, route, divinePerQuote] of [
+        [DIVINE, 'direct-divine', 1],
+        [CHAOS, 'via-chaos', id === EXALTED ? directDivinePerChaos : divinePerChaos],
+        [EXALTED, 'via-exalted', divinePerExalted],
+      ]) {
+        if (id === quote || divinePerQuote <= 0) continue;
+        const market = byPair.get(key(id, quote));
         if (!market) continue;
-        units = volume(market, id);
-        divineUnits = volume(market, EXALTED) * divinePerExalted;
-        route = 'via-exalted';
+        const units = volume(market, id);
+        const divineUnits = volume(market, quote) * divinePerQuote;
+        if (!(units > 0 && divineUnits > 0)) continue;
+        if (!Number.isFinite(divineUnits / units)) throw new Error('Non-finite currency price.');
+        if (!observations.has(id)) observations.set(id, new Map());
+        const routes = observations.get(id);
+        if (!routes.has(route)) routes.set(route, []);
+        routes.get(route).push({ Hour, Units: units, DivineUnits: divineUnits, Rate: divineUnits / units });
       }
-      if (!(units > 0 && divineUnits > 0)) continue;
-      if (!Number.isFinite(divineUnits / units)) throw new Error('Non-finite currency price.');
-      if (!observations.has(id)) observations.set(id, []);
-      observations.get(id).push({ Hour, Units: units, DivineUnits: divineUnits, Rate: divineUnits / units, Route: route });
     }
   }
   if (leagueHours < 2) throw new Error(`League '${league}' has fewer than two completed hours. Existing output is preserved.`);
   const prices = [];
   for (const item of mapping) {
-    const samples = observations.get(item.metadata_id) ?? [];
-    if (samples.length < 2) continue;
-    const units = samples.reduce((sum, s) => sum + s.Units, 0);
-    const divineUnits = samples.reduce((sum, s) => sum + s.DivineUnits, 0);
-    const rates = samples.map(s => s.Rate);
-    if (units < 10 || divineUnits < 1 || Math.max(...rates) / Math.min(...rates) > 3) continue;
+    const candidates = [];
+    for (const route of ['direct-divine', 'via-chaos', 'via-exalted']) {
+      const samples = observations.get(item.metadata_id)?.get(route) ?? [];
+      if (samples.length < 2) continue;
+      const units = samples.reduce((sum, s) => sum + s.Units, 0);
+      const divineUnits = samples.reduce((sum, s) => sum + s.DivineUnits, 0);
+      const rates = samples.map(s => s.Rate);
+      if (units < 10 || divineUnits < 1 || Math.max(...rates) / Math.min(...rates) > 3) continue;
+      candidates.push({ Route: route, DivinePerItem: divineUnits / units,
+        ItemUnits: units, DivineVolume: divineUnits, Hours: samples.map(s => s.Hour) });
+    }
+    if (!candidates.length) continue;
+    candidates.sort((a, b) => b.DivinePerItem - a.DivinePerItem);
+    const { Route, ...chosen } = candidates[0];
     prices.push({
-      BaseType: item.base_type, MetadataId: item.metadata_id, DivinePerItem: divineUnits / units,
-      ItemUnits: units, DivineVolume: divineUnits, Hours: samples.map(s => s.Hour),
-      Routes: [...new Set(samples.map(s => s.Route))].sort(),
+      BaseType: item.base_type, MetadataId: item.metadata_id,
+      ItemClass: item.item_class ?? 'Stackable Currency', ...chosen, Routes: [Route],
+      CandidatePrices: candidates.map(({ Route, DivinePerItem }) => ({ Route, DivinePerItem })),
     });
   }
   if (!prices.length) throw new Error('No sufficiently reliable currency prices. Existing output is preserved.');

@@ -11,6 +11,10 @@ export const DEFAULT_SOUNDS = Object.freeze({
   value: '0161.wav', chaos: '0090.wav', maps: '0398.wav', exceptional: '0397.wav',
   pinnacle: '777.wav', ab: '0103.wav',
 });
+export const FADED_CRISIS_FRAGMENT = Object.freeze({
+  base_type: 'Faded Crisis Fragment', metadata_id: 'Metadata/Items/Pinnacle/BurningMonolithKey2',
+  item_class: 'Pinnacle Keys',
+});
 
 export function validateSounds(sounds) {
   const keys = Object.keys(DEFAULT_SOUNDS);
@@ -178,14 +182,24 @@ export function renderFilter({ source, prices, league, profile, release, dataLab
     if (typeof value !== 'string' || /[\r\n\x00-\x1f]/.test(value)) throw new Error('Invalid filter header value.');
   }
   for (const price of prices) {
+    const pinnacle = price.BaseType === FADED_CRISIS_FRAGMENT.base_type
+      && price.MetadataId === FADED_CRISIS_FRAGMENT.metadata_id && price.ItemClass === FADED_CRISIS_FRAGMENT.item_class
+      && source.includes('Class == "Pinnacle Keys"');
+    const currency = (!price.ItemClass || price.ItemClass === 'Stackable Currency') && source.includes(`"${price.BaseType}"`);
     if (!/^[A-Za-z][A-Za-z0-9 ',-]{1,90}$/.test(price.BaseType)
       || !Number.isFinite(price.DivinePerItem) || price.DivinePerItem < 0
-      || !source.includes(`"${price.BaseType}"`)) throw new Error('Invalid/unrecognized currency price.');
+      || !(pinnacle || currency)) throw new Error('Invalid/unrecognized currency price.');
   }
   const fixed = ['Mirror of Kalandra', "Hinekora's Lock", 'Divine Orb'];
-  const rareNames = prices.filter(price => price.DivinePerItem >= 1 && !fixed.includes(price.BaseType)).map(price => price.BaseType);
+  const rareGroups = new Map();
+  for (const price of prices.filter(price => price.DivinePerItem >= 1 && !fixed.includes(price.BaseType))) {
+    const itemClass = price.ItemClass ?? 'Stackable Currency';
+    if (!rareGroups.has(itemClass)) rareGroups.set(itemClass, []);
+    rareGroups.get(itemClass).push(price.BaseType);
+  }
   const groups = new Map([[1, []], [2, []]]);
   for (const price of prices) {
+    if (price.ItemClass && price.ItemClass !== 'Stackable Currency') continue;
     if ([...fixed, 'Chaos Orb'].includes(price.BaseType) || price.DivinePerItem >= 1) continue;
     const rank = price.DivinePerItem >= 0.1 ? 2 : price.DivinePerItem >= 0.01 ? 1 : 0;
     if (rank > (floors.get(price.BaseType) ?? 0)) groups.get(rank).push(price.BaseType);
@@ -200,10 +214,10 @@ export function renderFilter({ source, prices, league, profile, release, dataLab
     `# Custom sounds: ${customSounds ? 'enabled' : 'disabled; built-in PoE2 alerts only'}`,
     '# Fixed S+ personal priority (independent of price data)',
   ];
-  const addRule = (label, names, actions, filename, areaLevel = false) => {
+  const addRule = (label, names, actions, filename, areaLevel = false, itemClass = 'Stackable Currency') => {
     lines.push(`Show # ${label}`);
     if (areaLevel) lines.push('    AreaLevel >= 65');
-    lines.push('    Class == "Stackable Currency"', `    BaseType == ${quoteNames(names)}`);
+    lines.push(`    Class == ${quoteNames([itemClass])}`, `    BaseType == ${quoteNames(names)}`);
     for (const [action, value] of Object.entries(actions)) lines.push(`    ${action} ${value}`);
     if (customSounds) lines.push(`    CustomAlertSoundOptional "sounds/${filename}" 250`);
     lines.push('');
@@ -211,9 +225,9 @@ export function renderFilter({ source, prices, league, profile, release, dataLab
   addRule('S+ Mirror of Kalandra and Hinekora\'s Lock', fixed.slice(0, 2), { ...sActions, PlayAlertSound: '6 250' }, sounds.pinnacle);
   addRule('S+ Divine Orb = one Divine, all areas', ['Divine Orb'], { ...sActions, PlayAlertSound: '1 250' }, sounds.value);
   lines.push('# BEGIN PERSONAL ECONOMY');
-  if (rareNames.length) {
-    addRule('S+ Verified unit value >= 1 Divine, regardless of upstream tier, all areas', rareNames,
-      { ...sActions, PlayAlertSound: '1 250' }, sounds.value);
+  for (const [itemClass, names] of rareGroups) {
+    addRule('S+ Verified unit value >= 1 Divine, regardless of upstream tier, all areas', names,
+      { ...sActions, PlayAlertSound: '1 250' }, sounds.value, false, itemClass);
   }
   for (const rank of [2, 1]) {
     if (!groups.get(rank).length) continue;

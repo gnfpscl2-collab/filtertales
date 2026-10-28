@@ -3,7 +3,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createHash, randomUUID } from 'node:crypto';
 import { fetchHours, getPrices } from './economy.mjs';
-import { renderFilter, baselineFloors, DEFAULT_SOUNDS, validateSounds } from './filter.mjs';
+import { renderFilter, baselineFloors, DEFAULT_SOUNDS, validateSounds, FADED_CRISIS_FRAGMENT } from './filter.mjs';
 
 export const ROOT = fileURLToPath(new URL('../', import.meta.url));
 
@@ -37,8 +37,16 @@ export async function loadProject(root = ROOT) {
   const section = sections.at(-1)?.[0];
   if (!section) throw new Error('Upstream currency section missing.');
   for (const item of mapping) {
-    if (!/^[A-Za-z][A-Za-z0-9 ',\-]{1,90}$/.test(item.base_type) || !/^Metadata\/Items\/Currency\/[A-Za-z0-9]+$/.test(item.metadata_id) || seen.has(item.metadata_id)) throw new Error('Invalid/duplicate currency allowlist entry.');
+    const pinnacle = Object.entries(FADED_CRISIS_FRAGMENT).every(([key, value]) => item[key] === value);
+    if (!/^[A-Za-z][A-Za-z0-9 ',\-]{1,90}$/.test(item.base_type)
+      || (!pinnacle && (!/^Metadata\/Items\/Currency\/[A-Za-z0-9]+$/.test(item.metadata_id)
+        || (item.item_class && item.item_class !== 'Stackable Currency')))
+      || seen.has(item.metadata_id)) throw new Error('Invalid/duplicate currency allowlist entry.');
     seen.add(item.metadata_id);
+    if (pinnacle) {
+      if ([...sources.values()].some(s => !s.includes('Class == "Pinnacle Keys"'))) throw new Error('Upstream Pinnacle Keys class missing.');
+      continue;
+    }
     if (!section.includes(`"${item.base_type}"`) || [...sources.values()].some(s => !s.includes(`"${item.base_type}"`))) throw new Error(`Currency absent from upstream: ${item.base_type}`);
   }
   return { config, mapping, sources };
@@ -95,7 +103,7 @@ export async function update({ root = ROOT, output = path.join(root, 'dist'), le
     GeneratedUtc: new Date().toISOString(), League: league, Offline: offline,
     UpstreamRelease: config.upstream.release, UpstreamCommit: config.upstream.commit,
     Source: 'GGG public currency-exchange/poe2 hourly executed-volume digests',
-    Method: 'Direct Divine first; otherwise same-hour Exalted conversion. >=1 Divine is S+ with value audio in all areas; preserve upstream visual floors.',
+    Method: 'Validate direct Divine, same-hour Chaos and Exalted routes independently; choose the highest accepted Divine unit value. >=1 Divine is S+ with value audio in all areas.',
     Guards: 'At least 2 hours, 10 item units, 1 Divine equivalent volume; max/min hourly price <=3.',
     Hours: hours.map(h => ({ StartUnix: h.Hour, Url: h.Url })), AcceptedPrices: prices,
     Profiles: config.profiles, CustomSoundsEnabled: config.customSounds,
