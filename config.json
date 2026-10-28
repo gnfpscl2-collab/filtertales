@@ -7,13 +7,12 @@
     "maps": "0398.wav",
     "exceptional": "0397.wav",
     "pinnacle": "777.wav",
-    "ab": "0103.wav",
-    "low": "0011.wav"
+    "ab": "0103.wav"
   },
   "profiles": [
-    { "file": "Personal-01-ILvl-1-79.filter", "sourceMode": "Leveling", "minItemLevel": 1, "maxItemLevel": 79 },
-    { "file": "Personal-02-ILvl-80-81.filter", "sourceMode": "Endgame", "minItemLevel": 80, "maxItemLevel": 81 },
-    { "file": "Personal-03-Endgame-ILvl-81plus.filter", "sourceMode": "Endgame", "minItemLevel": 81, "maxItemLevel": 0 }
+    { "file": "Personal-01-ILvl-1-65.filter", "sourceMode": "Leveling", "minItemLevel": 1, "maxItemLevel": 65 },
+    { "file": "Personal-02-ILvl-79plus.filter", "sourceMode": "Endgame", "minItemLevel": 79, "maxItemLevel": 0 },
+    { "file": "Personal-03-Endgame-ILvl-82plus.filter", "sourceMode": "Endgame", "minItemLevel": 82, "maxItemLevel": 0 }
   ],
   "upstream": {
     "release": "0.10.4a",

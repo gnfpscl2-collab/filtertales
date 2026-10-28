@@ -35,6 +35,12 @@
     "source": "https://poe2db.tw/us/Exalted_Orb"
   },
   {
+    "base_type": "Faded Crisis Fragment",
+    "metadata_id": "Metadata/Items/Pinnacle/BurningMonolithKey2",
+    "item_class": "Pinnacle Keys",
+    "source": "https://poe2db.tw/us/Faded_Crisis_Fragment"
+  },
+  {
     "base_type": "Fracturing Orb",
     "metadata_id": "Metadata/Items/Currency/CurrencyFractureRare",
     "source": "https://poe2db.tw/us/Fracturing_Orb"
