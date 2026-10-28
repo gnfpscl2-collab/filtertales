@@ -10,9 +10,9 @@
     "ab": "0103.wav"
   },
   "profiles": [
-    { "file": "Personal-01-ILvl-1-65.filter", "sourceMode": "Leveling", "minItemLevel": 1, "maxItemLevel": 65 },
-    { "file": "Personal-02-ILvl-79plus.filter", "sourceMode": "Endgame", "minItemLevel": 79, "maxItemLevel": 0 },
-    { "file": "Personal-03-Endgame-ILvl-82plus.filter", "sourceMode": "Endgame", "minItemLevel": 82, "maxItemLevel": 0 }
+    { "file": "tw-normal.filter", "sourceMode": "Leveling", "minItemLevel": 1, "maxItemLevel": 65 },
+    { "file": "tw-hard.filter", "sourceMode": "Endgame", "minItemLevel": 79, "maxItemLevel": 0 },
+    { "file": "tw-hell.filter", "sourceMode": "Endgame", "minItemLevel": 82, "maxItemLevel": 0, "strictEndgame": true }
   ],
   "upstream": {
     "release": "0.10.4a",
