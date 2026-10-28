@@ -5,7 +5,7 @@ import path from 'node:path';
 import os from 'node:os';
 import { ROOT, loadProject, publishFiles, update } from '../src/update.mjs';
 import { DIVINE, EXALTED } from '../src/economy.mjs';
-import { DEFAULT_SOUNDS } from '../src/filter.mjs';
+import { DEFAULT_SOUNDS, FADED_CRISIS_FRAGMENT } from '../src/filter.mjs';
 
 const SOUND_FILES = Object.values(DEFAULT_SOUNDS).sort();
 async function scratch(t) {
@@ -36,14 +36,18 @@ async function copyProject(t, customSounds, includeAssets = true) {
 test('project validates pinned sources and all three profiles', async () => {
   const project = await loadProject();
   assert.equal(project.sources.size, 2);
-  assert.equal(project.mapping.length, 28);
+  assert.equal(project.mapping.length, 29);
+  const fragment = project.mapping.find(item => item.base_type === 'Faded Crisis Fragment');
+  for (const [key, value] of Object.entries(FADED_CRISIS_FRAGMENT)) assert.equal(fragment[key], value);
+  assert.notEqual(fragment.item_class, 'Quest Items');
   assert.equal(project.config.customSounds, true);
   assert.deepEqual(project.config.sounds, DEFAULT_SOUNDS);
-  assert.deepEqual(project.config.profiles.map(p => [p.minItemLevel, p.maxItemLevel]), [[1, 79], [80, 81], [81, 0]]);
+  assert.deepEqual(project.config.profiles.map(p => [p.minItemLevel, p.maxItemLevel]), [[1, 65], [79, 0], [82, 0]]);
 });
 
-test('the seven supplied files contain complete PCM audio with the exact configured filenames', async () => {
-  assert.equal(SOUND_FILES.length, 7);
+test('the six active files contain complete PCM audio with the exact configured filenames', async () => {
+  assert.equal(SOUND_FILES.length, 6);
+  assert.ok(!SOUND_FILES.includes('0011.wav'));
   for (const name of SOUND_FILES) {
     const bytes = await fs.readFile(path.join(ROOT, 'assets', 'sounds', name));
     assert.equal(bytes.toString('ascii', 0, 4), 'RIFF', name);
@@ -63,6 +67,26 @@ test('the seven supplied files contain complete PCM audio with the exact configu
     assert.equal(chunks.get('fmt ').readUInt32LE(4), 22050, `${name}: sample rate`);
     assert.equal(chunks.get('fmt ').readUInt16LE(14), 16, `${name}: bits per sample`);
     assert.ok(chunks.get('data')?.length > 0, `${name}: audible sample data`);
+  }
+});
+
+test('the Pinnacle Key mapping rejects quest IDs, spoofed classes and mismatched base types', async t => {
+  const root = await copyProject(t, true, false);
+  const mappingFile = path.join(root, 'currency-map.json');
+  const mapping = JSON.parse(await fs.readFile(mappingFile, 'utf8'));
+  const index = mapping.findIndex(item => item.base_type === 'Faded Crisis Fragment');
+  assert.ok(index >= 0);
+  for (const change of [
+    { metadata_id: 'Metadata/Items/QuestItems/BurningMonolithKey2' },
+    { item_class: 'Quest Items' },
+    { item_class: 'Stackable Currency' },
+    { item_class: undefined },
+    { base_type: 'Chaos Orb' },
+  ]) {
+    const altered = [...mapping];
+    altered[index] = { ...mapping[index], ...change };
+    await fs.writeFile(mappingFile, JSON.stringify(altered));
+    await assert.rejects(loadProject(root), /Invalid\/duplicate currency allowlist entry/);
   }
 });
 
@@ -87,7 +111,7 @@ test('native offline build works without audio assets and preserves unrelated fi
   for (const name of SOUND_FILES.slice(1)) await assert.rejects(fs.readFile(path.join(output, 'sounds', name)), { code: 'ENOENT' });
 });
 
-test('custom audio build installs all seven WAVs and preserves valid installed replacements', async t => {
+test('custom audio build installs six active WAVs and preserves valid installed replacements', async t => {
   const root = await copyProject(t, true);
   const output = await scratch(t);
   await fs.mkdir(path.join(output, 'sounds'));
@@ -98,6 +122,7 @@ test('custom audio build installs all seven WAVs and preserves valid installed r
   assert.equal(report.CustomSoundsEnabled, true);
   assert.deepEqual(report.SoundFiles, SOUND_FILES);
   assert.deepEqual(report.SoundMapping, DEFAULT_SOUNDS);
+  await assert.rejects(fs.readFile(path.join(output, 'sounds', '0011.wav')), { code: 'ENOENT' });
   assert.deepEqual(await fs.readFile(path.join(output, 'sounds', SOUND_FILES[0])), installed);
   for (const name of SOUND_FILES.slice(1)) assert.deepEqual(await fs.readFile(path.join(output, 'sounds', name)), await fs.readFile(path.join(root, 'assets', 'sounds', name)));
   for (const profile of report.Profiles) {
@@ -114,13 +139,19 @@ test('online generator renders fetched high-value currency and emits provenance'
   const rows = [
     { league: 'Forbidden Rites', market_pair: [EXALTED, DIVINE], volume_traded: { [EXALTED]: 1000, [DIVINE]: 10 } },
     { league: 'Forbidden Rites', market_pair: [id, DIVINE], volume_traded: { [id]: 100, [DIVINE]: 200 } },
+    { league: 'Forbidden Rites', market_pair: [FADED_CRISIS_FRAGMENT.metadata_id, DIVINE], volume_traded: { [FADED_CRISIS_FRAGMENT.metadata_id]: 100, [DIVINE]: 200 } },
   ];
   const report = await update({ root, output, now: 15000, fetchImpl: async url => new Response(JSON.stringify({ next_change_id: Number(url.split('/').at(-1)) + 3600, markets: rows })) });
   assert.equal(report.Offline, false);
   assert.equal(report.Hours.length, 3);
   assert.equal(report.AcceptedPrices.find(p => p.BaseType === 'Fracturing Orb').DivinePerItem, 2);
+  const fragment = report.AcceptedPrices.find(p => p.BaseType === 'Faded Crisis Fragment');
+  assert.equal(fragment.DivinePerItem, 2);
+  assert.equal(fragment.MetadataId, FADED_CRISIS_FRAGMENT.metadata_id);
+  assert.equal(fragment.ItemClass, 'Pinnacle Keys');
   const text = await fs.readFile(path.join(output, report.Profiles[0].file), 'utf8');
   assert.match(text, /Verified unit value >= 1 Divine[\s\S]*?"Fracturing Orb"[\s\S]*?PlayAlertSound 1 250/);
+  assert.match(text, /Class == "Pinnacle Keys"\n\s*BaseType == "Faded Crisis Fragment"/);
   assert.doesNotMatch(text, /^[ \t]*CustomAlertSound\w*\b/m);
   assert.equal(report.CustomSoundsEnabled, false);
   assert.deepEqual(report.SoundFiles, []);

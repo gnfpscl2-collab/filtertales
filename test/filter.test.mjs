@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import {
-  baselineFloors, renderFilter, applyVisualPolicy, addItemLevelRange, applyCategorySounds, DEFAULT_SOUNDS, validateSounds,
+  baselineFloors, renderFilter, applyVisualPolicy, addItemLevelRange, applyCategorySounds, DEFAULT_SOUNDS, validateSounds, FADED_CRISIS_FRAGMENT,
 } from '../src/filter.mjs';
 
 const root = new URL('../', import.meta.url);
@@ -44,9 +44,9 @@ test('pinned upstream bytes and top currency floors remain intact', () => {
 });
 
 const expectedBoundaries = new Map([
-  ['Personal-01-ILvl-1-79.filter', [false, true, true, true]],
-  ['Personal-02-ILvl-80-81.filter', [true, false, false, true]],
-  ['Personal-03-Endgame-ILvl-81plus.filter', [true, true, false, false]],
+  ['Personal-01-ILvl-1-65.filter', [false, true, true, true, true, true, true]],
+  ['Personal-02-ILvl-79plus.filter', [true, true, true, false, false, false, false]],
+  ['Personal-03-Endgame-ILvl-82plus.filter', [true, true, true, true, true, false, false]],
 ]);
 for (const profile of config.profiles) {
   test(`${profile.file}: default audio uses built-in sounds without custom file references`, () => {
@@ -91,7 +91,8 @@ for (const profile of config.profiles) {
     assert.ok(suffix.indexOf('# BEGIN PERSONAL ITEMLEVEL RANGE') > suffix.lastIndexOf('# [[0800]]'));
     assert.ok(suffix.indexOf('# BEGIN PERSONAL ITEMLEVEL RANGE') < suffix.lastIndexOf('# [[0900]]'));
     assert.doesNotMatch(text, /^\s*RequiredLevel\b/m);
-    for (const [index, level] of [79, 80, 81, 82].entries()) {
+    assert.doesNotMatch(range, /^\s*DropLevel\b/m, 'drop level is not an equipment requirement substitute');
+    for (const [index, level] of [65, 66, 78, 79, 81, 82, 83].entries()) {
       const hidden = [...range.matchAll(/ItemLevel ([<>]) (\d+)/g)].some(match =>
         match[1] === '<' ? level < Number(match[2]) : level > Number(match[2]));
       assert.equal(hidden, expectedBoundaries.get(profile.file)[index], `ordinary gear ilvl ${level}`);
@@ -120,6 +121,8 @@ for (const profile of config.profiles) {
     assert.match(pinnacle, /PlayEffect Red/);
     assert.equal(audio(pinnacle), '777.wav');
     const rare = rules.find(block => /Verified unit value >= 1 Divine/.test(block));
+    assert.match(rare.split(/\r?\n/, 1)[0], /S\+/, 'one-Divine unit values have the agreed S+ rank');
+    assert.match(divine.split(/\r?\n/, 1)[0], /S\+/, 'Divine itself has the same S+ rank');
     assert.match(rare, /"Fracturing Orb"/);
     assert.equal(audio(rare), '0161.wav');
     assert.doesNotMatch(rare, /Perfect Jeweller's Orb|Hinekora's Lock|AreaLevel|ItemLevel/);
@@ -129,7 +132,7 @@ for (const profile of config.profiles) {
     assert.match(prefix, /AreaLevel >= 65/, 'lower-value visual promotion preserves campaign exceptions');
   });
 
-  test(`${profile.file}: all seven sounds follow category and exceptional priorities`, () => {
+  test(`${profile.file}: six active sounds follow category and exceptional priorities`, () => {
     const [, suffix] = render(profile).split(sourceMarker);
     const rules = blocks(suffix);
     const ordinary = rules.filter(block => /\$type->waystones \$tier->waystone_t(?:[1-9]|1[0-5])\b/.test(block));
@@ -167,10 +170,13 @@ for (const profile of config.profiles) {
     const cCurrency = rules.find(block => /\$type->currency \$tier->c\b/.test(block));
     const bCurrency = rules.find(block => /\$type->currency \$tier->b\b/.test(block));
     const unpricedS = rules.find(block => /\$type->currency \$tier->s\b/.test(block));
-    assert.equal(audio(cCurrency), '0011.wav');
+    assert.equal(audio(cCurrency), undefined);
+    const originalC = blocks(sources.get(profile.sourceMode)).find(block => /\$type->currency \$tier->c\b/.test(block));
+    assert.equal(cCurrency, originalC, 'C currency keeps the exact upstream alert, colours and effects');
     assert.equal(audio(bCurrency), '0103.wav');
     assert.equal(audio(unpricedS), '0103.wav', 'static S is not proof of a one-Divine price');
     const full = render(profile);
+    assert.doesNotMatch(full, /sounds\/0011\.wav/, 'retired low-grade custom sound is never referenced');
     const used = new Set([...full.matchAll(/CustomAlertSoundOptional "sounds\/([^"\r\n]+)"/g)].map(match => match[1]));
     assert.deepEqual([...used].sort(), Object.values(DEFAULT_SOUNDS).sort());
     for (const block of rules.filter(block => /^\s*Continue\b/m.test(block))) assert.equal(audio(block), undefined);
@@ -185,6 +191,40 @@ test('verified Chaos price at one Divine wins before the category sound', () => 
   const chaos = blocks(text).filter(block => /BaseType == "Chaos Orb"/.test(block));
   assert.equal(audio(chaos[0]), '0161.wav');
   assert.equal(audio(chaos[1]), '0090.wav');
+});
+
+test('Faded Crisis Fragment is a separate S+ Pinnacle Key at one Divine in every profile', () => {
+  const price = {
+    BaseType: FADED_CRISIS_FRAGMENT.base_type, MetadataId: FADED_CRISIS_FRAGMENT.metadata_id,
+    ItemClass: FADED_CRISIS_FRAGMENT.item_class, DivinePerItem: 1,
+  };
+  for (const profile of config.profiles) {
+    const [prefix, suffix] = render(profile, { prices: [...prices, price] }).split(sourceMarker);
+    const rule = blocks(prefix).find(block => block.includes('"Faded Crisis Fragment"'));
+    assert.ok(rule, profile.file);
+    assert.match(rule, /^Show # S\+ Verified unit value >= 1 Divine/m);
+    assert.match(rule, /^\s*Class == "Pinnacle Keys"$/m);
+    assert.doesNotMatch(rule, /Quest Items|Stackable Currency|ItemLevel|AreaLevel|RequiredLevel|DropLevel/);
+    assert.equal(audio(rule), '0161.wav');
+    assert.match(rule, /SetTextColor 255 0 0 255/);
+    assert.match(rule, /SetBackgroundColor 255 255 255 255/);
+    const range = suffix.match(/^# BEGIN PERSONAL ITEMLEVEL RANGE.*?^# END PERSONAL ITEMLEVEL RANGE/gms)?.[0];
+    assert.doesNotMatch(range, /Pinnacle Keys|Quest Items/);
+    const [belowPrefix, belowSuffix] = render(profile, { prices: [{ ...price, DivinePerItem: 0.999 }] }).split(sourceMarker);
+    assert.doesNotMatch(belowPrefix, /Faded Crisis Fragment/, 'below one Divine does not receive a currency promotion');
+    const fallback = blocks(belowSuffix).find(block => /^\s*Class == "Pinnacle Keys"$/m.test(block));
+    const original = blocks(sources.get(profile.sourceMode)).find(block => /^\s*Class == "Pinnacle Keys"$/m.test(block));
+    assert.ok(fallback, 'existing Pinnacle Keys fallback remains');
+    assert.equal(logic(fallback), logic(original));
+    assert.equal(audio(fallback), '0103.wav', 'ordinary Pinnacle Keys retain the A-category fallback sound');
+  }
+  for (const invalid of [
+    { ...price, ItemClass: 'Quest Items' },
+    { ...price, ItemClass: 'Stackable Currency' },
+    { ...price, MetadataId: 'Metadata/Items/QuestItems/BurningMonolithKey2' },
+    { ...price, MetadataId: undefined },
+    { ...price, BaseType: 'Chaos Orb' },
+  ]) assert.throws(() => render(config.profiles[0], { prices: [invalid] }), /Invalid\/unrecognized currency price/);
 });
 
 test('Unique Tablet sound subsets preserve original conditions and exceptional alerts take priority', () => {
@@ -207,7 +247,8 @@ test('Unique Tablet sound subsets preserve original conditions and exceptional a
   for (const condition of ['Rarity Unique', 'Class == "Tablet" "Belts"', 'Identified False', 'ItemLevel >= 80']) {
     assert.ok(tablet.includes(condition), `tablet subset preserves ${condition}`);
   }
-  assert.equal(audio(fallback), '0103.wav');
+  assert.equal(audio(fallback), undefined);
+  assert.equal(fallback, mixed, 'ordinary unique fallback keeps its native alert');
   assert.equal(logic(fallback), logic(mixed), 'mixed non-tablet items retain the original matching rule');
   const exceptional = mixed.replace('$tier->t2 !uniques_a', '$tier->exceptional !uniques_exceptional');
   const exceptionalResult = applyCategorySounds(exceptional);
@@ -215,6 +256,23 @@ test('Unique Tablet sound subsets preserve original conditions and exceptional a
   assert.equal(audio(exceptionalResult), '0397.wav');
   assert.doesNotMatch(exceptionalResult, /PERSONAL TABLET SOUND/);
   assert.equal(logic(exceptionalResult), logic(exceptional));
+});
+
+test('unique rarity tiers retain NeverSink matching, presentation and native alerts', () => {
+  for (const profile of config.profiles) {
+    const source = sources.get(profile.sourceMode);
+    const [, suffix] = render(profile).split(sourceMarker);
+    const unmodifiedFallbacks = suffix.replace(/^# BEGIN PERSONAL TABLET SOUND.*?^# END PERSONAL TABLET SOUND\r?\n/gms, '');
+    const renderedRules = blocks(unmodifiedFallbacks);
+    const nativeUniques = blocks(source).filter(block => /\$type->uniques\b/.test(block.split(/\r?\n/, 1)[0])
+      && !/!uniques_exceptional\b|\$tier->restex\b/.test(block.split(/\r?\n/, 1)[0]));
+    assert.ok(nativeUniques.some(block => /\$tier->t1\b/.test(block)), 'top unique category exists');
+    assert.ok(nativeUniques.some(block => /\$tier->t3\b/.test(block)), 'lower unique category exists');
+    for (const original of nativeUniques) {
+      const header = original.split(/\r?\n/, 1)[0];
+      assert.equal(renderedRules.find(block => block.startsWith(header)), original, `${profile.file}: ${header}`);
+    }
+  }
 });
 
 test('visual policy preserves all original Hide rules and applies the agreed colours', () => {
