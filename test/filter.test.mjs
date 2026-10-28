@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import {
-  baselineFloors, renderFilter, applyVisualPolicy, addItemLevelRange, applyCategorySounds, DEFAULT_SOUNDS, validateSounds, FADED_CRISIS_FRAGMENT,
+  baselineFloors, renderFilter, applyVisualPolicy, addItemLevelRange, applyCategorySounds, applyEndgameVisibility, DEFAULT_SOUNDS, validateSounds, FADED_CRISIS_FRAGMENT,
 } from '../src/filter.mjs';
 
 const root = new URL('../', import.meta.url);
@@ -29,6 +29,8 @@ const render = (profile, overrides = {}) => renderFilter({
 });
 const audio = block => block.match(/CustomAlertSoundOptional "sounds\/([^"\r\n]+)"/)?.[1];
 const colourLines = block => block.split(/\r?\n/).filter(line => /^\s*Set(?:TextColor|BorderColor|BackgroundColor)\b/.test(line)).map(line => line.trim());
+const visibilitySource = profile => profile.strictEndgame
+  ? applyEndgameVisibility(sources.get(profile.sourceMode)) : sources.get(profile.sourceMode);
 
 test('pinned upstream bytes and top currency floors remain intact', () => {
   assert.equal(config.profiles.length, 3);
@@ -44,9 +46,9 @@ test('pinned upstream bytes and top currency floors remain intact', () => {
 });
 
 const expectedBoundaries = new Map([
-  ['Personal-01-ILvl-1-65.filter', [false, true, true, true, true, true, true]],
-  ['Personal-02-ILvl-79plus.filter', [true, true, true, false, false, false, false]],
-  ['Personal-03-Endgame-ILvl-82plus.filter', [true, true, true, true, true, false, false]],
+  ['tw-normal.filter', [false, true, true, true, true, true, true]],
+  ['tw-hard.filter', [true, true, true, false, false, false, false]],
+  ['tw-hell.filter', [true, true, true, true, true, false, false]],
 ]);
 for (const profile of config.profiles) {
   test(`${profile.file}: default audio uses built-in sounds without custom file references`, () => {
@@ -74,7 +76,7 @@ for (const profile of config.profiles) {
       assert.equal(rule.match(/^[ \t]*PlayAlertSound[^\r\n]*/m)?.[0], original.match(/^[ \t]*PlayAlertSound[^\r\n]*/m)?.[0]);
     }
     const recovered = suffix.replace(/^# BEGIN PERSONAL ITEMLEVEL RANGE.*?^# END PERSONAL ITEMLEVEL RANGE\r?\n/gms, '');
-    assert.equal(logic(recovered), logic(sources.get(profile.sourceMode)), 'native mode preserves original conditions/order');
+    assert.equal(logic(recovered), logic(visibilitySource(profile)), 'native mode preserves the selected visibility policy conditions/order');
   });
 
   test(`${profile.file}: only ordinary gear uses the agreed level boundaries`, () => {
@@ -100,7 +102,7 @@ for (const profile of config.profiles) {
   });
 
   test(`${profile.file}: original matching conditions and order survive the requested additions`, () => {
-    const source = sources.get(profile.sourceMode);
+    const source = visibilitySource(profile);
     const [prefix, suffix] = render(profile).split(sourceMarker);
     assert.doesNotMatch(prefix, /^Hide\b/m, 'economy never introduces price-based hiding');
     const recovered = suffix
@@ -258,9 +260,9 @@ test('Unique Tablet sound subsets preserve original conditions and exceptional a
   assert.equal(logic(exceptionalResult), logic(exceptional));
 });
 
-test('unique rarity tiers retain NeverSink matching, presentation and native alerts', () => {
+test('retained unique rarity tiers keep NeverSink matching, presentation and native alerts', () => {
   for (const profile of config.profiles) {
-    const source = sources.get(profile.sourceMode);
+    const source = visibilitySource(profile);
     const [, suffix] = render(profile).split(sourceMarker);
     const unmodifiedFallbacks = suffix.replace(/^# BEGIN PERSONAL TABLET SOUND.*?^# END PERSONAL TABLET SOUND\r?\n/gms, '');
     const renderedRules = blocks(unmodifiedFallbacks);
