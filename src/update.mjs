@@ -26,8 +26,9 @@ export async function loadProject(root = ROOT) {
   }
   const outputNames = new Set();
   for (const profile of config.profiles) {
-    if (!/^Personal-[A-Za-z0-9-]+\.filter$/.test(profile.file) || outputNames.has(profile.file) || !sources.has(profile.sourceMode)) throw new Error('Invalid/duplicate profile.');
+    if (!/^[A-Za-z0-9][A-Za-z0-9-]{0,79}\.filter$/.test(profile.file) || outputNames.has(profile.file) || !sources.has(profile.sourceMode)) throw new Error('Invalid/duplicate profile.');
     if (!Number.isSafeInteger(profile.minItemLevel) || profile.minItemLevel < 1 || !Number.isSafeInteger(profile.maxItemLevel) || profile.maxItemLevel < 0 || (profile.maxItemLevel && profile.maxItemLevel < profile.minItemLevel)) throw new Error('Invalid profile item-level range.');
+    if (profile.strictEndgame !== undefined && (typeof profile.strictEndgame !== 'boolean' || (profile.strictEndgame && profile.sourceMode !== 'Endgame'))) throw new Error('Invalid strict endgame profile.');
     outputNames.add(profile.file);
   }
   if (!Array.isArray(mapping) || !mapping.length) throw new Error('Invalid currency allowlist.');
@@ -96,7 +97,9 @@ export async function update({ root = ROOT, output = path.join(root, 'dist'), le
   const dataLabel = offline ? 'offline baseline; no live economy' : `hour starts UTC unix: ${hours.map(h => h.Hour).join(',')}`;
   const files = new Map();
   for (const profile of config.profiles) {
-    files.set(profile.file, renderFilter({ source: sources.get(profile.sourceMode), prices, league, profile, release: config.upstream.release, dataLabel, customSounds: config.customSounds, sounds: config.sounds }));
+    const text = renderFilter({ source: sources.get(profile.sourceMode), prices, league, profile, release: config.upstream.release, dataLabel, customSounds: config.customSounds, sounds: config.sounds });
+    files.set(profile.file, text);
+    files.set(`website-sources/${profile.file}.txt`, text);
   }
   const soundFiles = config.customSounds ? [...new Set(Object.values(config.sounds))].sort() : [];
   const report = {
@@ -107,6 +110,7 @@ export async function update({ root = ROOT, output = path.join(root, 'dist'), le
     Guards: 'At least 2 hours, 10 item units, 1 Divine equivalent volume; max/min hourly price <=3.',
     Hours: hours.map(h => ({ StartUnix: h.Hour, Url: h.Url })), AcceptedPrices: prices,
     Profiles: config.profiles, CustomSoundsEnabled: config.customSounds,
+    WebsiteSources: config.profiles.map(profile => `website-sources/${profile.file}.txt`),
     SoundFiles: soundFiles, SoundMapping: config.sounds,
     AudioStatus: config.customSounds ? 'User-supplied WAV audio enabled; missing audio falls back to built-in alerts.' : 'Built-in PoE2 alerts only. Custom audio is disabled.',
   };

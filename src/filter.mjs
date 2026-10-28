@@ -141,6 +141,67 @@ export function addItemLevelRange(source, minimum, maximum) {
   return source.slice(0, insertion) + lines.join('\n') + source.slice(insertion);
 }
 
+export function applyEndgameVisibility(source) {
+  const blocks = [...source.matchAll(showBlocks)].map(match => match[0]);
+  const header = block => block.split(/\r?\n/, 1)[0];
+  const find = (type, tier) => {
+    const matches = blocks.filter(block => header(block).includes(`$type->${type} $tier->${tier} `));
+    if (matches.length !== 1) throw new Error(`Strict endgame source group missing or duplicated: ${type}/${tier}`);
+    return matches[0];
+  };
+  const names = block => {
+    const line = block.match(/^[ \t]*BaseType[ \t]+==[ \t]+([^\r\n]+)/m)?.[1];
+    if (!line) throw new Error('Strict endgame source group has no exact BaseType list.');
+    return [...line.matchAll(/"([^"]+)"/g)].map(match => match[1]);
+  };
+  const hide = block => block.replace(/^Show\b/, 'Hide')
+    .replace(/^[ \t]*(?:PlayAlertSound(?:Positional)?|CustomAlertSound\w*|PlayEffect|MinimapIcon)\b[^\r\n]*(?:\r?\n|$)/gm, '');
+  const newline = source.includes('\r\n') ? '\r\n' : '\n';
+  const rare = ['gear4a', 'gear3a', 'j4a', 'j3a'].map(tier => find('ut->rare', tier));
+  const craft = find('endgame->normalcraft->economy', 'group1t1');
+  const lowUnique = find('uniques', 'hideable');
+  const uniqueExclusions = `!= ${quoteNames(names(lowUnique))}`;
+  const lowAugments = ['c', 'd', 'e', 'supplylow'].map(tier => find('sockets->general', tier));
+  const lowNames = new Set(lowAugments.flatMap(names));
+  for (const tier of ['socketleveling1', 'socketleveling2']) {
+    const block = find('sockets->general', tier);
+    if (names(block).some(name => !lowNames.has(name))) throw new Error('Strict augment leveling exceptions changed.');
+    lowAugments.push(block);
+  }
+  const lowMaterials = [
+    ...['c', 'd', 'e'].map(tier => find('currency->essence', tier)),
+    find('currency->catalysts', 'c'),
+    ...['c', 'd'].map(tier => find('currency->emotions', tier)),
+  ];
+  for (const block of lowMaterials) names(block);
+  const hidden = new Set([...lowAugments, ...lowMaterials, lowUnique]);
+  const uniqueBypasses = new Set(['loreweaverecipe', 'corrupteduniques'].map(tier => find('uniques', tier)));
+  const knownBases = blocks.filter(block => /^[ \t]*Rarity\b/m.test(block) && /^[ \t]*BaseType[ \t]+==[ \t]+/m.test(block))
+    .flatMap(names);
+  if (!knownBases.length || !/^[ \t]*Rarity Normal[ \t]*\r?$/m.test(craft)) throw new Error('Strict crafting source changed.');
+  const gate = [
+    '# BEGIN PERSONAL STRICT ENDGAME GEAR',
+    '# Known ordinary gear only; earlier special-item safeguards still take priority.',
+    ...rare.map(block => setActions(block, { Class: `== ${quoteNames(equipmentClasses)}`, ItemLevel: '>= 82' }).trimEnd()),
+    setActions(craft.replace(/^[ \t]*Rarity Normal[ \t]*\r?$/m, '    Rarity Magic'),
+      { Class: `== ${quoteNames(equipmentClasses)}` }).trimEnd(),
+    'Hide # Personal strict endgame: remaining known ordinary magic and rare equipment',
+    '    Rarity Magic Rare',
+    `    Class == ${quoteNames(equipmentClasses)}`,
+    `    BaseType == ${quoteNames(knownBases)}`,
+    '# END PERSONAL STRICT ENDGAME GEAR', '', '',
+  ].join(newline);
+  const firstRare = find('ut->rare', 'gear4a');
+  return source.replace(showBlocks, block => {
+    let result = hidden.has(block) ? hide(block) : block;
+    if (uniqueBypasses.has(block)) {
+      if (/^[ \t]*BaseType\b/m.test(block)) throw new Error('Strict unique bypass source changed.');
+      result = setActions(result, { BaseType: uniqueExclusions });
+    }
+    return block === firstRare ? gate + result : result;
+  });
+}
+
 export function applyCategorySounds(source, sounds = DEFAULT_SOUNDS) {
   validateSounds(sounds);
   return source.replace(showBlocks, block => {
@@ -175,6 +236,7 @@ export function applyCategorySounds(source, sounds = DEFAULT_SOUNDS) {
 
 export function renderFilter({ source, prices, league, profile, release, dataLabel, customSounds = false, sounds = DEFAULT_SOUNDS }) {
   if (typeof customSounds !== 'boolean') throw new Error('customSounds must be a boolean.');
+  if (profile.strictEndgame !== undefined && typeof profile.strictEndgame !== 'boolean') throw new Error('strictEndgame must be a boolean.');
   validateSounds(sounds);
   const floors = baselineFloors(source);
   const nativeB = nativeCurrencyBActions(source);
@@ -242,7 +304,7 @@ export function renderFilter({ source, prices, league, profile, release, dataLab
   lines.push(
     '# BEGIN NEVERSINK (personal visual policy and optional sounds; conditions preserved)',
   );
-  const styled = applyVisualPolicy(source);
+  const styled = applyVisualPolicy(profile.strictEndgame ? applyEndgameVisibility(source) : source);
   const ranged = addItemLevelRange(styled, profile.minItemLevel, profile.maxItemLevel);
   return lines.join('\n') + '\n' + (customSounds ? applyCategorySounds(ranged, sounds) : ranged);
 }
