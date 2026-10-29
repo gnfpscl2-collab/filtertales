@@ -141,6 +141,37 @@ export function addItemLevelRange(source, minimum, maximum) {
   return source.slice(0, insertion) + lines.join('\n') + source.slice(insertion);
 }
 
+export function materialHideRules(source, preset) {
+  if (preset === undefined) return '';
+  if (!['greater', 'greater-exalted'].includes(preset)) throw new Error('Invalid material tier.');
+  const blocks = [...source.matchAll(/^(?:Show|Hide)[^\r\n]*\r?\n(?:[ \t]+\S[^\r\n]*(?:\r?\n|$))+/gm)].map(match => match[0]);
+  const names = (type, tier) => {
+    const matches = blocks.filter(block => block.split(/\r?\n/, 1)[0].includes(`$type->${type} $tier->${tier} `));
+    const line = matches[0]?.match(/^[ \t]*BaseType[ \t]+==[ \t]+([^\r\n]+)/m)?.[1];
+    if (matches.length !== 1 || !line) throw new Error(`Material tier source changed: ${type}/${tier}`);
+    return [...line.matchAll(/"([^"]+)"/g)].map(match => match[1]);
+  };
+  const currency = ['c', 'd', 'e', 'supplymagic', 'supplieslow'].flatMap(tier => names('currency', tier));
+  const hiddenCurrency = preset === 'greater' ? currency.filter(name => !name.startsWith('Greater '))
+    : [...currency, 'Perfect Orb of Augmentation', 'Perfect Orb of Transmutation'];
+  for (const name of hiddenCurrency) if (!source.includes(`"${name}"`)) throw new Error(`Material tier currency absent: ${name}`);
+  const materials = [
+    ...['c', 'd', 'e'].flatMap(tier => names('currency->essence', tier)),
+    ...names('currency->catalysts', 'c'),
+    ...['c', 'd'].flatMap(tier => names('currency->emotions', tier)),
+  ];
+  const augments = ['c', 'd', 'e', 'supplylow', 'socketleveling1', 'socketleveling2'].flatMap(tier => names('sockets->general', tier));
+  return [
+    '# BEGIN PERSONAL MATERIAL TIER',
+    `# ${preset}: fixed item/tier cutoff, independent of stack size; verified S+ takes priority.`,
+    'Hide # Lower crafting currencies and selected low materials',
+    '    Class == "Stackable Currency"', `    BaseType == ${quoteNames([...hiddenCurrency, ...materials])}`, '',
+    'Hide # Lower runes and soul cores',
+    '    Class == "Augment"', `    BaseType == ${quoteNames(augments)}`, '',
+    '# END PERSONAL MATERIAL TIER', '',
+  ].join('\n');
+}
+
 export function applyEndgameVisibility(source) {
   const blocks = [...source.matchAll(showBlocks)].map(match => match[0]);
   const header = block => block.split(/\r?\n/, 1)[0];
@@ -291,6 +322,8 @@ export function renderFilter({ source, prices, league, profile, release, dataLab
     addRule('S+ Verified unit value >= 1 Divine, regardless of upstream tier, all areas', names,
       { ...sActions, PlayAlertSound: '1 250' }, sounds.value, false, itemClass);
   }
+  const materialRules = materialHideRules(source, profile.materialTier);
+  if (materialRules) lines.push(materialRules);
   for (const rank of [2, 1]) {
     if (!groups.get(rank).length) continue;
     const actions = rank === 2

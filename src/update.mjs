@@ -29,6 +29,7 @@ export async function loadProject(root = ROOT) {
     if (!/^[A-Za-z0-9][A-Za-z0-9-]{0,79}\.filter$/.test(profile.file) || outputNames.has(profile.file) || !sources.has(profile.sourceMode)) throw new Error('Invalid/duplicate profile.');
     if (!Number.isSafeInteger(profile.minItemLevel) || profile.minItemLevel < 1 || !Number.isSafeInteger(profile.maxItemLevel) || profile.maxItemLevel < 0 || (profile.maxItemLevel && profile.maxItemLevel < profile.minItemLevel)) throw new Error('Invalid profile item-level range.');
     if (profile.strictEndgame !== undefined && (typeof profile.strictEndgame !== 'boolean' || (profile.strictEndgame && profile.sourceMode !== 'Endgame'))) throw new Error('Invalid strict endgame profile.');
+    if (profile.materialTier !== undefined && (!['greater', 'greater-exalted'].includes(profile.materialTier) || profile.sourceMode !== 'Endgame')) throw new Error('Invalid material tier profile.');
     outputNames.add(profile.file);
   }
   if (!Array.isArray(mapping) || !mapping.length) throw new Error('Invalid currency allowlist.');
