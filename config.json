@@ -11,8 +11,8 @@
   },
   "profiles": [
     { "file": "tw-normal.filter", "sourceMode": "Leveling", "minItemLevel": 1, "maxItemLevel": 65 },
-    { "file": "tw-hard.filter", "sourceMode": "Endgame", "minItemLevel": 79, "maxItemLevel": 0 },
-    { "file": "tw-hell.filter", "sourceMode": "Endgame", "minItemLevel": 82, "maxItemLevel": 0, "strictEndgame": true }
+    { "file": "tw-hard.filter", "sourceMode": "Endgame", "minItemLevel": 79, "maxItemLevel": 0, "materialTier": "greater" },
+    { "file": "tw-hell.filter", "sourceMode": "Endgame", "minItemLevel": 82, "maxItemLevel": 0, "strictEndgame": true, "materialTier": "greater-exalted" }
   ],
   "upstream": {
     "release": "0.10.4a",
