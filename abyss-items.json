@@ -1,0 +1,158 @@
+[
+  {
+    "base_type": "Gnawed Jawbone",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/AbyssalBenchTicketWeaponLow",
+    "source": "https://poe2db.tw/us/Gnawed_Jawbone"
+  },
+  {
+    "base_type": "Preserved Jawbone",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/AbyssalBenchTicketWeapon",
+    "source": "https://poe2db.tw/us/Preserved_Jawbone"
+  },
+  {
+    "base_type": "Ancient Jawbone",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/AbyssalBenchTicketWeaponHigh",
+    "source": "https://poe2db.tw/us/Ancient_Jawbone"
+  },
+  {
+    "base_type": "Gnawed Rib",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/AbyssalBenchTicketArmourLow",
+    "source": "https://poe2db.tw/us/Gnawed_Rib"
+  },
+  {
+    "base_type": "Preserved Rib",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/AbyssalBenchTicketArmour",
+    "source": "https://poe2db.tw/us/Preserved_Rib"
+  },
+  {
+    "base_type": "Ancient Rib",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/AbyssalBenchTicketArmourHigh",
+    "source": "https://poe2db.tw/us/Ancient_Rib"
+  },
+  {
+    "base_type": "Gnawed Collarbone",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/AbyssalBenchTicketJewelleryLow",
+    "source": "https://poe2db.tw/us/Gnawed_Collarbone"
+  },
+  {
+    "base_type": "Preserved Collarbone",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/AbyssalBenchTicketJewellery",
+    "source": "https://poe2db.tw/us/Preserved_Collarbone"
+  },
+  {
+    "base_type": "Ancient Collarbone",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/AbyssalBenchTicketJewelleryHigh",
+    "source": "https://poe2db.tw/us/Ancient_Collarbone"
+  },
+  {
+    "base_type": "Preserved Cranium",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/AbyssalBenchTicketJewel",
+    "source": "https://poe2db.tw/us/Preserved_Cranium"
+  },
+  {
+    "base_type": "Preserved Vertebrae",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/AbyssalBenchTicketWaystone",
+    "source": "https://poe2db.tw/us/Preserved_Vertebrae"
+  },
+  {
+    "base_type": "Altered Collarbone",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/AbyssalBenchTicketBreach",
+    "source": "https://poe2db.tw/us/Altered_Collarbone"
+  },
+  {
+    "base_type": "Omen of Abyssal Echoes",
+    "item_class": "Omen",
+    "metadata_id": "Metadata/Items/Currency/OmenOnAbyssRerollOptions",
+    "source": "https://poe2db.tw/us/Omen_of_Abyssal_Echoes"
+  },
+  {
+    "base_type": "Omen of the Sovereign",
+    "item_class": "Omen",
+    "metadata_id": "Metadata/Items/Currency/OmenOnAbyssGuarenteeLichTypeMod1",
+    "source": "https://poe2db.tw/us/Omen_of_the_Sovereign"
+  },
+  {
+    "base_type": "Omen of the Liege",
+    "item_class": "Omen",
+    "metadata_id": "Metadata/Items/Currency/OmenOnAbyssGuarenteeLichTypeMod2",
+    "source": "https://poe2db.tw/us/Omen_of_the_Liege"
+  },
+  {
+    "base_type": "Omen of the Blackblooded",
+    "item_class": "Omen",
+    "metadata_id": "Metadata/Items/Currency/OmenOnAbyssGuarenteeLichTypeMod3",
+    "source": "https://poe2db.tw/us/Omen_of_the_Blackblooded"
+  },
+  {
+    "base_type": "Omen of Putrefaction",
+    "item_class": "Omen",
+    "metadata_id": "Metadata/Items/Currency/OmenOnAbyssVeilAllAndCorrupt",
+    "source": "https://poe2db.tw/us/Omen_of_Putrefaction"
+  },
+  {
+    "base_type": "Omen of Light",
+    "item_class": "Omen",
+    "metadata_id": "Metadata/Items/Currency/OmenOnAnnulRemoveAbyssMod",
+    "source": "https://poe2db.tw/us/Omen_of_Light"
+  },
+  {
+    "base_type": "Omen of Sinistral Necromancy",
+    "item_class": "Omen",
+    "metadata_id": "Metadata/Items/Currency/OmenOnAbyssAddPrefixes",
+    "source": "https://poe2db.tw/us/Omen_of_Sinistral_Necromancy"
+  },
+  {
+    "base_type": "Omen of Dextral Necromancy",
+    "item_class": "Omen",
+    "metadata_id": "Metadata/Items/Currency/OmenOnAbyssAddSuffixes",
+    "source": "https://poe2db.tw/us/Omen_of_Dextral_Necromancy"
+  },
+  {
+    "base_type": "Amanamu's Gaze",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/AmanamusGaze",
+    "source": "https://poe2db.tw/us/Amanamus_Gaze"
+  },
+  {
+    "base_type": "Tecrod's Gaze",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/TecrodsGaze",
+    "source": "https://poe2db.tw/us/Tecrods_Gaze"
+  },
+  {
+    "base_type": "Kurgal's Gaze",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/KurgalsGaze",
+    "source": "https://poe2db.tw/us/Kurgals_Gaze"
+  },
+  {
+    "base_type": "Ulaman's Gaze",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/UlamansGaze",
+    "source": "https://poe2db.tw/us/Ulamans_Gaze"
+  },
+  {
+    "base_type": "Kulemak's Invitation",
+    "item_class": "Map Fragments",
+    "metadata_id": "Metadata/Items/Currency/Abyss/AbyssPinnacleKey",
+    "source": "https://poe2db.tw/us/Kulemaks_Invitation"
+  },
+  {
+    "base_type": "Abyss Tablet",
+    "item_class": "Tablet",
+    "metadata_id": "Metadata/Items/TowerAugment/AbyssAugment",
+    "source": "https://poe2db.tw/us/Abyss_Tablet"
+  }
+]
