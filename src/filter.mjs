@@ -165,7 +165,7 @@ export function materialHideRules(source, preset) {
     '# BEGIN PERSONAL MATERIAL TIER',
     `# ${preset}: fixed item/tier cutoff, independent of stack size; verified S+ takes priority.`,
     'Hide # Lower crafting currencies and selected low materials',
-    '    Class == "Stackable Currency"', `    BaseType == ${quoteNames([...hiddenCurrency, ...materials])}`, '',
+    '    Class == "Incubators" "Stackable Currency"', `    BaseType == ${quoteNames([...hiddenCurrency, ...materials])}`, '',
     'Hide # Lower runes and soul cores',
     '    Class == "Augment"', `    BaseType == ${quoteNames(augments)}`, '',
     '# END PERSONAL MATERIAL TIER', '',
