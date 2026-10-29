@@ -104,7 +104,8 @@ for (const profile of config.profiles) {
   test(`${profile.file}: original matching conditions and order survive the requested additions`, () => {
     const source = visibilitySource(profile);
     const [prefix, suffix] = render(profile).split(sourceMarker);
-    assert.doesNotMatch(prefix, /^Hide\b/m, 'economy never introduces price-based hiding');
+    const economyWithoutMaterialGuard = prefix.replace(/^# BEGIN PERSONAL MATERIAL TIER.*?^# END PERSONAL MATERIAL TIER\r?\n/gms, '');
+    assert.doesNotMatch(economyWithoutMaterialGuard, /^Hide\b/m, 'only the explicit fixed material cutoff introduces hiding');
     const recovered = suffix
       .replace(/^# BEGIN PERSONAL ITEMLEVEL RANGE.*?^# END PERSONAL ITEMLEVEL RANGE\r?\n/gms, '')
       .replace(/^# BEGIN PERSONAL TABLET SOUND.*?^# END PERSONAL TABLET SOUND\r?\n/gms, '');

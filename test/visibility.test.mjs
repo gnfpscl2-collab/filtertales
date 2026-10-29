@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { applyEndgameVisibility, renderFilter, FADED_CRISIS_FRAGMENT } from '../src/filter.mjs';
+import { applyEndgameVisibility, materialHideRules, renderFilter, FADED_CRISIS_FRAGMENT } from '../src/filter.mjs';
 
 const root = new URL('../', import.meta.url);
 const config = JSON.parse(readFileSync(new URL('config.json', root), 'utf8'));
@@ -121,7 +121,7 @@ test('C unique rings are hidden before recipe and generic corrupted protections 
   ]) assert.equal(firstTerminal(filter, item).action, 'Show', JSON.stringify(item));
 });
 
-test('low runes, essences and selected material names are hidden without hiding ordinary currencies', () => {
+test('low runes, essences and selected material names are hidden while higher materials remain', () => {
   const filter = render();
   for (const [BaseType, Class] of [
     ['Ancient Rune of Animosity', 'Augment'], ['Greater Adept Rune', 'Augment'], ['Greater Body Rune', 'Augment'],
@@ -137,9 +137,82 @@ test('low runes, essences and selected material names are hidden without hiding 
     ['Soul Core of Azcapa', 'Augment'], ['Masterwork Rune', 'Augment'], ['Greater Ward Rune', 'Augment'],
     ['Essence of Hysteria', 'Stackable Currency'], ['Essence of Horror', 'Stackable Currency'],
     ['Essence of Insanity', 'Stackable Currency'], ['Reaver Catalyst', 'Stackable Currency'],
-    ['Liquid Envy', 'Stackable Currency'], ['Exalted Orb', 'Stackable Currency'], ['Vaal Orb', 'Stackable Currency'],
+    ['Liquid Envy', 'Stackable Currency'],
     ['Unlisted Rune', 'Augment'], ['Essence of a Future Mechanic', 'Stackable Currency'],
   ]) assert.equal(firstTerminal(filter, { BaseType, Class, Rarity: 'Normal' }).action, 'Show', BaseType);
+});
+
+test('hard and hell hide lower crafting currency and materials regardless of stack or campaign exceptions', () => {
+  for (const profile of config.profiles.slice(1)) {
+    const filter = render(profile);
+    for (const AreaLevel of [1, 64, 82]) {
+      for (const StackSize of [1, 4, 20]) {
+        for (const BaseType of [
+          'Regal Shard', 'Alchemy Shard', "Artificer's Shard", 'Regal Orb', 'Orb of Alchemy',
+          'Orb of Transmutation', 'Orb of Augmentation', 'Exalted Orb', 'Vaal Orb',
+          "Armourer's Scrap", "Blacksmith's Whetstone", "Artificer's Orb", "Lesser Jeweller's Orb",
+          "Gemcutter's Prism", "Glassblower's Bauble", "Arcanist's Etcher", 'Chance Shard',
+          'Greater Essence of Haste', 'Essence of Haste', 'Adaptive Catalyst', 'Diluted Liquid Greed',
+        ]) {
+          const result = firstTerminal(filter, { BaseType, Class: 'Stackable Currency', Rarity: 'Normal', AreaLevel, StackSize });
+          assert.equal(result.action, 'Hide', `${profile.file}: ${BaseType}, stack ${StackSize}, area ${AreaLevel}`);
+          assert.deepEqual(result.notificationLines, [], `${BaseType}: no sound, beam or icon`);
+        }
+      }
+    }
+    for (const BaseType of ['Greater Adept Rune', 'Greater Body Rune', 'Ancient Rune of Animosity']) {
+      assert.equal(firstTerminal(filter, { BaseType, Class: 'Augment', Rarity: 'Normal', AreaLevel: 1 }).action, 'Hide', BaseType);
+    }
+    for (const BaseType of ['Gnawed Collarbone', 'Gnawed Jawbone', 'Gnawed Rib']) {
+      assert.equal(firstTerminal(filter, { BaseType, Class: 'Incubators', Rarity: 'Normal' }).action, 'Hide', BaseType);
+    }
+  }
+  assert.equal(firstTerminal(render(config.profiles[0]), { BaseType: 'Regal Shard', Class: 'Stackable Currency', Rarity: 'Normal' }).action, 'Show');
+});
+
+test('hard keeps Greater crafting orbs while hell starts at Greater Exalted and protects major currency', () => {
+  const hard = render(config.profiles[1]);
+  const hell = render(config.profiles[2]);
+  for (const BaseType of ['Greater Regal Orb', "Greater Jeweller's Orb", 'Greater Orb of Transmutation', 'Greater Orb of Augmentation',
+    'Perfect Orb of Transmutation', 'Perfect Orb of Augmentation']) {
+    const item = { BaseType, Class: 'Stackable Currency', Rarity: 'Normal' };
+    assert.equal(firstTerminal(hard, item).action, 'Show', BaseType);
+    assert.equal(firstTerminal(hell, item).action, 'Hide', BaseType);
+  }
+  for (const profile of config.profiles.slice(1)) {
+    const filter = render(profile);
+    for (const BaseType of ['Greater Exalted Orb', 'Greater Chaos Orb', 'Perfect Regal Orb', 'Perfect Exalted Orb',
+      'Chaos Orb', 'Divine Orb', 'Mirror of Kalandra', "Hinekora's Lock", 'Orb of Annulment', 'Orb of Chance',
+      'Essence of Hysteria', 'Essence of Horror', 'Essence of Insanity', 'Reaver Catalyst', 'Liquid Envy']) {
+      assert.equal(firstTerminal(filter, { BaseType, Class: 'Stackable Currency', Rarity: 'Normal' }).action, 'Show', BaseType);
+    }
+  }
+});
+
+test('material cutoff precedes lower economy promotions but verified one-Divine items keep S+ priority', () => {
+  for (const profile of config.profiles.slice(1)) {
+    for (const customSounds of [false, true]) {
+      const lower = render(profile, customSounds, [{ BaseType: 'Vaal Orb', DivinePerItem: 0.2 }, { BaseType: 'Regal Orb', DivinePerItem: 0.02 }]);
+      for (const BaseType of ['Vaal Orb', 'Regal Orb']) {
+        const item = { BaseType, Class: 'Stackable Currency', Rarity: 'Normal' };
+        assert.equal(firstTerminal(lower, item).action, 'Hide', BaseType);
+        const high = firstTerminal(render(profile, customSounds, [{ BaseType, DivinePerItem: 1 }]), item);
+        assert.equal(high.action, 'Show');
+        assert.match(high.header, /S\+ Verified unit value/);
+        if (customSounds) assert.match(high.block, /sounds\/0161\.wav/);
+      }
+      for (const item of [
+        { BaseType: 'Waystone', Class: 'Waystones', Rarity: 'Magic', WaystoneTier: 15 },
+        { BaseType: 'Expedition Tablet', Class: 'Tablet', Rarity: 'Rare' },
+        { BaseType: 'Faded Crisis Fragment', Class: 'Pinnacle Keys', Rarity: 'Normal' },
+        { BaseType: 'Regal Shard', Class: 'Quest Items', Rarity: 'Normal', AlwaysShow: true },
+      ]) assert.equal(firstTerminal(lower, item).action, 'Show', JSON.stringify(item));
+    }
+  }
+  for (const preset of ['greater', 'greater-exalted']) {
+    assert.throws(() => materialHideRules('Show\n    BaseType == "Regal Shard"\n', preset), /missing|changed|source|group|anchor/i);
+  }
+  assert.throws(() => materialHideRules(source, 'everything'), /material|preset|tier/i);
 });
 
 test('strict rules spare non-equipment and verified high-value prefixes in both audio modes', () => {

@@ -44,6 +44,7 @@ test('project validates pinned sources and all three profiles', async () => {
   assert.deepEqual(project.config.sounds, DEFAULT_SOUNDS);
   assert.deepEqual(project.config.profiles.map(p => [p.minItemLevel, p.maxItemLevel]), [[1, 65], [79, 0], [82, 0]]);
   assert.deepEqual(project.config.profiles.map(p => p.strictEndgame ?? false), [false, false, true]);
+  assert.deepEqual(project.config.profiles.map(p => p.materialTier), [undefined, 'greater', 'greater-exalted']);
   assert.deepEqual(project.config.profiles.map(p => p.file), ['tw-normal.filter', 'tw-hard.filter', 'tw-hell.filter']);
 });
 
@@ -59,6 +60,20 @@ test('strict endgame selection requires a boolean and an Endgame source', async 
   const profiles = config.profiles.map((profile, i) => i === 0 ? { ...profile, strictEndgame: true } : profile);
   await fs.writeFile(configFile, JSON.stringify({ ...config, profiles }));
   await assert.rejects(loadProject(root), /strict|Endgame|profile/i);
+});
+
+test('material cutoff requires a known preset and an Endgame source', async t => {
+  const root = await copyProject(t, false, false);
+  const configFile = path.join(root, 'config.json');
+  const config = JSON.parse(await fs.readFile(configFile, 'utf8'));
+  for (const materialTier of ['all', true, null, 1, '', 'Greater']) {
+    const profiles = config.profiles.map((profile, i) => i === 1 ? { ...profile, materialTier } : profile);
+    await fs.writeFile(configFile, JSON.stringify({ ...config, profiles }));
+    await assert.rejects(loadProject(root), /material|tier|profile|preset/i);
+  }
+  const profiles = config.profiles.map((profile, i) => i === 0 ? { ...profile, materialTier: 'greater' } : profile);
+  await fs.writeFile(configFile, JSON.stringify({ ...config, profiles }));
+  await assert.rejects(loadProject(root), /material|tier|Endgame|profile/i);
 });
 
 test('the six active files contain complete PCM audio with the exact configured filenames', async () => {
