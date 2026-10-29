@@ -3,13 +3,15 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createHash, randomUUID } from 'node:crypto';
 import { fetchHours, getPrices } from './economy.mjs';
-import { renderFilter, baselineFloors, DEFAULT_SOUNDS, validateSounds, FADED_CRISIS_FRAGMENT } from './filter.mjs';
+import { renderFilter, baselineFloors, DEFAULT_SOUNDS, validateSounds, FADED_CRISIS_FRAGMENT, ABYSS_ITEMS } from './filter.mjs';
 
 export const ROOT = fileURLToPath(new URL('../', import.meta.url));
 
 export async function loadProject(root = ROOT) {
   const config = JSON.parse(await fs.readFile(path.join(root, 'config.json'), 'utf8'));
-  const mapping = JSON.parse(await fs.readFile(path.join(root, 'currency-map.json'), 'utf8'));
+  const currencyMapping = JSON.parse(await fs.readFile(path.join(root, 'currency-map.json'), 'utf8'));
+  if (!Array.isArray(currencyMapping) || !currencyMapping.length) throw new Error('Invalid currency allowlist.');
+  const mapping = [...currencyMapping, ...ABYSS_ITEMS];
   if (typeof config.customSounds !== 'boolean') throw new Error('config.customSounds must be a boolean.');
   config.sounds = validateSounds(config.sounds ?? { ...DEFAULT_SOUNDS });
   if (!config.upstream || !Array.isArray(config.upstream.files) || config.upstream.files.length !== 2 || !Array.isArray(config.profiles) || config.profiles.length !== 3) {
@@ -40,11 +42,14 @@ export async function loadProject(root = ROOT) {
   if (!section) throw new Error('Upstream currency section missing.');
   for (const item of mapping) {
     const pinnacle = Object.entries(FADED_CRISIS_FRAGMENT).every(([key, value]) => item[key] === value);
+    const abyss = ABYSS_ITEMS.some(known => ['base_type', 'item_class', 'metadata_id'].every(key => known[key] === item[key]));
+    if (!abyss && ABYSS_ITEMS.some(known => known.base_type === item.base_type || known.metadata_id === item.metadata_id)) throw new Error('Invalid Abyss currency allowlist entry.');
     if (!/^[A-Za-z][A-Za-z0-9 ',\-]{1,90}$/.test(item.base_type)
-      || (!pinnacle && (!/^Metadata\/Items\/Currency\/[A-Za-z0-9]+$/.test(item.metadata_id)
+      || (!pinnacle && !abyss && (!/^Metadata\/Items\/Currency\/[A-Za-z0-9]+$/.test(item.metadata_id)
         || (item.item_class && item.item_class !== 'Stackable Currency')))
       || seen.has(item.metadata_id)) throw new Error('Invalid/duplicate currency allowlist entry.');
     seen.add(item.metadata_id);
+    if (abyss) continue;
     if (pinnacle) {
       if ([...sources.values()].some(s => !s.includes('Class == "Pinnacle Keys"'))) throw new Error('Upstream Pinnacle Keys class missing.');
       continue;

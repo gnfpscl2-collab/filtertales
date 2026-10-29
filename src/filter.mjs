@@ -1,3 +1,8 @@
+import abyssItems from '../abyss-items.json' with { type: 'json' };
+
+export const ABYSS_ITEMS = Object.freeze(abyssItems.map(Object.freeze));
+const isAbyssItem = item => ABYSS_ITEMS.some(known => ['base_type', 'item_class', 'metadata_id'].every(key => known[key] === item[key]));
+
 const equipmentClasses = [
   'Amulets', 'Belts', 'Body Armours', 'Boots', 'Bows', 'Bucklers',
   'Crossbows', 'Foci', 'Gloves', 'Helmets', 'One Hand Maces',
@@ -113,6 +118,39 @@ export function applyVisualPolicy(source) {
       return setActions(block, actions);
     }
     return block;
+  });
+}
+
+export function applyAbyssVisuals(source) {
+  const groups = new Map();
+  for (const item of ABYSS_ITEMS) {
+    if (!groups.has(item.item_class)) groups.set(item.item_class, []);
+    groups.get(item.item_class).push(item.base_type);
+  }
+  const matches = (line, value) => {
+    const expression = line.trim().replace(/^(?:Class|BaseType)\s+/, '');
+    const operator = expression.match(/^(==|!=|!)/)?.[1];
+    const names = [...expression.matchAll(/"([^"]+)"/g)].map(match => match[1]);
+    if (!names.length) throw new Error('Unrecognized Abyss source string condition.');
+    const hit = names.some(name => operator === '==' || operator === '!=' ? value === name : value.includes(name));
+    return operator === '!=' || operator === '!' ? !hit : hit;
+  };
+  return source.replace(showBlocks, block => {
+    if (/^[ \t]*Continue\b/m.test(block)) return block;
+    const classLines = block.match(/^[ \t]*Class[^\r\n]+/gm) ?? [];
+    const baseLines = block.match(/^[ \t]*BaseType[^\r\n]+/gm) ?? [];
+    const clones = [];
+    for (const [itemClass, names] of groups) {
+      if (!classLines.every(line => matches(line, itemClass))) continue;
+      const subset = names.filter(name => baseLines.every(line => matches(line, name)));
+      if (!subset.length) continue;
+      clones.push(setActions(block, {
+        Class: `== ${quoteNames([itemClass])}`, BaseType: `== ${quoteNames(subset)}`,
+        SetTextColor: '255 255 255 255', SetBorderColor: '0 255 0 255', SetBackgroundColor: '0 0 0 255',
+      }));
+    }
+    return clones.length ? '# BEGIN PERSONAL ABYSS COLOURS\n' + clones.join('\n')
+      + '# END PERSONAL ABYSS COLOURS\n' + block : block;
   });
 }
 
@@ -278,10 +316,12 @@ export function renderFilter({ source, prices, league, profile, release, dataLab
     const pinnacle = price.BaseType === FADED_CRISIS_FRAGMENT.base_type
       && price.MetadataId === FADED_CRISIS_FRAGMENT.metadata_id && price.ItemClass === FADED_CRISIS_FRAGMENT.item_class
       && source.includes('Class == "Pinnacle Keys"');
-    const currency = (!price.ItemClass || price.ItemClass === 'Stackable Currency') && source.includes(`"${price.BaseType}"`);
+    const abyss = isAbyssItem({ base_type: price.BaseType, item_class: price.ItemClass, metadata_id: price.MetadataId });
+    const abyssCandidate = ABYSS_ITEMS.some(item => item.base_type === price.BaseType || item.metadata_id === price.MetadataId);
+    const currency = !abyssCandidate && (!price.ItemClass || price.ItemClass === 'Stackable Currency') && source.includes(`"${price.BaseType}"`);
     if (!/^[A-Za-z][A-Za-z0-9 ',-]{1,90}$/.test(price.BaseType)
       || !Number.isFinite(price.DivinePerItem) || price.DivinePerItem < 0
-      || !(pinnacle || currency)) throw new Error('Invalid/unrecognized currency price.');
+      || !(pinnacle || abyss || currency)) throw new Error('Invalid/unrecognized currency price.');
   }
   const fixed = ['Mirror of Kalandra', "Hinekora's Lock", 'Divine Orb'];
   const rareGroups = new Map();
@@ -292,6 +332,7 @@ export function renderFilter({ source, prices, league, profile, release, dataLab
   }
   const groups = new Map([[1, []], [2, []]]);
   for (const price of prices) {
+    if (ABYSS_ITEMS.some(item => item.base_type === price.BaseType)) continue;
     if (price.ItemClass && price.ItemClass !== 'Stackable Currency') continue;
     if ([...fixed, 'Chaos Orb'].includes(price.BaseType) || price.DivinePerItem >= 1) continue;
     const rank = price.DivinePerItem >= 0.1 ? 2 : price.DivinePerItem >= 0.01 ? 1 : 0;
@@ -322,6 +363,13 @@ export function renderFilter({ source, prices, league, profile, release, dataLab
     addRule('S+ Verified unit value >= 1 Divine, regardless of upstream tier, all areas', names,
       { ...sActions, PlayAlertSound: '1 250' }, sounds.value, false, itemClass);
   }
+  if (profile.strictEndgame) {
+    for (const name of ['Inscribed Ultimatum', 'Djinn Barya']) {
+      if (!source.includes(`BaseType == "${name}"`)) throw new Error(`Trial key source missing: ${name}`);
+    }
+    lines.push('# BEGIN PERSONAL TRIAL KEY HIDE', 'Hide # Personal hell: unwanted trial keys, all levels and rarities',
+      '    BaseType == "Djinn Barya" "Inscribed Ultimatum"', '# END PERSONAL TRIAL KEY HIDE', '');
+  }
   const materialRules = materialHideRules(source, profile.materialTier);
   if (materialRules) lines.push(materialRules);
   for (const rank of [2, 1]) {
@@ -339,5 +387,5 @@ export function renderFilter({ source, prices, league, profile, release, dataLab
   );
   const styled = applyVisualPolicy(profile.strictEndgame ? applyEndgameVisibility(source) : source);
   const ranged = addItemLevelRange(styled, profile.minItemLevel, profile.maxItemLevel);
-  return lines.join('\n') + '\n' + (customSounds ? applyCategorySounds(ranged, sounds) : ranged);
+  return lines.join('\n') + '\n' + applyAbyssVisuals(customSounds ? applyCategorySounds(ranged, sounds) : ranged);
 }
