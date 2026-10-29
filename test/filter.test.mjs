@@ -20,8 +20,9 @@ const prices = [
   { BaseType: "Perfect Jeweller's Orb", DivinePerItem: 0.34 },
 ];
 const sourceMarker = '# BEGIN NEVERSINK (personal visual policy and optional sounds; conditions preserved)\n';
-const blocks = text => [...text.matchAll(/^Show[^\r\n]*\r?\n(?:[ \t]+\S[^\r\n]*(?:\r?\n|$))+/gm)].map(match => match[0]);
-const logic = text => text.split(/\r?\n/).filter(line => line.trim()
+const withoutAbyssClones = text => text.replace(/^# BEGIN PERSONAL ABYSS COLOURS.*?^# END PERSONAL ABYSS COLOURS\r?\n/gms, '');
+const blocks = text => [...withoutAbyssClones(text).matchAll(/^Show[^\r\n]*\r?\n(?:[ \t]+\S[^\r\n]*(?:\r?\n|$))+/gm)].map(match => match[0]);
+const logic = text => withoutAbyssClones(text).split(/\r?\n/).filter(line => line.trim()
   && !/^[ \t]*(?:SetFontSize|SetTextColor|SetBorderColor|SetBackgroundColor|PlayAlertSound|CustomAlertSoundOptional|PlayEffect|MinimapIcon)\b/.test(line)).join('\n');
 const render = (profile, overrides = {}) => renderFilter({
   source: sources.get(profile.sourceMode), prices, league: 'Test League', profile,
@@ -105,7 +106,8 @@ for (const profile of config.profiles) {
     const source = visibilitySource(profile);
     const [prefix, suffix] = render(profile).split(sourceMarker);
     const economyWithoutMaterialGuard = prefix.replace(/^# BEGIN PERSONAL MATERIAL TIER.*?^# END PERSONAL MATERIAL TIER\r?\n/gms, '');
-    assert.doesNotMatch(economyWithoutMaterialGuard, /^Hide\b/m, 'only the explicit fixed material cutoff introduces hiding');
+    const economyWithoutUserHides = economyWithoutMaterialGuard.replace(/^# BEGIN PERSONAL TRIAL KEY HIDE.*?^# END PERSONAL TRIAL KEY HIDE\r?\n/gms, '');
+    assert.doesNotMatch(economyWithoutUserHides, /^Hide\b/m, 'only the explicit fixed material and trial key policies introduce hiding');
     const recovered = suffix
       .replace(/^# BEGIN PERSONAL ITEMLEVEL RANGE.*?^# END PERSONAL ITEMLEVEL RANGE\r?\n/gms, '')
       .replace(/^# BEGIN PERSONAL TABLET SOUND.*?^# END PERSONAL TABLET SOUND\r?\n/gms, '');

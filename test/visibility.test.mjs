@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { applyEndgameVisibility, materialHideRules, renderFilter, FADED_CRISIS_FRAGMENT } from '../src/filter.mjs';
+import { applyEndgameVisibility, materialHideRules, renderFilter, FADED_CRISIS_FRAGMENT, ABYSS_ITEMS } from '../src/filter.mjs';
 
 const root = new URL('../', import.meta.url);
 const config = JSON.parse(readFileSync(new URL('config.json', root), 'utf8'));
@@ -70,6 +70,120 @@ function firstTerminal(filter, changes) {
 const render = (profile = config.profiles[2], customSounds = true, prices = []) => renderFilter({
   source: profile.sourceMode === 'Leveling' ? levelingSource : source, prices, profile, customSounds, sounds: config.sounds, league: 'Fixture League',
   release: config.upstream.release, dataLabel: 'strict visibility fixture',
+});
+
+const abyssPrice = (name, DivinePerItem) => {
+  const item = ABYSS_ITEMS.find(item => item.base_type === name);
+  assert.ok(item, name);
+  return { BaseType: item.base_type, MetadataId: item.metadata_id, ItemClass: item.item_class, DivinePerItem };
+};
+const assertAbyssColours = block => {
+  assert.match(block, /^\s*SetTextColor 255 255 255 255\r?$/m);
+  assert.match(block, /^\s*SetBorderColor 0 255 0 255\r?$/m);
+  assert.match(block, /^\s*SetBackgroundColor 0 0 0 255\r?$/m);
+};
+
+test('every profile gives visible Abyss items white text, a green border and a black background', () => {
+  const lowBones = new Set(['Gnawed Jawbone', 'Gnawed Rib', 'Gnawed Collarbone', 'Preserved Jawbone']);
+  for (const profile of config.profiles) {
+    for (const customSounds of [false, true]) {
+      const filter = render(profile, customSounds);
+      for (const item of ABYSS_ITEMS) {
+        const result = firstTerminal(filter, { BaseType: item.base_type, Class: item.item_class, Rarity: 'Normal' });
+        if (profile.materialTier && lowBones.has(item.base_type)) {
+          assert.equal(result.action, 'Hide', `${profile.file}: ${item.base_type}`);
+          assert.deepEqual(result.notificationLines, []);
+          continue;
+        }
+        assert.equal(result.action, 'Show', `${profile.file}: ${item.base_type}`);
+        assertAbyssColours(result.block);
+        if (item.base_type === 'Abyss Tablet' && customSounds) assert.match(result.block, /sounds\/0398\.wav/);
+      }
+      const uniqueTablet = firstTerminal(filter, { BaseType: 'Abyss Tablet', Class: 'Tablet', Rarity: 'Unique' });
+      assert.equal(uniqueTablet.action, 'Show');
+      assertAbyssColours(uniqueTablet.block);
+      if (profile.materialTier) {
+        const lowBone = firstTerminal(filter, { BaseType: 'Gnawed Rib', Class: 'Stackable Currency', Rarity: 'Normal', StackSize: 20 });
+        assert.equal(lowBone.action, 'Hide', 'recolouring never reveals a previously hidden low material');
+        assert.deepEqual(lowBone.notificationLines, []);
+      }
+    }
+  }
+});
+
+test('only verified one-Divine Abyss value wins over its green default and preserves the S+ sound', () => {
+  for (const profile of config.profiles) {
+    for (const customSounds of [false, true]) {
+      for (const name of ['Omen of Light', "Amanamu's Gaze", "Kulemak's Invitation", 'Ancient Jawbone']) {
+        for (const value of [0.01, 0.062, 0.1, 0.99, 1, 2]) {
+          const price = abyssPrice(name, value);
+          const result = firstTerminal(render(profile, customSounds, [price]), {
+            BaseType: name, Class: price.ItemClass, Rarity: 'Normal',
+          });
+          assert.equal(result.action, 'Show');
+          if (value < 1) {
+            assertAbyssColours(result.block);
+            assert.doesNotMatch(result.header, /Personal economy promotion|S\+ Verified/);
+          } else {
+            assert.match(result.header, /S\+ Verified unit value/);
+            assert.match(result.block, /^\s*SetTextColor 255 0 0 255\r?$/m);
+            assert.match(result.block, /^\s*SetBorderColor 255 0 0 255\r?$/m);
+            assert.match(result.block, /^\s*SetBackgroundColor 255 255 255 255\r?$/m);
+            if (customSounds) assert.match(result.block, /sounds\/0161\.wav/);
+            else assert.doesNotMatch(result.block, /CustomAlertSound/);
+          }
+        }
+      }
+    }
+  }
+});
+
+test('Abyss names do not recolour unrelated equipment, unrelated omens or same-name quest keys', () => {
+  const price = abyssPrice("Kulemak's Invitation", 2);
+  for (const profile of config.profiles) {
+    const filter = render(profile, true, [price]);
+    for (const item of [
+      { BaseType: 'Abyssal Signet', Class: 'Rings', Rarity: 'Magic' },
+      { BaseType: 'Omen of Chance', Class: 'Omen', Rarity: 'Normal' },
+      { BaseType: "Kulemak's Invitation", Class: 'Quest Items', Rarity: 'Normal', AlwaysShow: true },
+    ]) {
+      const result = firstTerminal(filter, item);
+      assert.equal(result.action, 'Show', JSON.stringify(item));
+      assert.doesNotMatch(result.header, /S\+ Verified unit value/);
+      assert.doesNotMatch(result.block, /^\s*SetBorderColor 0 255 0 255\r?$/m);
+    }
+  }
+});
+
+test('only hell hides ordinary Djinn Barya and Inscribed Ultimatum at every rarity and level', () => {
+  for (const profile of config.profiles) {
+    const filter = render(profile);
+    for (const ItemLevel of [20, 65, 80, 90]) {
+      for (const Rarity of rarities) {
+        for (const [BaseType, Class] of [['Djinn Barya', 'Trial Coins'], ['Inscribed Ultimatum', 'Inscribed Ultimatum']]) {
+          const result = firstTerminal(filter, { BaseType, Class, Rarity, ItemLevel });
+          assert.equal(result.action, profile.strictEndgame ? 'Hide' : 'Show', `${profile.file}: ${BaseType}, ${Rarity}, ilvl ${ItemLevel}`);
+          if (profile.strictEndgame) assert.deepEqual(result.notificationLines, [], 'hidden trial keys carry no alert, beam or icon');
+        }
+      }
+    }
+    for (const BaseType of ['Test of Cunning Barya', 'Test of Strength Barya', 'Test of Time Barya', 'Test of Will Barya']) {
+      assert.equal(firstTerminal(filter, { BaseType, Class: 'Trial Coins', Rarity: 'Normal' }).action, 'Show', BaseType);
+    }
+  }
+});
+
+test('Abyss price rules reject spoofed classes, metadata identifiers and quest variants', () => {
+  const invitation = abyssPrice("Kulemak's Invitation", 2);
+  const omen = abyssPrice('Omen of Light', 2);
+  for (const price of [
+    { ...invitation, ItemClass: 'Quest Items' },
+    { ...invitation, MetadataId: 'Metadata/Items/QuestItems/Abyss/AbyssPinnacleKeyQuest' },
+    { ...invitation, ItemClass: 'Pinnacle Keys' },
+    { ...omen, MetadataId: 'Metadata/Items/Currency/CurrencyModValues' },
+    { ...omen, ItemClass: 'Stackable Currency' },
+    { ...omen, BaseType: 'Omen of Chance' },
+  ]) assert.throws(() => render(config.profiles[0], true, [price]), /Invalid\/unrecognized currency price/);
 });
 
 test('strict endgame hides ordinary magic and low rare gear before broad upstream Show rules', () => {

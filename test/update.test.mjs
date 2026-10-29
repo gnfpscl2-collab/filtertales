@@ -5,7 +5,7 @@ import path from 'node:path';
 import os from 'node:os';
 import { ROOT, loadProject, publishFiles, update } from '../src/update.mjs';
 import { DIVINE, EXALTED } from '../src/economy.mjs';
-import { DEFAULT_SOUNDS, FADED_CRISIS_FRAGMENT } from '../src/filter.mjs';
+import { DEFAULT_SOUNDS, FADED_CRISIS_FRAGMENT, ABYSS_ITEMS } from '../src/filter.mjs';
 
 const SOUND_FILES = Object.values(DEFAULT_SOUNDS).sort();
 async function scratch(t) {
@@ -36,7 +36,13 @@ async function copyProject(t, customSounds, includeAssets = true) {
 test('project validates pinned sources and all three profiles', async () => {
   const project = await loadProject();
   assert.equal(project.sources.size, 2);
-  assert.equal(project.mapping.length, 29);
+  assert.equal(ABYSS_ITEMS.length, 26);
+  assert.equal(project.mapping.length, 55);
+  for (const item of ABYSS_ITEMS) {
+    const mapped = project.mapping.find(mapped => mapped.metadata_id === item.metadata_id);
+    for (const key of ['base_type', 'metadata_id', 'item_class']) assert.equal(mapped?.[key], item[key]);
+    assert.notEqual(item.item_class, 'Quest Items');
+  }
   const fragment = project.mapping.find(item => item.base_type === 'Faded Crisis Fragment');
   for (const [key, value] of Object.entries(FADED_CRISIS_FRAGMENT)) assert.equal(fragment[key], value);
   assert.notEqual(fragment.item_class, 'Quest Items');
@@ -118,6 +124,25 @@ test('the Pinnacle Key mapping rejects quest IDs, spoofed classes and mismatched
     altered[index] = { ...mapping[index], ...change };
     await fs.writeFile(mappingFile, JSON.stringify(altered));
     await assert.rejects(loadProject(root), /Invalid\/duplicate currency allowlist entry/);
+  }
+});
+
+test('the Abyss mapping cannot be spoofed through the ordinary currency allowlist', async t => {
+  const root = await copyProject(t, false, false);
+  const mappingFile = path.join(root, 'currency-map.json');
+  const mapping = JSON.parse(await fs.readFile(mappingFile, 'utf8'));
+  const invitation = ABYSS_ITEMS.find(item => item.base_type === "Kulemak's Invitation");
+  const omen = ABYSS_ITEMS.find(item => item.base_type === 'Omen of Light');
+  for (const item of [
+    invitation,
+    { ...invitation, metadata_id: 'Metadata/Items/QuestItems/Abyss/AbyssPinnacleKeyQuest' },
+    { ...invitation, item_class: 'Quest Items' },
+    { ...invitation, item_class: 'Pinnacle Keys' },
+    { ...omen, item_class: 'Stackable Currency' },
+    { ...omen, metadata_id: 'Metadata/Items/Currency/CurrencyModValues' },
+  ]) {
+    await fs.writeFile(mappingFile, JSON.stringify([...mapping, item]));
+    await assert.rejects(loadProject(root), /Invalid(?:\/duplicate| Abyss) currency allowlist entry/);
   }
 });
 
