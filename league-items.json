@@ -1,0 +1,814 @@
+[
+  {
+    "base_type": "Adaptive Catalyst",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyJewelleryQualityAttribute",
+    "source": "https://poe2db.tw/us/Adaptive_Catalyst",
+    "content": "breach"
+  },
+  {
+    "base_type": "Breach Splinter",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyBreachShard",
+    "source": "https://poe2db.tw/us/Breach_Splinter",
+    "content": "breach"
+  },
+  {
+    "base_type": "Breach Tablet",
+    "item_class": "Tablet",
+    "metadata_id": "Metadata/Items/TowerAugment/BreachAugment",
+    "source": "https://poe2db.tw/us/Breach_Tablet",
+    "content": "breach"
+  },
+  {
+    "base_type": "Breachlord Sac",
+    "item_class": "Map Fragments",
+    "metadata_id": "Metadata/Items/Currency/Breach/BreachPinnacleKey",
+    "source": "https://poe2db.tw/us/Breachlord_Sac",
+    "content": "breach"
+  },
+  {
+    "base_type": "Breachstone",
+    "item_class": "Breachstones",
+    "metadata_id": "Metadata/Items/MapFragments/CurrencyBreachFragment",
+    "source": "https://poe2db.tw/us/Breachstone",
+    "content": "breach"
+  },
+  {
+    "base_type": "Carapace Catalyst",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyJewelleryQualityDefences",
+    "source": "https://poe2db.tw/us/Carapace_Catalyst",
+    "content": "breach"
+  },
+  {
+    "base_type": "Chayula's Catalyst",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyJewelleryQualityChaos",
+    "source": "https://poe2db.tw/us/Chayulas_Catalyst",
+    "content": "breach"
+  },
+  {
+    "base_type": "Esh's Catalyst",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyJewelleryQualityLightning",
+    "source": "https://poe2db.tw/us/Eshs_Catalyst",
+    "content": "breach"
+  },
+  {
+    "base_type": "Essence of the Breach",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyCorruptedEssenceBreach",
+    "source": "https://poe2db.tw/us/Essence_of_the_Breach",
+    "content": "breach"
+  },
+  {
+    "base_type": "Flesh Catalyst",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyJewelleryQualityLife",
+    "source": "https://poe2db.tw/us/Flesh_Catalyst",
+    "content": "breach"
+  },
+  {
+    "base_type": "Necrotic Catalyst",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyJewelleryQualityMinion",
+    "source": "https://poe2db.tw/us/Necrotic_Catalyst",
+    "content": "breach"
+  },
+  {
+    "base_type": "Neural Catalyst",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyJewelleryQualityMana",
+    "source": "https://poe2db.tw/us/Neural_Catalyst",
+    "content": "breach"
+  },
+  {
+    "base_type": "Reaver Catalyst",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyJewelleryQualityAttack",
+    "source": "https://poe2db.tw/us/Reaver_Catalyst",
+    "content": "breach"
+  },
+  {
+    "base_type": "Refined Adaptive Catalyst",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyJewelQualityAttribute",
+    "source": "https://poe2db.tw/us/Refined_Adaptive_Catalyst",
+    "content": "breach"
+  },
+  {
+    "base_type": "Refined Carapace Catalyst",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyJewelQualityDefences",
+    "source": "https://poe2db.tw/us/Refined_Carapace_Catalyst",
+    "content": "breach"
+  },
+  {
+    "base_type": "Refined Chayula's Catalyst",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyJewelQualityChaos",
+    "source": "https://poe2db.tw/us/Refined_Chayulas_Catalyst",
+    "content": "breach"
+  },
+  {
+    "base_type": "Refined Esh's Catalyst",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyJewelQualityLightning",
+    "source": "https://poe2db.tw/us/Refined_Eshs_Catalyst",
+    "content": "breach"
+  },
+  {
+    "base_type": "Refined Flesh Catalyst",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyJewelQualityLife",
+    "source": "https://poe2db.tw/us/Refined_Flesh_Catalyst",
+    "content": "breach"
+  },
+  {
+    "base_type": "Refined Necrotic Catalyst",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyJewelQualityMinion",
+    "source": "https://poe2db.tw/us/Refined_Necrotic_Catalyst",
+    "content": "breach"
+  },
+  {
+    "base_type": "Refined Neural Catalyst",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyJewelQualityMana",
+    "source": "https://poe2db.tw/us/Refined_Neural_Catalyst",
+    "content": "breach"
+  },
+  {
+    "base_type": "Refined Reaver Catalyst",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyJewelQualityAttack",
+    "source": "https://poe2db.tw/us/Refined_Reaver_Catalyst",
+    "content": "breach"
+  },
+  {
+    "base_type": "Refined Sibilant Catalyst",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyJewelQualityCaster",
+    "source": "https://poe2db.tw/us/Refined_Sibilant_Catalyst",
+    "content": "breach"
+  },
+  {
+    "base_type": "Refined Skittering Catalyst",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyJewelQualitySpeed",
+    "source": "https://poe2db.tw/us/Refined_Skittering_Catalyst",
+    "content": "breach"
+  },
+  {
+    "base_type": "Refined Tul's Catalyst",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyJewelQualityCold",
+    "source": "https://poe2db.tw/us/Refined_Tuls_Catalyst",
+    "content": "breach"
+  },
+  {
+    "base_type": "Refined Uul-Netol's Catalyst",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyJewelQualityPhysical",
+    "source": "https://poe2db.tw/us/Refined_Uul-Netols_Catalyst",
+    "content": "breach"
+  },
+  {
+    "base_type": "Refined Xoph's Catalyst",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyJewelQualityFire",
+    "source": "https://poe2db.tw/us/Refined_Xophs_Catalyst",
+    "content": "breach"
+  },
+  {
+    "base_type": "Sibilant Catalyst",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyJewelleryQualityCaster",
+    "source": "https://poe2db.tw/us/Sibilant_Catalyst",
+    "content": "breach"
+  },
+  {
+    "base_type": "Skittering Catalyst",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyJewelleryQualitySpeed",
+    "source": "https://poe2db.tw/us/Skittering_Catalyst",
+    "content": "breach"
+  },
+  {
+    "base_type": "Tul's Catalyst",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyJewelleryQualityCold",
+    "source": "https://poe2db.tw/us/Tuls_Catalyst",
+    "content": "breach"
+  },
+  {
+    "base_type": "Uul-Netol's Catalyst",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyJewelleryQualityPhysical",
+    "source": "https://poe2db.tw/us/Uul-Netols_Catalyst",
+    "content": "breach"
+  },
+  {
+    "base_type": "Xoph's Catalyst",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyJewelleryQualityFire",
+    "source": "https://poe2db.tw/us/Xophs_Catalyst",
+    "content": "breach"
+  },
+  {
+    "base_type": "Ancient Infuser",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyIncursionCorruptTablet",
+    "source": "https://poe2db.tw/us/Ancient_Infuser",
+    "content": "temple"
+  },
+  {
+    "base_type": "Architect's Orb",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyIncursionDoubleCorrupt",
+    "source": "https://poe2db.tw/us/Architects_Orb",
+    "content": "temple"
+  },
+  {
+    "base_type": "Citaqualotl's Thesis",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/ThesisOfSacrifice",
+    "source": "https://poe2db.tw/us/Citaqualotls_Thesis",
+    "content": "temple"
+  },
+  {
+    "base_type": "Core Destabiliser",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyIncursionModifySoulCore",
+    "source": "https://poe2db.tw/us/Core_Destabiliser",
+    "content": "temple"
+  },
+  {
+    "base_type": "Crystallised Corruption",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyIncursionDoubleCorruptGem",
+    "source": "https://poe2db.tw/us/Crystallised_Corruption",
+    "content": "temple"
+  },
+  {
+    "base_type": "Guatelitzi's Thesis",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/ThesisOfBlood",
+    "source": "https://poe2db.tw/us/Guatelitzis_Thesis",
+    "content": "temple"
+  },
+  {
+    "base_type": "Jiquani's Thesis",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/ThesisOfSouls",
+    "source": "https://poe2db.tw/us/Jiquanis_Thesis",
+    "content": "temple"
+  },
+  {
+    "base_type": "Kamasa's Orb of Sacrifice",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyIncursionMutateCorruptionEnchantJewellery",
+    "source": "https://poe2db.tw/us/Kamasas_Orb_of_Sacrifice",
+    "content": "temple"
+  },
+  {
+    "base_type": "Kopec's Orb of Sacrifice",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyIncursionMutateCorruptionEnchantArmour",
+    "source": "https://poe2db.tw/us/Kopecs_Orb_of_Sacrifice",
+    "content": "temple"
+  },
+  {
+    "base_type": "Orb of Extraction",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyIncursionExtractAllSocketablesCurrency",
+    "source": "https://poe2db.tw/us/Orb_of_Extraction",
+    "content": "temple"
+  },
+  {
+    "base_type": "Quipolatl's Thesis",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/ThesisOfExperiments",
+    "source": "https://poe2db.tw/us/Quipolatls_Thesis",
+    "content": "temple"
+  },
+  {
+    "base_type": "Temple Tablet",
+    "item_class": "Tablet",
+    "metadata_id": "Metadata/Items/TowerAugment/IncursionAugment",
+    "source": "https://poe2db.tw/us/Temple_Tablet",
+    "content": "temple"
+  },
+  {
+    "base_type": "Vaal Arcanist's Infuser",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyIncursionCasterWeaponQuality",
+    "source": "https://poe2db.tw/us/Vaal_Arcanists_Infuser",
+    "content": "temple"
+  },
+  {
+    "base_type": "Vaal Armourer's Infuser",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyIncursionWeaponOrArmourQualityHigh",
+    "source": "https://poe2db.tw/us/Vaal_Armourers_Infuser",
+    "content": "temple"
+  },
+  {
+    "base_type": "Vaal Blacksmith's Infuser",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyIncursionMartialWeaponQuality",
+    "source": "https://poe2db.tw/us/Vaal_Blacksmiths_Infuser",
+    "content": "temple"
+  },
+  {
+    "base_type": "Vaal Catalysing Infuser",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyIncursionJewelleryQuality",
+    "source": "https://poe2db.tw/us/Vaal_Catalysing_Infuser",
+    "content": "temple"
+  },
+  {
+    "base_type": "Vaal Cultivation Orb",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyIncursionMutateUnique",
+    "source": "https://poe2db.tw/us/Vaal_Cultivation_Orb",
+    "content": "temple"
+  },
+  {
+    "base_type": "Vaal Siphoner",
+    "item_class": "Incubators",
+    "metadata_id": "Metadata/Items/Currency/CurrencyIncursionVaalIncubator",
+    "source": "https://poe2db.tw/us/Vaal_Siphoner",
+    "content": "temple"
+  },
+  {
+    "base_type": "Yaomac's Orb of Sacrifice",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyIncursionMutateCorruptionEnchantWeapon",
+    "source": "https://poe2db.tw/us/Yaomacs_Orb_of_Sacrifice",
+    "content": "temple"
+  },
+  {
+    "base_type": "Yugul's Orb of Sacrifice",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyIncursionMutateCorruptionEnchantJewel",
+    "source": "https://poe2db.tw/us/Yuguls_Orb_of_Sacrifice",
+    "content": "temple"
+  },
+  {
+    "base_type": "An Audience with the King",
+    "item_class": "Map Fragments",
+    "metadata_id": "Metadata/Items/MapFragments/CurrencyRitualBossFragment",
+    "source": "https://poe2db.tw/us/An_Audience_with_the_King",
+    "content": "ritual"
+  },
+  {
+    "base_type": "Call of the Shadows",
+    "item_class": "Pinnacle Keys",
+    "metadata_id": "Metadata/Items/Pinnacle/RitualPinnacleEffigyPiece",
+    "source": "https://poe2db.tw/us/Call_of_the_Shadows",
+    "content": "ritual"
+  },
+  {
+    "base_type": "Head of the King",
+    "item_class": "Map Fragments",
+    "metadata_id": "Metadata/Items/Currency/Ritual/RitualPinnacleKey",
+    "source": "https://poe2db.tw/us/Head_of_the_King",
+    "content": "ritual"
+  },
+  {
+    "base_type": "Omen of Amelioration",
+    "item_class": "Omen",
+    "metadata_id": "Metadata/Items/Currency/OmenOnDeathPreventExpLoss",
+    "source": "https://poe2db.tw/us/Omen_of_Amelioration",
+    "content": "ritual"
+  },
+  {
+    "base_type": "Omen of Answered Prayers",
+    "item_class": "Omen",
+    "metadata_id": "Metadata/Items/Currency/OmenShrineAdditionalEffect",
+    "source": "https://poe2db.tw/us/Omen_of_Answered_Prayers",
+    "content": "ritual"
+  },
+  {
+    "base_type": "Omen of Bartering",
+    "item_class": "Omen",
+    "metadata_id": "Metadata/Items/Currency/OmenSellVendorRandomise",
+    "source": "https://poe2db.tw/us/Omen_of_Bartering",
+    "content": "ritual"
+  },
+  {
+    "base_type": "Omen of Catalysing Exaltation",
+    "item_class": "Omen",
+    "metadata_id": "Metadata/Items/Currency/OmenOnExaltConsumeQuality",
+    "source": "https://poe2db.tw/us/Omen_of_Catalysing_Exaltation",
+    "content": "ritual"
+  },
+  {
+    "base_type": "Omen of Chance",
+    "item_class": "Omen",
+    "metadata_id": "Metadata/Items/Currency/OmenOnChanceNotDestroy",
+    "source": "https://poe2db.tw/us/Omen_of_Chance",
+    "content": "ritual"
+  },
+  {
+    "base_type": "Omen of Chaotic Effectiveness",
+    "item_class": "Omen",
+    "metadata_id": "Metadata/Items/Currency/OmenOnChaosMapMonsterEffectiveness",
+    "source": "https://poe2db.tw/us/Omen_of_Chaotic_Effectiveness",
+    "content": "ritual"
+  },
+  {
+    "base_type": "Omen of Chaotic Monsters",
+    "item_class": "Omen",
+    "metadata_id": "Metadata/Items/Currency/OmenOnChaosMapMonsterRarity",
+    "source": "https://poe2db.tw/us/Omen_of_Chaotic_Monsters",
+    "content": "ritual"
+  },
+  {
+    "base_type": "Omen of Chaotic Quantity",
+    "item_class": "Omen",
+    "metadata_id": "Metadata/Items/Currency/OmenOnChaosMapPackSize",
+    "source": "https://poe2db.tw/us/Omen_of_Chaotic_Quantity",
+    "content": "ritual"
+  },
+  {
+    "base_type": "Omen of Chaotic Rarity",
+    "item_class": "Omen",
+    "metadata_id": "Metadata/Items/Currency/OmenOnChaosMapItemRarity",
+    "source": "https://poe2db.tw/us/Omen_of_Chaotic_Rarity",
+    "content": "ritual"
+  },
+  {
+    "base_type": "Omen of Corruption",
+    "item_class": "Omen",
+    "metadata_id": "Metadata/Items/Currency/OmenOnVaalRemoveDoNothingOutcome",
+    "source": "https://poe2db.tw/us/Omen_of_Corruption",
+    "content": "ritual"
+  },
+  {
+    "base_type": "Omen of Dextral Annulment",
+    "item_class": "Omen",
+    "metadata_id": "Metadata/Items/Currency/OmenOnAnnulRemoveSuffixes",
+    "source": "https://poe2db.tw/us/Omen_of_Dextral_Annulment",
+    "content": "ritual"
+  },
+  {
+    "base_type": "Omen of Dextral Crystallisation",
+    "item_class": "Omen",
+    "metadata_id": "Metadata/Items/Currency/OmenOnPerfectEssenceSuffix",
+    "source": "https://poe2db.tw/us/Omen_of_Dextral_Crystallisation",
+    "content": "ritual"
+  },
+  {
+    "base_type": "Omen of Dextral Erasure",
+    "item_class": "Omen",
+    "metadata_id": "Metadata/Items/Currency/OmenOnChaosSuffix",
+    "source": "https://poe2db.tw/us/Omen_of_Dextral_Erasure",
+    "content": "ritual"
+  },
+  {
+    "base_type": "Omen of Dextral Exaltation",
+    "item_class": "Omen",
+    "metadata_id": "Metadata/Items/Currency/OmenOnExaltAddSuffixes",
+    "source": "https://poe2db.tw/us/Omen_of_Dextral_Exaltation",
+    "content": "ritual"
+  },
+  {
+    "base_type": "Omen of Gambling",
+    "item_class": "Omen",
+    "metadata_id": "Metadata/Items/Currency/OmenGambleNoGoldCost",
+    "source": "https://poe2db.tw/us/Omen_of_Gambling",
+    "content": "ritual"
+  },
+  {
+    "base_type": "Omen of Greater Exaltation",
+    "item_class": "Omen",
+    "metadata_id": "Metadata/Items/Currency/OmenOnExaltAddTwoMods",
+    "source": "https://poe2db.tw/us/Omen_of_Greater_Exaltation",
+    "content": "ritual"
+  },
+  {
+    "base_type": "Omen of Refreshment",
+    "item_class": "Omen",
+    "metadata_id": "Metadata/Items/Currency/OmenOnLowLifeRecoverCharges",
+    "source": "https://poe2db.tw/us/Omen_of_Refreshment",
+    "content": "ritual"
+  },
+  {
+    "base_type": "Omen of Reinforcements",
+    "item_class": "Omen",
+    "metadata_id": "Metadata/Items/Currency/OmenRogueExileSummonsPartyMember",
+    "source": "https://poe2db.tw/us/Omen_of_Reinforcements",
+    "content": "ritual"
+  },
+  {
+    "base_type": "Omen of Resurgence",
+    "item_class": "Omen",
+    "metadata_id": "Metadata/Items/Currency/OmenOnLowLifeFullyHeal",
+    "source": "https://poe2db.tw/us/Omen_of_Resurgence",
+    "content": "ritual"
+  },
+  {
+    "base_type": "Omen of Sanctification",
+    "item_class": "Omen",
+    "metadata_id": "Metadata/Items/Currency/OmenOnDivineSanctify",
+    "source": "https://poe2db.tw/us/Omen_of_Sanctification",
+    "content": "ritual"
+  },
+  {
+    "base_type": "Omen of Secret Compartments",
+    "item_class": "Omen",
+    "metadata_id": "Metadata/Items/Currency/OmenStrongboxOpenableAgain",
+    "source": "https://poe2db.tw/us/Omen_of_Secret_Compartments",
+    "content": "ritual"
+  },
+  {
+    "base_type": "Omen of Sinistral Annulment",
+    "item_class": "Omen",
+    "metadata_id": "Metadata/Items/Currency/OmenOnAnnulRemovePrefixes",
+    "source": "https://poe2db.tw/us/Omen_of_Sinistral_Annulment",
+    "content": "ritual"
+  },
+  {
+    "base_type": "Omen of Sinistral Crystallisation",
+    "item_class": "Omen",
+    "metadata_id": "Metadata/Items/Currency/OmenOnPerfectEssencePrefix",
+    "source": "https://poe2db.tw/us/Omen_of_Sinistral_Crystallisation",
+    "content": "ritual"
+  },
+  {
+    "base_type": "Omen of Sinistral Erasure",
+    "item_class": "Omen",
+    "metadata_id": "Metadata/Items/Currency/OmenOnChaosPrefix",
+    "source": "https://poe2db.tw/us/Omen_of_Sinistral_Erasure",
+    "content": "ritual"
+  },
+  {
+    "base_type": "Omen of Sinistral Exaltation",
+    "item_class": "Omen",
+    "metadata_id": "Metadata/Items/Currency/OmenOnExaltAddPrefixes",
+    "source": "https://poe2db.tw/us/Omen_of_Sinistral_Exaltation",
+    "content": "ritual"
+  },
+  {
+    "base_type": "Omen of the Ancients",
+    "item_class": "Omen",
+    "metadata_id": "Metadata/Items/Currency/OmenOnChanceAncientOrb",
+    "source": "https://poe2db.tw/us/Omen_of_the_Ancients",
+    "content": "ritual"
+  },
+  {
+    "base_type": "Omen of the Blessed",
+    "item_class": "Omen",
+    "metadata_id": "Metadata/Items/Currency/OmenOnDivineRerollImplicits",
+    "source": "https://poe2db.tw/us/Omen_of_the_Blessed",
+    "content": "ritual"
+  },
+  {
+    "base_type": "Omen of the Hunt",
+    "item_class": "Omen",
+    "metadata_id": "Metadata/Items/Currency/OmenTormentedMonsterReleased",
+    "source": "https://poe2db.tw/us/Omen_of_the_Hunt",
+    "content": "ritual"
+  },
+  {
+    "base_type": "Omen of Whittling",
+    "item_class": "Omen",
+    "metadata_id": "Metadata/Items/Currency/OmenOnChaosLowestLevelMod",
+    "source": "https://poe2db.tw/us/Omen_of_Whittling",
+    "content": "ritual"
+  },
+  {
+    "base_type": "Ritual Tablet",
+    "item_class": "Tablet",
+    "metadata_id": "Metadata/Items/TowerAugment/RitualAugment",
+    "source": "https://poe2db.tw/us/Ritual_Tablet",
+    "content": "ritual"
+  },
+  {
+    "base_type": "Sacred Bloom",
+    "item_class": "Map Fragments",
+    "metadata_id": "Metadata/Items/MapFragments/CurrencyWildwoodFragment",
+    "source": "https://poe2db.tw/us/Sacred_Bloom",
+    "content": "ritual"
+  },
+  {
+    "base_type": "Ancient Concentrated Liquid Fear",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/DistilledEmotionTimeLost8",
+    "source": "https://poe2db.tw/us/Ancient_Concentrated_Liquid_Fear",
+    "content": "delirium"
+  },
+  {
+    "base_type": "Ancient Concentrated Liquid Isolation",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/DistilledEmotionTimeLost10",
+    "source": "https://poe2db.tw/us/Ancient_Concentrated_Liquid_Isolation",
+    "content": "delirium"
+  },
+  {
+    "base_type": "Ancient Concentrated Liquid Suffering",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/DistilledEmotionTimeLost9",
+    "source": "https://poe2db.tw/us/Ancient_Concentrated_Liquid_Suffering",
+    "content": "delirium"
+  },
+  {
+    "base_type": "Ancient Diluted Liquid Greed",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/DistilledEmotionTimeLost3",
+    "source": "https://poe2db.tw/us/Ancient_Diluted_Liquid_Greed",
+    "content": "delirium"
+  },
+  {
+    "base_type": "Ancient Diluted Liquid Guilt",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/DistilledEmotionTimeLost2",
+    "source": "https://poe2db.tw/us/Ancient_Diluted_Liquid_Guilt",
+    "content": "delirium"
+  },
+  {
+    "base_type": "Ancient Diluted Liquid Ire",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/DistilledEmotionTimeLost1",
+    "source": "https://poe2db.tw/us/Ancient_Diluted_Liquid_Ire",
+    "content": "delirium"
+  },
+  {
+    "base_type": "Ancient Liquid Despair",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/DistilledEmotionTimeLost7",
+    "source": "https://poe2db.tw/us/Ancient_Liquid_Despair",
+    "content": "delirium"
+  },
+  {
+    "base_type": "Ancient Liquid Disgust",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/DistilledEmotionTimeLost6",
+    "source": "https://poe2db.tw/us/Ancient_Liquid_Disgust",
+    "content": "delirium"
+  },
+  {
+    "base_type": "Ancient Liquid Envy",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/DistilledEmotionTimeLost5",
+    "source": "https://poe2db.tw/us/Ancient_Liquid_Envy",
+    "content": "delirium"
+  },
+  {
+    "base_type": "Ancient Liquid Paranoia",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/DistilledEmotionTimeLost4",
+    "source": "https://poe2db.tw/us/Ancient_Liquid_Paranoia",
+    "content": "delirium"
+  },
+  {
+    "base_type": "Ancient Potent Liquid Contempt",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/EndgameDistilledEmotionTimeLost3",
+    "source": "https://poe2db.tw/us/Ancient_Potent_Liquid_Contempt",
+    "content": "delirium"
+  },
+  {
+    "base_type": "Ancient Potent Liquid Ferocity",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/EndgameDistilledEmotionTimeLost2",
+    "source": "https://poe2db.tw/us/Ancient_Potent_Liquid_Ferocity",
+    "content": "delirium"
+  },
+  {
+    "base_type": "Ancient Potent Liquid Melancholy",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/EndgameDistilledEmotionTimeLost1",
+    "source": "https://poe2db.tw/us/Ancient_Potent_Liquid_Melancholy",
+    "content": "delirium"
+  },
+  {
+    "base_type": "Concentrated Liquid Fear",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/DistilledEmotion8",
+    "source": "https://poe2db.tw/us/Concentrated_Liquid_Fear",
+    "content": "delirium"
+  },
+  {
+    "base_type": "Concentrated Liquid Isolation",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/DistilledEmotion10",
+    "source": "https://poe2db.tw/us/Concentrated_Liquid_Isolation",
+    "content": "delirium"
+  },
+  {
+    "base_type": "Concentrated Liquid Suffering",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/DistilledEmotion9",
+    "source": "https://poe2db.tw/us/Concentrated_Liquid_Suffering",
+    "content": "delirium"
+  },
+  {
+    "base_type": "Delirium Tablet",
+    "item_class": "Tablet",
+    "metadata_id": "Metadata/Items/TowerAugment/DeliriumAugment",
+    "source": "https://poe2db.tw/us/Delirium_Tablet",
+    "content": "delirium"
+  },
+  {
+    "base_type": "Diluted Liquid Greed",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/DistilledEmotion3",
+    "source": "https://poe2db.tw/us/Diluted_Liquid_Greed",
+    "content": "delirium"
+  },
+  {
+    "base_type": "Diluted Liquid Guilt",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/DistilledEmotion2",
+    "source": "https://poe2db.tw/us/Diluted_Liquid_Guilt",
+    "content": "delirium"
+  },
+  {
+    "base_type": "Diluted Liquid Ire",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/DistilledEmotion1",
+    "source": "https://poe2db.tw/us/Diluted_Liquid_Ire",
+    "content": "delirium"
+  },
+  {
+    "base_type": "Liquid Despair",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/DistilledEmotion7",
+    "source": "https://poe2db.tw/us/Liquid_Despair",
+    "content": "delirium"
+  },
+  {
+    "base_type": "Liquid Disgust",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/DistilledEmotion6",
+    "source": "https://poe2db.tw/us/Liquid_Disgust",
+    "content": "delirium"
+  },
+  {
+    "base_type": "Liquid Envy",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/DistilledEmotion5",
+    "source": "https://poe2db.tw/us/Liquid_Envy",
+    "content": "delirium"
+  },
+  {
+    "base_type": "Liquid Paranoia",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/DistilledEmotion4",
+    "source": "https://poe2db.tw/us/Liquid_Paranoia",
+    "content": "delirium"
+  },
+  {
+    "base_type": "Potent Liquid Contempt",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/EndgameDistilledEmotion3",
+    "source": "https://poe2db.tw/us/Potent_Liquid_Contempt",
+    "content": "delirium"
+  },
+  {
+    "base_type": "Potent Liquid Ferocity",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/EndgameDistilledEmotion2",
+    "source": "https://poe2db.tw/us/Potent_Liquid_Ferocity",
+    "content": "delirium"
+  },
+  {
+    "base_type": "Potent Liquid Melancholy",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/EndgameDistilledEmotion1",
+    "source": "https://poe2db.tw/us/Potent_Liquid_Melancholy",
+    "content": "delirium"
+  },
+  {
+    "base_type": "Raven-Touched Shard",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/AugmentAnoint",
+    "source": "https://poe2db.tw/us/Raven-Touched_Shard",
+    "content": "delirium"
+  },
+  {
+    "base_type": "Raven's Reflection",
+    "item_class": "Map Fragments",
+    "metadata_id": "Metadata/Items/Currency/Delirium/DeliriumPinnacleKey",
+    "source": "https://poe2db.tw/us/Ravens_Reflection",
+    "content": "delirium"
+  },
+  {
+    "base_type": "Simulacrum",
+    "item_class": "Map Fragments",
+    "metadata_id": "Metadata/Items/MapFragments/CurrencyAfflictionFragment",
+    "source": "https://poe2db.tw/us/Simulacrum",
+    "content": "delirium"
+  },
+  {
+    "base_type": "Simulacrum Splinter",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyAfflictionShard",
+    "source": "https://poe2db.tw/us/Simulacrum_Splinter",
+    "content": "delirium"
+  }
+]
