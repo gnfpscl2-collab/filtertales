@@ -3,7 +3,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createHash, randomUUID } from 'node:crypto';
 import { fetchHours, getPrices } from './economy.mjs';
-import { renderFilter, baselineFloors, DEFAULT_SOUNDS, validateSounds, FADED_CRISIS_FRAGMENT, ABYSS_ITEMS } from './filter.mjs';
+import { renderFilter, baselineFloors, DEFAULT_SOUNDS, validateSounds, FADED_CRISIS_FRAGMENT, ABYSS_ITEMS, LEAGUE_ITEMS } from './filter.mjs';
 
 export const ROOT = fileURLToPath(new URL('../', import.meta.url));
 
@@ -11,7 +11,7 @@ export async function loadProject(root = ROOT) {
   const config = JSON.parse(await fs.readFile(path.join(root, 'config.json'), 'utf8'));
   const currencyMapping = JSON.parse(await fs.readFile(path.join(root, 'currency-map.json'), 'utf8'));
   if (!Array.isArray(currencyMapping) || !currencyMapping.length) throw new Error('Invalid currency allowlist.');
-  const mapping = [...currencyMapping, ...ABYSS_ITEMS];
+  const mapping = [...currencyMapping, ...ABYSS_ITEMS, ...LEAGUE_ITEMS];
   if (typeof config.customSounds !== 'boolean') throw new Error('config.customSounds must be a boolean.');
   config.sounds = validateSounds(config.sounds ?? { ...DEFAULT_SOUNDS });
   if (!config.upstream || !Array.isArray(config.upstream.files) || config.upstream.files.length !== 2 || !Array.isArray(config.profiles) || config.profiles.length !== 3) {
@@ -44,12 +44,14 @@ export async function loadProject(root = ROOT) {
     const pinnacle = Object.entries(FADED_CRISIS_FRAGMENT).every(([key, value]) => item[key] === value);
     const abyss = ABYSS_ITEMS.some(known => ['base_type', 'item_class', 'metadata_id'].every(key => known[key] === item[key]));
     if (!abyss && ABYSS_ITEMS.some(known => known.base_type === item.base_type || known.metadata_id === item.metadata_id)) throw new Error('Invalid Abyss currency allowlist entry.');
+    const content = LEAGUE_ITEMS.some(known => ['base_type', 'item_class', 'metadata_id'].every(key => known[key] === item[key]));
+    if (!content && LEAGUE_ITEMS.some(known => known.base_type === item.base_type || known.metadata_id === item.metadata_id)) throw new Error('Invalid content currency allowlist entry.');
     if (!/^[A-Za-z][A-Za-z0-9 ',\-]{1,90}$/.test(item.base_type)
-      || (!pinnacle && !abyss && (!/^Metadata\/Items\/Currency\/[A-Za-z0-9]+$/.test(item.metadata_id)
+      || (!pinnacle && !abyss && !content && (!/^Metadata\/Items\/Currency\/[A-Za-z0-9]+$/.test(item.metadata_id)
         || (item.item_class && item.item_class !== 'Stackable Currency')))
       || seen.has(item.metadata_id)) throw new Error('Invalid/duplicate currency allowlist entry.');
     seen.add(item.metadata_id);
-    if (abyss) continue;
+    if (abyss || content) continue;
     if (pinnacle) {
       if ([...sources.values()].some(s => !s.includes('Class == "Pinnacle Keys"'))) throw new Error('Upstream Pinnacle Keys class missing.');
       continue;
@@ -115,6 +117,8 @@ export async function update({ root = ROOT, output = path.join(root, 'dist'), le
     Method: 'Validate direct Divine, same-hour Chaos and Exalted routes independently; choose the highest accepted Divine unit value. >=1 Divine is S+ with value audio in all areas.',
     Guards: 'At least 2 hours, 10 item units, 1 Divine equivalent volume; max/min hourly price <=3.',
     Hours: hours.map(h => ({ StartUnix: h.Hour, Url: h.Url })), AcceptedPrices: prices,
+    MappingCounts: { Total: mapping.length, Abyss: ABYSS_ITEMS.length,
+      Content: Object.fromEntries(['breach', 'temple', 'ritual', 'delirium'].map(content => [content, LEAGUE_ITEMS.filter(item => item.content === content).length])) },
     Profiles: config.profiles, CustomSoundsEnabled: config.customSounds,
     WebsiteSources: config.profiles.map(profile => `website-sources/${profile.file}.txt`),
     SoundFiles: soundFiles, SoundMapping: config.sounds,

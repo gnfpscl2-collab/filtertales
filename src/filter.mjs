@@ -1,7 +1,10 @@
 import abyssItems from '../abyss-items.json' with { type: 'json' };
+import leagueItems from '../league-items.json' with { type: 'json' };
 
 export const ABYSS_ITEMS = Object.freeze(abyssItems.map(Object.freeze));
-const isAbyssItem = item => ABYSS_ITEMS.some(known => ['base_type', 'item_class', 'metadata_id'].every(key => known[key] === item[key]));
+export const LEAGUE_ITEMS = Object.freeze(leagueItems.map(Object.freeze));
+const specialItems = [...ABYSS_ITEMS, ...LEAGUE_ITEMS];
+const isSpecialItem = item => specialItems.some(known => ['base_type', 'item_class', 'metadata_id'].every(key => known[key] === item[key]));
 
 const equipmentClasses = [
   'Amulets', 'Belts', 'Body Armours', 'Boots', 'Bows', 'Bucklers',
@@ -317,12 +320,12 @@ export function renderFilter({ source, prices, league, profile, release, dataLab
     const pinnacle = price.BaseType === FADED_CRISIS_FRAGMENT.base_type
       && price.MetadataId === FADED_CRISIS_FRAGMENT.metadata_id && price.ItemClass === FADED_CRISIS_FRAGMENT.item_class
       && source.includes('Class == "Pinnacle Keys"');
-    const abyss = isAbyssItem({ base_type: price.BaseType, item_class: price.ItemClass, metadata_id: price.MetadataId });
-    const abyssCandidate = ABYSS_ITEMS.some(item => item.base_type === price.BaseType || item.metadata_id === price.MetadataId);
-    const currency = !abyssCandidate && (!price.ItemClass || price.ItemClass === 'Stackable Currency') && source.includes(`"${price.BaseType}"`);
+    const special = isSpecialItem({ base_type: price.BaseType, item_class: price.ItemClass, metadata_id: price.MetadataId });
+    const specialCandidate = specialItems.some(item => item.base_type === price.BaseType || item.metadata_id === price.MetadataId);
+    const currency = !specialCandidate && (!price.ItemClass || price.ItemClass === 'Stackable Currency') && source.includes(`"${price.BaseType}"`);
     if (!/^[A-Za-z][A-Za-z0-9 ',-]{1,90}$/.test(price.BaseType)
       || !Number.isFinite(price.DivinePerItem) || price.DivinePerItem < 0
-      || !(pinnacle || abyss || currency)) throw new Error('Invalid/unrecognized currency price.');
+      || !(pinnacle || special || currency)) throw new Error('Invalid/unrecognized currency price.');
   }
   const fixed = ['Mirror of Kalandra', "Hinekora's Lock", 'Divine Orb'];
   const rareGroups = new Map();
@@ -333,7 +336,7 @@ export function renderFilter({ source, prices, league, profile, release, dataLab
   }
   const groups = new Map([[1, []], [2, []]]);
   for (const price of prices) {
-    if (ABYSS_ITEMS.some(item => item.base_type === price.BaseType)) continue;
+    if (specialItems.some(item => item.base_type === price.BaseType)) continue;
     if (price.ItemClass && price.ItemClass !== 'Stackable Currency') continue;
     if ([...fixed, 'Chaos Orb'].includes(price.BaseType) || price.DivinePerItem >= 1) continue;
     const rank = price.DivinePerItem >= 0.1 ? 2 : price.DivinePerItem >= 0.01 ? 1 : 0;
