@@ -336,15 +336,19 @@ test('only hell hides uncut skill and spirit gems below gem level 19 without cha
       for (const [BaseType, Class] of [['Uncut Skill Gem', 'Uncut Skill Gems'], ['Uncut Spirit Gem', 'Uncut Spirit Gems']]) {
         for (const AreaLevel of [1, 64, 82]) {
           for (const GemLevel of [1, 18, 19, 20, 21]) {
-            const result = firstTerminal(filter, { BaseType, Class, Rarity: 'Normal', GemLevel, AreaLevel, ItemLevel: 1 });
-            assert.equal(result.action, profile.strictEndgame && GemLevel < 19 ? 'Hide' : 'Show', `${profile.file}: ${BaseType} level ${GemLevel}, area ${AreaLevel}`);
-            if (result.action === 'Hide') assert.deepEqual(result.notificationLines, []);
+            for (const gemName of [BaseType, `${BaseType} (Level ${GemLevel})`]) {
+              const result = firstTerminal(filter, { BaseType: gemName, Class, Rarity: 'Normal', GemLevel, AreaLevel, ItemLevel: 1 });
+              assert.equal(result.action, profile.strictEndgame && GemLevel < 19 ? 'Hide' : 'Show', `${profile.file}: ${gemName}, gem level ${GemLevel}, area ${AreaLevel}`);
+              if (result.action === 'Hide') assert.deepEqual(result.notificationLines, []);
+            }
           }
         }
         assert.equal(firstTerminal(filter, { BaseType, Class, Rarity: 'Normal', GemLevel: 18, ItemLevel: 90 }).action,
           profile.strictEndgame ? 'Hide' : 'Show', 'gem level is independent of item level');
       }
-      assert.equal(firstTerminal(filter, { BaseType: 'Uncut Support Gem', Class: 'Uncut Support Gems', Rarity: 'Normal', GemLevel: 1 }).action, 'Show');
+      for (const BaseType of ['Uncut Support Gem', 'Uncut Support Gem (Level 1)']) {
+        assert.equal(firstTerminal(filter, { BaseType, Class: 'Uncut Support Gems', Rarity: 'Normal', GemLevel: 1 }).action, 'Show');
+      }
     }
   }
 });
