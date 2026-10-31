@@ -369,6 +369,8 @@ export function renderFilter({ source, prices, league, profile, release, dataLab
     }
     lines.push('# BEGIN PERSONAL TRIAL KEY HIDE', 'Hide # Personal hell: unwanted trial keys, all levels and rarities',
       '    BaseType == "Djinn Barya" "Inscribed Ultimatum"', '# END PERSONAL TRIAL KEY HIDE', '');
+    lines.push('# BEGIN PERSONAL GEM LEVEL HIDE', 'Hide # Personal hell: uncut skill and spirit gems below level 19',
+      '    BaseType == "Uncut Skill Gem" "Uncut Spirit Gem"', '    GemLevel < 19', '# END PERSONAL GEM LEVEL HIDE', '');
   }
   const materialRules = materialHideRules(source, profile.materialTier);
   if (materialRules) lines.push(materialRules);
