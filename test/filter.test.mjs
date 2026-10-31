@@ -106,8 +106,10 @@ for (const profile of config.profiles) {
     const source = visibilitySource(profile);
     const [prefix, suffix] = render(profile).split(sourceMarker);
     const economyWithoutMaterialGuard = prefix.replace(/^# BEGIN PERSONAL MATERIAL TIER.*?^# END PERSONAL MATERIAL TIER\r?\n/gms, '');
-    const economyWithoutUserHides = economyWithoutMaterialGuard.replace(/^# BEGIN PERSONAL TRIAL KEY HIDE.*?^# END PERSONAL TRIAL KEY HIDE\r?\n/gms, '');
-    assert.doesNotMatch(economyWithoutUserHides, /^Hide\b/m, 'only the explicit fixed material and trial key policies introduce hiding');
+    const economyWithoutUserHides = economyWithoutMaterialGuard
+      .replace(/^# BEGIN PERSONAL TRIAL KEY HIDE.*?^# END PERSONAL TRIAL KEY HIDE\r?\n/gms, '')
+      .replace(/^# BEGIN PERSONAL GOLD HIDE.*?^# END PERSONAL GOLD HIDE\r?\n/gms, '');
+    assert.doesNotMatch(economyWithoutUserHides, /^Hide\b/m, 'only the explicit fixed material, trial key and gold policies introduce hiding');
     const recovered = suffix
       .replace(/^# BEGIN PERSONAL ITEMLEVEL RANGE.*?^# END PERSONAL ITEMLEVEL RANGE\r?\n/gms, '')
       .replace(/^# BEGIN PERSONAL TABLET SOUND.*?^# END PERSONAL TABLET SOUND\r?\n/gms, '');

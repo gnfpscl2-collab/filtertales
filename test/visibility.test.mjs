@@ -329,13 +329,27 @@ test('material cutoff precedes lower economy promotions but verified one-Divine 
   assert.throws(() => materialHideRules(source, 'everything'), /material|preset|tier/i);
 });
 
+test('hard and hell hide every gold pile while normal retains its original display in both audio modes', () => {
+  for (const customSounds of [false, true]) {
+    for (const profile of config.profiles) {
+      const filter = render(profile, customSounds);
+      for (const AreaLevel of [1, 64, 82]) {
+        for (const StackSize of [1, 99, 650, 2000, 5000, 1000000]) {
+          const result = firstTerminal(filter, { BaseType: 'Gold', Class: 'Gold', Rarity: 'Normal', AreaLevel, StackSize });
+          assert.equal(result.action, profile.sourceMode === 'Endgame' ? 'Hide' : 'Show', `${profile.file}: ${StackSize} gold, area ${AreaLevel}`);
+          if (result.action === 'Hide') assert.deepEqual(result.notificationLines, []);
+        }
+      }
+    }
+  }
+});
+
 test('strict rules spare non-equipment and verified high-value prefixes in both audio modes', () => {
   const fragment = { BaseType: FADED_CRISIS_FRAGMENT.base_type, MetadataId: FADED_CRISIS_FRAGMENT.metadata_id,
     ItemClass: FADED_CRISIS_FRAGMENT.item_class, DivinePerItem: 2 };
   for (const customSounds of [false, true]) {
     const filter = render(config.profiles[2], customSounds, [fragment, { BaseType: 'Vaal Orb', DivinePerItem: 2 }]);
     for (const item of [
-      { BaseType: 'Gold', Class: 'Gold', Rarity: 'Normal', StackSize: 500 },
       { BaseType: 'Waystone', Class: 'Waystones', Rarity: 'Magic', WaystoneTier: 15 },
       { BaseType: 'Expedition Tablet', Class: 'Tablet', Rarity: 'Rare' },
       { BaseType: 'Uncut Skill Gem', Class: 'Uncut Skill Gems', Rarity: 'Normal', GemLevel: 20 },
