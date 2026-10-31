@@ -80,9 +80,10 @@ function nativeCurrencyBActions(source) {
 }
 
 function customAlert(block, filename) {
-  const actions = { CustomAlertSoundOptional: `"sounds/${filename}" 250` };
-  if (!/^[ \t]*PlayAlertSound(?:Positional)?\b/m.test(block)) actions.PlayAlertSound = '2 250';
-  return setActions(block, actions);
+  const newline = block.includes('\r\n') ? '\r\n' : '\n';
+  let result = block.replace(/^[ \t]*CustomAlertSound(?:Optional)?\b[^\r\n]*(?:\r?\n|$)/gm, '');
+  if (!/^[ \t]*PlayAlertSound(?:Positional)?\b/m.test(result)) result = setActions(result, { PlayAlertSound: '2 250' });
+  return result.trimEnd() + newline + `    CustomAlertSoundOptional "sounds/${filename}" 250` + newline;
 }
 
 function exceptional(block) {
@@ -281,7 +282,7 @@ export function applyCategorySounds(source, sounds = DEFAULT_SOUNDS) {
     const newline = block.includes('\r\n') ? '\r\n' : '\n';
     if (exceptional(block)) return customAlert(block, sounds.exceptional);
     if (/\$type->waystones\b/.test(header)) return customAlert(block, sounds.maps);
-    const fallback = grade(block) >= 1 ? customAlert(block, sounds.ab) : block;
+    const fallback = grade(block) >= 1 || /\$type->uniques\b/.test(header) ? customAlert(block, sounds.ab) : block;
     const baseLine = block.match(/^[ \t]*BaseType[ \t]+==[ \t]+([^\r\n]+)/m);
     if (!baseLine) return fallback;
     const tablets = [...baseLine[1].matchAll(/"([^"]+)"/g)].filter(match => match[1].endsWith(' Tablet'));
