@@ -78,9 +78,9 @@ const abyssPrice = (name, DivinePerItem) => {
   return { BaseType: item.base_type, MetadataId: item.metadata_id, ItemClass: item.item_class, DivinePerItem };
 };
 const assertAbyssColours = block => {
-  assert.match(block, /^\s*SetTextColor 255 255 255 255\r?$/m);
+  assert.match(block, /^\s*SetTextColor 0 255 0 255\r?$/m);
   assert.match(block, /^\s*SetBorderColor 0 255 0 255\r?$/m);
-  assert.match(block, /^\s*SetBackgroundColor 0 0 0 255\r?$/m);
+  assert.match(block, /^\s*SetBackgroundColor 255 255 0 255\r?$/m);
 };
 
 test('first matching rules apply shared custom sounds to tablets, waystones and unique items', () => {
@@ -117,7 +117,7 @@ test('first matching rules apply shared custom sounds to tablets, waystones and 
   }
 });
 
-test('every profile gives visible Abyss items white text, a green border and a black background', () => {
+test('every profile gives visible Abyss items green text, a green border and a yellow background', () => {
   const lowBones = new Set(['Gnawed Jawbone', 'Gnawed Rib', 'Gnawed Collarbone', 'Preserved Jawbone']);
   for (const profile of config.profiles) {
     for (const customSounds of [false, true]) {
