@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { applyEndgameVisibility, materialHideRules, renderFilter, FADED_CRISIS_FRAGMENT, ABYSS_ITEMS } from '../src/filter.mjs';
+import { applyEndgameVisibility, materialHideRules, renderFilter, FADED_CRISIS_FRAGMENT, ABYSS_ITEMS, LEAGUE_ITEMS } from '../src/filter.mjs';
 
 const root = new URL('../', import.meta.url);
 const config = JSON.parse(readFileSync(new URL('config.json', root), 'utf8'));
@@ -83,6 +83,52 @@ const assertAbyssColours = block => {
   assert.match(block, /^\s*SetBackgroundColor 255 255 0 255\r?$/m);
 };
 
+test('verified one-Divine league consumables use S+ without repricing quest items or equipment', () => {
+  const prices = LEAGUE_ITEMS.map(item => ({ BaseType: item.base_type, ItemClass: item.item_class,
+    MetadataId: item.metadata_id, DivinePerItem: 1 }));
+  const questVariants = [...new Map(LEAGUE_ITEMS.map(item => [item.item_class, item])).values()];
+  const equipment = [
+    { BaseType: 'Crude Bow', Class: 'Bows', Rarity: 'Magic' },
+    { BaseType: 'Ashen Wand', Class: 'Wands', Rarity: 'Magic' },
+    { BaseType: 'Conjurer Mantle', Class: 'Body Armours', UnidentifiedItemTier: 3 },
+    { BaseType: 'Armoured Cap', Class: 'Helmets', Rarity: 'Unique' },
+    { BaseType: 'Ruby', Class: 'Jewels', Rarity: 'Unique' },
+    { BaseType: 'Amethyst Ring', Class: 'Rings', Rarity: 'Unique' },
+    { BaseType: 'Breach Ring', Class: 'Rings', Rarity: 'Magic' },
+    { BaseType: 'Gold Amulet', Class: 'Amulets', Rarity: 'Unique' },
+    { BaseType: 'Heavy Belt', Class: 'Belts', Rarity: 'Unique' },
+  ];
+  for (const profile of config.profiles) {
+    for (const customSounds of [false, true]) {
+      const high = render(profile, customSounds, prices);
+      const baseline = render(profile, customSounds, []);
+      for (const item of LEAGUE_ITEMS) {
+        const result = firstTerminal(high, { BaseType: item.base_type, Class: item.item_class, Rarity: 'Normal' });
+        const label = `${profile.file}: ${item.base_type}`;
+        assert.equal(result.action, 'Show', label);
+        assert.match(result.header, /S\+ Verified unit value/, label);
+        assert.match(result.block, /^\s*SetTextColor 255 0 0 255\r?$/m);
+        assert.match(result.block, /^\s*SetBorderColor 255 0 0 255\r?$/m);
+        assert.match(result.block, /^\s*SetBackgroundColor 255 255 255 255\r?$/m);
+        assert.match(result.block, /^\s*PlayAlertSound 1 250\r?$/m);
+        if (customSounds) assert.match(result.block, /CustomAlertSoundOptional "sounds\/0161\.wav" 250/);
+        else assert.doesNotMatch(result.block, /CustomAlertSound/);
+      }
+      for (const item of questVariants) {
+        const result = firstTerminal(high, { BaseType: item.base_type, Class: 'Quest Items', Rarity: 'Normal' });
+        assert.doesNotMatch(result.header, /S\+ Verified unit value/, `${item.base_type}: same-name quest variant`);
+      }
+      for (const item of equipment) {
+        assert.deepEqual(firstTerminal(high, item), firstTerminal(baseline, item), JSON.stringify(item));
+      }
+      for (const DivinePerItem of [0.999, 0.1]) {
+        const lower = prices.map(price => ({ ...price, DivinePerItem }));
+        assert.equal(render(profile, customSounds, lower), baseline, `${profile.file}: no lower-value league promotion`);
+      }
+    }
+  }
+});
+
 test('first matching rules apply shared custom sounds to tablets, waystones and unique items', () => {
   const cases = [];
   for (const BaseType of ['Abyss Tablet', 'Breach Tablet', 'Delirium Tablet', 'Expedition Tablet',
@@ -105,6 +151,20 @@ test('first matching rules apply shared custom sounds to tablets, waystones and 
     [{ BaseType: 'Heavy Belt', Class: 'Belts', Rarity: 'Unique', HasVaalUniqueMod: true }, '0397.wav'],
     [{ BaseType: 'Heavy Belt', Class: 'Belts', Rarity: 'Unique' }, '0103.wav'],
   );
+  for (const BaseType of ['Emerald', 'Ruby', 'Sapphire', 'Diamond', 'Timeless Jewel', 'Time-Lost Diamond']) {
+    cases.push([{ BaseType, Class: 'Jewels', Rarity: 'Unique' }, '0103.wav']);
+    // Pinned NeverSink T1/T2 rules precede its exceptional unique rules.
+    for (const state of ['TwiceCorrupted', 'HasVaalUniqueMod']) {
+      cases.push([{ BaseType, Class: 'Jewels', Rarity: 'Unique', [state]: true }, '0103.wav']);
+    }
+  }
+  for (const [BaseType, Class] of [['Gold Ring', 'Rings'], ['Gold Amulet', 'Amulets'],
+    ['Stellar Amulet', 'Amulets'], ['Utility Belt', 'Belts']]) {
+    cases.push([{ BaseType, Class, Rarity: 'Unique' }, '0103.wav']);
+    for (const state of ['TwiceCorrupted', 'HasVaalUniqueMod']) {
+      cases.push([{ BaseType, Class, Rarity: 'Unique', [state]: true }, '0397.wav']);
+    }
+  }
   for (const profile of config.profiles) {
     const filter = render(profile, true, []);
     for (const [item, sound] of cases) {

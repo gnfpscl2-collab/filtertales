@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { DIVINE, EXALTED, CHAOS, fetchHours, getPrices } from '../src/economy.mjs';
+import { LEAGUE_ITEMS } from '../src/filter.mjs';
 
 const VAAL = 'Metadata/Items/Currency/CurrencyCorrupt';
 const mapping = [{ base_type: 'Chaos Orb', metadata_id: CHAOS }, { base_type: 'Vaal Orb', metadata_id: VAAL }];
@@ -53,6 +54,32 @@ test('a priced pinnacle fragment preserves its exact filter class', () => {
   assert.equal(price.ItemClass, 'Pinnacle Keys');
   assert.equal(price.DivinePerItem, 1.4);
   assert.deepEqual(price.Routes, ['via-chaos']);
+});
+
+test('all content classes preserve identity and select a higher validated Chaos-converted unit price', () => {
+  const names = ['Adaptive Catalyst', 'Breach Tablet', 'Breachlord Sac', 'Breachstone',
+    "Citaqualotl's Thesis", 'Vaal Siphoner', 'Call of the Shadows', 'Omen of Chance'];
+  const contentMapping = names.map(name => {
+    const item = LEAGUE_ITEMS.find(item => item.base_type === name);
+    assert.ok(item, name);
+    return item;
+  });
+  assert.equal(new Set(contentMapping.map(item => item.item_class)).size, 8);
+  const rows = [market(CHAOS, DIVINE, 2000, 10), ...contentMapping.flatMap(item => [
+    market(item.metadata_id, DIVINE, 10, 9), market(item.metadata_id, CHAOS, 10, 2400),
+  ])];
+  const prices = getPrices([hour(7200, rows), hour(3600, rows)], 'Test', contentMapping);
+  assert.equal(prices.length, contentMapping.length);
+  for (const item of contentMapping) {
+    const price = prices.find(price => price.BaseType === item.base_type);
+    assert.equal(price.MetadataId, item.metadata_id);
+    assert.equal(price.ItemClass, item.item_class);
+    assert.equal(price.DivinePerItem, 1.2);
+    assert.deepEqual(price.Routes, ['via-chaos']);
+    assert.deepEqual(price.CandidatePrices, [
+      { Route: 'via-chaos', DivinePerItem: 1.2 }, { Route: 'direct-divine', DivinePerItem: 0.9 },
+    ]);
+  }
 });
 
 test('compares converted values rather than raw Chaos amounts and breaks ties in favour of direct Divine', () => {

@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import {
-  baselineFloors, renderFilter, applyVisualPolicy, addItemLevelRange, applyCategorySounds, applyEndgameVisibility, DEFAULT_SOUNDS, validateSounds, FADED_CRISIS_FRAGMENT,
+  baselineFloors, renderFilter, applyVisualPolicy, addItemLevelRange, applyCategorySounds, applyEndgameVisibility, DEFAULT_SOUNDS, validateSounds, FADED_CRISIS_FRAGMENT, LEAGUE_ITEMS,
 } from '../src/filter.mjs';
 
 const root = new URL('../', import.meta.url);
@@ -233,6 +233,26 @@ test('Faded Crisis Fragment is a separate S+ Pinnacle Key at one Divine in every
     { ...price, MetadataId: undefined },
     { ...price, BaseType: 'Chaos Orb' },
   ]) assert.throws(() => render(config.profiles[0], { prices: [invalid] }), /Invalid\/unrecognized currency price/);
+});
+
+test('content prices require exact trading identity and never accept equipment classes', () => {
+  const representatives = [...new Map(LEAGUE_ITEMS.map(item => [item.item_class, item])).values()];
+  for (const item of representatives) {
+    const price = { BaseType: item.base_type, ItemClass: item.item_class, MetadataId: item.metadata_id, DivinePerItem: 1 };
+    for (const invalid of [
+      { ...price, ItemClass: 'Quest Items' },
+      { ...price, ItemClass: undefined },
+      { ...price, MetadataId: 'Metadata/Items/QuestItems/UntrustedKey' },
+      { ...price, MetadataId: undefined },
+      { ...price, BaseType: 'Crude Bow' },
+    ]) assert.throws(() => render(config.profiles[2], { prices: [invalid] }), /Invalid\/unrecognized currency price/);
+  }
+  for (const [BaseType, ItemClass] of [['Crude Bow', 'Bows'], ['Sacrificial Regalia', 'Body Armours'],
+    ['Emerald', 'Jewels'], ['Gold Ring', 'Rings'], ['Stellar Amulet', 'Amulets'], ['Heavy Belt', 'Belts']]) {
+    assert.throws(() => render(config.profiles[2], {
+      prices: [{ BaseType, ItemClass, MetadataId: 'Metadata/Items/Currency/UntrustedEquipment', DivinePerItem: 100 }],
+    }), /Invalid\/unrecognized currency price/);
+  }
 });
 
 test('Unique Tablet sound subsets preserve original conditions and exceptional alerts take priority', () => {

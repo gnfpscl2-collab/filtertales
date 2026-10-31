@@ -5,7 +5,7 @@ import path from 'node:path';
 import os from 'node:os';
 import { ROOT, loadProject, publishFiles, update } from '../src/update.mjs';
 import { DIVINE, EXALTED } from '../src/economy.mjs';
-import { DEFAULT_SOUNDS, FADED_CRISIS_FRAGMENT, ABYSS_ITEMS } from '../src/filter.mjs';
+import { DEFAULT_SOUNDS, FADED_CRISIS_FRAGMENT, ABYSS_ITEMS, LEAGUE_ITEMS } from '../src/filter.mjs';
 
 const SOUND_FILES = Object.values(DEFAULT_SOUNDS).sort();
 async function scratch(t) {
@@ -37,11 +37,18 @@ test('project validates pinned sources and all three profiles', async () => {
   const project = await loadProject();
   assert.equal(project.sources.size, 2);
   assert.equal(ABYSS_ITEMS.length, 26);
-  assert.equal(project.mapping.length, 55);
+  assert.equal(project.mapping.length, 55 + LEAGUE_ITEMS.length);
   for (const item of ABYSS_ITEMS) {
     const mapped = project.mapping.find(mapped => mapped.metadata_id === item.metadata_id);
     for (const key of ['base_type', 'metadata_id', 'item_class']) assert.equal(mapped?.[key], item[key]);
     assert.notEqual(item.item_class, 'Quest Items');
+  }
+  const contentClasses = ['Stackable Currency', 'Tablet', 'Map Fragments', 'Breachstones', 'Augment', 'Incubators', 'Pinnacle Keys', 'Omen'];
+  assert.deepEqual([...new Set(LEAGUE_ITEMS.map(item => item.item_class))].sort(), [...contentClasses].sort());
+  for (const item of LEAGUE_ITEMS) {
+    const mapped = project.mapping.find(mapped => mapped.metadata_id === item.metadata_id);
+    for (const key of ['base_type', 'metadata_id', 'item_class']) assert.equal(mapped?.[key], item[key]);
+    assert.ok(contentClasses.includes(item.item_class), `${item.base_type}: only non-equipment content classes`);
   }
   const fragment = project.mapping.find(item => item.base_type === 'Faded Crisis Fragment');
   for (const [key, value] of Object.entries(FADED_CRISIS_FRAGMENT)) assert.equal(fragment[key], value);
@@ -143,6 +150,25 @@ test('the Abyss mapping cannot be spoofed through the ordinary currency allowlis
   ]) {
     await fs.writeFile(mappingFile, JSON.stringify([...mapping, item]));
     await assert.rejects(loadProject(root), /Invalid(?:\/duplicate| Abyss) currency allowlist entry/);
+  }
+});
+
+test('content mappings reject duplicate entries, quest variants and equipment spoofing', async t => {
+  const root = await copyProject(t, false, false);
+  const mappingFile = path.join(root, 'currency-map.json');
+  const mapping = JSON.parse(await fs.readFile(mappingFile, 'utf8'));
+  const breachstone = LEAGUE_ITEMS.find(item => item.base_type === 'Breachstone');
+  assert.ok(breachstone);
+  for (const item of [
+    breachstone,
+    { ...breachstone, metadata_id: 'Metadata/Items/QuestItems/Gallows/Endgame/Breachstone' },
+    { ...breachstone, item_class: 'Quest Items' },
+    { ...breachstone, metadata_id: DIVINE },
+    { ...breachstone, item_class: 'Stackable Currency' },
+    { ...breachstone, base_type: 'Iron Cuirass' },
+  ]) {
+    await fs.writeFile(mappingFile, JSON.stringify([...mapping, item]));
+    await assert.rejects(loadProject(root), /Invalid(?:\/duplicate| content) currency allowlist entry/);
   }
 });
 
