@@ -147,7 +147,7 @@ export function applyAbyssVisuals(source) {
       if (!subset.length) continue;
       clones.push(setActions(block, {
         Class: `== ${quoteNames([itemClass])}`, BaseType: `== ${quoteNames(subset)}`,
-        SetTextColor: '255 255 255 255', SetBorderColor: '0 255 0 255', SetBackgroundColor: '0 0 0 255',
+        SetTextColor: '0 255 0 255', SetBorderColor: '0 255 0 255', SetBackgroundColor: '255 255 0 255',
       }));
     }
     return clones.length ? '# BEGIN PERSONAL ABYSS COLOURS\n' + clones.join('\n')
