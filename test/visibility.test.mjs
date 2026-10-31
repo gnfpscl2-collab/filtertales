@@ -353,9 +353,15 @@ test('hard and hell hide every gold pile while normal retains its original displ
   for (const customSounds of [false, true]) {
     for (const profile of config.profiles) {
       const filter = render(profile, customSounds);
+      const goldGuard = filter.match(/^# BEGIN PERSONAL GOLD HIDE.*?^# END PERSONAL GOLD HIDE/gms)?.[0];
+      if (profile.sourceMode === 'Endgame') {
+        assert.ok(goldGuard);
+        assert.match(goldGuard, /^\s*BaseType == "Gold"$/m);
+        assert.doesNotMatch(goldGuard, /^\s*Class\b/m, 'Gold is a base type, not a supported item class');
+      } else assert.equal(goldGuard, undefined);
       for (const AreaLevel of [1, 64, 82]) {
         for (const StackSize of [1, 99, 650, 2000, 5000, 1000000]) {
-          const result = firstTerminal(filter, { BaseType: 'Gold', Class: 'Gold', Rarity: 'Normal', AreaLevel, StackSize });
+          const result = firstTerminal(filter, { BaseType: 'Gold', Class: 'Unspecified', Rarity: 'Normal', AreaLevel, StackSize });
           assert.equal(result.action, profile.sourceMode === 'Endgame' ? 'Hide' : 'Show', `${profile.file}: ${StackSize} gold, area ${AreaLevel}`);
           if (result.action === 'Hide') assert.deepEqual(result.notificationLines, []);
         }
