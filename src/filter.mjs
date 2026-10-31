@@ -382,6 +382,10 @@ export function renderFilter({ source, prices, league, profile, release, dataLab
   }
   lines.push('# END PERSONAL ECONOMY');
   addRule('Chaos category, after verified >=1 Divine priority', ['Chaos Orb'], nativeB, sounds.chaos);
+  if (profile.sourceMode === 'Endgame') {
+    lines.push('# BEGIN PERSONAL GOLD HIDE', 'Hide # Personal hard and hell: all gold piles',
+      '    Class == "Gold"', '    BaseType == "Gold"', '# END PERSONAL GOLD HIDE', '');
+  }
   lines.push(
     '# BEGIN NEVERSINK (personal visual policy and optional sounds; conditions preserved)',
   );
