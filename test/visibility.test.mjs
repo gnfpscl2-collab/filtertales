@@ -83,6 +83,40 @@ const assertAbyssColours = block => {
   assert.match(block, /^\s*SetBackgroundColor 0 0 0 255\r?$/m);
 };
 
+test('first matching rules apply shared custom sounds to tablets, waystones and unique items', () => {
+  const cases = [];
+  for (const BaseType of ['Abyss Tablet', 'Breach Tablet', 'Delirium Tablet', 'Expedition Tablet',
+    'Irradiated Tablet', 'Overseer Tablet', 'Ritual Tablet', 'Temple Tablet']) {
+    for (const Rarity of ['Normal', 'Magic', 'Rare']) {
+      cases.push([{ BaseType, Class: 'Tablet', Rarity }, '0398.wav']);
+    }
+  }
+  for (const BaseType of ['Abyss Tablet', 'Breach Tablet']) {
+    cases.push([{ BaseType, Class: 'Tablet', Rarity: 'Unique' }, '0398.wav']);
+  }
+  for (const WaystoneTier of [1, 15, 16]) {
+    for (const Rarity of ['Normal', 'Magic', 'Rare']) {
+      cases.push([{ BaseType: 'Waystone', Class: 'Waystones', Rarity, WaystoneTier },
+        WaystoneTier === 16 ? '0397.wav' : '0398.wav']);
+    }
+  }
+  cases.push(
+    [{ BaseType: 'Heavy Belt', Class: 'Belts', Rarity: 'Unique', TwiceCorrupted: true }, '0397.wav'],
+    [{ BaseType: 'Heavy Belt', Class: 'Belts', Rarity: 'Unique', HasVaalUniqueMod: true }, '0397.wav'],
+    [{ BaseType: 'Heavy Belt', Class: 'Belts', Rarity: 'Unique' }, '0103.wav'],
+  );
+  for (const profile of config.profiles) {
+    const filter = render(profile, true, []);
+    for (const [item, sound] of cases) {
+      const result = firstTerminal(filter, item);
+      const label = `${profile.file}: ${JSON.stringify(item)}`;
+      assert.equal(result.action, 'Show', label);
+      assert.equal(result.block.match(/CustomAlertSoundOptional "sounds\/([^"\r\n]+)"/)?.[1], sound, label);
+    }
+    assert.doesNotMatch(render(profile, false, []), /^\s*CustomAlertSound\w*\b/m);
+  }
+});
+
 test('every profile gives visible Abyss items white text, a green border and a black background', () => {
   const lowBones = new Set(['Gnawed Jawbone', 'Gnawed Rib', 'Gnawed Collarbone', 'Preserved Jawbone']);
   for (const profile of config.profiles) {

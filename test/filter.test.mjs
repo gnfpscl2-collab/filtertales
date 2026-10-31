@@ -255,8 +255,8 @@ test('Unique Tablet sound subsets preserve original conditions and exceptional a
   for (const condition of ['Rarity Unique', 'Class == "Tablet" "Belts"', 'Identified False', 'ItemLevel >= 80']) {
     assert.ok(tablet.includes(condition), `tablet subset preserves ${condition}`);
   }
-  assert.equal(audio(fallback), undefined);
-  assert.equal(fallback, mixed, 'ordinary unique fallback keeps its native alert');
+  assert.equal(audio(fallback), '0103.wav');
+  assert.equal(fallback.replace(/^[ \t]*CustomAlertSoundOptional[^\r\n]*\r?\n/gm, ''), mixed, 'ordinary unique fallback preserves everything except its custom alert');
   assert.equal(logic(fallback), logic(mixed), 'mixed non-tablet items retain the original matching rule');
   const exceptional = mixed.replace('$tier->t2 !uniques_a', '$tier->exceptional !uniques_exceptional');
   const exceptionalResult = applyCategorySounds(exceptional);
@@ -266,7 +266,7 @@ test('Unique Tablet sound subsets preserve original conditions and exceptional a
   assert.equal(logic(exceptionalResult), logic(exceptional));
 });
 
-test('retained unique rarity tiers keep NeverSink matching, presentation and native alerts', () => {
+test('retained unique rarity tiers keep NeverSink matching and presentation with the ordinary unique sound', () => {
   for (const profile of config.profiles) {
     const source = visibilitySource(profile);
     const [, suffix] = render(profile).split(sourceMarker);
@@ -278,7 +278,41 @@ test('retained unique rarity tiers keep NeverSink matching, presentation and nat
     assert.ok(nativeUniques.some(block => /\$tier->t3\b/.test(block)), 'lower unique category exists');
     for (const original of nativeUniques) {
       const header = original.split(/\r?\n/, 1)[0];
-      assert.equal(renderedRules.find(block => block.startsWith(header)), original, `${profile.file}: ${header}`);
+      const rule = renderedRules.find(block => block.startsWith(header));
+      assert.equal(audio(rule), '0103.wav', `${profile.file}: ${header}`);
+      let recovered = rule.replace(/^[ \t]*CustomAlertSoundOptional[^\r\n]*\r?\n/gm, '');
+      if (!/^[ \t]*PlayAlertSound(?:Positional)?\b/m.test(original)) recovered = recovered.replace(/^[ \t]*PlayAlertSound 2 250\r?\n/gm, '');
+      assert.equal(recovered, original, `${profile.file}: ${header}`);
+    }
+  }
+});
+
+test('every custom alert follows its built-in fallback as the final action', () => {
+  for (const profile of config.profiles) {
+    const rules = blocks(render(profile)).filter(block => /CustomAlertSoundOptional/.test(block));
+    assert.ok(rules.length > 0);
+    for (const block of rules) {
+      const lines = block.trimEnd().split(/\r?\n/);
+      const custom = lines.findIndex(line => /^\s*CustomAlertSoundOptional\b/.test(line));
+      assert.equal(lines.filter(line => /^\s*CustomAlertSound\w*\b/.test(line)).length, 1);
+      assert.equal(custom, lines.length - 1, block.split(/\r?\n/, 1)[0]);
+      const native = lines.map((line, i) => /^\s*PlayAlertSound(?:Positional)?\b/.test(line) ? i : -1).filter(i => i >= 0);
+      assert.ok(native.length > 0);
+      assert.ok(native.every(i => i < custom));
+    }
+  }
+});
+
+test('category sound replacement removes stale custom alerts and preserves a native fallback', () => {
+  for (const newline of ['\n', '\r\n']) {
+    for (const native of ['', '    PlayAlertSoundPositional 5 300']) {
+      const input = ['Show # $type->waystones $tier->waystone_t15', '    Class == "Waystones"',
+        ...(native ? [native] : []), '    CustomAlertSound "sounds/old.wav" 100', ''].join(newline);
+      const output = applyCategorySounds(input);
+      assert.equal(audio(output), '0398.wav');
+      assert.equal((output.match(/^\s*CustomAlertSound\w*\b/gm) ?? []).length, 1);
+      assert.ok(output.includes(native || '    PlayAlertSound 2 250'));
+      assert.equal(output.trimEnd().split(/\r?\n/).at(-1), '    CustomAlertSoundOptional "sounds/0398.wav" 250');
     }
   }
 });
