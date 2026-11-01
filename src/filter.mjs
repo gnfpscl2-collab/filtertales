@@ -255,6 +255,15 @@ export function applyEndgameVisibility(source) {
     .replace(/^[ \t]*(?:PlayAlertSound(?:Positional)?|CustomAlertSound\w*|PlayEffect|MinimapIcon)\b[^\r\n]*(?:\r?\n|$)/gm, '');
   const newline = source.includes('\r\n') ? '\r\n' : '\n';
   const craft = find('endgame->normalcraft->economy', 'group1t1');
+  const beltAnchor = find('chancing', 'chancea');
+  const beltGate = [
+    '# BEGIN PERSONAL HELL BELTS',
+    ...['ItemLevel < 82', 'UnidentifiedItemTier < 4', 'Identified True'].flatMap(condition => [
+      'Hide # Personal hell: ordinary belts require unidentified tier four and item level 82',
+      '    Rarity Normal Magic Rare', '    Class == "Belts"', `    ${condition}`, '',
+    ]),
+    '# END PERSONAL HELL BELTS', '',
+  ].join(newline);
   const lowUnique = find('uniques', 'hideable');
   const uniqueExclusions = `!= ${quoteNames(names(lowUnique))}`;
   const lowAugments = ['c', 'd', 'e', 'supplylow'].map(tier => find('sockets->general', tier));
@@ -295,6 +304,10 @@ export function applyEndgameVisibility(source) {
     '# END PERSONAL STRICT ENDGAME GEAR', '', '',
   ].join(newline);
   const lastTiered = find('ut->magic', 'anyremaining4j');
+  const beltFallbacks = ['rare', 'magic'].map(rarity => setActions(
+    find(`ut->${rarity}`, 'anyremaining4j').replace(/^[ \t]*AreaLevel\b[^\r\n]*\r?\n/gm, ''),
+    { Class: '== "Belts"', Identified: 'False', ItemLevel: '>= 82' },
+  )).join(newline);
   const tieredFallbacks = ['rare', 'magic'].map(rarity => setActions(
     find(`ut->${rarity}`, 'gear2c').replace(/^[ \t]*(?:BaseType|AreaLevel)\b[^\r\n]*\r?\n/gm, ''),
     { Class: `== ${quoteNames(gearClasses)}`, Identified: 'False', UnidentifiedItemTier: '>= 2' },
@@ -315,9 +328,10 @@ export function applyEndgameVisibility(source) {
       result = setActions(result, { BaseType: uniqueExclusions });
     }
     if (block === lowUnique) result = setActions(block, { Class: `== ${quoteNames(jewelleryClasses)}`, ItemLevel: '> 80' }) + newline + result;
-    if (block === lastTiered) result += newline + tieredFallbacks;
+    if (block === lastTiered) result += newline + beltFallbacks + newline + tieredFallbacks;
     if (block === lastJewellery) result += newline + jewelleryFallbacks;
     if (block === lastJewel) result += newline + jewelFallbacks;
+    if (block === beltAnchor) result = beltGate + result;
     return block === craft ? gate + result : result;
   });
 }
