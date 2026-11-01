@@ -536,6 +536,7 @@ test('hard and hell hide lower crafting currency and materials regardless of sta
           "Gemcutter's Prism", "Glassblower's Bauble", "Arcanist's Etcher", 'Chance Shard',
           'Greater Essence of Haste', 'Essence of Haste', 'Adaptive Catalyst', 'Diluted Liquid Greed',
         ]) {
+          if (profile.strictEndgame && ['Exalted Orb', 'Orb of Alchemy'].includes(BaseType)) continue;
           const result = firstTerminal(filter, { BaseType, Class: 'Stackable Currency', Rarity: 'Normal', AreaLevel, StackSize });
           assert.equal(result.action, 'Hide', `${profile.file}: ${BaseType}, stack ${StackSize}, area ${AreaLevel}`);
           assert.deepEqual(result.notificationLines, [], `${BaseType}: no sound, beam or icon`);
@@ -552,7 +553,34 @@ test('hard and hell hide lower crafting currency and materials regardless of sta
   assert.equal(firstTerminal(render(config.profiles[0]), { BaseType: 'Regal Shard', Class: 'Stackable Currency', Rarity: 'Normal' }).action, 'Show');
 });
 
-test('hard keeps Greater crafting orbs while hell starts at Greater Exalted and protects major currency', () => {
+test('hell keeps Exalted and Alchemy orbs with native unpriced alerts while verified one-Divine value still wins', () => {
+  const names = ['Exalted Orb', 'Orb of Alchemy'];
+  for (const customSounds of [false, true]) {
+    const filters = config.profiles.map(profile => render(profile, customSounds));
+    const lower = render(config.profiles[2], customSounds, names.map(BaseType => ({ BaseType, DivinePerItem: 0.001 })));
+    const higher = render(config.profiles[2], customSounds, names.map(BaseType => ({ BaseType, DivinePerItem: 1 })));
+    for (const BaseType of names) {
+      for (const AreaLevel of [1, 64, 82]) {
+        for (const StackSize of [1, 20]) {
+          const item = { BaseType, Class: 'Stackable Currency', Rarity: 'Normal', AreaLevel, StackSize };
+          assert.equal(firstTerminal(filters[0], item).action, 'Show', 'normal retains its existing display');
+          assert.equal(firstTerminal(filters[1], item).action, 'Hide', 'hard retains its material cutoff');
+          const native = firstTerminal(source, item);
+          assert.equal(native.action, 'Show');
+          assert.deepEqual(firstTerminal(filters[2], item), native, 'unpriced hell uses the original C rule');
+          assert.deepEqual(firstTerminal(lower, item), native, 'a price below promotion thresholds keeps the native rule');
+          const valuable = firstTerminal(higher, item);
+          assert.equal(valuable.action, 'Show');
+          assert.match(valuable.header, /S\+ Verified unit value/);
+          if (customSounds) assert.match(valuable.block, /sounds\/0161\.wav/);
+          else assert.doesNotMatch(valuable.block, /CustomAlertSound/);
+        }
+      }
+    }
+  }
+});
+
+test('hard and hell preserve higher crafting orbs and major currency', () => {
   const hard = render(config.profiles[1]);
   const hell = render(config.profiles[2]);
   for (const BaseType of ['Greater Regal Orb', "Greater Jeweller's Orb", 'Greater Orb of Transmutation', 'Greater Orb of Augmentation',
