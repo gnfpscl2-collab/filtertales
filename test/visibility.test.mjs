@@ -348,10 +348,10 @@ test('hell ordinary gear requires item level eighty-two and an unidentified tier
   }
 });
 
-test('hell ordinary jewellery and jewels start at item level eighty without changing unique policies', () => {
+test('hell ordinary rings, amulets and jewels start at item level eighty without changing unique policies', () => {
   for (const customSounds of [false, true]) {
     const filter = render(config.profiles[2], customSounds);
-    for (const [BaseType, Class] of [['Amethyst Ring', 'Rings'], ['Amber Amulet', 'Amulets'], ['Rawhide Belt', 'Belts'],
+    for (const [BaseType, Class] of [['Amethyst Ring', 'Rings'], ['Amber Amulet', 'Amulets'],
       ['Emerald', 'Jewels'], ['Unlisted Future Jewel', 'Jewels']]) {
       for (const Rarity of ['Normal', 'Magic', 'Rare']) {
         for (const Identified of [false, true]) {
@@ -388,6 +388,48 @@ test('hell ordinary jewellery and jewels start at item level eighty without chan
         assert.deepEqual(firstTerminal(filter, item), firstTerminal(nativeSelection, item), 'unique jewels retain their original item-level-independent rules');
       }
     }
+  }
+});
+
+test('hell ordinary belts require item level eighty-two and an unidentified tier of at least four', () => {
+  for (const customSounds of [false, true]) {
+    const filter = render(config.profiles[2], customSounds);
+    const nativeSelection = render({ ...config.profiles[2], strictEndgame: false }, customSounds);
+    for (const BaseType of ['Rawhide Belt', 'Heavy Belt', 'Utility Belt', 'Unlisted Future Belt']) {
+      for (const Rarity of ['Magic', 'Rare']) {
+        for (const ItemLevel of [81, 82]) {
+          for (const UnidentifiedItemTier of [3, 4, 5]) {
+            for (const Identified of [false, true]) {
+              for (const AreaLevel of [1, 82]) {
+                const item = { BaseType, Class: 'Belts', Rarity, ItemLevel, UnidentifiedItemTier, Identified, AreaLevel };
+                const result = firstTerminal(filter, item);
+                const visible = ItemLevel >= 82 && UnidentifiedItemTier >= 4 && !Identified;
+                assert.equal(result.action, visible ? 'Show' : 'Hide', JSON.stringify(item));
+                if (visible && customSounds) assert.match(result.block, /sounds\/0397\.wav/);
+                if (!visible) assert.deepEqual(result.notificationLines, []);
+              }
+            }
+          }
+        }
+      }
+      for (const ItemLevel of [81, 82, 90]) {
+        assert.equal(firstTerminal(filter, { BaseType, Class: 'Belts', Rarity: 'Normal', ItemLevel,
+          UnidentifiedItemTier: 0, Identified: false }).action, 'Hide', `${BaseType}: normal chancing bases obey the belt cutoff`);
+      }
+    }
+    for (const BaseType of ['Rawhide Belt', 'Heavy Belt', 'Utility Belt']) {
+      for (const Rarity of ['Magic', 'Rare']) {
+        for (const UnidentifiedItemTier of [4, 5]) {
+          const item = { BaseType, Class: 'Belts', Rarity, ItemLevel: 82, UnidentifiedItemTier, Identified: false };
+          assert.deepEqual(firstTerminal(filter, item).notificationLines,
+            firstTerminal(nativeSelection, item).notificationLines, 'retained belts keep the original tier alert priority');
+        }
+      }
+    }
+    const special = firstTerminal(filter, { BaseType: 'Rawhide Belt', Class: 'Belts', Rarity: 'Rare',
+      ItemLevel: 20, UnidentifiedItemTier: 0, Identified: true, TwiceCorrupted: true });
+    assert.equal(special.action, 'Show', 'the earlier exceptional state still takes priority');
+    if (customSounds) assert.match(special.block, /sounds\/0397\.wav/);
   }
 });
 
