@@ -127,11 +127,14 @@ tw-normal에는 이 제한이 없습니다. tw-hard는 **materialTier: "greater"
 
 | 품목 예시 | tw-hard | tw-hell |
 | --- | --- | --- |
-| 제왕의 오브 파편, 일반 제왕·엑잘티드·연금술 오브, 하급 쥬얼러·기본 품질 재료 | 숨김 | 숨김 |
+| 제왕의 오브 파편, 일반 제왕 오브, 하급 쥬얼러·기본 품질 재료 | 숨김 | 숨김 |
+| 일반 엑잘티드 오브(Exalted Orb)·연금술의 오브(Orb of Alchemy) | 숨김 | 표시 |
 | Greater Regal Orb, Greater Jeweller's Orb, Greater Orb of Augmentation, Greater Orb of Transmutation | 표시 | 숨김 |
 | Greater Exalted Orb, Greater Chaos Orb, Chaos Orb | 표시 | 표시 |
 | Perfect Regal/Exalted/Chaos/Jeweller's Orb, Divine, Mirror, Hinekora | 표시 | 표시 |
 | Perfect Orb of Augmentation, Perfect Orb of Transmutation | 표시 | 숨김 |
+
+**hell은 Exalted Orb와 Orb of Alchemy 두 품목을 중첩 수량·지역 레벨과 관계없이 항상 표시합니다.** 이 표시 예외 자체로 색상·음원을 새로 승격하지 않으며 기존 NeverSink 분류를 따릅니다. 검증 단가 1 Divine 이상이면 기존 S+ 강조·0161.wav가 먼저 적용됩니다. normal·hard의 기존 정책과 다른 하위 오브·파편 숨김은 유지합니다.
 
 일반 화폐는 NeverSink S/A/B를 남기고 C/D/E·공급 목록을 숨깁니다. hard는 해당 목록의 Greater 제작 오브를 예외로 남기고 hell은 Perfect 진화·확장 오브도 숨깁니다. 양쪽 모두 룬·소울코어 C/D/E·저가 공급·육성 목록, 에센스 C/D/E, 촉매 C, 액체 감정 C/D를 숨깁니다. 고급 S/A/B 재료·미등록 경고는 유지하며 서판·경로석·퀘스트·피나클 열쇠·금화는 이 이름 목록으로 숨기지 않습니다.
 
