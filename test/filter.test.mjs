@@ -352,9 +352,9 @@ test('visual policy preserves all original Hide rules and applies the agreed col
     assert.match(s, /SetBorderColor 255 0 0(?: 255)?\r?\n/);
     assert.match(s, /SetBackgroundColor 255 255 255(?: 255)?\r?\n/);
     for (const a of rules.filter(block => /\$type->currency \$tier->a\b|\$type->sockets->general \$tier->[sa]\b/.test(block))) {
-      assert.match(a, /SetTextColor 255 255 255(?: 255)?\r?\n/);
+      assert.match(a, /SetTextColor 255 165 0(?: 255)?\r?\n/);
       assert.match(a, /SetBorderColor 255 165 0(?: 255)?\r?\n/);
-      assert.match(a, /SetBackgroundColor 255 165 0(?: 255)?\r?\n/);
+      assert.match(a, /SetBackgroundColor 255 255 255(?: 255)?\r?\n/);
     }
     const original = blocks(source);
     for (const block of rules.filter(block => /\$type->currency \$tier->[bcde]\b|\$type->endgame->normalcraft->economy|\$type->exoticbases\b/.test(block))) {
@@ -374,9 +374,9 @@ test('pinnacle and dynamic S/A styles follow the same red/white and orange polic
     assert.match(rule, /SetBackgroundColor 255 255 255(?: 255)?\r?\n/);
   }
   const a = rules.find(block => block.includes('"Arcanist\'s Etcher"'));
-  assert.match(a, /SetTextColor 255 255 255(?: 255)?\r?\n/);
+  assert.match(a, /SetTextColor 255 165 0(?: 255)?\r?\n/);
   assert.match(a, /SetBorderColor 255 165 0(?: 255)?\r?\n/);
-  assert.match(a, /SetBackgroundColor 255 165 0(?: 255)?\r?\n/);
+  assert.match(a, /SetBackgroundColor 255 255 255(?: 255)?\r?\n/);
   assert.equal(audio(a), '0103.wav');
   const sourceB = blocks(sources.get('Leveling')).find(block => /\$type->currency \$tier->b\b/.test(block));
   const dynamicB = rules.find(block => block.includes('"Vaal Orb"'));

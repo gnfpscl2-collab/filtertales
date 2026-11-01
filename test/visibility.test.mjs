@@ -382,9 +382,9 @@ test('hard and hell give ordinary item-level-75 gloves A presentation without ch
           const item = { BaseType: 'Adherent Cuffs', Class: 'Gloves', Rarity, UnidentifiedItemTier };
           const result = firstTerminal(filter, { ...item, ItemLevel: 75 });
           assert.equal(result.action, 'Show', `${profile.file}: ${Rarity}, tier ${UnidentifiedItemTier}`);
-          assert.match(result.block, /^\s*SetTextColor 255 255 255 255\r?$/m);
+          assert.match(result.block, /^\s*SetTextColor 255 165 0 255\r?$/m);
           assert.match(result.block, /^\s*SetBorderColor 255 165 0 255\r?$/m);
-          assert.match(result.block, /^\s*SetBackgroundColor 255 165 0 255\r?$/m);
+          assert.match(result.block, /^\s*SetBackgroundColor 255 255 255 255\r?$/m);
           assert.match(result.block, /^\s*PlayAlertSound 1 250\r?$/m);
           if (customSounds) assert.match(result.block, /CustomAlertSoundOptional "sounds\/0103\.wav" 250/);
           else assert.doesNotMatch(result.block, /CustomAlertSound/);
