@@ -12,6 +12,7 @@ const equipmentClasses = [
   'Quarterstaves', 'Quivers', 'Rings', 'Sceptres', 'Shields',
   'Spears', 'Staves', 'Talismans', 'Two Hand Maces', 'Wands',
 ];
+const jewelleryClasses = ['Amulets', 'Belts', 'Rings'];
 
 const showBlocks = /^Show[^\r\n]*\r?\n(?:[ \t]+\S[^\r\n]*(?:\r?\n|$))+/gm;
 const quoteNames = names => [...new Set(names)].sort().map(name => `"${name}"`).join(' ');
@@ -158,7 +159,7 @@ export function applyAbyssVisuals(source) {
   });
 }
 
-export function addItemLevelRange(source, minimum, maximum) {
+export function addItemLevelRange(source, minimum, maximum, protectJewellery = false) {
   if (!Number.isInteger(minimum) || !Number.isInteger(maximum)
     || minimum < 1 || maximum < 0 || (maximum > 0 && maximum < minimum)) {
     throw new Error('Invalid personal item-level range.');
@@ -170,14 +171,20 @@ export function addItemLevelRange(source, minimum, maximum) {
   if (!markers.length) throw new Error('Actual upstream section 0900 marker missing.');
   // shortcut: earlier terminal safeguards include some T2 gear; review before enforcing a stricter range.
   const lines = ['# BEGIN PERSONAL ITEMLEVEL RANGE'];
+  const classes = protectJewellery ? equipmentClasses.filter(name => !jewelleryClasses.includes(name)) : equipmentClasses;
   for (const [operator, bound] of [['<', minimum > 1 ? minimum : 0], ['>', maximum]]) {
     if (!bound) continue;
     lines.push(
       `Hide # Ordinary equipment ${operator === '<' ? 'below' : 'above'} the selected item-level range`,
-      '    Rarity Normal Magic Rare', `    Class == ${quoteNames(equipmentClasses)}`,
+      '    Rarity Normal Magic Rare', `    Class == ${quoteNames(classes)}`,
       `    ItemLevel ${operator} ${bound}`, '',
     );
   }
+  if (protectJewellery && minimum > 1) lines.push(
+    'Hide # Ordinary jewellery below the selected range; level 81+ is protected',
+    '    Rarity Normal Magic Rare', `    Class == ${quoteNames(jewelleryClasses)}`,
+    `    ItemLevel < ${Math.min(minimum, 81)}`, '',
+  );
   lines.push('# END PERSONAL ITEMLEVEL RANGE', '', '');
   const insertion = markers.at(-1).index;
   return source.slice(0, insertion) + lines.join('\n') + source.slice(insertion);
@@ -230,7 +237,6 @@ export function applyEndgameVisibility(source) {
   const hide = block => block.replace(/^Show\b/, 'Hide')
     .replace(/^[ \t]*(?:PlayAlertSound(?:Positional)?|CustomAlertSound\w*|PlayEffect|MinimapIcon)\b[^\r\n]*(?:\r?\n|$)/gm, '');
   const newline = source.includes('\r\n') ? '\r\n' : '\n';
-  const rare = ['gear4a', 'gear3a', 'j4a', 'j3a'].map(tier => find('ut->rare', tier));
   const craft = find('endgame->normalcraft->economy', 'group1t1');
   const lowUnique = find('uniques', 'hideable');
   const uniqueExclusions = `!= ${quoteNames(names(lowUnique))}`;
@@ -255,22 +261,40 @@ export function applyEndgameVisibility(source) {
   const gate = [
     '# BEGIN PERSONAL STRICT ENDGAME GEAR',
     '# Known ordinary gear only; earlier special-item safeguards still take priority.',
-    ...rare.map(block => setActions(block, { Class: `== ${quoteNames(equipmentClasses)}`, ItemLevel: '>= 82' }).trimEnd()),
     setActions(craft.replace(/^[ \t]*Rarity Normal[ \t]*\r?$/m, '    Rarity Magic'),
       { Class: `== ${quoteNames(equipmentClasses)}` }).trimEnd(),
     'Hide # Personal strict endgame: remaining known ordinary magic and rare equipment',
     '    Rarity Magic Rare',
-    `    Class == ${quoteNames(equipmentClasses)}`,
+    '    UnidentifiedItemTier < 2',
+    `    Class == ${quoteNames(equipmentClasses.filter(name => !jewelleryClasses.includes(name)))}`,
+    `    BaseType == ${quoteNames(knownBases)}`,
+    'Hide # Personal strict endgame: remaining known ordinary jewellery up to level 80',
+    '    Rarity Magic Rare',
+    '    UnidentifiedItemTier < 2',
+    `    Class == ${quoteNames(jewelleryClasses)}`,
+    '    ItemLevel <= 80',
     `    BaseType == ${quoteNames(knownBases)}`,
     '# END PERSONAL STRICT ENDGAME GEAR', '', '',
   ].join(newline);
   const firstRare = find('ut->rare', 'gear4a');
+  const lastTiered = find('ut->magic', 'anyremaining4j');
+  const tieredFallbacks = ['rare', 'magic'].map(rarity => setActions(
+    find(`ut->${rarity}`, 'gear2c').replace(/^[ \t]*(?:BaseType|AreaLevel)\b[^\r\n]*\r?\n/gm, ''),
+    { Class: `== ${quoteNames(equipmentClasses)}`, Identified: 'False', UnidentifiedItemTier: '>= 2' },
+  )).join(newline);
+  const lastJewellery = find('endgame->jewellery', 'jt4');
+  const jewelleryFallbacks = [find('leveling->rare->universal', 'jewellery'),
+    find('leveling->normalmagicremarkable', 'jewellery')]
+    .map(block => setActions(block.replace(/^[ \t]*AreaLevel\b[^\r\n]*\r?\n/gm, ''), { ItemLevel: '> 80' })).join(newline);
   return source.replace(showBlocks, block => {
     let result = hidden.has(block) ? hide(block) : block;
     if (uniqueBypasses.has(block)) {
       if (/^[ \t]*BaseType\b/m.test(block)) throw new Error('Strict unique bypass source changed.');
       result = setActions(result, { BaseType: uniqueExclusions });
     }
+    if (block === lowUnique) result = setActions(block, { Class: `== ${quoteNames(jewelleryClasses)}`, ItemLevel: '> 80' }) + newline + result;
+    if (block === lastTiered) result += newline + tieredFallbacks;
+    if (block === lastJewellery) result += newline + jewelleryFallbacks;
     return block === firstRare ? gate + result : result;
   });
 }
@@ -396,6 +420,6 @@ export function renderFilter({ source, prices, league, profile, release, dataLab
     '# BEGIN NEVERSINK (personal visual policy and optional sounds; conditions preserved)',
   );
   const styled = applyVisualPolicy(profile.strictEndgame ? applyEndgameVisibility(source) : source);
-  const ranged = addItemLevelRange(styled, profile.minItemLevel, profile.maxItemLevel);
+  const ranged = addItemLevelRange(styled, profile.minItemLevel, profile.maxItemLevel, profile.strictEndgame === true);
   return lines.join('\n') + '\n' + applyAbyssVisuals(customSounds ? applyCategorySounds(ranged, sounds) : ranged);
 }
