@@ -287,9 +287,10 @@ test('strict endgame hides untiered and tier-one ordinary gear before broad upst
     { Rarity: 'Magic', ItemLevel: 90 },
     { BaseType: 'Conjurer Mantle', Class: 'Body Armours', UnidentifiedItemTier: 1 },
     { BaseType: 'Conjurer Mantle', Class: 'Body Armours', UnidentifiedItemTier: 1, ItemLevel: 81 },
+    { BaseType: 'Conjurer Mantle', Class: 'Body Armours', UnidentifiedItemTier: 3, ItemLevel: 81 },
     { UnidentifiedItemTier: 1 },
     { Identified: true },
-    { BaseType: 'Amethyst Ring', Class: 'Rings', UnidentifiedItemTier: 1, ItemLevel: 80 },
+    { BaseType: 'Amethyst Ring', Class: 'Rings', UnidentifiedItemTier: 1, ItemLevel: 79 },
   ]) {
     const result = firstTerminal(filter, item);
     assert.equal(result.action, 'Hide', JSON.stringify(item));
@@ -297,7 +298,6 @@ test('strict endgame hides untiered and tier-one ordinary gear before broad upst
   }
   for (const item of [
     { BaseType: 'Conjurer Mantle', Class: 'Body Armours', UnidentifiedItemTier: 2 },
-    { BaseType: 'Conjurer Mantle', Class: 'Body Armours', UnidentifiedItemTier: 3, ItemLevel: 81 },
     { BaseType: 'Conjurer Mantle', Class: 'Body Armours', UnidentifiedItemTier: 3 },
     { BaseType: 'Conjurer Mantle', Class: 'Body Armours', UnidentifiedItemTier: 4 },
     { UnidentifiedItemTier: 4 },
@@ -307,29 +307,38 @@ test('strict endgame hides untiered and tier-one ordinary gear before broad upst
   ]) assert.equal(firstTerminal(filter, item).action, 'Show', JSON.stringify(item));
 });
 
-test('hell protects tier-two and higher unidentified equipment without an item-level or area cutoff', () => {
-  const classes = ['Amulets', 'Belts', 'Body Armours', 'Boots', 'Bows', 'Bucklers', 'Crossbows', 'Foci',
-    'Gloves', 'Helmets', 'One Hand Maces', 'Quarterstaves', 'Quivers', 'Rings', 'Sceptres', 'Shields',
+test('hell ordinary gear requires item level eighty-two and an unidentified tier of at least two', () => {
+  const classes = ['Body Armours', 'Boots', 'Bows', 'Bucklers', 'Crossbows', 'Foci',
+    'Gloves', 'Helmets', 'One Hand Maces', 'Quarterstaves', 'Quivers', 'Sceptres', 'Shields',
     'Spears', 'Staves', 'Talismans', 'Two Hand Maces', 'Wands'];
+  const boundaries = [
+    [{ ItemLevel: 90, UnidentifiedItemTier: 1, Identified: false }, 'Hide'],
+    [{ ItemLevel: 81, UnidentifiedItemTier: 2, Identified: false }, 'Hide'],
+    [{ ItemLevel: 82, UnidentifiedItemTier: 2, Identified: false }, 'Show'],
+    [{ ItemLevel: 20, UnidentifiedItemTier: 5, Identified: false }, 'Hide'],
+    [{ ItemLevel: 90, UnidentifiedItemTier: 5, Identified: false }, 'Show'],
+    [{ ItemLevel: 90, UnidentifiedItemTier: 2, Identified: true }, 'Hide'],
+  ];
   for (const customSounds of [false, true]) {
     const filter = render(config.profiles[2], customSounds);
     for (const Class of classes) {
       for (const Rarity of ['Magic', 'Rare']) {
-        for (const UnidentifiedItemTier of [2, 5]) {
-          for (const ItemLevel of [20, 81, 90]) {
-            for (const AreaLevel of [1, 82]) {
-              const item = { BaseType: 'Unlisted Future Equipment', Class, Rarity, UnidentifiedItemTier,
-                ItemLevel, AreaLevel, Identified: false };
-              assert.equal(firstTerminal(filter, item).action, 'Show', JSON.stringify(item));
-            }
+        for (const [boundary, expected] of boundaries) {
+          for (const AreaLevel of [1, 82]) {
+            const item = { BaseType: 'Unlisted Future Equipment', Class, Rarity, AreaLevel, ...boundary };
+            const result = firstTerminal(filter, item);
+            assert.equal(result.action, expected, JSON.stringify(item));
+            if (expected === 'Hide') assert.deepEqual(result.notificationLines, []);
           }
         }
       }
+      assert.equal(firstTerminal(filter, { BaseType: 'Unlisted Future Equipment', Class,
+        Rarity: 'Normal', ItemLevel: 90, UnidentifiedItemTier: 0 }).action, 'Hide');
     }
     const nativeSelection = render({ ...config.profiles[2], strictEndgame: false }, customSounds);
     for (const item of [
       { BaseType: 'Conjurer Mantle', Class: 'Body Armours', UnidentifiedItemTier: 2 },
-      { BaseType: 'Conjurer Mantle', Class: 'Body Armours', UnidentifiedItemTier: 3, ItemLevel: 81 },
+      { BaseType: 'Conjurer Mantle', Class: 'Body Armours', UnidentifiedItemTier: 3, ItemLevel: 82 },
       { BaseType: 'Conjurer Mantle', Class: 'Body Armours', UnidentifiedItemTier: 4 },
       { BaseType: 'Amethyst Ring', Class: 'Rings', UnidentifiedItemTier: 2, ItemLevel: 80 },
     ]) {
@@ -339,22 +348,20 @@ test('hell protects tier-two and higher unidentified equipment without an item-l
   }
 });
 
-test('hell shows every jewellery rarity above item level eighty while low-level C uniques stay hidden', () => {
+test('hell ordinary jewellery and jewels start at item level eighty without changing unique policies', () => {
   for (const customSounds of [false, true]) {
     const filter = render(config.profiles[2], customSounds);
-    for (const [BaseType, Class] of [['Amethyst Ring', 'Rings'], ['Amber Amulet', 'Amulets'], ['Rawhide Belt', 'Belts']]) {
-      for (const Rarity of rarities) {
+    for (const [BaseType, Class] of [['Amethyst Ring', 'Rings'], ['Amber Amulet', 'Amulets'], ['Rawhide Belt', 'Belts'],
+      ['Emerald', 'Jewels'], ['Unlisted Future Jewel', 'Jewels']]) {
+      for (const Rarity of ['Normal', 'Magic', 'Rare']) {
         for (const Identified of [false, true]) {
           for (const AreaLevel of [1, 82]) {
             const item = { BaseType, Class, Rarity, Identified, AreaLevel, UnidentifiedItemTier: 0 };
-            for (const ItemLevel of [81, 82, 90]) {
+            for (const ItemLevel of [80, 81, 90]) {
               const result = firstTerminal(filter, { ...item, ItemLevel });
               assert.equal(result.action, 'Show', JSON.stringify({ ...item, ItemLevel }));
-              if (Rarity === 'Unique' && customSounds) assert.match(result.block, /sounds\/0103\.wav/);
             }
-            if (Rarity === 'Unique') {
-              assert.equal(firstTerminal(filter, { ...item, ItemLevel: 80 }).action, 'Hide', JSON.stringify(item));
-            }
+            assert.equal(firstTerminal(filter, { ...item, ItemLevel: 79 }).action, 'Hide', JSON.stringify(item));
           }
         }
       }
@@ -362,9 +369,25 @@ test('hell shows every jewellery rarity above item level eighty while low-level 
     for (const item of [
       { BaseType: 'Crude Bow', Class: 'Bows', Rarity: 'Magic', ItemLevel: 81 },
       { BaseType: 'Iron Cuirass', Class: 'Body Armours', Rarity: 'Rare', ItemLevel: 81 },
-      { BaseType: 'Amethyst Ring', Class: 'Rings', Rarity: 'Magic', ItemLevel: 80 },
-      { BaseType: 'Amber Amulet', Class: 'Amulets', Rarity: 'Rare', ItemLevel: 80 },
+      { BaseType: 'Amethyst Ring', Class: 'Rings', Rarity: 'Magic', ItemLevel: 79 },
+      { BaseType: 'Amber Amulet', Class: 'Amulets', Rarity: 'Rare', ItemLevel: 79 },
     ]) assert.equal(firstTerminal(filter, item).action, 'Hide', JSON.stringify(item));
+    for (const [BaseType, Class] of [['Amethyst Ring', 'Rings'], ['Amber Amulet', 'Amulets'], ['Rawhide Belt', 'Belts']]) {
+      for (const Identified of [false, true]) {
+        const item = { BaseType, Class, Rarity: 'Unique', Identified };
+        assert.equal(firstTerminal(filter, { ...item, ItemLevel: 80 }).action, 'Hide', JSON.stringify(item));
+        const high = firstTerminal(filter, { ...item, ItemLevel: 81 });
+        assert.equal(high.action, 'Show');
+        if (customSounds) assert.match(high.block, /sounds\/0103\.wav/);
+      }
+    }
+    const nativeSelection = render({ ...config.profiles[2], strictEndgame: false }, customSounds);
+    for (const BaseType of ['Ruby', 'Emerald', 'Sapphire']) {
+      for (const ItemLevel of [1, 79, 80]) {
+        const item = { BaseType, Class: 'Jewels', Rarity: 'Unique', ItemLevel };
+        assert.deepEqual(firstTerminal(filter, item), firstTerminal(nativeSelection, item), 'unique jewels retain their original item-level-independent rules');
+      }
+    }
   }
 });
 

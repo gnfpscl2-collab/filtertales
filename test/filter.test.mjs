@@ -92,9 +92,10 @@ for (const profile of config.profiles) {
     for (const name of ['Body Armours', 'Wands']) assert.ok(classes.includes(`"${name}"`));
     if (profile.strictEndgame) {
       assert.doesNotMatch(classes, /"(?:Rings|Amulets|Belts)"/);
-      assert.match(range, /Class == "Amulets" "Belts" "Rings"\r?\n    ItemLevel < 81/);
+      assert.match(range, /Class == "Amulets" "Belts" "Jewels" "Rings"\r?\n    ItemLevel < 80/);
     } else for (const name of ['Rings', 'Amulets', 'Belts']) assert.ok(classes.includes(`"${name}"`));
-    assert.doesNotMatch(range, /"(?:Tablet|Waystones|Stackable Currency|Jewels|Quest Items)"|Unique/);
+    assert.doesNotMatch(range, /"(?:Tablet|Waystones|Stackable Currency|Quest Items)"|Unique/);
+    if (!profile.strictEndgame) assert.doesNotMatch(range, /"Jewels"/);
     assert.ok(suffix.indexOf('# BEGIN PERSONAL ITEMLEVEL RANGE') > suffix.lastIndexOf('# [[0800]]'));
     assert.ok(suffix.indexOf('# BEGIN PERSONAL ITEMLEVEL RANGE') < suffix.lastIndexOf('# [[0900]]'));
     assert.doesNotMatch(text, /^\s*RequiredLevel\b/m);
