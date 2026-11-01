@@ -159,6 +159,22 @@ export function applyAbyssVisuals(source) {
   });
 }
 
+function addLevel75Gloves(source) {
+  const anchors = [...source.matchAll(/^Show #[^\r\n]*\$type->ut->rare \$tier->gear4a\b/gm)];
+  if (anchors.length !== 1) throw new Error('Level-75 glove source anchor changed.');
+  const newline = source.includes('\r\n') ? '\r\n' : '\n';
+  const rule = [
+    '# BEGIN PERSONAL GLOVE LEVEL75',
+    'Show # Personal level-75 gloves $tier->a',
+    '    Rarity Normal Magic Rare', '    Class == "Gloves"',
+    '    ItemLevel == 75', '    UnidentifiedItemTier < 3',
+    ...Object.entries({ SetFontSize: '43', ...aActions, PlayAlertSound: '1 250', PlayEffect: 'Orange Temp' })
+      .map(([action, value]) => `    ${action} ${value}`),
+    '', '# END PERSONAL GLOVE LEVEL75', '',
+  ].join(newline);
+  return source.slice(0, anchors[0].index) + rule + source.slice(anchors[0].index);
+}
+
 export function addItemLevelRange(source, minimum, maximum, protectJewellery = false) {
   if (!Number.isInteger(minimum) || !Number.isInteger(maximum)
     || minimum < 1 || maximum < 0 || (maximum > 0 && maximum < minimum)) {
@@ -419,7 +435,8 @@ export function renderFilter({ source, prices, league, profile, release, dataLab
   lines.push(
     '# BEGIN NEVERSINK (personal visual policy and optional sounds; conditions preserved)',
   );
-  const styled = applyVisualPolicy(profile.strictEndgame ? applyEndgameVisibility(source) : source);
+  const selected = profile.sourceMode === 'Endgame' ? addLevel75Gloves(source) : source;
+  const styled = applyVisualPolicy(profile.strictEndgame ? applyEndgameVisibility(selected) : selected);
   const ranged = addItemLevelRange(styled, profile.minItemLevel, profile.maxItemLevel, profile.strictEndgame === true);
   return lines.join('\n') + '\n' + applyAbyssVisuals(customSounds ? applyCategorySounds(ranged, sounds) : ranged);
 }
