@@ -810,5 +810,2567 @@
     "metadata_id": "Metadata/Items/Currency/CurrencyAfflictionShard",
     "source": "https://poe2db.tw/us/Simulacrum_Splinter",
     "content": "delirium"
+  },
+  {
+    "base_type": "Adaptive Alloy",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyVerisiumAlloy2",
+    "source": "https://poe2db.tw/us/Adaptive_Alloy",
+    "content": "expedition"
+  },
+  {
+    "base_type": "Aldur's Legacy",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneWarpingOlrothsLegacy",
+    "source": "https://poe2db.tw/us/Aldurs_Legacy",
+    "content": "expedition"
+  },
+  {
+    "base_type": "Aldur's Saga",
+    "item_class": "Omen",
+    "metadata_id": "Metadata/Items/Expedition/Expedition2LogbookSpecial",
+    "source": "https://poe2db.tw/us/Aldurs_Saga",
+    "content": "expedition"
+  },
+  {
+    "base_type": "Astrid's Creativity",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneWarpingAdditionalCraftedMod",
+    "source": "https://poe2db.tw/us/Astrids_Creativity",
+    "content": "expedition"
+  },
+  {
+    "base_type": "Betrayal of Aldur",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneConvertChaos",
+    "source": "https://poe2db.tw/us/Betrayal_of_Aldur",
+    "content": "expedition"
+  },
+  {
+    "base_type": "Blazing Flux",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyArcaneFluxFire",
+    "source": "https://poe2db.tw/us/Blazing_Flux",
+    "content": "expedition"
+  },
+  {
+    "base_type": "Breath of Aldur",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneConvertCold",
+    "source": "https://poe2db.tw/us/Breath_of_Aldur",
+    "content": "expedition"
+  },
+  {
+    "base_type": "Cadigan's Epiphany",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneWarpingCreateJewelSocket",
+    "source": "https://poe2db.tw/us/Cadigans_Epiphany",
+    "content": "expedition"
+  },
+  {
+    "base_type": "Celestial Alloy",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyVerisiumAlloy10",
+    "source": "https://poe2db.tw/us/Celestial_Alloy",
+    "content": "expedition"
+  },
+  {
+    "base_type": "Chilling Flux",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyArcaneFluxCold",
+    "source": "https://poe2db.tw/us/Chilling_Flux",
+    "content": "expedition"
+  },
+  {
+    "base_type": "Crackling Flux",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyArcaneFluxLightning",
+    "source": "https://poe2db.tw/us/Crackling_Flux",
+    "content": "expedition"
+  },
+  {
+    "base_type": "Cyclonic Alloy",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyVerisiumAlloy6",
+    "source": "https://poe2db.tw/us/Cyclonic_Alloy",
+    "content": "expedition"
+  },
+  {
+    "base_type": "Exceptional Verisium",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyVerisiumMetal2",
+    "source": "https://poe2db.tw/us/Exceptional_Verisium",
+    "content": "expedition"
+  },
+  {
+    "base_type": "Expansive Alloy",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyVerisiumAlloy4",
+    "source": "https://poe2db.tw/us/Expansive_Alloy",
+    "content": "expedition"
+  },
+  {
+    "base_type": "Expedition Logbook",
+    "item_class": "Expedition Logbook",
+    "metadata_id": "Metadata/Items/Expedition/Expedition2Logbook",
+    "source": "https://poe2db.tw/us/Expedition_Logbook",
+    "content": "expedition"
+  },
+  {
+    "base_type": "Expedition Tablet",
+    "item_class": "Tablet",
+    "metadata_id": "Metadata/Items/TowerAugment/ExpeditionAugment",
+    "source": "https://poe2db.tw/us/Expedition_Tablet",
+    "content": "expedition"
+  },
+  {
+    "base_type": "Ire of Aldur",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneConvertLightning",
+    "source": "https://poe2db.tw/us/Ire_of_Aldur",
+    "content": "expedition"
+  },
+  {
+    "base_type": "Katla's Gloom",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneWarpingDecayInfluence",
+    "source": "https://poe2db.tw/us/Katlas_Gloom",
+    "content": "expedition"
+  },
+  {
+    "base_type": "Kolr's Hunt",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneWarpingMarksmanInfluence",
+    "source": "https://poe2db.tw/us/Kolrs_Hunt",
+    "content": "expedition"
+  },
+  {
+    "base_type": "Liquid Verisium",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyRerollRemnant",
+    "source": "https://poe2db.tw/us/Liquid_Verisium",
+    "content": "expedition"
+  },
+  {
+    "base_type": "Medved's Crest of the Circle",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyVerisiumMetalUnique1",
+    "source": "https://poe2db.tw/us/Medveds_Crest_of_the_Circle",
+    "content": "expedition"
+  },
+  {
+    "base_type": "Medved's Saga",
+    "item_class": "Omen",
+    "metadata_id": "Metadata/Items/Expedition/Expedition2LogbookMedved",
+    "source": "https://poe2db.tw/us/Medveds_Saga",
+    "content": "expedition"
+  },
+  {
+    "base_type": "Medved's Tending",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneWarpingSoulInfluence",
+    "source": "https://poe2db.tw/us/Medveds_Tending",
+    "content": "expedition"
+  },
+  {
+    "base_type": "Mystic Alloy",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyVerisiumAlloy8",
+    "source": "https://poe2db.tw/us/Mystic_Alloy",
+    "content": "expedition"
+  },
+  {
+    "base_type": "Olroth's Crest of the Sun",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyVerisiumMetalUnique4",
+    "source": "https://poe2db.tw/us/Olroths_Crest_of_the_Sun",
+    "content": "expedition"
+  },
+  {
+    "base_type": "Olroth's Saga",
+    "item_class": "Omen",
+    "metadata_id": "Metadata/Items/Expedition/Expedition2LogbookOlroth",
+    "source": "https://poe2db.tw/us/Olroths_Saga",
+    "content": "expedition"
+  },
+  {
+    "base_type": "Passion of Aldur",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneConvertFire",
+    "source": "https://poe2db.tw/us/Passion_of_Aldur",
+    "content": "expedition"
+  },
+  {
+    "base_type": "Perfect Flux",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyUpgradeInherentTo20",
+    "source": "https://poe2db.tw/us/Perfect_Flux",
+    "content": "expedition"
+  },
+  {
+    "base_type": "Prismatic Alloy",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyVerisiumAlloy7",
+    "source": "https://poe2db.tw/us/Prismatic_Alloy",
+    "content": "expedition"
+  },
+  {
+    "base_type": "Protective Alloy",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyVerisiumAlloy3",
+    "source": "https://poe2db.tw/us/Protective_Alloy",
+    "content": "expedition"
+  },
+  {
+    "base_type": "Revered Starlit Ore",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyVerisiumOreUniqueTheUnleashed",
+    "source": "https://poe2db.tw/us/Revered_Starlit_Ore",
+    "content": "expedition"
+  },
+  {
+    "base_type": "Runic Alloy",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyVerisiumAlloy1",
+    "source": "https://poe2db.tw/us/Runic_Alloy",
+    "content": "expedition"
+  },
+  {
+    "base_type": "Runic Splinter",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyExpeditionShard",
+    "source": "https://poe2db.tw/us/Runic_Splinter",
+    "content": "expedition"
+  },
+  {
+    "base_type": "Serle's Triumph",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneWarpingAdditionalSuffix",
+    "source": "https://poe2db.tw/us/Serles_Triumph",
+    "content": "expedition"
+  },
+  {
+    "base_type": "Shattered Triskelion",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/Expedition/ExpeditionPinnacleKeyShard",
+    "source": "https://poe2db.tw/us/Shattered_Triskelion",
+    "content": "expedition"
+  },
+  {
+    "base_type": "Sovereign Alloy",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyVerisiumAlloy9",
+    "source": "https://poe2db.tw/us/Sovereign_Alloy",
+    "content": "expedition"
+  },
+  {
+    "base_type": "Starlit Ore",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyVerisiumOreUniqueSerlesGrit",
+    "source": "https://poe2db.tw/us/Starlit_Ore",
+    "content": "expedition"
+  },
+  {
+    "base_type": "Swift Alloy",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyVerisiumAlloy5",
+    "source": "https://poe2db.tw/us/Swift_Alloy",
+    "content": "expedition"
+  },
+  {
+    "base_type": "Thaumaturgic Flux (Level 1)",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencySetKalguuranSkillGemLevel1",
+    "source": "https://poe2db.tw/Thaumaturgic_Flux_%28Level_1%29",
+    "content": "expedition"
+  },
+  {
+    "base_type": "Thaumaturgic Flux (Level 10)",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencySetKalguuranSkillGemLevel10",
+    "source": "https://poe2db.tw/Thaumaturgic_Flux_%28Level_10%29",
+    "content": "expedition"
+  },
+  {
+    "base_type": "Thaumaturgic Flux (Level 11)",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencySetKalguuranSkillGemLevel11",
+    "source": "https://poe2db.tw/Thaumaturgic_Flux_%28Level_11%29",
+    "content": "expedition"
+  },
+  {
+    "base_type": "Thaumaturgic Flux (Level 12)",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencySetKalguuranSkillGemLevel12",
+    "source": "https://poe2db.tw/Thaumaturgic_Flux_%28Level_12%29",
+    "content": "expedition"
+  },
+  {
+    "base_type": "Thaumaturgic Flux (Level 13)",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencySetKalguuranSkillGemLevel13",
+    "source": "https://poe2db.tw/Thaumaturgic_Flux_%28Level_13%29",
+    "content": "expedition"
+  },
+  {
+    "base_type": "Thaumaturgic Flux (Level 14)",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencySetKalguuranSkillGemLevel14",
+    "source": "https://poe2db.tw/Thaumaturgic_Flux_%28Level_14%29",
+    "content": "expedition"
+  },
+  {
+    "base_type": "Thaumaturgic Flux (Level 15)",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencySetKalguuranSkillGemLevel15",
+    "source": "https://poe2db.tw/Thaumaturgic_Flux_%28Level_15%29",
+    "content": "expedition"
+  },
+  {
+    "base_type": "Thaumaturgic Flux (Level 16)",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencySetKalguuranSkillGemLevel16",
+    "source": "https://poe2db.tw/Thaumaturgic_Flux_%28Level_16%29",
+    "content": "expedition"
+  },
+  {
+    "base_type": "Thaumaturgic Flux (Level 17)",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencySetKalguuranSkillGemLevel17",
+    "source": "https://poe2db.tw/Thaumaturgic_Flux_%28Level_17%29",
+    "content": "expedition"
+  },
+  {
+    "base_type": "Thaumaturgic Flux (Level 18)",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencySetKalguuranSkillGemLevel18",
+    "source": "https://poe2db.tw/Thaumaturgic_Flux_%28Level_18%29",
+    "content": "expedition"
+  },
+  {
+    "base_type": "Thaumaturgic Flux (Level 19)",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencySetKalguuranSkillGemLevel19",
+    "source": "https://poe2db.tw/Thaumaturgic_Flux_%28Level_19%29",
+    "content": "expedition"
+  },
+  {
+    "base_type": "Thaumaturgic Flux (Level 2)",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencySetKalguuranSkillGemLevel2",
+    "source": "https://poe2db.tw/Thaumaturgic_Flux_%28Level_2%29",
+    "content": "expedition"
+  },
+  {
+    "base_type": "Thaumaturgic Flux (Level 20)",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencySetKalguuranSkillGemLevel20",
+    "source": "https://poe2db.tw/Thaumaturgic_Flux_%28Level_20%29",
+    "content": "expedition"
+  },
+  {
+    "base_type": "Thaumaturgic Flux (Level 3)",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencySetKalguuranSkillGemLevel3",
+    "source": "https://poe2db.tw/Thaumaturgic_Flux_%28Level_3%29",
+    "content": "expedition"
+  },
+  {
+    "base_type": "Thaumaturgic Flux (Level 4)",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencySetKalguuranSkillGemLevel4",
+    "source": "https://poe2db.tw/Thaumaturgic_Flux_%28Level_4%29",
+    "content": "expedition"
+  },
+  {
+    "base_type": "Thaumaturgic Flux (Level 5)",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencySetKalguuranSkillGemLevel5",
+    "source": "https://poe2db.tw/Thaumaturgic_Flux_%28Level_5%29",
+    "content": "expedition"
+  },
+  {
+    "base_type": "Thaumaturgic Flux (Level 6)",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencySetKalguuranSkillGemLevel6",
+    "source": "https://poe2db.tw/Thaumaturgic_Flux_%28Level_6%29",
+    "content": "expedition"
+  },
+  {
+    "base_type": "Thaumaturgic Flux (Level 7)",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencySetKalguuranSkillGemLevel7",
+    "source": "https://poe2db.tw/Thaumaturgic_Flux_%28Level_7%29",
+    "content": "expedition"
+  },
+  {
+    "base_type": "Thaumaturgic Flux (Level 8)",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencySetKalguuranSkillGemLevel8",
+    "source": "https://poe2db.tw/Thaumaturgic_Flux_%28Level_8%29",
+    "content": "expedition"
+  },
+  {
+    "base_type": "Thaumaturgic Flux (Level 9)",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencySetKalguuranSkillGemLevel9",
+    "source": "https://poe2db.tw/Thaumaturgic_Flux_%28Level_9%29",
+    "content": "expedition"
+  },
+  {
+    "base_type": "The Runebinder's Alloy",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyVerisiumAlloy12",
+    "source": "https://poe2db.tw/us/The_Runebinders_Alloy",
+    "content": "expedition"
+  },
+  {
+    "base_type": "The Runefather's Alloy",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyVerisiumAlloy13",
+    "source": "https://poe2db.tw/us/The_Runefathers_Alloy",
+    "content": "expedition"
+  },
+  {
+    "base_type": "The Triskelion Reforged",
+    "item_class": "Map Fragments",
+    "metadata_id": "Metadata/Items/Currency/Expedition/ExpeditionPinnacleKey",
+    "source": "https://poe2db.tw/us/The_Triskelion_Reforged",
+    "content": "expedition"
+  },
+  {
+    "base_type": "Thrud's Might",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneWarpingDestructionInfluence",
+    "source": "https://poe2db.tw/us/Thruds_Might",
+    "content": "expedition"
+  },
+  {
+    "base_type": "Transcendent Alloy",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyVerisiumAlloy11",
+    "source": "https://poe2db.tw/us/Transcendent_Alloy",
+    "content": "expedition"
+  },
+  {
+    "base_type": "Uhtred's Crest of the Chalice",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyVerisiumMetalUnique3",
+    "source": "https://poe2db.tw/us/Uhtreds_Crest_of_the_Chalice",
+    "content": "expedition"
+  },
+  {
+    "base_type": "Uhtred's Saga",
+    "item_class": "Omen",
+    "metadata_id": "Metadata/Items/Expedition/Expedition2LogbookUhtred",
+    "source": "https://poe2db.tw/us/Uhtreds_Saga",
+    "content": "expedition"
+  },
+  {
+    "base_type": "Uhtred's Sidereus",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneWarpingTimeInfluence",
+    "source": "https://poe2db.tw/us/Uhtreds_Sidereus",
+    "content": "expedition"
+  },
+  {
+    "base_type": "Venerable Starlit Ore",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyVerisiumOreUniqueEyesOfTheRunefather",
+    "source": "https://poe2db.tw/us/Venerable_Starlit_Ore",
+    "content": "expedition"
+  },
+  {
+    "base_type": "Veridical Starlit Ore",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyVerisiumOreUniqueEventidePetals",
+    "source": "https://poe2db.tw/us/Veridical_Starlit_Ore",
+    "content": "expedition"
+  },
+  {
+    "base_type": "Verisium",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyVerisiumMetal1",
+    "source": "https://poe2db.tw/us/Verisium",
+    "content": "expedition"
+  },
+  {
+    "base_type": "Void Flux",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyArcaneFluxChaos",
+    "source": "https://poe2db.tw/us/Void_Flux",
+    "content": "expedition"
+  },
+  {
+    "base_type": "Vorana's Carnage",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneWarpingBerserkerInfluence",
+    "source": "https://poe2db.tw/us/Voranas_Carnage",
+    "content": "expedition"
+  },
+  {
+    "base_type": "Vorana's Crest of the Scythe",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyVerisiumMetalUnique2",
+    "source": "https://poe2db.tw/us/Voranas_Crest_of_the_Scythe",
+    "content": "expedition"
+  },
+  {
+    "base_type": "Vorana's Saga",
+    "item_class": "Omen",
+    "metadata_id": "Metadata/Items/Expedition/Expedition2LogbookVorana",
+    "source": "https://poe2db.tw/us/Voranas_Saga",
+    "content": "expedition"
+  },
+  {
+    "base_type": "Warding Starlit Ore",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyVerisiumOreUniqueStolvarheim",
+    "source": "https://poe2db.tw/us/Warding_Starlit_Ore",
+    "content": "expedition"
+  },
+  {
+    "base_type": "Atmohua's Soul Core of Retreat",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/SoulCoreSpecial4",
+    "source": "https://poe2db.tw/us/Atmohuas_Soul_Core_of_Retreat",
+    "content": "soul_core"
+  },
+  {
+    "base_type": "Atziri's Soul Core of Alacrity",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/SoulCoreSpecial31",
+    "source": "https://poe2db.tw/us/Atziris_Soul_Core_of_Alacrity",
+    "content": "soul_core"
+  },
+  {
+    "base_type": "Atziri's Soul Core of Devotion",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/SoulCoreSpecial29",
+    "source": "https://poe2db.tw/us/Atziris_Soul_Core_of_Devotion",
+    "content": "soul_core"
+  },
+  {
+    "base_type": "Atziri's Soul Core of Inoculation",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/SoulCoreSpecial32",
+    "source": "https://poe2db.tw/us/Atziris_Soul_Core_of_Inoculation",
+    "content": "soul_core"
+  },
+  {
+    "base_type": "Atziri's Soul Core of Vitality",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/SoulCoreSpecial30",
+    "source": "https://poe2db.tw/us/Atziris_Soul_Core_of_Vitality",
+    "content": "soul_core"
+  },
+  {
+    "base_type": "Cholotl's Soul Core of War",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/SoulCoreSpecial13",
+    "source": "https://poe2db.tw/us/Cholotls_Soul_Core_of_War",
+    "content": "soul_core"
+  },
+  {
+    "base_type": "Citaqualotl's Soul Core of Foulness",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/SoulCoreSpecial14",
+    "source": "https://poe2db.tw/us/Citaqualotls_Soul_Core_of_Foulness",
+    "content": "soul_core"
+  },
+  {
+    "base_type": "Estazunti's Soul Core of Convalescence",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/SoulCoreSpecial11",
+    "source": "https://poe2db.tw/us/Estazuntis_Soul_Core_of_Convalescence",
+    "content": "soul_core"
+  },
+  {
+    "base_type": "Guatelitzi's Soul Core of Endurance",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/SoulCoreSpecial9",
+    "source": "https://poe2db.tw/us/Guatelitzis_Soul_Core_of_Endurance",
+    "content": "soul_core"
+  },
+  {
+    "base_type": "Hayoxi's Soul Core of Heatproofing",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/SoulCoreSpecial1",
+    "source": "https://poe2db.tw/us/Hayoxis_Soul_Core_of_Heatproofing",
+    "content": "soul_core"
+  },
+  {
+    "base_type": "Jiquani's Soul Core of Abundance",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/SoulCoreSpecial26",
+    "source": "https://poe2db.tw/us/Jiquanis_Soul_Core_of_Abundance",
+    "content": "soul_core"
+  },
+  {
+    "base_type": "Jiquani's Soul Core of Automation",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/SoulCoreSpecial16",
+    "source": "https://poe2db.tw/us/Jiquanis_Soul_Core_of_Automation",
+    "content": "soul_core"
+  },
+  {
+    "base_type": "Jiquani's Soul Core of Malediction",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/SoulCoreSpecial17",
+    "source": "https://poe2db.tw/us/Jiquanis_Soul_Core_of_Malediction",
+    "content": "soul_core"
+  },
+  {
+    "base_type": "Jiquani's Soul Core of Munitions",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/SoulCoreSpecial24",
+    "source": "https://poe2db.tw/us/Jiquanis_Soul_Core_of_Munitions",
+    "content": "soul_core"
+  },
+  {
+    "base_type": "Jiquani's Soul Core of Quaking",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/SoulCoreSpecial23",
+    "source": "https://poe2db.tw/us/Jiquanis_Soul_Core_of_Quaking",
+    "content": "soul_core"
+  },
+  {
+    "base_type": "Jiquani's Soul Core of Radiance",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/SoulCoreSpecial20",
+    "source": "https://poe2db.tw/us/Jiquanis_Soul_Core_of_Radiance",
+    "content": "soul_core"
+  },
+  {
+    "base_type": "Jiquani's Soul Core of Rallying",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/SoulCoreSpecial19",
+    "source": "https://poe2db.tw/us/Jiquanis_Soul_Core_of_Rallying",
+    "content": "soul_core"
+  },
+  {
+    "base_type": "Jiquani's Soul Core of Rippling",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/SoulCoreSpecial22",
+    "source": "https://poe2db.tw/us/Jiquanis_Soul_Core_of_Rippling",
+    "content": "soul_core"
+  },
+  {
+    "base_type": "Jiquani's Soul Core of Severing",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/SoulCoreSpecial21",
+    "source": "https://poe2db.tw/us/Jiquanis_Soul_Core_of_Severing",
+    "content": "soul_core"
+  },
+  {
+    "base_type": "Jiquani's Soul Core of Snares",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/SoulCoreSpecial25",
+    "source": "https://poe2db.tw/us/Jiquanis_Soul_Core_of_Snares",
+    "content": "soul_core"
+  },
+  {
+    "base_type": "Jiquani's Soul Core of Squalls",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/SoulCoreSpecial27",
+    "source": "https://poe2db.tw/us/Jiquanis_Soul_Core_of_Squalls",
+    "content": "soul_core"
+  },
+  {
+    "base_type": "Jiquani's Soul Core of Targeting",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/SoulCoreSpecial18",
+    "source": "https://poe2db.tw/us/Jiquanis_Soul_Core_of_Targeting",
+    "content": "soul_core"
+  },
+  {
+    "base_type": "Jiquani's Soul Core of Thundering",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/SoulCoreSpecial28",
+    "source": "https://poe2db.tw/us/Jiquanis_Soul_Core_of_Thundering",
+    "content": "soul_core"
+  },
+  {
+    "base_type": "Opiloti's Soul Core of Assault",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/SoulCoreSpecial8",
+    "source": "https://poe2db.tw/us/Opilotis_Soul_Core_of_Assault",
+    "content": "soul_core"
+  },
+  {
+    "base_type": "Quipolatl's Soul Core of Flow",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/SoulCoreSpecial5",
+    "source": "https://poe2db.tw/us/Quipolatls_Soul_Core_of_Flow",
+    "content": "soul_core"
+  },
+  {
+    "base_type": "Soul Core of Atmohua",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/SoulCoreStrength",
+    "source": "https://poe2db.tw/us/Soul_Core_of_Atmohua",
+    "content": "soul_core"
+  },
+  {
+    "base_type": "Soul Core of Azcapa",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/SoulCoreLight",
+    "source": "https://poe2db.tw/us/Soul_Core_of_Azcapa",
+    "content": "soul_core"
+  },
+  {
+    "base_type": "Soul Core of Cholotl",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/SoulCoreDexterity",
+    "source": "https://poe2db.tw/us/Soul_Core_of_Cholotl",
+    "content": "soul_core"
+  },
+  {
+    "base_type": "Soul Core of Citaqualotl",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/SoulCoreEnlighten",
+    "source": "https://poe2db.tw/us/Soul_Core_of_Citaqualotl",
+    "content": "soul_core"
+  },
+  {
+    "base_type": "Soul Core of Jiquani",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/SoulCoreMaxLife",
+    "source": "https://poe2db.tw/us/Soul_Core_of_Jiquani",
+    "content": "soul_core"
+  },
+  {
+    "base_type": "Soul Core of Opiloti",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/SoulCoreBleed",
+    "source": "https://poe2db.tw/us/Soul_Core_of_Opiloti",
+    "content": "soul_core"
+  },
+  {
+    "base_type": "Soul Core of Puhuarte",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/SoulCoreIgnite",
+    "source": "https://poe2db.tw/us/Soul_Core_of_Puhuarte",
+    "content": "soul_core"
+  },
+  {
+    "base_type": "Soul Core of Quipolatl",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/SoulCoreSpeed",
+    "source": "https://poe2db.tw/us/Soul_Core_of_Quipolatl",
+    "content": "soul_core"
+  },
+  {
+    "base_type": "Soul Core of Tacati",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/SoulCoreChaos",
+    "source": "https://poe2db.tw/us/Soul_Core_of_Tacati",
+    "content": "soul_core"
+  },
+  {
+    "base_type": "Soul Core of Ticaba",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/SoulCoreCrit",
+    "source": "https://poe2db.tw/us/Soul_Core_of_Ticaba",
+    "content": "soul_core"
+  },
+  {
+    "base_type": "Soul Core of Topotante",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/SoulCoreElemental",
+    "source": "https://poe2db.tw/us/Soul_Core_of_Topotante",
+    "content": "soul_core"
+  },
+  {
+    "base_type": "Soul Core of Tzamoto",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/SoulCoreFreeze",
+    "source": "https://poe2db.tw/us/Soul_Core_of_Tzamoto",
+    "content": "soul_core"
+  },
+  {
+    "base_type": "Soul Core of Xopec",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/SoulCoreShock",
+    "source": "https://poe2db.tw/us/Soul_Core_of_Xopec",
+    "content": "soul_core"
+  },
+  {
+    "base_type": "Soul Core of Zalatl",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/SoulCoreMaxMana",
+    "source": "https://poe2db.tw/us/Soul_Core_of_Zalatl",
+    "content": "soul_core"
+  },
+  {
+    "base_type": "Soul Core of Zantipi",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/SoulCoreIntelligence",
+    "source": "https://poe2db.tw/us/Soul_Core_of_Zantipi",
+    "content": "soul_core"
+  },
+  {
+    "base_type": "Tacati's Soul Core of Affliction",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/SoulCoreSpecial12",
+    "source": "https://poe2db.tw/us/Tacatis_Soul_Core_of_Affliction",
+    "content": "soul_core"
+  },
+  {
+    "base_type": "Topotante's Soul Core of Dampening",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/SoulCoreSpecial3",
+    "source": "https://poe2db.tw/us/Topotantes_Soul_Core_of_Dampening",
+    "content": "soul_core"
+  },
+  {
+    "base_type": "Tzamoto's Soul Core of Ferocity",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/SoulCoreSpecial6",
+    "source": "https://poe2db.tw/us/Tzamotos_Soul_Core_of_Ferocity",
+    "content": "soul_core"
+  },
+  {
+    "base_type": "Uromoti's Soul Core of Attenuation",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/SoulCoreSpecial7",
+    "source": "https://poe2db.tw/us/Uromotis_Soul_Core_of_Attenuation",
+    "content": "soul_core"
+  },
+  {
+    "base_type": "Xipocado's Soul Core of Dominion",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/SoulCoreSpecial15",
+    "source": "https://poe2db.tw/us/Xipocados_Soul_Core_of_Dominion",
+    "content": "soul_core"
+  },
+  {
+    "base_type": "Xopec's Soul Core of Power",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/SoulCoreSpecial10",
+    "source": "https://poe2db.tw/us/Xopecs_Soul_Core_of_Power",
+    "content": "soul_core"
+  },
+  {
+    "base_type": "Zalatl's Soul Core of Insulation",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/SoulCoreSpecial2",
+    "source": "https://poe2db.tw/us/Zalatls_Soul_Core_of_Insulation",
+    "content": "soul_core"
+  },
+  {
+    "base_type": "Bear Idol",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/TalismanBear",
+    "source": "https://poe2db.tw/us/Bear_Idol",
+    "content": "idol"
+  },
+  {
+    "base_type": "Boar Idol",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/TalismanBoar",
+    "source": "https://poe2db.tw/us/Boar_Idol",
+    "content": "idol"
+  },
+  {
+    "base_type": "Carved Cunning",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/CarvedCunning",
+    "source": "https://poe2db.tw/us/Carved_Cunning",
+    "content": "idol"
+  },
+  {
+    "base_type": "Carved Majesty",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/CarvedMajesty",
+    "source": "https://poe2db.tw/us/Carved_Majesty",
+    "content": "idol"
+  },
+  {
+    "base_type": "Carved Mischief",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/CarvedMischief",
+    "source": "https://poe2db.tw/us/Carved_Mischief",
+    "content": "idol"
+  },
+  {
+    "base_type": "Carved Tenacity",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/CarvedTenacity",
+    "source": "https://poe2db.tw/us/Carved_Tenacity",
+    "content": "idol"
+  },
+  {
+    "base_type": "Cat Idol",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/TalismanCat",
+    "source": "https://poe2db.tw/us/Cat_Idol",
+    "content": "idol"
+  },
+  {
+    "base_type": "Fox Idol",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/TalismanFox",
+    "source": "https://poe2db.tw/us/Fox_Idol",
+    "content": "idol"
+  },
+  {
+    "base_type": "Hawk Idol",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/IdolHawk",
+    "source": "https://poe2db.tw/us/Hawk_Idol",
+    "content": "idol"
+  },
+  {
+    "base_type": "Idol of Alira",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/IdolSpecial5",
+    "source": "https://poe2db.tw/us/Idol_of_Alira",
+    "content": "idol"
+  },
+  {
+    "base_type": "Idol of Eeshta",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/TalismanSpecial4",
+    "source": "https://poe2db.tw/us/Idol_of_Eeshta",
+    "content": "idol"
+  },
+  {
+    "base_type": "Idol of Egrin",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/TalismanSpecial5",
+    "source": "https://poe2db.tw/us/Idol_of_Egrin",
+    "content": "idol"
+  },
+  {
+    "base_type": "Idol of Eramir",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/IdolSpecial3",
+    "source": "https://poe2db.tw/us/Idol_of_Eramir",
+    "content": "idol"
+  },
+  {
+    "base_type": "Idol of Greust",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/IdolSpecial1",
+    "source": "https://poe2db.tw/us/Idol_of_Greust",
+    "content": "idol"
+  },
+  {
+    "base_type": "Idol of Grold",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/TalismanSpecial3",
+    "source": "https://poe2db.tw/us/Idol_of_Grold",
+    "content": "idol"
+  },
+  {
+    "base_type": "Idol of Kraityn",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/IdolSpecial6",
+    "source": "https://poe2db.tw/us/Idol_of_Kraityn",
+    "content": "idol"
+  },
+  {
+    "base_type": "Idol of Maxarius",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/TalismanSpecial6",
+    "source": "https://poe2db.tw/us/Idol_of_Maxarius",
+    "content": "idol"
+  },
+  {
+    "base_type": "Idol of Oak",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/IdolSpecial4",
+    "source": "https://poe2db.tw/us/Idol_of_Oak",
+    "content": "idol"
+  },
+  {
+    "base_type": "Idol of Ralakesh",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/TalismanSpecial7",
+    "source": "https://poe2db.tw/us/Idol_of_Ralakesh",
+    "content": "idol"
+  },
+  {
+    "base_type": "Idol of Silk",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/IdolSpecial7",
+    "source": "https://poe2db.tw/us/Idol_of_Silk",
+    "content": "idol"
+  },
+  {
+    "base_type": "Idol of Sirrius",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/TalismanSpecial1",
+    "source": "https://poe2db.tw/us/Idol_of_Sirrius",
+    "content": "idol"
+  },
+  {
+    "base_type": "Idol of the Martyr",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/IdolCorrupted2",
+    "source": "https://poe2db.tw/us/Idol_of_the_Martyr",
+    "content": "idol"
+  },
+  {
+    "base_type": "Idol of the Pharisee",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/IdolCorrupted3",
+    "source": "https://poe2db.tw/us/Idol_of_the_Pharisee",
+    "content": "idol"
+  },
+  {
+    "base_type": "Idol of the Sycophant",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/IdolCorrupted1",
+    "source": "https://poe2db.tw/us/Idol_of_the_Sycophant",
+    "content": "idol"
+  },
+  {
+    "base_type": "Idol of Thruldana",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/TalismanSpecial2",
+    "source": "https://poe2db.tw/us/Idol_of_Thruldana",
+    "content": "idol"
+  },
+  {
+    "base_type": "Idol of Yeena",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/IdolSpecial2",
+    "source": "https://poe2db.tw/us/Idol_of_Yeena",
+    "content": "idol"
+  },
+  {
+    "base_type": "Owl Idol",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/TalismanOwl",
+    "source": "https://poe2db.tw/us/Owl_Idol",
+    "content": "idol"
+  },
+  {
+    "base_type": "Ox Idol",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/TalismanOx",
+    "source": "https://poe2db.tw/us/Ox_Idol",
+    "content": "idol"
+  },
+  {
+    "base_type": "Panther Idol",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/IdolPanther",
+    "source": "https://poe2db.tw/us/Panther_Idol",
+    "content": "idol"
+  },
+  {
+    "base_type": "Primate Idol",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/TalismanMonkey",
+    "source": "https://poe2db.tw/us/Primate_Idol",
+    "content": "idol"
+  },
+  {
+    "base_type": "Rabbit Idol",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/TalismanRabbit",
+    "source": "https://poe2db.tw/us/Rabbit_Idol",
+    "content": "idol"
+  },
+  {
+    "base_type": "Snake Idol",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/TalismanSnake",
+    "source": "https://poe2db.tw/us/Snake_Idol",
+    "content": "idol"
+  },
+  {
+    "base_type": "Stag Idol",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/TalismanStag",
+    "source": "https://poe2db.tw/us/Stag_Idol",
+    "content": "idol"
+  },
+  {
+    "base_type": "Stoat Idol",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/IdolStoat",
+    "source": "https://poe2db.tw/us/Stoat_Idol",
+    "content": "idol"
+  },
+  {
+    "base_type": "Wolf Idol",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/TalismanWolf",
+    "source": "https://poe2db.tw/us/Wolf_Idol",
+    "content": "idol"
+  },
+  {
+    "base_type": "Adept Rune",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneDexterity",
+    "source": "https://poe2db.tw/us/Adept_Rune",
+    "content": "rune"
+  },
+  {
+    "base_type": "Ancient Rune of Animosity",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneOfTheAncients11",
+    "source": "https://poe2db.tw/us/Ancient_Rune_of_Animosity",
+    "content": "rune"
+  },
+  {
+    "base_type": "Ancient Rune of Control",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneOfTheAncients6",
+    "source": "https://poe2db.tw/us/Ancient_Rune_of_Control",
+    "content": "rune"
+  },
+  {
+    "base_type": "Ancient Rune of Decay",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneOfTheAncients8",
+    "source": "https://poe2db.tw/us/Ancient_Rune_of_Decay",
+    "content": "rune"
+  },
+  {
+    "base_type": "Ancient Rune of Detonation",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneOfTheAncients12",
+    "source": "https://poe2db.tw/us/Ancient_Rune_of_Detonation",
+    "content": "rune"
+  },
+  {
+    "base_type": "Ancient Rune of Discovery",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneOfTheAncients7",
+    "source": "https://poe2db.tw/us/Ancient_Rune_of_Discovery",
+    "content": "rune"
+  },
+  {
+    "base_type": "Ancient Rune of Dueling",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneOfTheAncients2",
+    "source": "https://poe2db.tw/us/Ancient_Rune_of_Dueling",
+    "content": "rune"
+  },
+  {
+    "base_type": "Ancient Rune of Prowess",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneOfTheAncients5",
+    "source": "https://poe2db.tw/us/Ancient_Rune_of_Prowess",
+    "content": "rune"
+  },
+  {
+    "base_type": "Ancient Rune of Retaliation",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneOfTheAncients13",
+    "source": "https://poe2db.tw/us/Ancient_Rune_of_Retaliation",
+    "content": "rune"
+  },
+  {
+    "base_type": "Ancient Rune of Shattering",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneOfTheAncients4",
+    "source": "https://poe2db.tw/us/Ancient_Rune_of_Shattering",
+    "content": "rune"
+  },
+  {
+    "base_type": "Ancient Rune of Splinters",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneOfTheAncients1",
+    "source": "https://poe2db.tw/us/Ancient_Rune_of_Splinters",
+    "content": "rune"
+  },
+  {
+    "base_type": "Ancient Rune of the Horde",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneOfTheAncients10",
+    "source": "https://poe2db.tw/us/Ancient_Rune_of_the_Horde",
+    "content": "rune"
+  },
+  {
+    "base_type": "Ancient Rune of the Titan",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneOfTheAncients3",
+    "source": "https://poe2db.tw/us/Ancient_Rune_of_the_Titan",
+    "content": "rune"
+  },
+  {
+    "base_type": "Ancient Rune of Witchcraft",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneOfTheAncients9",
+    "source": "https://poe2db.tw/us/Ancient_Rune_of_Witchcraft",
+    "content": "rune"
+  },
+  {
+    "base_type": "Body Rune",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneLife",
+    "source": "https://poe2db.tw/us/Body_Rune",
+    "content": "rune"
+  },
+  {
+    "base_type": "Charging Rune",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneWard2Normal",
+    "source": "https://poe2db.tw/us/Charging_Rune",
+    "content": "rune"
+  },
+  {
+    "base_type": "Countess Seske's Rune of Archery",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneSpecial18",
+    "source": "https://poe2db.tw/us/Countess_Seskes_Rune_of_Archery",
+    "content": "rune"
+  },
+  {
+    "base_type": "Courtesan Mannan's Rune of Cruelty",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneSpecial15",
+    "source": "https://poe2db.tw/us/Courtesan_Mannans_Rune_of_Cruelty",
+    "content": "rune"
+  },
+  {
+    "base_type": "Craiceann's Rune of Recovery",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneSpecial14",
+    "source": "https://poe2db.tw/us/Craiceanns_Rune_of_Recovery",
+    "content": "rune"
+  },
+  {
+    "base_type": "Craiceann's Rune of Warding",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneSpecial10",
+    "source": "https://poe2db.tw/us/Craiceanns_Rune_of_Warding",
+    "content": "rune"
+  },
+  {
+    "base_type": "Desert Rune",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneFire",
+    "source": "https://poe2db.tw/us/Desert_Rune",
+    "content": "rune"
+  },
+  {
+    "base_type": "Emergent Instinct",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/EmergentInstinct",
+    "source": "https://poe2db.tw/us/Emergent_Instinct",
+    "content": "rune"
+  },
+  {
+    "base_type": "Emergent Possibility",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/EmergentPossibility",
+    "source": "https://poe2db.tw/us/Emergent_Possibility",
+    "content": "rune"
+  },
+  {
+    "base_type": "Emergent Protection",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/EmergentProtection",
+    "source": "https://poe2db.tw/us/Emergent_Protection",
+    "content": "rune"
+  },
+  {
+    "base_type": "Emergent Vigour",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/EmergentVigour",
+    "source": "https://poe2db.tw/us/Emergent_Vigour",
+    "content": "rune"
+  },
+  {
+    "base_type": "Farrul's Rune of Grace",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneSpecial8",
+    "source": "https://poe2db.tw/us/Farruls_Rune_of_Grace",
+    "content": "rune"
+  },
+  {
+    "base_type": "Farrul's Rune of the Chase",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneSpecial9",
+    "source": "https://poe2db.tw/us/Farruls_Rune_of_the_Chase",
+    "content": "rune"
+  },
+  {
+    "base_type": "Farrul's Rune of the Hunt",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneSpecial13",
+    "source": "https://poe2db.tw/us/Farruls_Rune_of_the_Hunt",
+    "content": "rune"
+  },
+  {
+    "base_type": "Fenumus' Rune of Agony",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneSpecial7",
+    "source": "https://poe2db.tw/us/Fenumus_Rune_of_Agony",
+    "content": "rune"
+  },
+  {
+    "base_type": "Fenumus' Rune of Draining",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneSpecial20",
+    "source": "https://poe2db.tw/us/Fenumus_Rune_of_Draining",
+    "content": "rune"
+  },
+  {
+    "base_type": "Fenumus' Rune of Spinning",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneSpecial17",
+    "source": "https://poe2db.tw/us/Fenumus_Rune_of_Spinning",
+    "content": "rune"
+  },
+  {
+    "base_type": "Glacial Rune",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneCold",
+    "source": "https://poe2db.tw/us/Glacial_Rune",
+    "content": "rune"
+  },
+  {
+    "base_type": "Greater Adept Rune",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneDexterityGreater",
+    "source": "https://poe2db.tw/us/Greater_Adept_Rune",
+    "content": "rune"
+  },
+  {
+    "base_type": "Greater Body Rune",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneLifeGreater",
+    "source": "https://poe2db.tw/us/Greater_Body_Rune",
+    "content": "rune"
+  },
+  {
+    "base_type": "Greater Charging Rune",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneWard2Greater",
+    "source": "https://poe2db.tw/us/Greater_Charging_Rune",
+    "content": "rune"
+  },
+  {
+    "base_type": "Greater Desert Rune",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneFireGreater",
+    "source": "https://poe2db.tw/us/Greater_Desert_Rune",
+    "content": "rune"
+  },
+  {
+    "base_type": "Greater Glacial Rune",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneColdGreater",
+    "source": "https://poe2db.tw/us/Greater_Glacial_Rune",
+    "content": "rune"
+  },
+  {
+    "base_type": "Greater Inspiration Rune",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneManaRecoveryGreater",
+    "source": "https://poe2db.tw/us/Greater_Inspiration_Rune",
+    "content": "rune"
+  },
+  {
+    "base_type": "Greater Iron Rune",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneEnhanceGreater",
+    "source": "https://poe2db.tw/us/Greater_Iron_Rune",
+    "content": "rune"
+  },
+  {
+    "base_type": "Greater Mind Rune",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneManaGreater",
+    "source": "https://poe2db.tw/us/Greater_Mind_Rune",
+    "content": "rune"
+  },
+  {
+    "base_type": "Greater Rebirth Rune",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneLifeRecoveryGreater",
+    "source": "https://poe2db.tw/us/Greater_Rebirth_Rune",
+    "content": "rune"
+  },
+  {
+    "base_type": "Greater Resolve Rune",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneIntelligenceGreater",
+    "source": "https://poe2db.tw/us/Greater_Resolve_Rune",
+    "content": "rune"
+  },
+  {
+    "base_type": "Greater Robust Rune",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneStrengthGreater",
+    "source": "https://poe2db.tw/us/Greater_Robust_Rune",
+    "content": "rune"
+  },
+  {
+    "base_type": "Greater Rune of Alacrity",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneSpecial3",
+    "source": "https://poe2db.tw/us/Greater_Rune_of_Alacrity",
+    "content": "rune"
+  },
+  {
+    "base_type": "Greater Rune of Leadership",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneSpecial1",
+    "source": "https://poe2db.tw/us/Greater_Rune_of_Leadership",
+    "content": "rune"
+  },
+  {
+    "base_type": "Greater Rune of Nobility",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneSpecial4",
+    "source": "https://poe2db.tw/us/Greater_Rune_of_Nobility",
+    "content": "rune"
+  },
+  {
+    "base_type": "Greater Rune of Tithing",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneSpecial2",
+    "source": "https://poe2db.tw/us/Greater_Rune_of_Tithing",
+    "content": "rune"
+  },
+  {
+    "base_type": "Greater Stone Rune",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneStunGreater",
+    "source": "https://poe2db.tw/us/Greater_Stone_Rune",
+    "content": "rune"
+  },
+  {
+    "base_type": "Greater Storm Rune",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneLightningGreater",
+    "source": "https://poe2db.tw/us/Greater_Storm_Rune",
+    "content": "rune"
+  },
+  {
+    "base_type": "Greater Vision Rune",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneAccuracyGreater",
+    "source": "https://poe2db.tw/us/Greater_Vision_Rune",
+    "content": "rune"
+  },
+  {
+    "base_type": "Greater Ward Rune",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneWard1Greater",
+    "source": "https://poe2db.tw/us/Greater_Ward_Rune",
+    "content": "rune"
+  },
+  {
+    "base_type": "Hedgewitch Assandra's Rune of Wisdom",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneSpecial5",
+    "source": "https://poe2db.tw/us/Hedgewitch_Assandras_Rune_of_Wisdom",
+    "content": "rune"
+  },
+  {
+    "base_type": "Inspiration Rune",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneManaRecovery",
+    "source": "https://poe2db.tw/us/Inspiration_Rune",
+    "content": "rune"
+  },
+  {
+    "base_type": "Iron Rune",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneEnhance",
+    "source": "https://poe2db.tw/us/Iron_Rune",
+    "content": "rune"
+  },
+  {
+    "base_type": "Lady Hestra's Rune of Winter",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneSpecial22",
+    "source": "https://poe2db.tw/us/Lady_Hestras_Rune_of_Winter",
+    "content": "rune"
+  },
+  {
+    "base_type": "Lesser Adept Rune",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneDexterityLesser",
+    "source": "https://poe2db.tw/us/Lesser_Adept_Rune",
+    "content": "rune"
+  },
+  {
+    "base_type": "Lesser Body Rune",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneLifeLesser",
+    "source": "https://poe2db.tw/us/Lesser_Body_Rune",
+    "content": "rune"
+  },
+  {
+    "base_type": "Lesser Charging Rune",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneWard2Lesser",
+    "source": "https://poe2db.tw/us/Lesser_Charging_Rune",
+    "content": "rune"
+  },
+  {
+    "base_type": "Lesser Desert Rune",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneFireLesser",
+    "source": "https://poe2db.tw/us/Lesser_Desert_Rune",
+    "content": "rune"
+  },
+  {
+    "base_type": "Lesser Glacial Rune",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneColdLesser",
+    "source": "https://poe2db.tw/us/Lesser_Glacial_Rune",
+    "content": "rune"
+  },
+  {
+    "base_type": "Lesser Inspiration Rune",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneManaRecoveryLesser",
+    "source": "https://poe2db.tw/us/Lesser_Inspiration_Rune",
+    "content": "rune"
+  },
+  {
+    "base_type": "Lesser Iron Rune",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneEnhanceLesser",
+    "source": "https://poe2db.tw/us/Lesser_Iron_Rune",
+    "content": "rune"
+  },
+  {
+    "base_type": "Lesser Mind Rune",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneManaLesser",
+    "source": "https://poe2db.tw/us/Lesser_Mind_Rune",
+    "content": "rune"
+  },
+  {
+    "base_type": "Lesser Rebirth Rune",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneLifeRecoveryLesser",
+    "source": "https://poe2db.tw/us/Lesser_Rebirth_Rune",
+    "content": "rune"
+  },
+  {
+    "base_type": "Lesser Resolve Rune",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneIntelligenceLesser",
+    "source": "https://poe2db.tw/us/Lesser_Resolve_Rune",
+    "content": "rune"
+  },
+  {
+    "base_type": "Lesser Robust Rune",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneStrengthLesser",
+    "source": "https://poe2db.tw/us/Lesser_Robust_Rune",
+    "content": "rune"
+  },
+  {
+    "base_type": "Lesser Stone Rune",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneStunLesser",
+    "source": "https://poe2db.tw/us/Lesser_Stone_Rune",
+    "content": "rune"
+  },
+  {
+    "base_type": "Lesser Storm Rune",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneLightningLesser",
+    "source": "https://poe2db.tw/us/Lesser_Storm_Rune",
+    "content": "rune"
+  },
+  {
+    "base_type": "Lesser Vision Rune",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneAccuracyLesser",
+    "source": "https://poe2db.tw/us/Lesser_Vision_Rune",
+    "content": "rune"
+  },
+  {
+    "base_type": "Lesser Ward Rune",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneWard1Lesser",
+    "source": "https://poe2db.tw/us/Lesser_Ward_Rune",
+    "content": "rune"
+  },
+  {
+    "base_type": "Masterwork Rune",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneUpgrade",
+    "source": "https://poe2db.tw/us/Masterwork_Rune",
+    "content": "rune"
+  },
+  {
+    "base_type": "Mind Rune",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneMana",
+    "source": "https://poe2db.tw/us/Mind_Rune",
+    "content": "rune"
+  },
+  {
+    "base_type": "Perfect Adept Rune",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneDexterityPerfect",
+    "source": "https://poe2db.tw/us/Perfect_Adept_Rune",
+    "content": "rune"
+  },
+  {
+    "base_type": "Perfect Body Rune",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneLifePerfect",
+    "source": "https://poe2db.tw/us/Perfect_Body_Rune",
+    "content": "rune"
+  },
+  {
+    "base_type": "Perfect Charging Rune",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneWard2Perfect",
+    "source": "https://poe2db.tw/us/Perfect_Charging_Rune",
+    "content": "rune"
+  },
+  {
+    "base_type": "Perfect Desert Rune",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneFirePerfect",
+    "source": "https://poe2db.tw/us/Perfect_Desert_Rune",
+    "content": "rune"
+  },
+  {
+    "base_type": "Perfect Glacial Rune",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneColdPerfect",
+    "source": "https://poe2db.tw/us/Perfect_Glacial_Rune",
+    "content": "rune"
+  },
+  {
+    "base_type": "Perfect Inspiration Rune",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneManaRecoveryPerfect",
+    "source": "https://poe2db.tw/us/Perfect_Inspiration_Rune",
+    "content": "rune"
+  },
+  {
+    "base_type": "Perfect Iron Rune",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneEnhancePerfect",
+    "source": "https://poe2db.tw/us/Perfect_Iron_Rune",
+    "content": "rune"
+  },
+  {
+    "base_type": "Perfect Mind Rune",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneManaPerfect",
+    "source": "https://poe2db.tw/us/Perfect_Mind_Rune",
+    "content": "rune"
+  },
+  {
+    "base_type": "Perfect Rebirth Rune",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneLifeRecoveryPerfect",
+    "source": "https://poe2db.tw/us/Perfect_Rebirth_Rune",
+    "content": "rune"
+  },
+  {
+    "base_type": "Perfect Resolve Rune",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneIntelligencePerfect",
+    "source": "https://poe2db.tw/us/Perfect_Resolve_Rune",
+    "content": "rune"
+  },
+  {
+    "base_type": "Perfect Robust Rune",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneStrengthPerfect",
+    "source": "https://poe2db.tw/us/Perfect_Robust_Rune",
+    "content": "rune"
+  },
+  {
+    "base_type": "Perfect Stone Rune",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneStunPerfect",
+    "source": "https://poe2db.tw/us/Perfect_Stone_Rune",
+    "content": "rune"
+  },
+  {
+    "base_type": "Perfect Storm Rune",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneLightningPerfect",
+    "source": "https://poe2db.tw/us/Perfect_Storm_Rune",
+    "content": "rune"
+  },
+  {
+    "base_type": "Perfect Vision Rune",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneAccuracyPerfect",
+    "source": "https://poe2db.tw/us/Perfect_Vision_Rune",
+    "content": "rune"
+  },
+  {
+    "base_type": "Perfect Ward Rune",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneWard1Perfect",
+    "source": "https://poe2db.tw/us/Perfect_Ward_Rune",
+    "content": "rune"
+  },
+  {
+    "base_type": "Rebirth Rune",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneLifeRecovery",
+    "source": "https://poe2db.tw/us/Rebirth_Rune",
+    "content": "rune"
+  },
+  {
+    "base_type": "Resolve Rune",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneIntelligence",
+    "source": "https://poe2db.tw/us/Resolve_Rune",
+    "content": "rune"
+  },
+  {
+    "base_type": "Robust Rune",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneStrength",
+    "source": "https://poe2db.tw/us/Robust_Rune",
+    "content": "rune"
+  },
+  {
+    "base_type": "Rune of Accumulation",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneOfTheAncients19",
+    "source": "https://poe2db.tw/us/Rune_of_Accumulation",
+    "content": "rune"
+  },
+  {
+    "base_type": "Rune of Acrobatics",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneOfTheAncients16",
+    "source": "https://poe2db.tw/us/Rune_of_Acrobatics",
+    "content": "rune"
+  },
+  {
+    "base_type": "Rune of Confrontation",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneOfTheAncients26",
+    "source": "https://poe2db.tw/us/Rune_of_Confrontation",
+    "content": "rune"
+  },
+  {
+    "base_type": "Rune of Consistency",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneOfTheAncients23",
+    "source": "https://poe2db.tw/us/Rune_of_Consistency",
+    "content": "rune"
+  },
+  {
+    "base_type": "Rune of Culmination",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneOfTheAncients17",
+    "source": "https://poe2db.tw/us/Rune_of_Culmination",
+    "content": "rune"
+  },
+  {
+    "base_type": "Rune of Foundations",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneOfTheAncients20",
+    "source": "https://poe2db.tw/us/Rune_of_Foundations",
+    "content": "rune"
+  },
+  {
+    "base_type": "Rune of Reach",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneOfTheAncients24",
+    "source": "https://poe2db.tw/us/Rune_of_Reach",
+    "content": "rune"
+  },
+  {
+    "base_type": "Rune of Renown",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneOfTheAncients18",
+    "source": "https://poe2db.tw/us/Rune_of_Renown",
+    "content": "rune"
+  },
+  {
+    "base_type": "Rune of the Blossom",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneOfTheAncients22",
+    "source": "https://poe2db.tw/us/Rune_of_the_Blossom",
+    "content": "rune"
+  },
+  {
+    "base_type": "Rune of the Hunt",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneOfTheAncients15",
+    "source": "https://poe2db.tw/us/Rune_of_the_Hunt",
+    "content": "rune"
+  },
+  {
+    "base_type": "Rune of the Prism",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneOfTheAncients21",
+    "source": "https://poe2db.tw/us/Rune_of_the_Prism",
+    "content": "rune"
+  },
+  {
+    "base_type": "Rune of Vital Flame",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneOfTheAncients25",
+    "source": "https://poe2db.tw/us/Rune_of_Vital_Flame",
+    "content": "rune"
+  },
+  {
+    "base_type": "Rune of Vitality",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneOfTheAncients14",
+    "source": "https://poe2db.tw/us/Rune_of_Vitality",
+    "content": "rune"
+  },
+  {
+    "base_type": "Saqawal's Rune of Erosion",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneSpecial12",
+    "source": "https://poe2db.tw/us/Saqawals_Rune_of_Erosion",
+    "content": "rune"
+  },
+  {
+    "base_type": "Saqawal's Rune of Memory",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneSpecial11",
+    "source": "https://poe2db.tw/us/Saqawals_Rune_of_Memory",
+    "content": "rune"
+  },
+  {
+    "base_type": "Saqawal's Rune of the Sky",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneSpecial6",
+    "source": "https://poe2db.tw/us/Saqawals_Rune_of_the_Sky",
+    "content": "rune"
+  },
+  {
+    "base_type": "Stone Rune",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneStun",
+    "source": "https://poe2db.tw/us/Stone_Rune",
+    "content": "rune"
+  },
+  {
+    "base_type": "Storm Rune",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneLightning",
+    "source": "https://poe2db.tw/us/Storm_Rune",
+    "content": "rune"
+  },
+  {
+    "base_type": "Thane Girt's Rune of Wildness",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneSpecial19",
+    "source": "https://poe2db.tw/us/Thane_Girts_Rune_of_Wildness",
+    "content": "rune"
+  },
+  {
+    "base_type": "Thane Grannell's Rune of Mastery",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneSpecial16",
+    "source": "https://poe2db.tw/us/Thane_Grannells_Rune_of_Mastery",
+    "content": "rune"
+  },
+  {
+    "base_type": "Thane Leld's Rune of Spring",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneSpecial23",
+    "source": "https://poe2db.tw/us/Thane_Lelds_Rune_of_Spring",
+    "content": "rune"
+  },
+  {
+    "base_type": "Thane Myrk's Rune of Summer",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneSpecial21",
+    "source": "https://poe2db.tw/us/Thane_Myrks_Rune_of_Summer",
+    "content": "rune"
+  },
+  {
+    "base_type": "The Greatwolf's Rune of Claws",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneSpecial24",
+    "source": "https://poe2db.tw/us/The_Greatwolfs_Rune_of_Claws",
+    "content": "rune"
+  },
+  {
+    "base_type": "The Greatwolf's Rune of Willpower",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneSpecial25",
+    "source": "https://poe2db.tw/us/The_Greatwolfs_Rune_of_Willpower",
+    "content": "rune"
+  },
+  {
+    "base_type": "Vision Rune",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneAccuracy",
+    "source": "https://poe2db.tw/us/Vision_Rune",
+    "content": "rune"
+  },
+  {
+    "base_type": "Ward Rune",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneWard1Normal",
+    "source": "https://poe2db.tw/us/Ward_Rune",
+    "content": "rune"
+  },
+  {
+    "base_type": "Warding Rune of Annihilation",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneWardSpecial16",
+    "source": "https://poe2db.tw/us/Warding_Rune_of_Annihilation",
+    "content": "rune"
+  },
+  {
+    "base_type": "Warding Rune of Armature",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneWardSpecial18",
+    "source": "https://poe2db.tw/us/Warding_Rune_of_Armature",
+    "content": "rune"
+  },
+  {
+    "base_type": "Warding Rune of Bodyguards",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneWardSpecial23",
+    "source": "https://poe2db.tw/us/Warding_Rune_of_Bodyguards",
+    "content": "rune"
+  },
+  {
+    "base_type": "Warding Rune of Courage",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneWardSpecial9",
+    "source": "https://poe2db.tw/us/Warding_Rune_of_Courage",
+    "content": "rune"
+  },
+  {
+    "base_type": "Warding Rune of Desperation",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneWardSpecial4",
+    "source": "https://poe2db.tw/us/Warding_Rune_of_Desperation",
+    "content": "rune"
+  },
+  {
+    "base_type": "Warding Rune of Disintegration",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneWardSpecial3",
+    "source": "https://poe2db.tw/us/Warding_Rune_of_Disintegration",
+    "content": "rune"
+  },
+  {
+    "base_type": "Warding Rune of Equinox",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneWardSpecial20",
+    "source": "https://poe2db.tw/us/Warding_Rune_of_Equinox",
+    "content": "rune"
+  },
+  {
+    "base_type": "Warding Rune of Glancing",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneWardSpecial13",
+    "source": "https://poe2db.tw/us/Warding_Rune_of_Glancing",
+    "content": "rune"
+  },
+  {
+    "base_type": "Warding Rune of Heart",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneWardSpecial14",
+    "source": "https://poe2db.tw/us/Warding_Rune_of_Heart",
+    "content": "rune"
+  },
+  {
+    "base_type": "Warding Rune of Hollowing",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneWardSpecial24",
+    "source": "https://poe2db.tw/us/Warding_Rune_of_Hollowing",
+    "content": "rune"
+  },
+  {
+    "base_type": "Warding Rune of Nourishment",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneWardSpecial15",
+    "source": "https://poe2db.tw/us/Warding_Rune_of_Nourishment",
+    "content": "rune"
+  },
+  {
+    "base_type": "Warding Rune of Obsession",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneWardSpecial19",
+    "source": "https://poe2db.tw/us/Warding_Rune_of_Obsession",
+    "content": "rune"
+  },
+  {
+    "base_type": "Warding Rune of Protection",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneWardSpecial2",
+    "source": "https://poe2db.tw/us/Warding_Rune_of_Protection",
+    "content": "rune"
+  },
+  {
+    "base_type": "Warding Rune of Reinforcement",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneWardSpecial1",
+    "source": "https://poe2db.tw/us/Warding_Rune_of_Reinforcement",
+    "content": "rune"
+  },
+  {
+    "base_type": "Warding Rune of Salvaging",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneWardSpecial21",
+    "source": "https://poe2db.tw/us/Warding_Rune_of_Salvaging",
+    "content": "rune"
+  },
+  {
+    "base_type": "Warding Rune of Stability",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneWardSpecial10",
+    "source": "https://poe2db.tw/us/Warding_Rune_of_Stability",
+    "content": "rune"
+  },
+  {
+    "base_type": "Warding Rune of Symbiosis",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/RuneWardSpecial8",
+    "source": "https://poe2db.tw/us/Warding_Rune_of_Symbiosis",
+    "content": "rune"
+  },
+  {
+    "base_type": "Ahn's Citadel",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gems/SupportGemAhnsCitadel",
+    "source": "https://poe2db.tw/us/Ahns_Citadel",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Ailith's Chimes",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gems/SupportGemAilithLineage",
+    "source": "https://poe2db.tw/us/Ailiths_Chimes",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Amanamu's Tithe",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemAmanamusTithe",
+    "source": "https://poe2db.tw/us/Amanamus_Tithe",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Arakaali's Lust",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemArakaalisLust",
+    "source": "https://poe2db.tw/us/Arakaalis_Lust",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Arbiter's Ignition",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemArbitersIgnition",
+    "source": "https://poe2db.tw/us/Arbiters_Ignition",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Arbiter's Reach",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemArbitersReach",
+    "source": "https://poe2db.tw/us/Arbiters_Reach",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Arjun's Medal",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemAmmoConservationFour",
+    "source": "https://poe2db.tw/us/Arjuns_Medal",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Atalui's Bloodletting",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gems/SupportGemAtaluiBloodletting",
+    "source": "https://poe2db.tw/us/Ataluis_Bloodletting",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Atziri's Allure",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemAtzirisAllure",
+    "source": "https://poe2db.tw/us/Atziris_Allure",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Atziri's Communion",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemAtzirisCommunion",
+    "source": "https://poe2db.tw/us/Atziris_Communion",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Atziri's Impatience",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemAtzirisImpatience",
+    "source": "https://poe2db.tw/us/Atziris_Impatience",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Bhatair's Vengeance",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gems/SupportGemBhatairsVengeance",
+    "source": "https://poe2db.tw/us/Bhatairs_Vengeance",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Breachlord's Amalgam",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemBreachlordsAmalgam",
+    "source": "https://poe2db.tw/us/Breachlords_Amalgam",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Breachlord's Rift",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemBreachlordsRift",
+    "source": "https://poe2db.tw/us/Breachlords_Rift",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Brutus' Brain",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gems/SupportGemBrutusBrain",
+    "source": "https://poe2db.tw/us/Brutus_Brain",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Catha's Brilliance",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemCathasBrilliance",
+    "source": "https://poe2db.tw/us/Cathas_Brilliance",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Cirel's Cultivation",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemGreatwood",
+    "source": "https://poe2db.tw/us/Cirels_Cultivation",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Daresso's Passion",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemDaressosPassion",
+    "source": "https://poe2db.tw/us/Daressos_Passion",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Dialla's Desire",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemDiallasDesire",
+    "source": "https://poe2db.tw/us/Diallas_Desire",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Doedre's Undoing",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemDoedresUndoing",
+    "source": "https://poe2db.tw/us/Doedres_Undoing",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Dominus' Grasp",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemPietysMercy",
+    "source": "https://poe2db.tw/us/Dominus_Grasp",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Einhar's Beastrite",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gems/SupportGemEinharsBeastrite",
+    "source": "https://poe2db.tw/us/Einhars_Beastrite",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Eonyr's Thunder",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gems/SupportGemEonyrsThunder",
+    "source": "https://poe2db.tw/us/Eonyrs_Thunder",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Esh's Prowess",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemEshsProwess",
+    "source": "https://poe2db.tw/us/Eshs_Prowess",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Esh's Radiance",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemEshsRadiance",
+    "source": "https://poe2db.tw/us/Eshs_Radiance",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Garukhan's Resolve",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemGarukhansResolve",
+    "source": "https://poe2db.tw/us/Garukhans_Resolve",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Guatelitzi's Ablation",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemGuatelitzi",
+    "source": "https://poe2db.tw/us/Guatelitzis_Ablation",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Hayoxi's Fulmination",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemHayoxisFulmination",
+    "source": "https://poe2db.tw/us/Hayoxis_Fulmination",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Helbrym's Hide",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemHelbrymsHide",
+    "source": "https://poe2db.tw/us/Helbryms_Hide",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Her Declaration",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemHerDeclaration",
+    "source": "https://poe2db.tw/us/Her_Declaration",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Ixchel's Torment",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemFlukeTwo",
+    "source": "https://poe2db.tw/us/Ixchels_Torment",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Kalisa's Crescendo",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemKalisasCrescendo",
+    "source": "https://poe2db.tw/us/Kalisas_Crescendo",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Kaom's Madness",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemKaomsMadness",
+    "source": "https://poe2db.tw/us/Kaoms_Madness",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Khatal's Rejuvenation",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemKhatalsRejuvenation",
+    "source": "https://poe2db.tw/us/Khatals_Rejuvenation",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Kulemak's Dominion",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemKulemaksDominion",
+    "source": "https://poe2db.tw/us/Kulemaks_Dominion",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Kurgal's Leash",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemKurgalsLeash",
+    "source": "https://poe2db.tw/us/Kurgals_Leash",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Medved's Felling",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemMedvedsFelling",
+    "source": "https://poe2db.tw/us/Medveds_Felling",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Morgana's Tempest",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemMorganasTempest",
+    "source": "https://poe2db.tw/us/Morganas_Tempest",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Mórrigan's Insight",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemMorrigansInsight",
+    "source": "https://poe2db.tw/us/M%C3%B3rrigans_Insight",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Oisín's Oath",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gems/SupportGemOisinsOath",
+    "source": "https://poe2db.tw/us/Ois%C3%ADns_Oath",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Olroth's Conviction",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gems/SupportOlrothsConviction",
+    "source": "https://poe2db.tw/us/Olroths_Conviction",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Olroth's Hubris",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gems/SupportGemOlrothsHubris",
+    "source": "https://poe2db.tw/us/Olroths_Hubris",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Paquate's Pact",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gems/SupportGemCorruptingCryThree",
+    "source": "https://poe2db.tw/us/Paquates_Pact",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Prototype Seventeen",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemPrototypeSeventeen",
+    "source": "https://poe2db.tw/us/Prototype_Seventeen",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Rakiata's Flow",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemRakiatasFlow",
+    "source": "https://poe2db.tw/us/Rakiatas_Flow",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Ratha's Assault",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemCombatReload",
+    "source": "https://poe2db.tw/us/Rathas_Assault",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Rigwald's Ferocity",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemRigwaldsFerocity",
+    "source": "https://poe2db.tw/us/Rigwalds_Ferocity",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Romira's Requital",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemRomirasRequital",
+    "source": "https://poe2db.tw/us/Romiras_Requital",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Seraph's Heart",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemSeraphsHeart",
+    "source": "https://poe2db.tw/us/Seraphs_Heart",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Sione's Temper",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemWildshardsThree",
+    "source": "https://poe2db.tw/us/Siones_Temper",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Styrn's Ferocity",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemStyrnsFerocity",
+    "source": "https://poe2db.tw/us/Styrns_Ferocity",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Styrn's Mountain",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemStyrnsMountain",
+    "source": "https://poe2db.tw/us/Styrns_Mountain",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Tacati's Ire",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemTacatisIre",
+    "source": "https://poe2db.tw/us/Tacatis_Ire",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Tangmazu's Thurible",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemTangmazusThurible",
+    "source": "https://poe2db.tw/us/Tangmazus_Thurible",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Tasalio's Rhythm",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemTasaliosRhythm",
+    "source": "https://poe2db.tw/us/Tasalios_Rhythm",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Tawhoa's Tending",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemHardyTotemsThree",
+    "source": "https://poe2db.tw/us/Tawhoas_Tending",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Tecrod's Revenge",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemTecrodsRevenge",
+    "source": "https://poe2db.tw/us/Tecrods_Revenge",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Trickster's Shard",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemTrickstersShard",
+    "source": "https://poe2db.tw/us/Tricksters_Shard",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Tul's Avalanche",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemTulsAvalanche",
+    "source": "https://poe2db.tw/us/Tuls_Avalanche",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Tul's Stillness",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemTulsStillness",
+    "source": "https://poe2db.tw/us/Tuls_Stillness",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Uhtred's Augury",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemUhtredsAugury",
+    "source": "https://poe2db.tw/us/Uhtreds_Augury",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Uhtred's Constellation",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemUhtredsConstellation",
+    "source": "https://poe2db.tw/us/Uhtreds_Constellation",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Uhtred's Exodus",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemUhtredsExodus",
+    "source": "https://poe2db.tw/us/Uhtreds_Exodus",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Uhtred's Omen",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemUhtredsOmen",
+    "source": "https://poe2db.tw/us/Uhtreds_Omen",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Uhtred's Rite",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemUhtredsRite",
+    "source": "https://poe2db.tw/us/Uhtreds_Rite",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Uruk's Smelting",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gems/SupportGemUruksSmelting",
+    "source": "https://poe2db.tw/us/Uruks_Smelting",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Uul-Netol's Embrace",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemUulNetolsEmbrace",
+    "source": "https://poe2db.tw/us/Uul-Netols_Embrace",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Varashta's Blessing",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemVarashtasBlessing",
+    "source": "https://poe2db.tw/us/Varashtas_Blessing",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Vilenta's Propulsion",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gems/SupportGemVilentasPropulsion",
+    "source": "https://poe2db.tw/us/Vilentas_Propulsion",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Vorana's Siege",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemVoranasSiege",
+    "source": "https://poe2db.tw/us/Voranas_Siege",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Vruun's Aftermath",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemVruunsAftermath",
+    "source": "https://poe2db.tw/us/Vruuns_Aftermath",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Vruun's Inevitability",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemVruunsInevitability",
+    "source": "https://poe2db.tw/us/Vruuns_Inevitability",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Xibaqua's Rending",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemXibaquasRending",
+    "source": "https://poe2db.tw/us/Xibaquas_Rending",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Xoph's Pyre",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemXophsPyre",
+    "source": "https://poe2db.tw/us/Xophs_Pyre",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Zarokh's Refrain",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemZarokhsRefrain",
+    "source": "https://poe2db.tw/us/Zarokhs_Refrain",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Zarokh's Revolt",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gems/SupportGemZarokhsRevolt",
+    "source": "https://poe2db.tw/us/Zarokhs_Revolt",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Zerphi's Infamy",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemZerphisLegacy",
+    "source": "https://poe2db.tw/us/Zerphis_Infamy",
+    "content": "lineage_gem"
   }
 ]
