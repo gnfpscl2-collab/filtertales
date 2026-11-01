@@ -323,7 +323,7 @@ export function renderFilter({ source, prices, league, profile, release, dataLab
     const special = isSpecialItem({ base_type: price.BaseType, item_class: price.ItemClass, metadata_id: price.MetadataId });
     const specialCandidate = specialItems.some(item => item.base_type === price.BaseType || item.metadata_id === price.MetadataId);
     const currency = !specialCandidate && (!price.ItemClass || price.ItemClass === 'Stackable Currency') && source.includes(`"${price.BaseType}"`);
-    if (!/^[A-Za-z][A-Za-z0-9 ',-]{1,90}$/.test(price.BaseType)
+    if (!/^[\p{L}][\p{L}\p{M}0-9 ',()\-]{1,90}$/u.test(price.BaseType)
       || !Number.isFinite(price.DivinePerItem) || price.DivinePerItem < 0
       || !(pinnacle || special || currency)) throw new Error('Invalid/unrecognized currency price.');
   }

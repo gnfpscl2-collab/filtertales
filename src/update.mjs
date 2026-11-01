@@ -46,7 +46,7 @@ export async function loadProject(root = ROOT) {
     if (!abyss && ABYSS_ITEMS.some(known => known.base_type === item.base_type || known.metadata_id === item.metadata_id)) throw new Error('Invalid Abyss currency allowlist entry.');
     const content = LEAGUE_ITEMS.some(known => ['base_type', 'item_class', 'metadata_id'].every(key => known[key] === item[key]));
     if (!content && LEAGUE_ITEMS.some(known => known.base_type === item.base_type || known.metadata_id === item.metadata_id)) throw new Error('Invalid content currency allowlist entry.');
-    if (!/^[A-Za-z][A-Za-z0-9 ',\-]{1,90}$/.test(item.base_type)
+    if (!/^[\p{L}][\p{L}\p{M}0-9 ',()\-]{1,90}$/u.test(item.base_type)
       || (!pinnacle && !abyss && !content && (!/^Metadata\/Items\/Currency\/[A-Za-z0-9]+$/.test(item.metadata_id)
         || (item.item_class && item.item_class !== 'Stackable Currency')))
       || seen.has(item.metadata_id)) throw new Error('Invalid/duplicate currency allowlist entry.');
@@ -118,7 +118,7 @@ export async function update({ root = ROOT, output = path.join(root, 'dist'), le
     Guards: 'At least 2 hours, 10 item units, 1 Divine equivalent volume; max/min hourly price <=3.',
     Hours: hours.map(h => ({ StartUnix: h.Hour, Url: h.Url })), AcceptedPrices: prices,
     MappingCounts: { Total: mapping.length, Abyss: ABYSS_ITEMS.length,
-      Content: Object.fromEntries(['breach', 'temple', 'ritual', 'delirium'].map(content => [content, LEAGUE_ITEMS.filter(item => item.content === content).length])) },
+      Content: Object.fromEntries([...new Set(LEAGUE_ITEMS.map(item => item.content))].map(content => [content, LEAGUE_ITEMS.filter(item => item.content === content).length])) },
     Profiles: config.profiles, CustomSoundsEnabled: config.customSounds,
     WebsiteSources: config.profiles.map(profile => `website-sources/${profile.file}.txt`),
     SoundFiles: soundFiles, SoundMapping: config.sounds,
