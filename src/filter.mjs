@@ -66,8 +66,8 @@ const sActions = {
   SetBackgroundColor: '255 255 255 255', PlayEffect: 'Red', MinimapIcon: '0 Red Star',
 };
 const aActions = {
-  SetTextColor: '255 255 255 255', SetBorderColor: '255 165 0 255',
-  SetBackgroundColor: '255 165 0 255', MinimapIcon: '1 Orange Diamond',
+  SetTextColor: '255 165 0 255', SetBorderColor: '255 165 0 255',
+  SetBackgroundColor: '255 255 255 255', MinimapIcon: '1 Orange Diamond',
 };
 
 function nativeCurrencyBActions(source) {
