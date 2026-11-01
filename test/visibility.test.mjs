@@ -280,26 +280,92 @@ test('Abyss price rules reject spoofed classes, metadata identifiers and quest v
   ]) assert.throws(() => render(config.profiles[0], true, [price]), /Invalid\/unrecognized currency price/);
 });
 
-test('strict endgame hides ordinary magic and low rare gear before broad upstream Show rules', () => {
+test('strict endgame hides untiered and tier-one ordinary gear before broad upstream Show rules', () => {
   const filter = render();
   for (const item of [
     { Rarity: 'Magic' },
     { Rarity: 'Magic', ItemLevel: 90 },
-    { BaseType: 'Conjurer Mantle', Class: 'Body Armours', UnidentifiedItemTier: 2 },
-    { BaseType: 'Conjurer Mantle', Class: 'Body Armours', UnidentifiedItemTier: 3, ItemLevel: 81 },
-    { UnidentifiedItemTier: 4 },
-    { UnidentifiedItemTier: 5 },
-    { BaseType: 'Amethyst Ring', Class: 'Rings', UnidentifiedItemTier: 2 },
+    { BaseType: 'Conjurer Mantle', Class: 'Body Armours', UnidentifiedItemTier: 1 },
+    { BaseType: 'Conjurer Mantle', Class: 'Body Armours', UnidentifiedItemTier: 1, ItemLevel: 81 },
+    { UnidentifiedItemTier: 1 },
+    { Identified: true },
+    { BaseType: 'Amethyst Ring', Class: 'Rings', UnidentifiedItemTier: 1, ItemLevel: 80 },
   ]) {
     const result = firstTerminal(filter, item);
     assert.equal(result.action, 'Hide', JSON.stringify(item));
     assert.deepEqual(result.notificationLines, [], 'hidden gear inherits no sound, beam or minimap icon');
   }
   for (const item of [
+    { BaseType: 'Conjurer Mantle', Class: 'Body Armours', UnidentifiedItemTier: 2 },
+    { BaseType: 'Conjurer Mantle', Class: 'Body Armours', UnidentifiedItemTier: 3, ItemLevel: 81 },
     { BaseType: 'Conjurer Mantle', Class: 'Body Armours', UnidentifiedItemTier: 3 },
     { BaseType: 'Conjurer Mantle', Class: 'Body Armours', UnidentifiedItemTier: 4 },
+    { UnidentifiedItemTier: 4 },
+    { UnidentifiedItemTier: 5 },
+    { BaseType: 'Amethyst Ring', Class: 'Rings', UnidentifiedItemTier: 2, ItemLevel: 80 },
     { BaseType: 'Amethyst Ring', Class: 'Rings', UnidentifiedItemTier: 3 },
   ]) assert.equal(firstTerminal(filter, item).action, 'Show', JSON.stringify(item));
+});
+
+test('hell protects tier-two and higher unidentified equipment without an item-level or area cutoff', () => {
+  const classes = ['Amulets', 'Belts', 'Body Armours', 'Boots', 'Bows', 'Bucklers', 'Crossbows', 'Foci',
+    'Gloves', 'Helmets', 'One Hand Maces', 'Quarterstaves', 'Quivers', 'Rings', 'Sceptres', 'Shields',
+    'Spears', 'Staves', 'Talismans', 'Two Hand Maces', 'Wands'];
+  for (const customSounds of [false, true]) {
+    const filter = render(config.profiles[2], customSounds);
+    for (const Class of classes) {
+      for (const Rarity of ['Magic', 'Rare']) {
+        for (const UnidentifiedItemTier of [2, 5]) {
+          for (const ItemLevel of [20, 81, 90]) {
+            for (const AreaLevel of [1, 82]) {
+              const item = { BaseType: 'Unlisted Future Equipment', Class, Rarity, UnidentifiedItemTier,
+                ItemLevel, AreaLevel, Identified: false };
+              assert.equal(firstTerminal(filter, item).action, 'Show', JSON.stringify(item));
+            }
+          }
+        }
+      }
+    }
+    const nativeSelection = render({ ...config.profiles[2], strictEndgame: false }, customSounds);
+    for (const item of [
+      { BaseType: 'Conjurer Mantle', Class: 'Body Armours', UnidentifiedItemTier: 2 },
+      { BaseType: 'Conjurer Mantle', Class: 'Body Armours', UnidentifiedItemTier: 3, ItemLevel: 81 },
+      { BaseType: 'Conjurer Mantle', Class: 'Body Armours', UnidentifiedItemTier: 4 },
+      { BaseType: 'Amethyst Ring', Class: 'Rings', UnidentifiedItemTier: 2, ItemLevel: 80 },
+    ]) {
+      assert.deepEqual(firstTerminal(filter, item).notificationLines,
+        firstTerminal(nativeSelection, item).notificationLines, 'existing tier alerts keep their priority');
+    }
+  }
+});
+
+test('hell shows every jewellery rarity above item level eighty while low-level C uniques stay hidden', () => {
+  for (const customSounds of [false, true]) {
+    const filter = render(config.profiles[2], customSounds);
+    for (const [BaseType, Class] of [['Amethyst Ring', 'Rings'], ['Amber Amulet', 'Amulets'], ['Rawhide Belt', 'Belts']]) {
+      for (const Rarity of rarities) {
+        for (const Identified of [false, true]) {
+          for (const AreaLevel of [1, 82]) {
+            const item = { BaseType, Class, Rarity, Identified, AreaLevel, UnidentifiedItemTier: 0 };
+            for (const ItemLevel of [81, 82, 90]) {
+              const result = firstTerminal(filter, { ...item, ItemLevel });
+              assert.equal(result.action, 'Show', JSON.stringify({ ...item, ItemLevel }));
+              if (Rarity === 'Unique' && customSounds) assert.match(result.block, /sounds\/0103\.wav/);
+            }
+            if (Rarity === 'Unique') {
+              assert.equal(firstTerminal(filter, { ...item, ItemLevel: 80 }).action, 'Hide', JSON.stringify(item));
+            }
+          }
+        }
+      }
+    }
+    for (const item of [
+      { BaseType: 'Crude Bow', Class: 'Bows', Rarity: 'Magic', ItemLevel: 81 },
+      { BaseType: 'Iron Cuirass', Class: 'Body Armours', Rarity: 'Rare', ItemLevel: 81 },
+      { BaseType: 'Amethyst Ring', Class: 'Rings', Rarity: 'Magic', ItemLevel: 80 },
+      { BaseType: 'Amber Amulet', Class: 'Amulets', Rarity: 'Rare', ItemLevel: 80 },
+    ]) assert.equal(firstTerminal(filter, item).action, 'Hide', JSON.stringify(item));
+  }
 });
 
 test('special base, quality, sockets, known visible mods and twice-corrupted gear remain protected', () => {
@@ -313,10 +379,10 @@ test('special base, quality, sockets, known visible mods and twice-corrupted gea
   ]) assert.equal(firstTerminal(filter, item).action, 'Show', JSON.stringify(item));
 });
 
-test('C unique rings are hidden before recipe and generic corrupted protections while high and ambiguous bases remain', () => {
+test('C unique rings at item level eighty are hidden while high-level, special and ambiguous bases remain', () => {
   const filter = render();
   for (const Corrupted of [false, true]) {
-    const result = firstTerminal(filter, { BaseType: 'Amethyst Ring', Class: 'Rings', Rarity: 'Unique', Corrupted });
+    const result = firstTerminal(filter, { BaseType: 'Amethyst Ring', Class: 'Rings', Rarity: 'Unique', Corrupted, ItemLevel: 80 });
     assert.equal(result.action, 'Hide', result.header);
     assert.deepEqual(result.notificationLines, [], 'hidden C uniques have no sound, beam or minimap icon');
   }

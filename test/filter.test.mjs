@@ -88,8 +88,12 @@ for (const profile of config.profiles) {
     assert.ok(range, 'range rules exist');
     assert.match(range, /Rarity Normal Magic Rare/);
     const classes = range.match(/Class == ([^\r\n]+)/)?.[1];
-    assert.equal([...classes.matchAll(/"([^"]+)"/g)].length, 21);
-    for (const name of ['Body Armours', 'Wands', 'Rings', 'Amulets']) assert.ok(classes.includes(`"${name}"`));
+    assert.equal([...classes.matchAll(/"([^"]+)"/g)].length, profile.strictEndgame ? 18 : 21);
+    for (const name of ['Body Armours', 'Wands']) assert.ok(classes.includes(`"${name}"`));
+    if (profile.strictEndgame) {
+      assert.doesNotMatch(classes, /"(?:Rings|Amulets|Belts)"/);
+      assert.match(range, /Class == "Amulets" "Belts" "Rings"\r?\n    ItemLevel < 81/);
+    } else for (const name of ['Rings', 'Amulets', 'Belts']) assert.ok(classes.includes(`"${name}"`));
     assert.doesNotMatch(range, /"(?:Tablet|Waystones|Stackable Currency|Jewels|Quest Items)"|Unique/);
     assert.ok(suffix.indexOf('# BEGIN PERSONAL ITEMLEVEL RANGE') > suffix.lastIndexOf('# [[0800]]'));
     assert.ok(suffix.indexOf('# BEGIN PERSONAL ITEMLEVEL RANGE') < suffix.lastIndexOf('# [[0900]]'));
