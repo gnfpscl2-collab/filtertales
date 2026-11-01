@@ -43,12 +43,17 @@ test('project validates pinned sources and all three profiles', async () => {
     for (const key of ['base_type', 'metadata_id', 'item_class']) assert.equal(mapped?.[key], item[key]);
     assert.notEqual(item.item_class, 'Quest Items');
   }
-  const contentClasses = ['Stackable Currency', 'Tablet', 'Map Fragments', 'Breachstones', 'Augment', 'Incubators', 'Pinnacle Keys', 'Omen'];
+  const contentClasses = ['Stackable Currency', 'Tablet', 'Map Fragments', 'Breachstones', 'Augment', 'Incubators', 'Pinnacle Keys', 'Omen', 'Expedition Logbook', 'Support Gems'];
   assert.deepEqual([...new Set(LEAGUE_ITEMS.map(item => item.item_class))].sort(), [...contentClasses].sort());
+  assert.deepEqual([...new Set(LEAGUE_ITEMS.map(item => item.content))].sort(),
+    ['breach', 'temple', 'ritual', 'delirium', 'expedition', 'soul_core', 'idol', 'rune', 'lineage_gem'].sort());
   for (const item of LEAGUE_ITEMS) {
     const mapped = project.mapping.find(mapped => mapped.metadata_id === item.metadata_id);
     for (const key of ['base_type', 'metadata_id', 'item_class']) assert.equal(mapped?.[key], item[key]);
     assert.ok(contentClasses.includes(item.item_class), `${item.base_type}: only non-equipment content classes`);
+  }
+  for (const name of ["Mórrigan's Insight", "Oisín's Oath", 'Thaumaturgic Flux (Level 20)']) {
+    assert.ok(project.mapping.some(item => item.base_type === name), `${name}: canonical Unicode and level suffix accepted`);
   }
   const fragment = project.mapping.find(item => item.base_type === 'Faded Crisis Fragment');
   for (const [key, value] of Object.entries(FADED_CRISIS_FRAGMENT)) assert.equal(fragment[key], value);
@@ -172,6 +177,17 @@ test('content mappings reject duplicate entries, quest variants and equipment sp
   }
 });
 
+test('Unicode base type support still rejects filter syntax injection', async t => {
+  const root = await copyProject(t, false, false);
+  const mappingFile = path.join(root, 'currency-map.json');
+  const mapping = JSON.parse(await fs.readFile(mappingFile, 'utf8'));
+  for (const base_type of ['Orb"\nHide', 'Orb\\Hide', 'Orb\tHide', 'Orb\rHide', 'Orb;Hide']) {
+    const altered = [{ ...mapping[0], base_type }, ...mapping.slice(1)];
+    await fs.writeFile(mappingFile, JSON.stringify(altered));
+    await assert.rejects(loadProject(root), /Invalid\/duplicate currency allowlist entry/);
+  }
+});
+
 test('native offline build works without audio assets and preserves unrelated files', async t => {
   const root = await copyProject(t, false, false);
   const output = await scratch(t);
@@ -181,6 +197,9 @@ test('native offline build works without audio assets and preserves unrelated fi
   const report = await update({ root, output, offline: true, fetchImpl: () => { throw new Error('Network must not be used'); } });
   assert.equal(report.Offline, true);
   assert.equal(report.AcceptedPrices.length, 0);
+  assert.equal(report.MappingCounts.Total, 55 + LEAGUE_ITEMS.length);
+  assert.deepEqual(report.MappingCounts.Content, Object.fromEntries(
+    [...new Set(LEAGUE_ITEMS.map(item => item.content))].map(content => [content, LEAGUE_ITEMS.filter(item => item.content === content).length])));
   assert.equal(report.CustomSoundsEnabled, false);
   assert.deepEqual(report.SoundFiles, []);
   assert.deepEqual(report.WebsiteSources, report.Profiles.map(profile => `website-sources/${profile.file}.txt`));

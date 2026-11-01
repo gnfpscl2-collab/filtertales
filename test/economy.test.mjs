@@ -58,13 +58,14 @@ test('a priced pinnacle fragment preserves its exact filter class', () => {
 
 test('all content classes preserve identity and select a higher validated Chaos-converted unit price', () => {
   const names = ['Adaptive Catalyst', 'Breach Tablet', 'Breachlord Sac', 'Breachstone',
-    "Citaqualotl's Thesis", 'Vaal Siphoner', 'Call of the Shadows', 'Omen of Chance'];
+    "Citaqualotl's Thesis", 'Vaal Siphoner', 'Call of the Shadows', 'Omen of Chance',
+    'Expedition Logbook', "Mórrigan's Insight", "Oisín's Oath", 'Thaumaturgic Flux (Level 20)'];
   const contentMapping = names.map(name => {
     const item = LEAGUE_ITEMS.find(item => item.base_type === name);
     assert.ok(item, name);
     return item;
   });
-  assert.equal(new Set(contentMapping.map(item => item.item_class)).size, 8);
+  assert.equal(new Set(contentMapping.map(item => item.item_class)).size, 10);
   const rows = [market(CHAOS, DIVINE, 2000, 10), ...contentMapping.flatMap(item => [
     market(item.metadata_id, DIVINE, 10, 9), market(item.metadata_id, CHAOS, 10, 2400),
   ])];
