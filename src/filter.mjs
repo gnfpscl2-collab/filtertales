@@ -219,7 +219,8 @@ export function materialHideRules(source, preset) {
   };
   const currency = ['c', 'd', 'e', 'supplymagic', 'supplieslow'].flatMap(tier => names('currency', tier));
   const hiddenCurrency = preset === 'greater' ? currency.filter(name => !name.startsWith('Greater '))
-    : [...currency, 'Perfect Orb of Augmentation', 'Perfect Orb of Transmutation'];
+    : [...currency, 'Perfect Orb of Augmentation', 'Perfect Orb of Transmutation']
+      .filter(name => !['Exalted Orb', 'Orb of Alchemy'].includes(name));
   for (const name of hiddenCurrency) if (!source.includes(`"${name}"`)) throw new Error(`Material tier currency absent: ${name}`);
   const materials = [
     ...['c', 'd', 'e'].flatMap(tier => names('currency->essence', tier)),
