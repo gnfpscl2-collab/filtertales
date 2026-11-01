@@ -22,7 +22,7 @@ const prices = [
 const sourceMarker = '# BEGIN NEVERSINK (personal visual policy and optional sounds; conditions preserved)\n';
 const withoutAbyssClones = text => text.replace(/^# BEGIN PERSONAL ABYSS COLOURS.*?^# END PERSONAL ABYSS COLOURS\r?\n/gms, '');
 const blocks = text => [...withoutAbyssClones(text).matchAll(/^Show[^\r\n]*\r?\n(?:[ \t]+\S[^\r\n]*(?:\r?\n|$))+/gm)].map(match => match[0]);
-const logic = text => withoutAbyssClones(text).split(/\r?\n/).filter(line => line.trim()
+const logic = text => withoutAbyssClones(text).replace(/^# BEGIN PERSONAL GLOVE LEVEL75.*?^# END PERSONAL GLOVE LEVEL75\r?\n/gms, '').split(/\r?\n/).filter(line => line.trim()
   && !/^[ \t]*(?:SetFontSize|SetTextColor|SetBorderColor|SetBackgroundColor|PlayAlertSound|CustomAlertSoundOptional|PlayEffect|MinimapIcon)\b/.test(line)).join('\n');
 const render = (profile, overrides = {}) => renderFilter({
   source: sources.get(profile.sourceMode), prices, league: 'Test League', profile,

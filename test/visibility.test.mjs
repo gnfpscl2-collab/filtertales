@@ -368,6 +368,49 @@ test('hell shows every jewellery rarity above item level eighty while low-level 
   }
 });
 
+test('hard and hell give ordinary item-level-75 gloves A presentation without changing adjacent levels or special drops', () => {
+  const gloveSection = /^# BEGIN PERSONAL GLOVE LEVEL75.*?^# END PERSONAL GLOVE LEVEL75\r?\n/gms;
+  for (const customSounds of [false, true]) {
+    const normal = render(config.profiles[0], customSounds);
+    assert.doesNotMatch(normal, /BEGIN PERSONAL GLOVE LEVEL75/);
+    for (const profile of config.profiles.slice(1)) {
+      const filter = render(profile, customSounds);
+      assert.equal([...filter.matchAll(gloveSection)].length, 1);
+      const baseline = filter.replace(gloveSection, '');
+      for (const Rarity of ['Normal', 'Magic', 'Rare']) {
+        for (const UnidentifiedItemTier of [0, 1, 2]) {
+          const item = { BaseType: 'Adherent Cuffs', Class: 'Gloves', Rarity, UnidentifiedItemTier };
+          const result = firstTerminal(filter, { ...item, ItemLevel: 75 });
+          assert.equal(result.action, 'Show', `${profile.file}: ${Rarity}, tier ${UnidentifiedItemTier}`);
+          assert.match(result.block, /^\s*SetTextColor 255 255 255 255\r?$/m);
+          assert.match(result.block, /^\s*SetBorderColor 255 165 0 255\r?$/m);
+          assert.match(result.block, /^\s*SetBackgroundColor 255 165 0 255\r?$/m);
+          assert.match(result.block, /^\s*PlayAlertSound 1 250\r?$/m);
+          if (customSounds) assert.match(result.block, /CustomAlertSoundOptional "sounds\/0103\.wav" 250/);
+          else assert.doesNotMatch(result.block, /CustomAlertSound/);
+          for (const ItemLevel of [74, 76]) {
+            assert.deepEqual(firstTerminal(filter, { ...item, ItemLevel }),
+              firstTerminal(baseline, { ...item, ItemLevel }), `${profile.file}: level ${ItemLevel} stays unchanged`);
+          }
+        }
+      }
+      for (const Rarity of ['Magic', 'Rare']) {
+        for (const UnidentifiedItemTier of [3, 4, 5]) {
+          const item = { BaseType: 'Adherent Cuffs', Class: 'Gloves', Rarity, UnidentifiedItemTier, ItemLevel: 75 };
+          const result = firstTerminal(filter, item);
+          assert.deepEqual(result, firstTerminal(baseline, item), 'higher unidentified tiers keep their original rule');
+          if (customSounds) assert.match(result.block, /sounds\/0397\.wav/);
+        }
+      }
+      for (const item of [
+        { BaseType: 'Linen Wraps', Class: 'Gloves', Rarity: 'Unique', ItemLevel: 75 },
+        { BaseType: 'Iron Cuirass', Class: 'Body Armours', Rarity: 'Rare', ItemLevel: 75 },
+        { BaseType: 'Crude Bow', Class: 'Bows', Rarity: 'Magic', ItemLevel: 75 },
+      ]) assert.deepEqual(firstTerminal(filter, item), firstTerminal(baseline, item), JSON.stringify(item));
+    }
+  }
+});
+
 test('special base, quality, sockets, known visible mods and twice-corrupted gear remain protected', () => {
   const filter = render();
   for (const item of [
