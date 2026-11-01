@@ -13,6 +13,7 @@ const equipmentClasses = [
   'Spears', 'Staves', 'Talismans', 'Two Hand Maces', 'Wands',
 ];
 const jewelleryClasses = ['Amulets', 'Belts', 'Rings'];
+const accessoryClasses = [...jewelleryClasses, 'Jewels'];
 
 const showBlocks = /^Show[^\r\n]*\r?\n(?:[ \t]+\S[^\r\n]*(?:\r?\n|$))+/gm;
 const quoteNames = names => [...new Set(names)].sort().map(name => `"${name}"`).join(' ');
@@ -160,7 +161,7 @@ export function applyAbyssVisuals(source) {
 }
 
 function addLevel75Gloves(source) {
-  const anchors = [...source.matchAll(/^Show #[^\r\n]*\$type->ut->rare \$tier->gear4a\b/gm)];
+  const anchors = [...source.matchAll(/^Show #[^\r\n]*\$type->endgame->normalcraft->economy \$tier->group1t1\b/gm)];
   if (anchors.length !== 1) throw new Error('Level-75 glove source anchor changed.');
   const newline = source.includes('\r\n') ? '\r\n' : '\n';
   const rule = [
@@ -197,9 +198,9 @@ export function addItemLevelRange(source, minimum, maximum, protectJewellery = f
     );
   }
   if (protectJewellery && minimum > 1) lines.push(
-    'Hide # Ordinary jewellery below the selected range; level 81+ is protected',
-    '    Rarity Normal Magic Rare', `    Class == ${quoteNames(jewelleryClasses)}`,
-    `    ItemLevel < ${Math.min(minimum, 81)}`, '',
+    'Hide # Ordinary jewellery and jewels below the selected range; level 80+ is protected',
+    '    Rarity Normal Magic Rare', `    Class == ${quoteNames(accessoryClasses)}`,
+    `    ItemLevel < ${Math.min(minimum, 80)}`, '',
   );
   lines.push('# END PERSONAL ITEMLEVEL RANGE', '', '');
   const insertion = markers.at(-1).index;
@@ -271,37 +272,42 @@ export function applyEndgameVisibility(source) {
   for (const block of lowMaterials) names(block);
   const hidden = new Set([...lowAugments, ...lowMaterials, lowUnique]);
   const uniqueBypasses = new Set(['loreweaverecipe', 'corrupteduniques'].map(tier => find('uniques', tier)));
-  const knownBases = blocks.filter(block => /^[ \t]*Rarity\b/m.test(block) && /^[ \t]*BaseType[ \t]+==[ \t]+/m.test(block))
-    .flatMap(names);
-  if (!knownBases.length || !/^[ \t]*Rarity Normal[ \t]*\r?$/m.test(craft)) throw new Error('Strict crafting source changed.');
+  if (!/^[ \t]*Rarity Normal[ \t]*\r?$/m.test(craft)) throw new Error('Strict crafting source changed.');
+  const gearClasses = equipmentClasses.filter(name => !jewelleryClasses.includes(name));
   const gate = [
     '# BEGIN PERSONAL STRICT ENDGAME GEAR',
-    '# Known ordinary gear only; earlier special-item safeguards still take priority.',
-    setActions(craft.replace(/^[ \t]*Rarity Normal[ \t]*\r?$/m, '    Rarity Magic'),
-      { Class: `== ${quoteNames(equipmentClasses)}` }).trimEnd(),
-    'Hide # Personal strict endgame: remaining known ordinary magic and rare equipment',
-    '    Rarity Magic Rare',
-    '    UnidentifiedItemTier < 2',
-    `    Class == ${quoteNames(equipmentClasses.filter(name => !jewelleryClasses.includes(name)))}`,
-    `    BaseType == ${quoteNames(knownBases)}`,
-    'Hide # Personal strict endgame: remaining known ordinary jewellery up to level 80',
-    '    Rarity Magic Rare',
-    '    UnidentifiedItemTier < 2',
-    `    Class == ${quoteNames(jewelleryClasses)}`,
-    '    ItemLevel <= 80',
-    `    BaseType == ${quoteNames(knownBases)}`,
+    '# Earlier special-item safeguards and the explicit level-75 glove exception take priority.',
+    'Hide # Personal hell: ordinary equipment below item level 82',
+    '    Rarity Normal Magic Rare',
+    `    Class == ${quoteNames(gearClasses.filter(name => name !== 'Gloves'))}`,
+    '    ItemLevel < 82', '',
+    'Hide # Personal hell: gloves below item level 82 except the level-75 exception',
+    '    Rarity Normal Magic Rare', '    Class == "Gloves"',
+    '    ItemLevel < 82', '    ItemLevel != 75', '',
+    ...['UnidentifiedItemTier < 2', 'Identified True'].flatMap(condition => [
+      'Hide # Personal hell: ordinary equipment must be unidentified tier two or higher',
+      '    Rarity Normal Magic Rare', `    Class == ${quoteNames(gearClasses)}`,
+      `    ${condition}`, '',
+    ]),
+    'Hide # Personal hell: ordinary jewellery and jewels below item level 80',
+    '    Rarity Normal Magic Rare', `    Class == ${quoteNames(accessoryClasses)}`,
+    '    ItemLevel < 80', '',
     '# END PERSONAL STRICT ENDGAME GEAR', '', '',
   ].join(newline);
-  const firstRare = find('ut->rare', 'gear4a');
   const lastTiered = find('ut->magic', 'anyremaining4j');
   const tieredFallbacks = ['rare', 'magic'].map(rarity => setActions(
     find(`ut->${rarity}`, 'gear2c').replace(/^[ \t]*(?:BaseType|AreaLevel)\b[^\r\n]*\r?\n/gm, ''),
-    { Class: `== ${quoteNames(equipmentClasses)}`, Identified: 'False', UnidentifiedItemTier: '>= 2' },
+    { Class: `== ${quoteNames(gearClasses)}`, Identified: 'False', UnidentifiedItemTier: '>= 2' },
   )).join(newline);
   const lastJewellery = find('endgame->jewellery', 'jt4');
   const jewelleryFallbacks = [find('leveling->rare->universal', 'jewellery'),
     find('leveling->normalmagicremarkable', 'jewellery')]
-    .map(block => setActions(block.replace(/^[ \t]*AreaLevel\b[^\r\n]*\r?\n/gm, ''), { ItemLevel: '> 80' })).join(newline);
+    .map(block => setActions(block.replace(/^[ \t]*AreaLevel\b[^\r\n]*\r?\n/gm, ''), { ItemLevel: '>= 80' })).join(newline);
+  const lastJewel = find('jewels->generic', 'anymagic');
+  const jewelFallbacks = ['anyrare', 'anymagic'].map(tier => setActions(
+    find('jewels->generic', tier).replace(/^[ \t]*BaseType\b[^\r\n]*\r?\n/gm, ''),
+    { ItemLevel: '>= 80' },
+  )).join(newline);
   return source.replace(showBlocks, block => {
     let result = hidden.has(block) ? hide(block) : block;
     if (uniqueBypasses.has(block)) {
@@ -311,7 +317,8 @@ export function applyEndgameVisibility(source) {
     if (block === lowUnique) result = setActions(block, { Class: `== ${quoteNames(jewelleryClasses)}`, ItemLevel: '> 80' }) + newline + result;
     if (block === lastTiered) result += newline + tieredFallbacks;
     if (block === lastJewellery) result += newline + jewelleryFallbacks;
-    return block === firstRare ? gate + result : result;
+    if (block === lastJewel) result += newline + jewelFallbacks;
+    return block === craft ? gate + result : result;
   });
 }
 
