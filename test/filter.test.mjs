@@ -34,7 +34,7 @@ const visibilitySource = profile => profile.strictEndgame
   ? applyEndgameVisibility(sources.get(profile.sourceMode)) : sources.get(profile.sourceMode);
 
 test('pinned upstream bytes and top currency floors remain intact', () => {
-  assert.equal(config.profiles.length, 3);
+  assert.equal(config.profiles.length, 4);
   for (const entry of config.upstream.files) {
     const bytes = readFileSync(new URL(`upstream/${entry.file}`, root));
     assert.equal(createHash('sha256').update(bytes).digest('hex').toUpperCase(), entry.sha256);
@@ -49,9 +49,9 @@ test('pinned upstream bytes and top currency floors remain intact', () => {
 const expectedBoundaries = new Map([
   ['tw-normal.filter', [false, true, true, true, true, true, true]],
   ['tw-hard.filter', [true, true, true, false, false, false, false]],
-  ['tw-hell.filter', [true, true, true, true, true, false, false]],
+  ['tw_hell_CT.filter', [true, true, true, true, true, false, false]],
 ]);
-for (const profile of config.profiles) {
+for (const profile of config.profiles.filter(profile => !profile.selectiveLoot)) {
   test(`${profile.file}: default audio uses built-in sounds without custom file references`, () => {
     const text = renderFilter({
       source: sources.get(profile.sourceMode), prices, league: 'Test League', profile,
@@ -225,6 +225,7 @@ test('Faded Crisis Fragment is a separate S+ Pinnacle Key at one Divine in every
     assert.doesNotMatch(range, /Pinnacle Keys|Quest Items/);
     const [belowPrefix, belowSuffix] = render(profile, { prices: [{ ...price, DivinePerItem: 0.999 }] }).split(sourceMarker);
     assert.doesNotMatch(belowPrefix, /Faded Crisis Fragment/, 'below one Divine does not receive a currency promotion');
+    if (profile.selectiveLoot) continue;
     const fallback = blocks(belowSuffix).find(block => /^\s*Class == "Pinnacle Keys"$/m.test(block));
     const original = blocks(sources.get(profile.sourceMode)).find(block => /^\s*Class == "Pinnacle Keys"$/m.test(block));
     assert.ok(fallback, 'existing Pinnacle Keys fallback remains');
@@ -292,7 +293,7 @@ test('Unique Tablet sound subsets preserve original conditions and exceptional a
 });
 
 test('retained unique rarity tiers keep NeverSink matching and presentation with the ordinary unique sound', () => {
-  for (const profile of config.profiles) {
+  for (const profile of config.profiles.filter(profile => !profile.selectiveLoot)) {
     const source = visibilitySource(profile);
     const [, suffix] = render(profile).split(sourceMarker);
     const unmodifiedFallbacks = suffix.replace(/^# BEGIN PERSONAL TABLET SOUND.*?^# END PERSONAL TABLET SOUND\r?\n/gms, '');

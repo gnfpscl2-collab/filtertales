@@ -1,10 +1,11 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { applyEndgameVisibility, materialHideRules, renderFilter, FADED_CRISIS_FRAGMENT, ABYSS_ITEMS, LEAGUE_ITEMS } from '../src/filter.mjs';
+import { applyEndgameVisibility, applySelectiveLoot, materialHideRules, renderFilter, FADED_CRISIS_FRAGMENT, ABYSS_ITEMS, LEAGUE_ITEMS } from '../src/filter.mjs';
 
 const root = new URL('../', import.meta.url);
 const config = JSON.parse(readFileSync(new URL('config.json', root), 'utf8'));
+const regularProfiles = config.profiles.filter(profile => !profile.selectiveLoot);
 const source = readFileSync(new URL('upstream/SemiStrict.filter', root), 'utf8');
 const levelingSource = readFileSync(new URL('upstream/Regular.filter', root), 'utf8');
 const actions = /^(?:Set\w+|Play\w+|MinimapIcon|CustomAlertSound\w*|Disable\w+|Enable\w+|Continue)\b/;
@@ -51,7 +52,7 @@ function matches(line, item) {
 function firstTerminal(filter, changes) {
   const item = fixture(changes);
   const inheritedNotifications = new Map();
-  for (const match of filter.matchAll(/^(Show|Hide)[^\r\n]*\r?\n(?:[ \t]+\S[^\r\n]*(?:\r?\n|$))+/gm)) {
+  for (const match of filter.matchAll(/^(Show|Hide)[^\r\n]*(?:\r?\n[ \t]+\S[^\r\n]*)*/gm)) {
     const block = match[0];
     const conditions = block.split(/\r?\n/).slice(1).map(line => line.trim())
       .filter(line => line && !line.startsWith('#') && !actions.test(line));
@@ -165,7 +166,7 @@ test('first matching rules apply shared custom sounds to tablets, waystones and 
       cases.push([{ BaseType, Class, Rarity: 'Unique', [state]: true }, '0397.wav']);
     }
   }
-  for (const profile of config.profiles) {
+  for (const profile of regularProfiles) {
     const filter = render(profile, true, []);
     for (const [item, sound] of cases) {
       const result = firstTerminal(filter, item);
@@ -177,9 +178,9 @@ test('first matching rules apply shared custom sounds to tablets, waystones and 
   }
 });
 
-test('every profile gives visible Abyss items green text, a green border and a yellow background', () => {
+test('non-selective profiles give visible Abyss items green text, a green border and a yellow background', () => {
   const lowBones = new Set(['Gnawed Jawbone', 'Gnawed Rib', 'Gnawed Collarbone', 'Preserved Jawbone']);
-  for (const profile of config.profiles) {
+  for (const profile of regularProfiles) {
     for (const customSounds of [false, true]) {
       const filter = render(profile, customSounds);
       for (const item of ABYSS_ITEMS) {
@@ -206,7 +207,7 @@ test('every profile gives visible Abyss items green text, a green border and a y
 });
 
 test('only verified one-Divine Abyss value wins over its green default and preserves the S+ sound', () => {
-  for (const profile of config.profiles) {
+  for (const profile of regularProfiles) {
     for (const customSounds of [false, true]) {
       for (const name of ['Omen of Light', "Amanamu's Gaze", "Kulemak's Invitation", 'Ancient Jawbone']) {
         for (const value of [0.01, 0.062, 0.1, 0.99, 1, 2]) {
@@ -234,7 +235,7 @@ test('only verified one-Divine Abyss value wins over its green default and prese
 
 test('Abyss names do not recolour unrelated equipment, unrelated omens or same-name quest keys', () => {
   const price = abyssPrice("Kulemak's Invitation", 2);
-  for (const profile of config.profiles) {
+  for (const profile of regularProfiles) {
     const filter = render(profile, true, [price]);
     for (const item of [
       { BaseType: 'Abyssal Signet', Class: 'Rings', Rarity: 'Magic' },
@@ -262,7 +263,7 @@ test('only hell hides ordinary Djinn Barya and Inscribed Ultimatum at every rari
       }
     }
     for (const BaseType of ['Test of Cunning Barya', 'Test of Strength Barya', 'Test of Time Barya', 'Test of Will Barya']) {
-      assert.equal(firstTerminal(filter, { BaseType, Class: 'Trial Coins', Rarity: 'Normal' }).action, 'Show', BaseType);
+      assert.equal(firstTerminal(filter, { BaseType, Class: 'Trial Coins', Rarity: 'Normal' }).action, profile.selectiveLoot ? 'Hide' : 'Show', BaseType);
     }
   }
 });
@@ -391,7 +392,7 @@ test('hell ordinary rings, amulets and jewels start at item level eighty without
   }
 });
 
-test('hell ordinary belts require item level eighty-two and an unidentified tier of at least four', () => {
+test('hell ordinary belts require item level eighty-two and an unidentified tier of at least four except chancing bases', () => {
   for (const customSounds of [false, true]) {
     const filter = render(config.profiles[2], customSounds);
     const nativeSelection = render({ ...config.profiles[2], strictEndgame: false }, customSounds);
@@ -414,7 +415,7 @@ test('hell ordinary belts require item level eighty-two and an unidentified tier
       }
       for (const ItemLevel of [81, 82, 90]) {
         assert.equal(firstTerminal(filter, { BaseType, Class: 'Belts', Rarity: 'Normal', ItemLevel,
-          UnidentifiedItemTier: 0, Identified: false }).action, 'Hide', `${BaseType}: normal chancing bases obey the belt cutoff`);
+          UnidentifiedItemTier: 0, Identified: false }).action, ['Heavy Belt', 'Utility Belt'].includes(BaseType) ? 'Show' : 'Hide', `${BaseType}: only valid chancing bases bypass the belt cutoff`);
       }
     }
     for (const BaseType of ['Rawhide Belt', 'Heavy Belt', 'Utility Belt']) {
@@ -433,12 +434,12 @@ test('hell ordinary belts require item level eighty-two and an unidentified tier
   }
 });
 
-test('hard and hell give ordinary item-level-75 gloves A presentation without changing adjacent levels or special drops', () => {
+test('hard and CT give ordinary item-level-75 gloves A presentation without changing adjacent levels or special drops', () => {
   const gloveSection = /^# BEGIN PERSONAL GLOVE LEVEL75.*?^# END PERSONAL GLOVE LEVEL75\r?\n/gms;
   for (const customSounds of [false, true]) {
     const normal = render(config.profiles[0], customSounds);
     assert.doesNotMatch(normal, /BEGIN PERSONAL GLOVE LEVEL75/);
-    for (const profile of config.profiles.slice(1)) {
+    for (const profile of regularProfiles.slice(1)) {
       const filter = render(profile, customSounds);
       assert.equal([...filter.matchAll(gloveSection)].length, 1);
       const baseline = filter.replace(gloveSection, '');
@@ -616,7 +617,8 @@ test('material cutoff precedes lower economy promotions but verified one-Divine 
         { BaseType: 'Expedition Tablet', Class: 'Tablet', Rarity: 'Rare' },
         { BaseType: 'Faded Crisis Fragment', Class: 'Pinnacle Keys', Rarity: 'Normal' },
         { BaseType: 'Regal Shard', Class: 'Quest Items', Rarity: 'Normal', AlwaysShow: true },
-      ]) assert.equal(firstTerminal(lower, item).action, 'Show', JSON.stringify(item));
+      ]) assert.equal(firstTerminal(lower, item).action,
+        profile.selectiveLoot && ['Pinnacle Keys', 'Quest Items'].includes(item.Class) ? 'Hide' : 'Show', JSON.stringify(item));
     }
   }
   for (const preset of ['greater', 'greater-exalted']) {
@@ -625,7 +627,7 @@ test('material cutoff precedes lower economy promotions but verified one-Divine 
   assert.throws(() => materialHideRules(source, 'everything'), /material|preset|tier/i);
 });
 
-test('only hell hides uncut skill and spirit gems below gem level 19 without changing support gems', () => {
+test('CT applies its gem level cutoff while PT excludes ordinary skill, spirit and support gems', () => {
   for (const customSounds of [false, true]) {
     for (const profile of config.profiles) {
       const filter = render(profile, customSounds);
@@ -634,7 +636,7 @@ test('only hell hides uncut skill and spirit gems below gem level 19 without cha
           for (const GemLevel of [1, 18, 19, 20, 21]) {
             for (const gemName of [BaseType, `${BaseType} (Level ${GemLevel})`]) {
               const result = firstTerminal(filter, { BaseType: gemName, Class, Rarity: 'Normal', GemLevel, AreaLevel, ItemLevel: 1 });
-              assert.equal(result.action, profile.strictEndgame && GemLevel < 19 ? 'Hide' : 'Show', `${profile.file}: ${gemName}, gem level ${GemLevel}, area ${AreaLevel}`);
+              assert.equal(result.action, profile.selectiveLoot || (profile.strictEndgame && GemLevel < 19) ? 'Hide' : 'Show', `${profile.file}: ${gemName}, gem level ${GemLevel}, area ${AreaLevel}`);
               if (result.action === 'Hide') assert.deepEqual(result.notificationLines, []);
             }
           }
@@ -643,7 +645,7 @@ test('only hell hides uncut skill and spirit gems below gem level 19 without cha
           profile.strictEndgame ? 'Hide' : 'Show', 'gem level is independent of item level');
       }
       for (const BaseType of ['Uncut Support Gem', 'Uncut Support Gem (Level 1)']) {
-        assert.equal(firstTerminal(filter, { BaseType, Class: 'Uncut Support Gems', Rarity: 'Normal', GemLevel: 1 }).action, 'Show');
+        assert.equal(firstTerminal(filter, { BaseType, Class: 'Uncut Support Gems', Rarity: 'Normal', GemLevel: 1 }).action, profile.selectiveLoot ? 'Hide' : 'Show');
       }
     }
   }
@@ -693,12 +695,21 @@ test('strict rules spare non-equipment and verified high-value prefixes in both 
   }
 });
 
-test('strict selection changes only profile three and rejects changed policy anchors', () => {
+test('strict selection preserves normal and hard and rejects changed policy anchors', () => {
   for (const profile of config.profiles.slice(0, 2)) {
     assert.equal(render(profile), render({ ...profile, strictEndgame: false }));
   }
   assert.notEqual(render(), render({ ...config.profiles[2], strictEndgame: false }));
   assert.throws(() => applyEndgameVisibility('Show\n    Rarity Rare\n'), /missing|changed|upstream|anchor/i);
+  assert.throws(() => applySelectiveLoot(source.replace('$type->chancing $tier->chancea ', '$type->chancing $tier->changed ')),
+    /selective.*missing/i);
+  for (const profile of config.profiles.slice(0, 2)) {
+    assert.equal(render(profile), render({ ...profile, selectiveLoot: false }));
+    assert.throws(() => render({ ...profile, selectiveLoot: true }), /selective/i);
+  }
+  for (const selectiveLoot of ['true', null, 1]) {
+    assert.throws(() => render({ ...config.profiles[2], selectiveLoot }), /selective/i);
+  }
 });
 
 test('new hidden categories remove native alerts, beams and icons as well as custom sounds', () => {
@@ -708,5 +719,181 @@ test('new hidden categories remove native alerts, beams and icons as well as cus
   assert.ok(added.length >= 10, 'targeted hidden groups exist');
   for (const block of added) {
     assert.ok(!block.split(/\r?\n/).some(line => notifications.test(line.trim())), block.split(/\r?\n/, 1)[0]);
+  }
+});
+
+test('both hell profiles protect valid chancing bases before ordinary equipment cutoffs', () => {
+  for (const profile of config.profiles.filter(profile => profile.strictEndgame)) {
+    for (const customSounds of [false, true]) {
+      const filter = render(profile, customSounds);
+      for (const [BaseType, Class] of [['Heavy Belt', 'Belts'], ['Utility Belt', 'Belts'], ['Silver Charm', 'Charms']]) {
+        for (const ItemLevel of [1, 75, 81, 82]) {
+          const item = { BaseType, Class, Rarity: 'Normal', ItemLevel, UnidentifiedItemTier: 0,
+            Mirrored: false, Corrupted: false };
+          const valid = firstTerminal(filter, item);
+          assert.equal(valid.action, 'Show', `${profile.file}: valid ${BaseType}, level ${ItemLevel}`);
+          assert.match(valid.header, /\$type->chancing\b/);
+          assert.deepEqual(valid.notificationLines, firstTerminal(source, item).notificationLines);
+          for (const state of ['Mirrored', 'Corrupted']) {
+            const invalid = firstTerminal(filter, { ...item, [state]: true });
+            assert.doesNotMatch(invalid.header, /\$type->chancing\b/, `${profile.file}: ${state} ${BaseType} cannot be chanced`);
+            if (profile.selectiveLoot || Class === 'Belts') {
+              assert.equal(invalid.action, 'Hide');
+              assert.deepEqual(invalid.notificationLines, []);
+            }
+          }
+        }
+      }
+    }
+  }
+});
+
+test('PT shows special bases and high unique categories while hiding ordinary gear and lower unique catchalls', () => {
+  const profile = config.profiles.find(profile => profile.selectiveLoot);
+  assert.ok(profile, 'PT profile exists');
+  const shown = [
+    { BaseType: 'Aberrant Sledge', Class: 'Two Hand Maces', Rarity: 'Magic', ItemLevel: 1 },
+    { BaseType: 'Breach Ring', Class: 'Rings', Rarity: 'Magic', ItemLevel: 1 },
+    { BaseType: 'Crude Bow', Class: 'Bows', Rarity: 'Magic', Quality: 27, ItemLevel: 1 },
+    { BaseType: 'Crude Bow', Class: 'Bows', Rarity: 'Rare', TwiceCorrupted: true, ItemLevel: 1 },
+    { BaseType: 'Ashen Wand', Class: 'Wands', Rarity: 'Magic', Identified: true, HasExplicitMod: ['Runic'] },
+    { BaseType: 'Armoured Cap', Class: 'Helmets', Rarity: 'Unique', ItemLevel: 1 },
+    { BaseType: 'Ruby', Class: 'Jewels', Rarity: 'Unique', ItemLevel: 1 },
+    { BaseType: 'Timeless Jewel', Class: 'Jewels', Rarity: 'Unique', ItemLevel: 1 },
+    { BaseType: 'Ring', Class: 'Rings', Rarity: 'Unique', Sockets: 1, ItemLevel: 1 },
+    { BaseType: 'Heavy Belt', Class: 'Belts', Rarity: 'Unique', ItemLevel: 1 },
+  ];
+  const hidden = [
+    { BaseType: 'Conjurer Mantle', Class: 'Body Armours', Rarity: 'Rare', UnidentifiedItemTier: 2 },
+    { BaseType: 'Conjurer Mantle', Class: 'Body Armours', Rarity: 'Rare', UnidentifiedItemTier: 5 },
+    { BaseType: 'Rawhide Belt', Class: 'Belts', Rarity: 'Rare', UnidentifiedItemTier: 4 },
+    { BaseType: 'Adherent Cuffs', Class: 'Gloves', Rarity: 'Rare', ItemLevel: 75 },
+    { BaseType: 'Amethyst Ring', Class: 'Rings', Rarity: 'Rare', ItemLevel: 80 },
+    { BaseType: 'Gold Amulet', Class: 'Amulets', Rarity: 'Rare', ItemLevel: 90 },
+    { BaseType: 'Emerald', Class: 'Jewels', Rarity: 'Magic', ItemLevel: 90 },
+    { BaseType: 'Gold Ring', Class: 'Rings', Rarity: 'Unique', ItemLevel: 90 },
+    { BaseType: 'Gold Amulet', Class: 'Amulets', Rarity: 'Unique', ItemLevel: 90 },
+    { BaseType: 'Iron Cuirass', Class: 'Body Armours', Rarity: 'Unique' },
+    { BaseType: 'Rawhide Belt', Class: 'Belts', Rarity: 'Unique', TwiceCorrupted: true },
+    { BaseType: 'Unlisted Future Unique', Class: 'Wands', Rarity: 'Unique' },
+    { BaseType: 'Unlisted Future Equipment', Class: 'Wands', Rarity: 'Magic', ItemLevel: 100, UnidentifiedItemTier: 5 },
+    { BaseType: 'Uncut Skill Gem (Level 20)', Class: 'Uncut Skill Gems', Rarity: 'Normal', GemLevel: 20 },
+    { BaseType: 'Uncut Spirit Gem (Level 20)', Class: 'Uncut Spirit Gems', Rarity: 'Normal', GemLevel: 20 },
+    { BaseType: 'Uncut Support Gem (Level 3)', Class: 'Uncut Support Gems', Rarity: 'Normal', GemLevel: 3 },
+    { BaseType: 'Tapestry Relic', Class: 'Relics', Rarity: 'Magic' },
+    { BaseType: 'Ultimate Life Flask', Class: 'Life Flasks', Rarity: 'Magic' },
+    { BaseType: 'Breachstone', Class: 'Breachstones', Rarity: 'Normal' },
+    { BaseType: 'Faded Crisis Fragment', Class: 'Pinnacle Keys', Rarity: 'Normal' },
+    { BaseType: 'Unlisted Future Item', Class: 'Future Class', Rarity: 'Normal' },
+  ];
+  for (const customSounds of [false, true]) {
+    const filter = render(profile, customSounds);
+    const ct = render(config.profiles[2], customSounds);
+    for (const item of shown) {
+      const result = firstTerminal(filter, item);
+      assert.equal(result.action, 'Show', JSON.stringify(item));
+      assert.deepEqual(result.notificationLines, firstTerminal(ct, item).notificationLines,
+        'retained special categories keep their existing audio priority');
+    }
+    for (const item of hidden) {
+      const result = firstTerminal(filter, item);
+      assert.equal(result.action, 'Hide', JSON.stringify(item));
+      assert.deepEqual(result.notificationLines, [], 'hidden PT drops carry no sound, beam or icon');
+    }
+    assert.equal(firstTerminal(filter, { BaseType: 'Orb of a Future Mechanic', Class: 'Stackable Currency', Rarity: 'Normal' }).action,
+      'Show', 'the currency-specific unknown fallback remains available');
+  }
+});
+
+test('PT keeps ordinary tablets and every waystone tier with shared map sounds and superior priorities', () => {
+  const profile = config.profiles.find(profile => profile.selectiveLoot);
+  for (const customSounds of [false, true]) {
+    const filter = render(profile, customSounds);
+    for (const BaseType of ['Abyss Tablet', 'Breach Tablet', 'Delirium Tablet', 'Expedition Tablet',
+      'Irradiated Tablet', 'Overseer Tablet', 'Ritual Tablet', 'Temple Tablet']) {
+      for (const Rarity of ['Normal', 'Magic', 'Rare']) {
+        const result = firstTerminal(filter, { BaseType, Class: 'Tablet', Rarity });
+        assert.equal(result.action, 'Show', `${BaseType}: ${Rarity}`);
+        if (customSounds) assert.match(result.block, /sounds\/0398\.wav/);
+      }
+    }
+    for (const [BaseType, expected] of [['Abyss Tablet', 'Show'], ['Temple Tablet', 'Show'],
+      ['Irradiated Tablet', 'Show'], ['Breach Tablet', 'Hide'], ['Overseer Tablet', 'Hide']]) {
+      assert.equal(firstTerminal(filter, { BaseType, Class: 'Tablet', Rarity: 'Unique' }).action,
+        expected, `${BaseType}: Unique tablets follow the same high unique cutoff`);
+    }
+    for (let WaystoneTier = 1; WaystoneTier <= 16; WaystoneTier++) {
+      for (const AreaLevel of [1, 82]) {
+        for (const Rarity of ['Normal', 'Magic', 'Rare']) {
+          const result = firstTerminal(filter, { BaseType: 'Waystone', Class: 'Waystones', Rarity, WaystoneTier, AreaLevel });
+          assert.equal(result.action, 'Show', `waystone ${WaystoneTier}, area ${AreaLevel}, ${Rarity}`);
+          if (customSounds) assert.match(result.block,
+            WaystoneTier === 16 ? /sounds\/0397\.wav/ : /sounds\/0398\.wav/);
+        }
+      }
+    }
+    const exceptional = firstTerminal(filter, { BaseType: 'Waystone', Class: 'Waystones', Rarity: 'Rare', WaystoneTier: 15, AnyEnchantment: true });
+    assert.equal(exceptional.action, 'Show');
+    if (customSounds) assert.match(exceptional.block, /sounds\/0397\.wav/);
+    const price = LEAGUE_ITEMS.find(item => item.base_type === 'Temple Tablet');
+    const high = firstTerminal(render(profile, customSounds, [{ BaseType: price.base_type, MetadataId: price.metadata_id,
+      ItemClass: price.item_class, DivinePerItem: 1 }]), { BaseType: price.base_type, Class: price.item_class, Rarity: 'Rare' });
+    assert.equal(high.action, 'Show');
+    assert.match(high.header, /S\+ Verified unit value/);
+    if (customSounds) assert.match(high.block, /sounds\/0161\.wav/);
+  }
+});
+
+test('one-Divine exchange tablet prices promote Normal, Magic and Rare tablets without repricing same-base uniques', () => {
+  const names = ['Breach Tablet', 'Ritual Tablet', 'Temple Tablet'];
+  const prices = names.map(name => {
+    const item = LEAGUE_ITEMS.find(item => item.base_type === name);
+    assert.ok(item, name);
+    return { BaseType: item.base_type, ItemClass: item.item_class, MetadataId: item.metadata_id, DivinePerItem: 1 };
+  });
+  for (const profile of config.profiles) {
+    for (const customSounds of [false, true]) {
+      const baseline = render(profile, customSounds);
+      const priced = render(profile, customSounds, prices);
+      for (const BaseType of names) {
+        for (const Rarity of ['Normal', 'Magic', 'Rare']) {
+          const result = firstTerminal(priced, { BaseType, Class: 'Tablet', Rarity });
+          assert.equal(result.action, 'Show');
+          assert.match(result.header, /S\+ Verified unit value/);
+          if (customSounds) assert.match(result.block, /sounds\/0161\.wav/);
+        }
+        const unique = { BaseType, Class: 'Tablet', Rarity: 'Unique' };
+        const result = firstTerminal(priced, unique);
+        assert.deepEqual(result, firstTerminal(baseline, unique), `${profile.file}: ${BaseType} Unique keeps its own grade`);
+        assert.doesNotMatch(result.header, /S\+ Verified unit value/);
+        assert.doesNotMatch(result.block, /sounds\/0161\.wav/);
+        assert.equal(result.action, profile.selectiveLoot && BaseType === 'Breach Tablet' ? 'Hide' : 'Show');
+        if (customSounds && result.action === 'Show') assert.match(result.block, /sounds\/0398\.wav/);
+      }
+    }
+  }
+});
+
+test('PT one-Divine exchange items override its narrower baseline without repricing same-name quest items', () => {
+  const profile = config.profiles.find(profile => profile.selectiveLoot);
+  const items = [FADED_CRISIS_FRAGMENT,
+    ABYSS_ITEMS.find(item => item.base_type === "Kulemak's Invitation"),
+    LEAGUE_ITEMS.find(item => item.base_type === 'Breachstone')];
+  for (const item of items) {
+    for (const customSounds of [false, true]) {
+      const fixture = { BaseType: item.base_type, Class: item.item_class, Rarity: 'Normal', AreaLevel: 1 };
+      const price = { BaseType: item.base_type, MetadataId: item.metadata_id, ItemClass: item.item_class };
+      for (const DivinePerItem of [0, 0.999]) {
+        assert.equal(firstTerminal(render(profile, customSounds, [{ ...price, DivinePerItem }]), fixture).action,
+          'Hide', `${item.base_type}: no one-Divine proof`);
+      }
+      const high = render(profile, customSounds, [{ ...price, DivinePerItem: 1 }]);
+      const result = firstTerminal(high, fixture);
+      assert.equal(result.action, 'Show');
+      assert.match(result.header, /S\+ Verified unit value/);
+      if (customSounds) assert.match(result.block, /sounds\/0161\.wav/);
+      assert.doesNotMatch(firstTerminal(high, { ...fixture, Class: 'Quest Items' }).header,
+        /S\+ Verified unit value/, 'same-name quest item cannot enter an exchange rule');
+    }
   }
 });

@@ -14,8 +14,8 @@ export async function loadProject(root = ROOT) {
   const mapping = [...currencyMapping, ...ABYSS_ITEMS, ...LEAGUE_ITEMS];
   if (typeof config.customSounds !== 'boolean') throw new Error('config.customSounds must be a boolean.');
   config.sounds = validateSounds(config.sounds ?? { ...DEFAULT_SOUNDS });
-  if (!config.upstream || !Array.isArray(config.upstream.files) || config.upstream.files.length !== 2 || !Array.isArray(config.profiles) || config.profiles.length !== 3) {
-    throw new Error('Expected two pinned upstream sources and three profiles.');
+  if (!config.upstream || !Array.isArray(config.upstream.files) || config.upstream.files.length !== 2 || !Array.isArray(config.profiles) || config.profiles.length !== 4) {
+    throw new Error('Expected two pinned upstream sources and four profiles.');
   }
   const sources = new Map();
   for (const entry of config.upstream.files) {
@@ -28,9 +28,10 @@ export async function loadProject(root = ROOT) {
   }
   const outputNames = new Set();
   for (const profile of config.profiles) {
-    if (!/^[A-Za-z0-9][A-Za-z0-9-]{0,79}\.filter$/.test(profile.file) || outputNames.has(profile.file) || !sources.has(profile.sourceMode)) throw new Error('Invalid/duplicate profile.');
+    if (!/^[A-Za-z0-9][A-Za-z0-9_-]{0,79}\.filter$/.test(profile.file) || outputNames.has(profile.file) || !sources.has(profile.sourceMode)) throw new Error('Invalid/duplicate profile.');
     if (!Number.isSafeInteger(profile.minItemLevel) || profile.minItemLevel < 1 || !Number.isSafeInteger(profile.maxItemLevel) || profile.maxItemLevel < 0 || (profile.maxItemLevel && profile.maxItemLevel < profile.minItemLevel)) throw new Error('Invalid profile item-level range.');
     if (profile.strictEndgame !== undefined && (typeof profile.strictEndgame !== 'boolean' || (profile.strictEndgame && profile.sourceMode !== 'Endgame'))) throw new Error('Invalid strict endgame profile.');
+    if (profile.selectiveLoot !== undefined && (typeof profile.selectiveLoot !== 'boolean' || (profile.selectiveLoot && (!profile.strictEndgame || profile.sourceMode !== 'Endgame')))) throw new Error('Invalid selective loot profile.');
     if (profile.materialTier !== undefined && (!['greater', 'greater-exalted'].includes(profile.materialTier) || profile.sourceMode !== 'Endgame')) throw new Error('Invalid material tier profile.');
     outputNames.add(profile.file);
   }
@@ -151,7 +152,7 @@ function parseArgs(args) {
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   try {
     const report = await update(parseArgs(process.argv.slice(2)));
-    console.log(`Generated three filters | league=${report.League} | accepted prices=${report.AcceptedPrices.length} | offline=${report.Offline}`);
+    console.log(`Generated ${report.Profiles.length} filters | league=${report.League} | accepted prices=${report.AcceptedPrices.length} | offline=${report.Offline}`);
     console.log('Download the successful GitHub Actions artifact, copy to the game filter folder, and reload manually.');
   } catch (error) {
     console.error(`Filter update failed: ${error.message}`);

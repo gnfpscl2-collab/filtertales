@@ -33,7 +33,7 @@ async function copyProject(t, customSounds, includeAssets = true) {
   return root;
 }
 
-test('project validates pinned sources and all three profiles', async () => {
+test('project validates pinned sources and all four profiles', async () => {
   const project = await loadProject();
   assert.equal(project.sources.size, 2);
   assert.equal(ABYSS_ITEMS.length, 26);
@@ -60,10 +60,27 @@ test('project validates pinned sources and all three profiles', async () => {
   assert.notEqual(fragment.item_class, 'Quest Items');
   assert.equal(project.config.customSounds, true);
   assert.deepEqual(project.config.sounds, DEFAULT_SOUNDS);
-  assert.deepEqual(project.config.profiles.map(p => [p.minItemLevel, p.maxItemLevel]), [[1, 65], [79, 0], [82, 0]]);
-  assert.deepEqual(project.config.profiles.map(p => p.strictEndgame ?? false), [false, false, true]);
-  assert.deepEqual(project.config.profiles.map(p => p.materialTier), [undefined, 'greater', 'greater-exalted']);
-  assert.deepEqual(project.config.profiles.map(p => p.file), ['tw-normal.filter', 'tw-hard.filter', 'tw-hell.filter']);
+  assert.deepEqual(project.config.profiles.map(p => [p.minItemLevel, p.maxItemLevel]), [[1, 65], [79, 0], [82, 0], [82, 0]]);
+  assert.deepEqual(project.config.profiles.map(p => p.strictEndgame ?? false), [false, false, true, true]);
+  assert.deepEqual(project.config.profiles.map(p => p.selectiveLoot ?? false), [false, false, false, true]);
+  assert.deepEqual(project.config.profiles.map(p => p.materialTier), [undefined, 'greater', 'greater-exalted', 'greater-exalted']);
+  assert.deepEqual(project.config.profiles.map(p => p.file), ['tw-normal.filter', 'tw-hard.filter', 'tw_hell_CT.filter', 'tw_hell_PT.filter']);
+});
+
+test('selective loot requires a boolean and strict Endgame rules', async t => {
+  const root = await copyProject(t, false, false);
+  const configFile = path.join(root, 'config.json');
+  const config = JSON.parse(await fs.readFile(configFile, 'utf8'));
+  for (const selectiveLoot of ['true', null, 1]) {
+    const profiles = config.profiles.map((profile, i) => i === 3 ? { ...profile, selectiveLoot } : profile);
+    await fs.writeFile(configFile, JSON.stringify({ ...config, profiles }));
+    await assert.rejects(loadProject(root), /selective|profile/i);
+  }
+  for (const change of [{ strictEndgame: false }, { sourceMode: 'Leveling', strictEndgame: false, materialTier: undefined }]) {
+    const profiles = config.profiles.map((profile, i) => i === 3 ? { ...profile, ...change } : profile);
+    await fs.writeFile(configFile, JSON.stringify({ ...config, profiles }));
+    await assert.rejects(loadProject(root), /selective|profile|Endgame/i);
+  }
 });
 
 test('strict endgame selection requires a boolean and an Endgame source', async t => {

@@ -256,7 +256,7 @@ export function applyEndgameVisibility(source) {
     .replace(/^[ \t]*(?:PlayAlertSound(?:Positional)?|CustomAlertSound\w*|PlayEffect|MinimapIcon)\b[^\r\n]*(?:\r?\n|$)/gm, '');
   const newline = source.includes('\r\n') ? '\r\n' : '\n';
   const craft = find('endgame->normalcraft->economy', 'group1t1');
-  const beltAnchor = find('chancing', 'chancea');
+  const beltAnchor = find('chancing', 'chanceany');
   const beltGate = [
     '# BEGIN PERSONAL HELL BELTS',
     ...['ItemLevel < 82', 'UnidentifiedItemTier < 4', 'Identified True'].flatMap(condition => [
@@ -332,9 +332,52 @@ export function applyEndgameVisibility(source) {
     if (block === lastTiered) result += newline + beltFallbacks + newline + tieredFallbacks;
     if (block === lastJewellery) result += newline + jewelleryFallbacks;
     if (block === lastJewel) result += newline + jewelFallbacks;
-    if (block === beltAnchor) result = beltGate + result;
+    if (block === beltAnchor) result += newline + beltGate;
     return block === craft ? gate + result : result;
   });
+}
+
+function tabletRule(block) {
+  const header = block.split(/\r?\n/, 1)[0];
+  const newline = block.includes('\r\n') ? '\r\n' : '\n';
+  const baseLine = block.match(/^[ \t]*BaseType[ \t]+==[ \t]+([^\r\n]+)/m);
+  if (!baseLine) return null;
+  const tablets = [...baseLine[1].matchAll(/"([^"]+)"/g)].filter(match => match[1].endsWith(' Tablet'));
+  if (!tablets.length) return null;
+  const classLine = block.match(/^[ \t]*Class[ \t]+(==[ \t]+)?((?:"[^"\r\n]+"[ \t]*)+)[ \t]*$/m);
+  if (classLine && ![...classLine[2].matchAll(/"([^"]+)"/g)]
+    .some(match => classLine[1] ? match[1] === 'Tablet' : 'Tablet'.includes(match[1]))) return null;
+  let clone = block.slice(0, baseLine.index) + `    BaseType == ${quoteNames(tablets.map(match => match[1]))}`
+    + block.slice(baseLine.index + baseLine[0].length);
+  let conditions = '';
+  if (!/^[ \t]*Class\b/m.test(clone)) conditions += '    Class == "Tablet"' + newline;
+  if (/\$type->fragments->generic \$tier->[abc]\b/.test(header) && !/^[ \t]*Rarity\b/m.test(clone)) {
+    conditions += '    Rarity Normal Magic Rare' + newline;
+  }
+  const firstLine = clone.indexOf('\n') + 1;
+  return clone.slice(0, firstLine) + conditions + clone.slice(firstLine);
+}
+
+export function applySelectiveLoot(source) {
+  const blocks = [...source.matchAll(showBlocks)].map(match => match[0]);
+  for (const marker of ['$type->chancing $tier->chancea ', '$type->chancing $tier->chanceany ',
+    '$type->uniques $tier->t1 ', '$type->uniques $tier->t2 ', '$type->uniques $tier->multispecialhigh ',
+    '$type->fragments->generic $tier->b ', '$type->fragments->generic $tier->c ']) {
+    if (!blocks.some(block => block.split(/\r?\n/, 1)[0].includes(marker))) {
+      throw new Error(`Selective loot source group missing: ${marker}`);
+    }
+  }
+  const selected = source.replace(showBlocks, block => {
+    const header = block.split(/\r?\n/, 1)[0];
+    if (/\$type->(?:currency\b|sockets->general\b|exoticbases\b|exotic->(?:exceptional|state)\b|exoticmods\b|chancing\b|waystones\b)/.test(header)
+      || /\$type->uniques \$tier->(?:t1|t2|sekhemaring|multispecialhigh)\b/.test(header)) return block;
+    if (/\$type->fragments->generic \$tier->[bc]\b/.test(header)) return tabletRule(block) ?? '';
+    if (/\$type->fragments->generic \$tier->restex\b/.test(header)) {
+      return setActions(block, { Class: '== "Tablet"', Rarity: 'Normal Magic Rare' });
+    }
+    return '';
+  });
+  return selected + '\n# PT: hide everything outside the explicit selection.\nHide\n    DisableDropSound True\n';
 }
 
 export function applyCategorySounds(source, sounds = DEFAULT_SOUNDS) {
@@ -348,22 +391,8 @@ export function applyCategorySounds(source, sounds = DEFAULT_SOUNDS) {
     if (exceptional(block)) return customAlert(block, sounds.exceptional);
     if (/\$type->waystones\b/.test(header)) return customAlert(block, sounds.maps);
     const fallback = grade(block) >= 1 || /\$type->uniques\b/.test(header) ? customAlert(block, sounds.ab) : block;
-    const baseLine = block.match(/^[ \t]*BaseType[ \t]+==[ \t]+([^\r\n]+)/m);
-    if (!baseLine) return fallback;
-    const tablets = [...baseLine[1].matchAll(/"([^"]+)"/g)].filter(match => match[1].endsWith(' Tablet'));
-    if (!tablets.length) return fallback;
-    const classLine = block.match(/^[ \t]*Class[ \t]+(==[ \t]+)?((?:"[^"\r\n]+"[ \t]*)+)[ \t]*$/m);
-    if (classLine && ![...classLine[2].matchAll(/"([^"]+)"/g)]
-      .some(match => classLine[1] ? match[1] === 'Tablet' : 'Tablet'.includes(match[1]))) return fallback;
-    let clone = block.slice(0, baseLine.index) + `    BaseType == ${quoteNames(tablets.map(match => match[1]))}`
-      + block.slice(baseLine.index + baseLine[0].length);
-    let conditions = '';
-    if (!/^[ \t]*Class\b/m.test(clone)) conditions += '    Class == "Tablet"' + newline;
-    if (/\$type->fragments->generic \$tier->[abc]\b/.test(header) && !/^[ \t]*Rarity\b/m.test(clone)) {
-      conditions += '    Rarity Normal Magic Rare' + newline;
-    }
-    const firstLine = clone.indexOf('\n') + 1;
-    clone = clone.slice(0, firstLine) + conditions + clone.slice(firstLine);
+    const clone = tabletRule(block);
+    if (!clone) return fallback;
     return '# BEGIN PERSONAL TABLET SOUND' + newline + customAlert(clone, sounds.maps)
       + '# END PERSONAL TABLET SOUND' + newline + fallback;
   });
@@ -372,6 +401,7 @@ export function applyCategorySounds(source, sounds = DEFAULT_SOUNDS) {
 export function renderFilter({ source, prices, league, profile, release, dataLabel, customSounds = false, sounds = DEFAULT_SOUNDS }) {
   if (typeof customSounds !== 'boolean') throw new Error('customSounds must be a boolean.');
   if (profile.strictEndgame !== undefined && typeof profile.strictEndgame !== 'boolean') throw new Error('strictEndgame must be a boolean.');
+  if (profile.selectiveLoot !== undefined && (typeof profile.selectiveLoot !== 'boolean' || (profile.selectiveLoot && (!profile.strictEndgame || profile.sourceMode !== 'Endgame')))) throw new Error('Invalid selective loot profile.');
   validateSounds(sounds);
   const floors = baselineFloors(source);
   const nativeB = nativeCurrencyBActions(source);
@@ -418,6 +448,7 @@ export function renderFilter({ source, prices, league, profile, release, dataLab
     lines.push(`Show # ${label}`);
     if (areaLevel) lines.push('    AreaLevel >= 65');
     lines.push(`    Class == ${quoteNames([itemClass])}`, `    BaseType == ${quoteNames(names)}`);
+    if (itemClass === 'Tablet') lines.push('    Rarity Normal Magic Rare');
     for (const [action, value] of Object.entries(actions)) lines.push(`    ${action} ${value}`);
     if (customSounds) lines.push(`    CustomAlertSoundOptional "sounds/${filename}" 250`);
     lines.push('');
@@ -458,7 +489,8 @@ export function renderFilter({ source, prices, league, profile, release, dataLab
     '# BEGIN NEVERSINK (personal visual policy and optional sounds; conditions preserved)',
   );
   const selected = profile.sourceMode === 'Endgame' ? addLevel75Gloves(source) : source;
-  const styled = applyVisualPolicy(profile.strictEndgame ? applyEndgameVisibility(selected) : selected);
+  const visible = profile.strictEndgame ? applyEndgameVisibility(selected) : selected;
+  const styled = applyVisualPolicy(profile.selectiveLoot ? applySelectiveLoot(visible) : visible);
   const ranged = addItemLevelRange(styled, profile.minItemLevel, profile.maxItemLevel, profile.strictEndgame === true);
   return lines.join('\n') + '\n' + applyAbyssVisuals(customSounds ? applyCategorySounds(ranged, sounds) : ranged);
 }
