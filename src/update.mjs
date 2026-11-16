@@ -45,9 +45,11 @@ export async function loadProject(root = ROOT) {
     const pinnacle = Object.entries(FADED_CRISIS_FRAGMENT).every(([key, value]) => item[key] === value);
     const abyss = ABYSS_ITEMS.some(known => ['base_type', 'item_class', 'metadata_id'].every(key => known[key] === item[key]));
     if (!abyss && ABYSS_ITEMS.some(known => known.base_type === item.base_type || known.metadata_id === item.metadata_id)) throw new Error('Invalid Abyss currency allowlist entry.');
-    const content = LEAGUE_ITEMS.some(known => ['base_type', 'item_class', 'metadata_id'].every(key => known[key] === item[key]));
+    const content = LEAGUE_ITEMS.some(known => ['base_type', 'item_class', 'metadata_id', 'gem_level'].every(key => known[key] === item[key]));
     if (!content && LEAGUE_ITEMS.some(known => known.base_type === item.base_type || known.metadata_id === item.metadata_id)) throw new Error('Invalid content currency allowlist entry.');
-    if (!/^[\p{L}][\p{L}\p{M}0-9 ',()\-]{1,90}$/u.test(item.base_type)
+    if (!/^[\p{L}][\p{L}\p{M}0-9 ',():\-]{1,90}$/u.test(item.base_type)
+      || (item.gem_level !== undefined && (!content || !Number.isInteger(item.gem_level)
+        || item.gem_level < 1 || item.gem_level > 20 || item.base_type !== `${item.item_class?.replace(/s$/, '')} (Level ${item.gem_level})`))
       || (!pinnacle && !abyss && !content && (!/^Metadata\/Items\/Currency\/[A-Za-z0-9]+$/.test(item.metadata_id)
         || (item.item_class && item.item_class !== 'Stackable Currency')))
       || seen.has(item.metadata_id)) throw new Error('Invalid/duplicate currency allowlist entry.');
@@ -115,7 +117,7 @@ export async function update({ root = ROOT, output = path.join(root, 'dist'), le
     GeneratedUtc: new Date().toISOString(), League: league, Offline: offline,
     UpstreamRelease: config.upstream.release, UpstreamCommit: config.upstream.commit,
     Source: 'GGG public currency-exchange/poe2 hourly executed-volume digests',
-    Method: 'Validate direct Divine, same-hour Chaos and Exalted routes independently; choose the highest accepted Divine unit value. >=1 Divine is S+ with value audio in all areas.',
+    Method: 'Validate direct Divine, same-hour Chaos and Exalted routes independently. Select the highest accepted Divine unit value and independently validated same-hour Chaos unit value. >=1 Divine is S+; PT also protects >=1 Chaos before personal hides.',
     Guards: 'At least 2 hours, 10 item units, 1 Divine equivalent volume; max/min hourly price <=3.',
     Hours: hours.map(h => ({ StartUnix: h.Hour, Url: h.Url })), AcceptedPrices: prices,
     MappingCounts: { Total: mapping.length, Abyss: ABYSS_ITEMS.length,

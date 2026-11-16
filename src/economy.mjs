@@ -104,13 +104,15 @@ export function getPrices(hours, league, mapping) {
         const market = byPair.get(key(id, quote));
         if (!market) continue;
         const units = volume(market, id);
-        const divineUnits = volume(market, quote) * divinePerQuote;
+        const quoteUnits = volume(market, quote);
+        const divineUnits = quoteUnits * divinePerQuote;
         if (!(units > 0 && divineUnits > 0)) continue;
         if (!Number.isFinite(divineUnits / units)) throw new Error('Non-finite currency price.');
         if (!observations.has(id)) observations.set(id, new Map());
         const routes = observations.get(id);
         if (!routes.has(route)) routes.set(route, []);
-        routes.get(route).push({ Hour, Units: units, DivineUnits: divineUnits, Rate: divineUnits / units });
+        const chaosUnits = divinePerChaos > 0 ? (quote === CHAOS ? quoteUnits : divineUnits / divinePerChaos) : 0;
+        routes.get(route).push({ Hour, Units: units, DivineUnits: divineUnits, Rate: divineUnits / units, ChaosUnits: chaosUnits });
       }
     }
   }
@@ -118,6 +120,7 @@ export function getPrices(hours, league, mapping) {
   const prices = [];
   for (const item of mapping) {
     const candidates = [];
+    const chaosCandidates = [];
     for (const route of ['direct-divine', 'via-chaos', 'via-exalted']) {
       const samples = observations.get(item.metadata_id)?.get(route) ?? [];
       if (samples.length < 2) continue;
@@ -127,14 +130,26 @@ export function getPrices(hours, league, mapping) {
       if (units < 10 || divineUnits < 1 || Math.max(...rates) / Math.min(...rates) > 3) continue;
       candidates.push({ Route: route, DivinePerItem: divineUnits / units,
         ItemUnits: units, DivineVolume: divineUnits, Hours: samples.map(s => s.Hour) });
+      const chaosSamples = samples.filter(s => s.ChaosUnits > 0);
+      if (chaosSamples.length < 2) continue;
+      const chaosItemUnits = chaosSamples.reduce((sum, s) => sum + s.Units, 0);
+      const chaosDivineUnits = chaosSamples.reduce((sum, s) => sum + s.DivineUnits, 0);
+      const chaosRates = chaosSamples.map(s => s.ChaosUnits / s.Units);
+      if (chaosItemUnits < 10 || chaosDivineUnits < 1 || Math.max(...chaosRates) / Math.min(...chaosRates) > 3) continue;
+      chaosCandidates.push({ Route: route,
+        ChaosPerItem: chaosSamples.reduce((sum, s) => sum + s.ChaosUnits, 0) / chaosItemUnits });
     }
     if (!candidates.length) continue;
     candidates.sort((a, b) => b.DivinePerItem - a.DivinePerItem);
+    chaosCandidates.sort((a, b) => b.ChaosPerItem - a.ChaosPerItem);
+    const chaos = chaosCandidates[0];
     const { Route, ...chosen } = candidates[0];
     prices.push({
       BaseType: item.base_type, MetadataId: item.metadata_id,
       ItemClass: item.item_class ?? 'Stackable Currency', ...chosen, Routes: [Route],
       CandidatePrices: candidates.map(({ Route, DivinePerItem }) => ({ Route, DivinePerItem })),
+      ...(chaos ? { ChaosPerItem: chaos.ChaosPerItem, ChaosRoutes: [chaos.Route] } : {}),
+      ...(item.gem_level === undefined ? {} : { GemLevel: item.gem_level }),
     });
   }
   if (!prices.length) throw new Error('No sufficiently reliable currency prices. Existing output is preserved.');

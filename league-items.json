@@ -217,382 +217,74 @@
     "content": "breach"
   },
   {
-    "base_type": "Ancient Infuser",
+    "base_type": "Artificer's Shard",
     "item_class": "Stackable Currency",
-    "metadata_id": "Metadata/Items/Currency/CurrencyIncursionCorruptTablet",
-    "source": "https://poe2db.tw/us/Ancient_Infuser",
-    "content": "temple"
+    "metadata_id": "Metadata/Items/Currency/CurrencyAddEquipmentSocketShard",
+    "source": "https://poe2db.tw/us/Artificers_Shard",
+    "content": "currency"
   },
   {
-    "base_type": "Architect's Orb",
+    "base_type": "Chance Shard",
     "item_class": "Stackable Currency",
-    "metadata_id": "Metadata/Items/Currency/CurrencyIncursionDoubleCorrupt",
-    "source": "https://poe2db.tw/us/Architects_Orb",
-    "content": "temple"
+    "metadata_id": "Metadata/Items/Currency/CurrencyUpgradeRandomlyShard",
+    "source": "https://poe2db.tw/us/Chance_Shard",
+    "content": "currency"
   },
   {
-    "base_type": "Citaqualotl's Thesis",
-    "item_class": "Augment",
-    "metadata_id": "Metadata/Items/SoulCores/ThesisOfSacrifice",
-    "source": "https://poe2db.tw/us/Citaqualotls_Thesis",
-    "content": "temple"
-  },
-  {
-    "base_type": "Core Destabiliser",
+    "base_type": "Cryptic Key",
     "item_class": "Stackable Currency",
-    "metadata_id": "Metadata/Items/Currency/CurrencyIncursionModifySoulCore",
-    "source": "https://poe2db.tw/us/Core_Destabiliser",
-    "content": "temple"
+    "metadata_id": "Metadata/Items/Currency/StrongboxKey",
+    "source": "https://poe2db.tw/us/Cryptic_Key",
+    "content": "currency"
   },
   {
-    "base_type": "Crystallised Corruption",
+    "base_type": "Greater Orb of Augmentation",
     "item_class": "Stackable Currency",
-    "metadata_id": "Metadata/Items/Currency/CurrencyIncursionDoubleCorruptGem",
-    "source": "https://poe2db.tw/us/Crystallised_Corruption",
-    "content": "temple"
+    "metadata_id": "Metadata/Items/Currency/CurrencyAddModToMagic2",
+    "source": "https://poe2db.tw/us/Greater_Orb_of_Augmentation",
+    "content": "currency"
   },
   {
-    "base_type": "Guatelitzi's Thesis",
-    "item_class": "Augment",
-    "metadata_id": "Metadata/Items/SoulCores/ThesisOfBlood",
-    "source": "https://poe2db.tw/us/Guatelitzis_Thesis",
-    "content": "temple"
-  },
-  {
-    "base_type": "Jiquani's Thesis",
-    "item_class": "Augment",
-    "metadata_id": "Metadata/Items/SoulCores/ThesisOfSouls",
-    "source": "https://poe2db.tw/us/Jiquanis_Thesis",
-    "content": "temple"
-  },
-  {
-    "base_type": "Kamasa's Orb of Sacrifice",
+    "base_type": "Greater Orb of Transmutation",
     "item_class": "Stackable Currency",
-    "metadata_id": "Metadata/Items/Currency/CurrencyIncursionMutateCorruptionEnchantJewellery",
-    "source": "https://poe2db.tw/us/Kamasas_Orb_of_Sacrifice",
-    "content": "temple"
+    "metadata_id": "Metadata/Items/Currency/CurrencyUpgradeToMagic2",
+    "source": "https://poe2db.tw/us/Greater_Orb_of_Transmutation",
+    "content": "currency"
   },
   {
-    "base_type": "Kopec's Orb of Sacrifice",
+    "base_type": "Perfect Orb of Augmentation",
     "item_class": "Stackable Currency",
-    "metadata_id": "Metadata/Items/Currency/CurrencyIncursionMutateCorruptionEnchantArmour",
-    "source": "https://poe2db.tw/us/Kopecs_Orb_of_Sacrifice",
-    "content": "temple"
+    "metadata_id": "Metadata/Items/Currency/CurrencyAddModToMagic3",
+    "source": "https://poe2db.tw/us/Perfect_Orb_of_Augmentation",
+    "content": "currency"
   },
   {
-    "base_type": "Orb of Extraction",
+    "base_type": "Perfect Orb of Transmutation",
     "item_class": "Stackable Currency",
-    "metadata_id": "Metadata/Items/Currency/CurrencyIncursionExtractAllSocketablesCurrency",
-    "source": "https://poe2db.tw/us/Orb_of_Extraction",
-    "content": "temple"
+    "metadata_id": "Metadata/Items/Currency/CurrencyUpgradeToMagic3",
+    "source": "https://poe2db.tw/us/Perfect_Orb_of_Transmutation",
+    "content": "currency"
   },
   {
-    "base_type": "Quipolatl's Thesis",
-    "item_class": "Augment",
-    "metadata_id": "Metadata/Items/SoulCores/ThesisOfExperiments",
-    "source": "https://poe2db.tw/us/Quipolatls_Thesis",
-    "content": "temple"
-  },
-  {
-    "base_type": "Temple Tablet",
-    "item_class": "Tablet",
-    "metadata_id": "Metadata/Items/TowerAugment/IncursionAugment",
-    "source": "https://poe2db.tw/us/Temple_Tablet",
-    "content": "temple"
-  },
-  {
-    "base_type": "Vaal Arcanist's Infuser",
+    "base_type": "Regal Shard",
     "item_class": "Stackable Currency",
-    "metadata_id": "Metadata/Items/Currency/CurrencyIncursionCasterWeaponQuality",
-    "source": "https://poe2db.tw/us/Vaal_Arcanists_Infuser",
-    "content": "temple"
+    "metadata_id": "Metadata/Items/Currency/CurrencyUpgradeMagicToRareShard",
+    "source": "https://poe2db.tw/us/Regal_Shard",
+    "content": "currency"
   },
   {
-    "base_type": "Vaal Armourer's Infuser",
+    "base_type": "Scroll of Wisdom",
     "item_class": "Stackable Currency",
-    "metadata_id": "Metadata/Items/Currency/CurrencyIncursionWeaponOrArmourQualityHigh",
-    "source": "https://poe2db.tw/us/Vaal_Armourers_Infuser",
-    "content": "temple"
+    "metadata_id": "Metadata/Items/Currency/CurrencyIdentification",
+    "source": "https://poe2db.tw/us/Scroll_of_Wisdom",
+    "content": "currency"
   },
   {
-    "base_type": "Vaal Blacksmith's Infuser",
+    "base_type": "Transmutation Shard",
     "item_class": "Stackable Currency",
-    "metadata_id": "Metadata/Items/Currency/CurrencyIncursionMartialWeaponQuality",
-    "source": "https://poe2db.tw/us/Vaal_Blacksmiths_Infuser",
-    "content": "temple"
-  },
-  {
-    "base_type": "Vaal Catalysing Infuser",
-    "item_class": "Stackable Currency",
-    "metadata_id": "Metadata/Items/Currency/CurrencyIncursionJewelleryQuality",
-    "source": "https://poe2db.tw/us/Vaal_Catalysing_Infuser",
-    "content": "temple"
-  },
-  {
-    "base_type": "Vaal Cultivation Orb",
-    "item_class": "Stackable Currency",
-    "metadata_id": "Metadata/Items/Currency/CurrencyIncursionMutateUnique",
-    "source": "https://poe2db.tw/us/Vaal_Cultivation_Orb",
-    "content": "temple"
-  },
-  {
-    "base_type": "Vaal Siphoner",
-    "item_class": "Incubators",
-    "metadata_id": "Metadata/Items/Currency/CurrencyIncursionVaalIncubator",
-    "source": "https://poe2db.tw/us/Vaal_Siphoner",
-    "content": "temple"
-  },
-  {
-    "base_type": "Yaomac's Orb of Sacrifice",
-    "item_class": "Stackable Currency",
-    "metadata_id": "Metadata/Items/Currency/CurrencyIncursionMutateCorruptionEnchantWeapon",
-    "source": "https://poe2db.tw/us/Yaomacs_Orb_of_Sacrifice",
-    "content": "temple"
-  },
-  {
-    "base_type": "Yugul's Orb of Sacrifice",
-    "item_class": "Stackable Currency",
-    "metadata_id": "Metadata/Items/Currency/CurrencyIncursionMutateCorruptionEnchantJewel",
-    "source": "https://poe2db.tw/us/Yuguls_Orb_of_Sacrifice",
-    "content": "temple"
-  },
-  {
-    "base_type": "An Audience with the King",
-    "item_class": "Map Fragments",
-    "metadata_id": "Metadata/Items/MapFragments/CurrencyRitualBossFragment",
-    "source": "https://poe2db.tw/us/An_Audience_with_the_King",
-    "content": "ritual"
-  },
-  {
-    "base_type": "Call of the Shadows",
-    "item_class": "Pinnacle Keys",
-    "metadata_id": "Metadata/Items/Pinnacle/RitualPinnacleEffigyPiece",
-    "source": "https://poe2db.tw/us/Call_of_the_Shadows",
-    "content": "ritual"
-  },
-  {
-    "base_type": "Head of the King",
-    "item_class": "Map Fragments",
-    "metadata_id": "Metadata/Items/Currency/Ritual/RitualPinnacleKey",
-    "source": "https://poe2db.tw/us/Head_of_the_King",
-    "content": "ritual"
-  },
-  {
-    "base_type": "Omen of Amelioration",
-    "item_class": "Omen",
-    "metadata_id": "Metadata/Items/Currency/OmenOnDeathPreventExpLoss",
-    "source": "https://poe2db.tw/us/Omen_of_Amelioration",
-    "content": "ritual"
-  },
-  {
-    "base_type": "Omen of Answered Prayers",
-    "item_class": "Omen",
-    "metadata_id": "Metadata/Items/Currency/OmenShrineAdditionalEffect",
-    "source": "https://poe2db.tw/us/Omen_of_Answered_Prayers",
-    "content": "ritual"
-  },
-  {
-    "base_type": "Omen of Bartering",
-    "item_class": "Omen",
-    "metadata_id": "Metadata/Items/Currency/OmenSellVendorRandomise",
-    "source": "https://poe2db.tw/us/Omen_of_Bartering",
-    "content": "ritual"
-  },
-  {
-    "base_type": "Omen of Catalysing Exaltation",
-    "item_class": "Omen",
-    "metadata_id": "Metadata/Items/Currency/OmenOnExaltConsumeQuality",
-    "source": "https://poe2db.tw/us/Omen_of_Catalysing_Exaltation",
-    "content": "ritual"
-  },
-  {
-    "base_type": "Omen of Chance",
-    "item_class": "Omen",
-    "metadata_id": "Metadata/Items/Currency/OmenOnChanceNotDestroy",
-    "source": "https://poe2db.tw/us/Omen_of_Chance",
-    "content": "ritual"
-  },
-  {
-    "base_type": "Omen of Chaotic Effectiveness",
-    "item_class": "Omen",
-    "metadata_id": "Metadata/Items/Currency/OmenOnChaosMapMonsterEffectiveness",
-    "source": "https://poe2db.tw/us/Omen_of_Chaotic_Effectiveness",
-    "content": "ritual"
-  },
-  {
-    "base_type": "Omen of Chaotic Monsters",
-    "item_class": "Omen",
-    "metadata_id": "Metadata/Items/Currency/OmenOnChaosMapMonsterRarity",
-    "source": "https://poe2db.tw/us/Omen_of_Chaotic_Monsters",
-    "content": "ritual"
-  },
-  {
-    "base_type": "Omen of Chaotic Quantity",
-    "item_class": "Omen",
-    "metadata_id": "Metadata/Items/Currency/OmenOnChaosMapPackSize",
-    "source": "https://poe2db.tw/us/Omen_of_Chaotic_Quantity",
-    "content": "ritual"
-  },
-  {
-    "base_type": "Omen of Chaotic Rarity",
-    "item_class": "Omen",
-    "metadata_id": "Metadata/Items/Currency/OmenOnChaosMapItemRarity",
-    "source": "https://poe2db.tw/us/Omen_of_Chaotic_Rarity",
-    "content": "ritual"
-  },
-  {
-    "base_type": "Omen of Corruption",
-    "item_class": "Omen",
-    "metadata_id": "Metadata/Items/Currency/OmenOnVaalRemoveDoNothingOutcome",
-    "source": "https://poe2db.tw/us/Omen_of_Corruption",
-    "content": "ritual"
-  },
-  {
-    "base_type": "Omen of Dextral Annulment",
-    "item_class": "Omen",
-    "metadata_id": "Metadata/Items/Currency/OmenOnAnnulRemoveSuffixes",
-    "source": "https://poe2db.tw/us/Omen_of_Dextral_Annulment",
-    "content": "ritual"
-  },
-  {
-    "base_type": "Omen of Dextral Crystallisation",
-    "item_class": "Omen",
-    "metadata_id": "Metadata/Items/Currency/OmenOnPerfectEssenceSuffix",
-    "source": "https://poe2db.tw/us/Omen_of_Dextral_Crystallisation",
-    "content": "ritual"
-  },
-  {
-    "base_type": "Omen of Dextral Erasure",
-    "item_class": "Omen",
-    "metadata_id": "Metadata/Items/Currency/OmenOnChaosSuffix",
-    "source": "https://poe2db.tw/us/Omen_of_Dextral_Erasure",
-    "content": "ritual"
-  },
-  {
-    "base_type": "Omen of Dextral Exaltation",
-    "item_class": "Omen",
-    "metadata_id": "Metadata/Items/Currency/OmenOnExaltAddSuffixes",
-    "source": "https://poe2db.tw/us/Omen_of_Dextral_Exaltation",
-    "content": "ritual"
-  },
-  {
-    "base_type": "Omen of Gambling",
-    "item_class": "Omen",
-    "metadata_id": "Metadata/Items/Currency/OmenGambleNoGoldCost",
-    "source": "https://poe2db.tw/us/Omen_of_Gambling",
-    "content": "ritual"
-  },
-  {
-    "base_type": "Omen of Greater Exaltation",
-    "item_class": "Omen",
-    "metadata_id": "Metadata/Items/Currency/OmenOnExaltAddTwoMods",
-    "source": "https://poe2db.tw/us/Omen_of_Greater_Exaltation",
-    "content": "ritual"
-  },
-  {
-    "base_type": "Omen of Refreshment",
-    "item_class": "Omen",
-    "metadata_id": "Metadata/Items/Currency/OmenOnLowLifeRecoverCharges",
-    "source": "https://poe2db.tw/us/Omen_of_Refreshment",
-    "content": "ritual"
-  },
-  {
-    "base_type": "Omen of Reinforcements",
-    "item_class": "Omen",
-    "metadata_id": "Metadata/Items/Currency/OmenRogueExileSummonsPartyMember",
-    "source": "https://poe2db.tw/us/Omen_of_Reinforcements",
-    "content": "ritual"
-  },
-  {
-    "base_type": "Omen of Resurgence",
-    "item_class": "Omen",
-    "metadata_id": "Metadata/Items/Currency/OmenOnLowLifeFullyHeal",
-    "source": "https://poe2db.tw/us/Omen_of_Resurgence",
-    "content": "ritual"
-  },
-  {
-    "base_type": "Omen of Sanctification",
-    "item_class": "Omen",
-    "metadata_id": "Metadata/Items/Currency/OmenOnDivineSanctify",
-    "source": "https://poe2db.tw/us/Omen_of_Sanctification",
-    "content": "ritual"
-  },
-  {
-    "base_type": "Omen of Secret Compartments",
-    "item_class": "Omen",
-    "metadata_id": "Metadata/Items/Currency/OmenStrongboxOpenableAgain",
-    "source": "https://poe2db.tw/us/Omen_of_Secret_Compartments",
-    "content": "ritual"
-  },
-  {
-    "base_type": "Omen of Sinistral Annulment",
-    "item_class": "Omen",
-    "metadata_id": "Metadata/Items/Currency/OmenOnAnnulRemovePrefixes",
-    "source": "https://poe2db.tw/us/Omen_of_Sinistral_Annulment",
-    "content": "ritual"
-  },
-  {
-    "base_type": "Omen of Sinistral Crystallisation",
-    "item_class": "Omen",
-    "metadata_id": "Metadata/Items/Currency/OmenOnPerfectEssencePrefix",
-    "source": "https://poe2db.tw/us/Omen_of_Sinistral_Crystallisation",
-    "content": "ritual"
-  },
-  {
-    "base_type": "Omen of Sinistral Erasure",
-    "item_class": "Omen",
-    "metadata_id": "Metadata/Items/Currency/OmenOnChaosPrefix",
-    "source": "https://poe2db.tw/us/Omen_of_Sinistral_Erasure",
-    "content": "ritual"
-  },
-  {
-    "base_type": "Omen of Sinistral Exaltation",
-    "item_class": "Omen",
-    "metadata_id": "Metadata/Items/Currency/OmenOnExaltAddPrefixes",
-    "source": "https://poe2db.tw/us/Omen_of_Sinistral_Exaltation",
-    "content": "ritual"
-  },
-  {
-    "base_type": "Omen of the Ancients",
-    "item_class": "Omen",
-    "metadata_id": "Metadata/Items/Currency/OmenOnChanceAncientOrb",
-    "source": "https://poe2db.tw/us/Omen_of_the_Ancients",
-    "content": "ritual"
-  },
-  {
-    "base_type": "Omen of the Blessed",
-    "item_class": "Omen",
-    "metadata_id": "Metadata/Items/Currency/OmenOnDivineRerollImplicits",
-    "source": "https://poe2db.tw/us/Omen_of_the_Blessed",
-    "content": "ritual"
-  },
-  {
-    "base_type": "Omen of the Hunt",
-    "item_class": "Omen",
-    "metadata_id": "Metadata/Items/Currency/OmenTormentedMonsterReleased",
-    "source": "https://poe2db.tw/us/Omen_of_the_Hunt",
-    "content": "ritual"
-  },
-  {
-    "base_type": "Omen of Whittling",
-    "item_class": "Omen",
-    "metadata_id": "Metadata/Items/Currency/OmenOnChaosLowestLevelMod",
-    "source": "https://poe2db.tw/us/Omen_of_Whittling",
-    "content": "ritual"
-  },
-  {
-    "base_type": "Ritual Tablet",
-    "item_class": "Tablet",
-    "metadata_id": "Metadata/Items/TowerAugment/RitualAugment",
-    "source": "https://poe2db.tw/us/Ritual_Tablet",
-    "content": "ritual"
-  },
-  {
-    "base_type": "Sacred Bloom",
-    "item_class": "Map Fragments",
-    "metadata_id": "Metadata/Items/MapFragments/CurrencyWildwoodFragment",
-    "source": "https://poe2db.tw/us/Sacred_Bloom",
-    "content": "ritual"
+    "metadata_id": "Metadata/Items/Currency/CurrencyUpgradeToMagicShard",
+    "source": "https://poe2db.tw/us/Transmutation_Shard",
+    "content": "currency"
   },
   {
     "base_type": "Ancient Concentrated Liquid Fear",
@@ -810,6 +502,573 @@
     "metadata_id": "Metadata/Items/Currency/CurrencyAfflictionShard",
     "source": "https://poe2db.tw/us/Simulacrum_Splinter",
     "content": "delirium"
+  },
+  {
+    "base_type": "Essence of Abrasion",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyEssencePhysical",
+    "source": "https://poe2db.tw/us/Essence_of_Abrasion",
+    "content": "essence"
+  },
+  {
+    "base_type": "Essence of Alacrity",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyEssenceSpeedCaster",
+    "source": "https://poe2db.tw/us/Essence_of_Alacrity",
+    "content": "essence"
+  },
+  {
+    "base_type": "Essence of Battle",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyEssenceAttack",
+    "source": "https://poe2db.tw/us/Essence_of_Battle",
+    "content": "essence"
+  },
+  {
+    "base_type": "Essence of Command",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyEssenceAlly",
+    "source": "https://poe2db.tw/us/Essence_of_Command",
+    "content": "essence"
+  },
+  {
+    "base_type": "Essence of Delirium",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyCorruptedEssenceDelirium",
+    "source": "https://poe2db.tw/us/Essence_of_Delirium",
+    "content": "essence"
+  },
+  {
+    "base_type": "Essence of Electricity",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyEssenceLightning",
+    "source": "https://poe2db.tw/us/Essence_of_Electricity",
+    "content": "essence"
+  },
+  {
+    "base_type": "Essence of Enhancement",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyEssenceDefences",
+    "source": "https://poe2db.tw/us/Essence_of_Enhancement",
+    "content": "essence"
+  },
+  {
+    "base_type": "Essence of Flames",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyEssenceFire",
+    "source": "https://poe2db.tw/us/Essence_of_Flames",
+    "content": "essence"
+  },
+  {
+    "base_type": "Essence of Grounding",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyEssenceLightningResist",
+    "source": "https://poe2db.tw/us/Essence_of_Grounding",
+    "content": "essence"
+  },
+  {
+    "base_type": "Essence of Haste",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyEssenceSpeed",
+    "source": "https://poe2db.tw/us/Essence_of_Haste",
+    "content": "essence"
+  },
+  {
+    "base_type": "Essence of Horror",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyCorruptedEssenceHorror",
+    "source": "https://poe2db.tw/us/Essence_of_Horror",
+    "content": "essence"
+  },
+  {
+    "base_type": "Essence of Hysteria",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyCorruptedEssenceHysteria",
+    "source": "https://poe2db.tw/us/Essence_of_Hysteria",
+    "content": "essence"
+  },
+  {
+    "base_type": "Essence of Ice",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyEssenceCold",
+    "source": "https://poe2db.tw/us/Essence_of_Ice",
+    "content": "essence"
+  },
+  {
+    "base_type": "Essence of Insanity",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyCorruptedEssenceInsanity",
+    "source": "https://poe2db.tw/us/Essence_of_Insanity",
+    "content": "essence"
+  },
+  {
+    "base_type": "Essence of Insulation",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyEssenceFireResist",
+    "source": "https://poe2db.tw/us/Essence_of_Insulation",
+    "content": "essence"
+  },
+  {
+    "base_type": "Essence of Opulence",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyEssenceRarity",
+    "source": "https://poe2db.tw/us/Essence_of_Opulence",
+    "content": "essence"
+  },
+  {
+    "base_type": "Essence of Ruin",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyEssenceChaos",
+    "source": "https://poe2db.tw/us/Essence_of_Ruin",
+    "content": "essence"
+  },
+  {
+    "base_type": "Essence of Seeking",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyEssenceCritical",
+    "source": "https://poe2db.tw/us/Essence_of_Seeking",
+    "content": "essence"
+  },
+  {
+    "base_type": "Essence of Sorcery",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyEssenceCaster",
+    "source": "https://poe2db.tw/us/Essence_of_Sorcery",
+    "content": "essence"
+  },
+  {
+    "base_type": "Essence of Thawing",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyEssenceColdResist",
+    "source": "https://poe2db.tw/us/Essence_of_Thawing",
+    "content": "essence"
+  },
+  {
+    "base_type": "Essence of the Abyss",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyCorruptedEssenceAbyss",
+    "source": "https://poe2db.tw/us/Essence_of_the_Abyss",
+    "content": "essence"
+  },
+  {
+    "base_type": "Essence of the Body",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyEssenceLife",
+    "source": "https://poe2db.tw/us/Essence_of_the_Body",
+    "content": "essence"
+  },
+  {
+    "base_type": "Essence of the Infinite",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyEssenceAttribute",
+    "source": "https://poe2db.tw/us/Essence_of_the_Infinite",
+    "content": "essence"
+  },
+  {
+    "base_type": "Essence of the Mind",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyEssenceMana",
+    "source": "https://poe2db.tw/us/Essence_of_the_Mind",
+    "content": "essence"
+  },
+  {
+    "base_type": "Greater Essence of Abrasion",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyGreaterEssencePhysical",
+    "source": "https://poe2db.tw/us/Greater_Essence_of_Abrasion",
+    "content": "essence"
+  },
+  {
+    "base_type": "Greater Essence of Alacrity",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyGreaterEssenceSpeedCaster",
+    "source": "https://poe2db.tw/us/Greater_Essence_of_Alacrity",
+    "content": "essence"
+  },
+  {
+    "base_type": "Greater Essence of Battle",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyGreaterEssenceAttack",
+    "source": "https://poe2db.tw/us/Greater_Essence_of_Battle",
+    "content": "essence"
+  },
+  {
+    "base_type": "Greater Essence of Command",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyGreaterEssenceAlly",
+    "source": "https://poe2db.tw/us/Greater_Essence_of_Command",
+    "content": "essence"
+  },
+  {
+    "base_type": "Greater Essence of Electricity",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyGreaterEssenceLightning",
+    "source": "https://poe2db.tw/us/Greater_Essence_of_Electricity",
+    "content": "essence"
+  },
+  {
+    "base_type": "Greater Essence of Enhancement",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyGreaterEssenceDefences",
+    "source": "https://poe2db.tw/us/Greater_Essence_of_Enhancement",
+    "content": "essence"
+  },
+  {
+    "base_type": "Greater Essence of Flames",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyGreaterEssenceFire",
+    "source": "https://poe2db.tw/us/Greater_Essence_of_Flames",
+    "content": "essence"
+  },
+  {
+    "base_type": "Greater Essence of Grounding",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyGreaterEssenceLightningResist",
+    "source": "https://poe2db.tw/us/Greater_Essence_of_Grounding",
+    "content": "essence"
+  },
+  {
+    "base_type": "Greater Essence of Haste",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyGreaterEssenceSpeed",
+    "source": "https://poe2db.tw/us/Greater_Essence_of_Haste",
+    "content": "essence"
+  },
+  {
+    "base_type": "Greater Essence of Ice",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyGreaterEssenceCold",
+    "source": "https://poe2db.tw/us/Greater_Essence_of_Ice",
+    "content": "essence"
+  },
+  {
+    "base_type": "Greater Essence of Insulation",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyGreaterEssenceFireResist",
+    "source": "https://poe2db.tw/us/Greater_Essence_of_Insulation",
+    "content": "essence"
+  },
+  {
+    "base_type": "Greater Essence of Opulence",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyGreaterEssenceRarity",
+    "source": "https://poe2db.tw/us/Greater_Essence_of_Opulence",
+    "content": "essence"
+  },
+  {
+    "base_type": "Greater Essence of Ruin",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyGreaterEssenceChaos",
+    "source": "https://poe2db.tw/us/Greater_Essence_of_Ruin",
+    "content": "essence"
+  },
+  {
+    "base_type": "Greater Essence of Seeking",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyGreaterEssenceCritical",
+    "source": "https://poe2db.tw/us/Greater_Essence_of_Seeking",
+    "content": "essence"
+  },
+  {
+    "base_type": "Greater Essence of Sorcery",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyGreaterEssenceCaster",
+    "source": "https://poe2db.tw/us/Greater_Essence_of_Sorcery",
+    "content": "essence"
+  },
+  {
+    "base_type": "Greater Essence of Thawing",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyGreaterEssenceColdResist",
+    "source": "https://poe2db.tw/us/Greater_Essence_of_Thawing",
+    "content": "essence"
+  },
+  {
+    "base_type": "Greater Essence of the Body",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyGreaterEssenceLife",
+    "source": "https://poe2db.tw/us/Greater_Essence_of_the_Body",
+    "content": "essence"
+  },
+  {
+    "base_type": "Greater Essence of the Infinite",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyGreaterEssenceAttribute",
+    "source": "https://poe2db.tw/us/Greater_Essence_of_the_Infinite",
+    "content": "essence"
+  },
+  {
+    "base_type": "Greater Essence of the Mind",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyGreaterEssenceMana",
+    "source": "https://poe2db.tw/us/Greater_Essence_of_the_Mind",
+    "content": "essence"
+  },
+  {
+    "base_type": "Lesser Essence of Abrasion",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyLesserEssencePhysical",
+    "source": "https://poe2db.tw/us/Lesser_Essence_of_Abrasion",
+    "content": "essence"
+  },
+  {
+    "base_type": "Lesser Essence of Alacrity",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyLesserEssenceSpeedCaster",
+    "source": "https://poe2db.tw/us/Lesser_Essence_of_Alacrity",
+    "content": "essence"
+  },
+  {
+    "base_type": "Lesser Essence of Battle",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyLesserEssenceAttack",
+    "source": "https://poe2db.tw/us/Lesser_Essence_of_Battle",
+    "content": "essence"
+  },
+  {
+    "base_type": "Lesser Essence of Command",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyLesserEssenceAlly",
+    "source": "https://poe2db.tw/us/Lesser_Essence_of_Command",
+    "content": "essence"
+  },
+  {
+    "base_type": "Lesser Essence of Electricity",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyLesserEssenceLightning",
+    "source": "https://poe2db.tw/us/Lesser_Essence_of_Electricity",
+    "content": "essence"
+  },
+  {
+    "base_type": "Lesser Essence of Enhancement",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyLesserEssenceDefences",
+    "source": "https://poe2db.tw/us/Lesser_Essence_of_Enhancement",
+    "content": "essence"
+  },
+  {
+    "base_type": "Lesser Essence of Flames",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyLesserEssenceFire",
+    "source": "https://poe2db.tw/us/Lesser_Essence_of_Flames",
+    "content": "essence"
+  },
+  {
+    "base_type": "Lesser Essence of Grounding",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyLesserEssenceLightningResist",
+    "source": "https://poe2db.tw/us/Lesser_Essence_of_Grounding",
+    "content": "essence"
+  },
+  {
+    "base_type": "Lesser Essence of Haste",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyLesserEssenceSpeed",
+    "source": "https://poe2db.tw/us/Lesser_Essence_of_Haste",
+    "content": "essence"
+  },
+  {
+    "base_type": "Lesser Essence of Ice",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyLesserEssenceCold",
+    "source": "https://poe2db.tw/us/Lesser_Essence_of_Ice",
+    "content": "essence"
+  },
+  {
+    "base_type": "Lesser Essence of Insulation",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyLesserEssenceFireResist",
+    "source": "https://poe2db.tw/us/Lesser_Essence_of_Insulation",
+    "content": "essence"
+  },
+  {
+    "base_type": "Lesser Essence of Opulence",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyLesserEssenceRarity",
+    "source": "https://poe2db.tw/us/Lesser_Essence_of_Opulence",
+    "content": "essence"
+  },
+  {
+    "base_type": "Lesser Essence of Ruin",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyLesserEssenceChaos",
+    "source": "https://poe2db.tw/us/Lesser_Essence_of_Ruin",
+    "content": "essence"
+  },
+  {
+    "base_type": "Lesser Essence of Seeking",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyLesserEssenceCritical",
+    "source": "https://poe2db.tw/us/Lesser_Essence_of_Seeking",
+    "content": "essence"
+  },
+  {
+    "base_type": "Lesser Essence of Sorcery",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyLesserEssenceCaster",
+    "source": "https://poe2db.tw/us/Lesser_Essence_of_Sorcery",
+    "content": "essence"
+  },
+  {
+    "base_type": "Lesser Essence of Thawing",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyLesserEssenceColdResist",
+    "source": "https://poe2db.tw/us/Lesser_Essence_of_Thawing",
+    "content": "essence"
+  },
+  {
+    "base_type": "Lesser Essence of the Body",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyLesserEssenceLife",
+    "source": "https://poe2db.tw/us/Lesser_Essence_of_the_Body",
+    "content": "essence"
+  },
+  {
+    "base_type": "Lesser Essence of the Infinite",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyLesserEssenceAttribute",
+    "source": "https://poe2db.tw/us/Lesser_Essence_of_the_Infinite",
+    "content": "essence"
+  },
+  {
+    "base_type": "Lesser Essence of the Mind",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyLesserEssenceMana",
+    "source": "https://poe2db.tw/us/Lesser_Essence_of_the_Mind",
+    "content": "essence"
+  },
+  {
+    "base_type": "Perfect Essence of Abrasion",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyPerfectEssencePhysical",
+    "source": "https://poe2db.tw/us/Perfect_Essence_of_Abrasion",
+    "content": "essence"
+  },
+  {
+    "base_type": "Perfect Essence of Alacrity",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyPerfectEssenceSpeedCaster",
+    "source": "https://poe2db.tw/us/Perfect_Essence_of_Alacrity",
+    "content": "essence"
+  },
+  {
+    "base_type": "Perfect Essence of Battle",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyPerfectEssenceAttack",
+    "source": "https://poe2db.tw/us/Perfect_Essence_of_Battle",
+    "content": "essence"
+  },
+  {
+    "base_type": "Perfect Essence of Command",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyPerfectEssenceAlly",
+    "source": "https://poe2db.tw/us/Perfect_Essence_of_Command",
+    "content": "essence"
+  },
+  {
+    "base_type": "Perfect Essence of Electricity",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyPerfectEssenceLightning",
+    "source": "https://poe2db.tw/us/Perfect_Essence_of_Electricity",
+    "content": "essence"
+  },
+  {
+    "base_type": "Perfect Essence of Enhancement",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyPerfectEssenceDefences",
+    "source": "https://poe2db.tw/us/Perfect_Essence_of_Enhancement",
+    "content": "essence"
+  },
+  {
+    "base_type": "Perfect Essence of Flames",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyPerfectEssenceFire",
+    "source": "https://poe2db.tw/us/Perfect_Essence_of_Flames",
+    "content": "essence"
+  },
+  {
+    "base_type": "Perfect Essence of Grounding",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyPerfectEssenceLightningResist",
+    "source": "https://poe2db.tw/us/Perfect_Essence_of_Grounding",
+    "content": "essence"
+  },
+  {
+    "base_type": "Perfect Essence of Haste",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyPerfectEssenceSpeed",
+    "source": "https://poe2db.tw/us/Perfect_Essence_of_Haste",
+    "content": "essence"
+  },
+  {
+    "base_type": "Perfect Essence of Ice",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyPerfectEssenceCold",
+    "source": "https://poe2db.tw/us/Perfect_Essence_of_Ice",
+    "content": "essence"
+  },
+  {
+    "base_type": "Perfect Essence of Insulation",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyPerfectEssenceFireResist",
+    "source": "https://poe2db.tw/us/Perfect_Essence_of_Insulation",
+    "content": "essence"
+  },
+  {
+    "base_type": "Perfect Essence of Opulence",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyPerfectEssenceRarity",
+    "source": "https://poe2db.tw/us/Perfect_Essence_of_Opulence",
+    "content": "essence"
+  },
+  {
+    "base_type": "Perfect Essence of Ruin",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyPerfectEssenceChaos",
+    "source": "https://poe2db.tw/us/Perfect_Essence_of_Ruin",
+    "content": "essence"
+  },
+  {
+    "base_type": "Perfect Essence of Seeking",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyPerfectEssenceCritical",
+    "source": "https://poe2db.tw/us/Perfect_Essence_of_Seeking",
+    "content": "essence"
+  },
+  {
+    "base_type": "Perfect Essence of Sorcery",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyPerfectEssenceCaster",
+    "source": "https://poe2db.tw/us/Perfect_Essence_of_Sorcery",
+    "content": "essence"
+  },
+  {
+    "base_type": "Perfect Essence of Thawing",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyPerfectEssenceColdResist",
+    "source": "https://poe2db.tw/us/Perfect_Essence_of_Thawing",
+    "content": "essence"
+  },
+  {
+    "base_type": "Perfect Essence of the Body",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyPerfectEssenceLife",
+    "source": "https://poe2db.tw/us/Perfect_Essence_of_the_Body",
+    "content": "essence"
+  },
+  {
+    "base_type": "Perfect Essence of the Infinite",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyPerfectEssenceAttribute",
+    "source": "https://poe2db.tw/us/Perfect_Essence_of_the_Infinite",
+    "content": "essence"
+  },
+  {
+    "base_type": "Perfect Essence of the Mind",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyPerfectEssenceMana",
+    "source": "https://poe2db.tw/us/Perfect_Essence_of_the_Mind",
+    "content": "essence"
   },
   {
     "base_type": "Adaptive Alloy",
@@ -1330,333 +1589,151 @@
     "content": "expedition"
   },
   {
-    "base_type": "Atmohua's Soul Core of Retreat",
-    "item_class": "Augment",
-    "metadata_id": "Metadata/Items/SoulCores/SoulCoreSpecial4",
-    "source": "https://poe2db.tw/us/Atmohuas_Soul_Core_of_Retreat",
-    "content": "soul_core"
+    "base_type": "Ancient Crisis Fragment",
+    "item_class": "Pinnacle Keys",
+    "metadata_id": "Metadata/Items/Pinnacle/BurningMonolithKey1",
+    "source": "https://poe2db.tw/us/Ancient_Crisis_Fragment",
+    "content": "fragments"
   },
   {
-    "base_type": "Atziri's Soul Core of Alacrity",
-    "item_class": "Augment",
-    "metadata_id": "Metadata/Items/SoulCores/SoulCoreSpecial31",
-    "source": "https://poe2db.tw/us/Atziris_Soul_Core_of_Alacrity",
-    "content": "soul_core"
+    "base_type": "Azmeri Reliquary Key",
+    "item_class": "Vault Keys",
+    "metadata_id": "Metadata/Items/MapFragments/VaultKeyAzmeriSpirits",
+    "source": "https://poe2db.tw/us/Azmeri_Reliquary_Key",
+    "content": "fragments"
   },
   {
-    "base_type": "Atziri's Soul Core of Devotion",
-    "item_class": "Augment",
-    "metadata_id": "Metadata/Items/SoulCores/SoulCoreSpecial29",
-    "source": "https://poe2db.tw/us/Atziris_Soul_Core_of_Devotion",
-    "content": "soul_core"
+    "base_type": "Cowardly Fate",
+    "item_class": "Map Fragments",
+    "metadata_id": "Metadata/Items/Ultimatum/TrialmasterKey1",
+    "source": "https://poe2db.tw/us/Cowardly_Fate",
+    "content": "fragments"
   },
   {
-    "base_type": "Atziri's Soul Core of Inoculation",
-    "item_class": "Augment",
-    "metadata_id": "Metadata/Items/SoulCores/SoulCoreSpecial32",
-    "source": "https://poe2db.tw/us/Atziris_Soul_Core_of_Inoculation",
-    "content": "soul_core"
+    "base_type": "Deadly Fate",
+    "item_class": "Map Fragments",
+    "metadata_id": "Metadata/Items/Ultimatum/TrialmasterKey2",
+    "source": "https://poe2db.tw/us/Deadly_Fate",
+    "content": "fragments"
   },
   {
-    "base_type": "Atziri's Soul Core of Vitality",
-    "item_class": "Augment",
-    "metadata_id": "Metadata/Items/SoulCores/SoulCoreSpecial30",
-    "source": "https://poe2db.tw/us/Atziris_Soul_Core_of_Vitality",
-    "content": "soul_core"
+    "base_type": "Olroth's Reliquary Key",
+    "item_class": "Vault Keys",
+    "metadata_id": "Metadata/Items/MapFragments/VaultKeyExpedition",
+    "source": "https://poe2db.tw/us/Olroths_Reliquary_Key",
+    "content": "fragments"
   },
   {
-    "base_type": "Cholotl's Soul Core of War",
-    "item_class": "Augment",
-    "metadata_id": "Metadata/Items/SoulCores/SoulCoreSpecial13",
-    "source": "https://poe2db.tw/us/Cholotls_Soul_Core_of_War",
-    "content": "soul_core"
+    "base_type": "Origin Core",
+    "item_class": "Pinnacle Keys",
+    "metadata_id": "Metadata/Items/Pinnacle/MothersoulCombined",
+    "source": "https://poe2db.tw/us/Origin_Core",
+    "content": "fragments"
   },
   {
-    "base_type": "Citaqualotl's Soul Core of Foulness",
-    "item_class": "Augment",
-    "metadata_id": "Metadata/Items/SoulCores/SoulCoreSpecial14",
-    "source": "https://poe2db.tw/us/Citaqualotls_Soul_Core_of_Foulness",
-    "content": "soul_core"
+    "base_type": "Origin Cradle",
+    "item_class": "Pinnacle Keys",
+    "metadata_id": "Metadata/Items/Pinnacle/MothersoulEgg",
+    "source": "https://poe2db.tw/us/Origin_Cradle",
+    "content": "fragments"
   },
   {
-    "base_type": "Estazunti's Soul Core of Convalescence",
-    "item_class": "Augment",
-    "metadata_id": "Metadata/Items/SoulCores/SoulCoreSpecial11",
-    "source": "https://poe2db.tw/us/Estazuntis_Soul_Core_of_Convalescence",
-    "content": "soul_core"
+    "base_type": "Origin Spark",
+    "item_class": "Pinnacle Keys",
+    "metadata_id": "Metadata/Items/Pinnacle/MothersoulEmbryo",
+    "source": "https://poe2db.tw/us/Origin_Spark",
+    "content": "fragments"
   },
   {
-    "base_type": "Guatelitzi's Soul Core of Endurance",
-    "item_class": "Augment",
-    "metadata_id": "Metadata/Items/SoulCores/SoulCoreSpecial9",
-    "source": "https://poe2db.tw/us/Guatelitzis_Soul_Core_of_Endurance",
-    "content": "soul_core"
+    "base_type": "Ritualistic Reliquary Key",
+    "item_class": "Vault Keys",
+    "metadata_id": "Metadata/Items/MapFragments/VaultKeyRitual",
+    "source": "https://poe2db.tw/us/Ritualistic_Reliquary_Key",
+    "content": "fragments"
   },
   {
-    "base_type": "Hayoxi's Soul Core of Heatproofing",
-    "item_class": "Augment",
-    "metadata_id": "Metadata/Items/SoulCores/SoulCoreSpecial1",
-    "source": "https://poe2db.tw/us/Hayoxis_Soul_Core_of_Heatproofing",
-    "content": "soul_core"
+    "base_type": "Tangmazu's Reliquary Key",
+    "item_class": "Vault Keys",
+    "metadata_id": "Metadata/Items/MapFragments/VaultKeyDelirium",
+    "source": "https://poe2db.tw/us/Tangmazus_Reliquary_Key",
+    "content": "fragments"
   },
   {
-    "base_type": "Jiquani's Soul Core of Abundance",
-    "item_class": "Augment",
-    "metadata_id": "Metadata/Items/SoulCores/SoulCoreSpecial26",
-    "source": "https://poe2db.tw/us/Jiquanis_Soul_Core_of_Abundance",
-    "content": "soul_core"
+    "base_type": "The Arbiter's Reliquary Key",
+    "item_class": "Vault Keys",
+    "metadata_id": "Metadata/Items/MapFragments/VaultKeyPinnacle",
+    "source": "https://poe2db.tw/us/The_Arbiters_Reliquary_Key",
+    "content": "fragments"
   },
   {
-    "base_type": "Jiquani's Soul Core of Automation",
-    "item_class": "Augment",
-    "metadata_id": "Metadata/Items/SoulCores/SoulCoreSpecial16",
-    "source": "https://poe2db.tw/us/Jiquanis_Soul_Core_of_Automation",
-    "content": "soul_core"
+    "base_type": "The Trialmaster's Reliquary Key",
+    "item_class": "Vault Keys",
+    "metadata_id": "Metadata/Items/MapFragments/VaultKeyUltimatum",
+    "source": "https://poe2db.tw/us/The_Trialmasters_Reliquary_Key",
+    "content": "fragments"
   },
   {
-    "base_type": "Jiquani's Soul Core of Malediction",
-    "item_class": "Augment",
-    "metadata_id": "Metadata/Items/SoulCores/SoulCoreSpecial17",
-    "source": "https://poe2db.tw/us/Jiquanis_Soul_Core_of_Malediction",
-    "content": "soul_core"
+    "base_type": "Twilight Reliquary Key",
+    "item_class": "Vault Keys",
+    "metadata_id": "Metadata/Items/MapFragments/VaultKeyWorldDrop",
+    "source": "https://poe2db.tw/us/Twilight_Reliquary_Key",
+    "content": "fragments"
   },
   {
-    "base_type": "Jiquani's Soul Core of Munitions",
-    "item_class": "Augment",
-    "metadata_id": "Metadata/Items/SoulCores/SoulCoreSpecial24",
-    "source": "https://poe2db.tw/us/Jiquanis_Soul_Core_of_Munitions",
-    "content": "soul_core"
+    "base_type": "Victorious Fate",
+    "item_class": "Map Fragments",
+    "metadata_id": "Metadata/Items/Ultimatum/TrialmasterKey3",
+    "source": "https://poe2db.tw/us/Victorious_Fate",
+    "content": "fragments"
   },
   {
-    "base_type": "Jiquani's Soul Core of Quaking",
-    "item_class": "Augment",
-    "metadata_id": "Metadata/Items/SoulCores/SoulCoreSpecial23",
-    "source": "https://poe2db.tw/us/Jiquanis_Soul_Core_of_Quaking",
-    "content": "soul_core"
+    "base_type": "Weathered Crisis Fragment",
+    "item_class": "Pinnacle Keys",
+    "metadata_id": "Metadata/Items/Pinnacle/BurningMonolithKey3",
+    "source": "https://poe2db.tw/us/Weathered_Crisis_Fragment",
+    "content": "fragments"
   },
   {
-    "base_type": "Jiquani's Soul Core of Radiance",
-    "item_class": "Augment",
-    "metadata_id": "Metadata/Items/SoulCores/SoulCoreSpecial20",
-    "source": "https://poe2db.tw/us/Jiquanis_Soul_Core_of_Radiance",
-    "content": "soul_core"
+    "base_type": "Xesht's Reliquary Key",
+    "item_class": "Vault Keys",
+    "metadata_id": "Metadata/Items/MapFragments/VaultKeyBreach",
+    "source": "https://poe2db.tw/us/Xeshts_Reliquary_Key",
+    "content": "fragments"
   },
   {
-    "base_type": "Jiquani's Soul Core of Rallying",
-    "item_class": "Augment",
-    "metadata_id": "Metadata/Items/SoulCores/SoulCoreSpecial19",
-    "source": "https://poe2db.tw/us/Jiquanis_Soul_Core_of_Rallying",
-    "content": "soul_core"
+    "base_type": "Zarokh's Reliquary Key: Against the Darkness",
+    "item_class": "Vault Keys",
+    "metadata_id": "Metadata/Items/MapFragments/VaultKeySanctumRelic2",
+    "source": "https://poe2db.tw/us/Zarokhs_Reliquary_Key%3A_Against_the_Darkness",
+    "content": "fragments"
   },
   {
-    "base_type": "Jiquani's Soul Core of Rippling",
-    "item_class": "Augment",
-    "metadata_id": "Metadata/Items/SoulCores/SoulCoreSpecial22",
-    "source": "https://poe2db.tw/us/Jiquanis_Soul_Core_of_Rippling",
-    "content": "soul_core"
+    "base_type": "Zarokh's Reliquary Key: Blessed Bonds",
+    "item_class": "Vault Keys",
+    "metadata_id": "Metadata/Items/MapFragments/VaultKeySanctumRelic4",
+    "source": "https://poe2db.tw/us/Zarokhs_Reliquary_Key%3A_Blessed_Bonds",
+    "content": "fragments"
   },
   {
-    "base_type": "Jiquani's Soul Core of Severing",
-    "item_class": "Augment",
-    "metadata_id": "Metadata/Items/SoulCores/SoulCoreSpecial21",
-    "source": "https://poe2db.tw/us/Jiquanis_Soul_Core_of_Severing",
-    "content": "soul_core"
+    "base_type": "Zarokh's Reliquary Key: Sandstorm Visage",
+    "item_class": "Vault Keys",
+    "metadata_id": "Metadata/Items/MapFragments/VaultKeySanctumRelic3",
+    "source": "https://poe2db.tw/us/Zarokhs_Reliquary_Key%3A_Sandstorm_Visage",
+    "content": "fragments"
   },
   {
-    "base_type": "Jiquani's Soul Core of Snares",
-    "item_class": "Augment",
-    "metadata_id": "Metadata/Items/SoulCores/SoulCoreSpecial25",
-    "source": "https://poe2db.tw/us/Jiquanis_Soul_Core_of_Snares",
-    "content": "soul_core"
+    "base_type": "Zarokh's Reliquary Key: Sekhema's Resolve",
+    "item_class": "Vault Keys",
+    "metadata_id": "Metadata/Items/MapFragments/VaultKeySanctumRelic5",
+    "source": "https://poe2db.tw/us/Zarokhs_Reliquary_Key%3A_Sekhemas_Resolve",
+    "content": "fragments"
   },
   {
-    "base_type": "Jiquani's Soul Core of Squalls",
-    "item_class": "Augment",
-    "metadata_id": "Metadata/Items/SoulCores/SoulCoreSpecial27",
-    "source": "https://poe2db.tw/us/Jiquanis_Soul_Core_of_Squalls",
-    "content": "soul_core"
-  },
-  {
-    "base_type": "Jiquani's Soul Core of Targeting",
-    "item_class": "Augment",
-    "metadata_id": "Metadata/Items/SoulCores/SoulCoreSpecial18",
-    "source": "https://poe2db.tw/us/Jiquanis_Soul_Core_of_Targeting",
-    "content": "soul_core"
-  },
-  {
-    "base_type": "Jiquani's Soul Core of Thundering",
-    "item_class": "Augment",
-    "metadata_id": "Metadata/Items/SoulCores/SoulCoreSpecial28",
-    "source": "https://poe2db.tw/us/Jiquanis_Soul_Core_of_Thundering",
-    "content": "soul_core"
-  },
-  {
-    "base_type": "Opiloti's Soul Core of Assault",
-    "item_class": "Augment",
-    "metadata_id": "Metadata/Items/SoulCores/SoulCoreSpecial8",
-    "source": "https://poe2db.tw/us/Opilotis_Soul_Core_of_Assault",
-    "content": "soul_core"
-  },
-  {
-    "base_type": "Quipolatl's Soul Core of Flow",
-    "item_class": "Augment",
-    "metadata_id": "Metadata/Items/SoulCores/SoulCoreSpecial5",
-    "source": "https://poe2db.tw/us/Quipolatls_Soul_Core_of_Flow",
-    "content": "soul_core"
-  },
-  {
-    "base_type": "Soul Core of Atmohua",
-    "item_class": "Augment",
-    "metadata_id": "Metadata/Items/SoulCores/SoulCoreStrength",
-    "source": "https://poe2db.tw/us/Soul_Core_of_Atmohua",
-    "content": "soul_core"
-  },
-  {
-    "base_type": "Soul Core of Azcapa",
-    "item_class": "Augment",
-    "metadata_id": "Metadata/Items/SoulCores/SoulCoreLight",
-    "source": "https://poe2db.tw/us/Soul_Core_of_Azcapa",
-    "content": "soul_core"
-  },
-  {
-    "base_type": "Soul Core of Cholotl",
-    "item_class": "Augment",
-    "metadata_id": "Metadata/Items/SoulCores/SoulCoreDexterity",
-    "source": "https://poe2db.tw/us/Soul_Core_of_Cholotl",
-    "content": "soul_core"
-  },
-  {
-    "base_type": "Soul Core of Citaqualotl",
-    "item_class": "Augment",
-    "metadata_id": "Metadata/Items/SoulCores/SoulCoreEnlighten",
-    "source": "https://poe2db.tw/us/Soul_Core_of_Citaqualotl",
-    "content": "soul_core"
-  },
-  {
-    "base_type": "Soul Core of Jiquani",
-    "item_class": "Augment",
-    "metadata_id": "Metadata/Items/SoulCores/SoulCoreMaxLife",
-    "source": "https://poe2db.tw/us/Soul_Core_of_Jiquani",
-    "content": "soul_core"
-  },
-  {
-    "base_type": "Soul Core of Opiloti",
-    "item_class": "Augment",
-    "metadata_id": "Metadata/Items/SoulCores/SoulCoreBleed",
-    "source": "https://poe2db.tw/us/Soul_Core_of_Opiloti",
-    "content": "soul_core"
-  },
-  {
-    "base_type": "Soul Core of Puhuarte",
-    "item_class": "Augment",
-    "metadata_id": "Metadata/Items/SoulCores/SoulCoreIgnite",
-    "source": "https://poe2db.tw/us/Soul_Core_of_Puhuarte",
-    "content": "soul_core"
-  },
-  {
-    "base_type": "Soul Core of Quipolatl",
-    "item_class": "Augment",
-    "metadata_id": "Metadata/Items/SoulCores/SoulCoreSpeed",
-    "source": "https://poe2db.tw/us/Soul_Core_of_Quipolatl",
-    "content": "soul_core"
-  },
-  {
-    "base_type": "Soul Core of Tacati",
-    "item_class": "Augment",
-    "metadata_id": "Metadata/Items/SoulCores/SoulCoreChaos",
-    "source": "https://poe2db.tw/us/Soul_Core_of_Tacati",
-    "content": "soul_core"
-  },
-  {
-    "base_type": "Soul Core of Ticaba",
-    "item_class": "Augment",
-    "metadata_id": "Metadata/Items/SoulCores/SoulCoreCrit",
-    "source": "https://poe2db.tw/us/Soul_Core_of_Ticaba",
-    "content": "soul_core"
-  },
-  {
-    "base_type": "Soul Core of Topotante",
-    "item_class": "Augment",
-    "metadata_id": "Metadata/Items/SoulCores/SoulCoreElemental",
-    "source": "https://poe2db.tw/us/Soul_Core_of_Topotante",
-    "content": "soul_core"
-  },
-  {
-    "base_type": "Soul Core of Tzamoto",
-    "item_class": "Augment",
-    "metadata_id": "Metadata/Items/SoulCores/SoulCoreFreeze",
-    "source": "https://poe2db.tw/us/Soul_Core_of_Tzamoto",
-    "content": "soul_core"
-  },
-  {
-    "base_type": "Soul Core of Xopec",
-    "item_class": "Augment",
-    "metadata_id": "Metadata/Items/SoulCores/SoulCoreShock",
-    "source": "https://poe2db.tw/us/Soul_Core_of_Xopec",
-    "content": "soul_core"
-  },
-  {
-    "base_type": "Soul Core of Zalatl",
-    "item_class": "Augment",
-    "metadata_id": "Metadata/Items/SoulCores/SoulCoreMaxMana",
-    "source": "https://poe2db.tw/us/Soul_Core_of_Zalatl",
-    "content": "soul_core"
-  },
-  {
-    "base_type": "Soul Core of Zantipi",
-    "item_class": "Augment",
-    "metadata_id": "Metadata/Items/SoulCores/SoulCoreIntelligence",
-    "source": "https://poe2db.tw/us/Soul_Core_of_Zantipi",
-    "content": "soul_core"
-  },
-  {
-    "base_type": "Tacati's Soul Core of Affliction",
-    "item_class": "Augment",
-    "metadata_id": "Metadata/Items/SoulCores/SoulCoreSpecial12",
-    "source": "https://poe2db.tw/us/Tacatis_Soul_Core_of_Affliction",
-    "content": "soul_core"
-  },
-  {
-    "base_type": "Topotante's Soul Core of Dampening",
-    "item_class": "Augment",
-    "metadata_id": "Metadata/Items/SoulCores/SoulCoreSpecial3",
-    "source": "https://poe2db.tw/us/Topotantes_Soul_Core_of_Dampening",
-    "content": "soul_core"
-  },
-  {
-    "base_type": "Tzamoto's Soul Core of Ferocity",
-    "item_class": "Augment",
-    "metadata_id": "Metadata/Items/SoulCores/SoulCoreSpecial6",
-    "source": "https://poe2db.tw/us/Tzamotos_Soul_Core_of_Ferocity",
-    "content": "soul_core"
-  },
-  {
-    "base_type": "Uromoti's Soul Core of Attenuation",
-    "item_class": "Augment",
-    "metadata_id": "Metadata/Items/SoulCores/SoulCoreSpecial7",
-    "source": "https://poe2db.tw/us/Uromotis_Soul_Core_of_Attenuation",
-    "content": "soul_core"
-  },
-  {
-    "base_type": "Xipocado's Soul Core of Dominion",
-    "item_class": "Augment",
-    "metadata_id": "Metadata/Items/SoulCores/SoulCoreSpecial15",
-    "source": "https://poe2db.tw/us/Xipocados_Soul_Core_of_Dominion",
-    "content": "soul_core"
-  },
-  {
-    "base_type": "Xopec's Soul Core of Power",
-    "item_class": "Augment",
-    "metadata_id": "Metadata/Items/SoulCores/SoulCoreSpecial10",
-    "source": "https://poe2db.tw/us/Xopecs_Soul_Core_of_Power",
-    "content": "soul_core"
-  },
-  {
-    "base_type": "Zalatl's Soul Core of Insulation",
-    "item_class": "Augment",
-    "metadata_id": "Metadata/Items/SoulCores/SoulCoreSpecial2",
-    "source": "https://poe2db.tw/us/Zalatls_Soul_Core_of_Insulation",
-    "content": "soul_core"
+    "base_type": "Zarokh's Reliquary Key: Temporalis",
+    "item_class": "Vault Keys",
+    "metadata_id": "Metadata/Items/MapFragments/VaultKeySanctumRelic6",
+    "source": "https://poe2db.tw/us/Zarokhs_Reliquary_Key%3A_Temporalis",
+    "content": "fragments"
   },
   {
     "base_type": "Bear Idol",
@@ -1902,6 +1979,832 @@
     "metadata_id": "Metadata/Items/SoulCores/TalismanWolf",
     "source": "https://poe2db.tw/us/Wolf_Idol",
     "content": "idol"
+  },
+  {
+    "base_type": "Ahn's Citadel",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gems/SupportGemAhnsCitadel",
+    "source": "https://poe2db.tw/us/Ahns_Citadel",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Ailith's Chimes",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gems/SupportGemAilithLineage",
+    "source": "https://poe2db.tw/us/Ailiths_Chimes",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Amanamu's Tithe",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemAmanamusTithe",
+    "source": "https://poe2db.tw/us/Amanamus_Tithe",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Arakaali's Lust",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemArakaalisLust",
+    "source": "https://poe2db.tw/us/Arakaalis_Lust",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Arbiter's Ignition",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemArbitersIgnition",
+    "source": "https://poe2db.tw/us/Arbiters_Ignition",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Arbiter's Reach",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemArbitersReach",
+    "source": "https://poe2db.tw/us/Arbiters_Reach",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Arjun's Medal",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemAmmoConservationFour",
+    "source": "https://poe2db.tw/us/Arjuns_Medal",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Atalui's Bloodletting",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gems/SupportGemAtaluiBloodletting",
+    "source": "https://poe2db.tw/us/Ataluis_Bloodletting",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Atziri's Allure",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemAtzirisAllure",
+    "source": "https://poe2db.tw/us/Atziris_Allure",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Atziri's Communion",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemAtzirisCommunion",
+    "source": "https://poe2db.tw/us/Atziris_Communion",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Atziri's Impatience",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemAtzirisImpatience",
+    "source": "https://poe2db.tw/us/Atziris_Impatience",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Bhatair's Vengeance",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gems/SupportGemBhatairsVengeance",
+    "source": "https://poe2db.tw/us/Bhatairs_Vengeance",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Breachlord's Amalgam",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemBreachlordsAmalgam",
+    "source": "https://poe2db.tw/us/Breachlords_Amalgam",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Breachlord's Rift",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemBreachlordsRift",
+    "source": "https://poe2db.tw/us/Breachlords_Rift",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Brutus' Brain",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gems/SupportGemBrutusBrain",
+    "source": "https://poe2db.tw/us/Brutus_Brain",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Catha's Brilliance",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemCathasBrilliance",
+    "source": "https://poe2db.tw/us/Cathas_Brilliance",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Cirel's Cultivation",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemGreatwood",
+    "source": "https://poe2db.tw/us/Cirels_Cultivation",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Daresso's Passion",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemDaressosPassion",
+    "source": "https://poe2db.tw/us/Daressos_Passion",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Dialla's Desire",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemDiallasDesire",
+    "source": "https://poe2db.tw/us/Diallas_Desire",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Doedre's Undoing",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemDoedresUndoing",
+    "source": "https://poe2db.tw/us/Doedres_Undoing",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Dominus' Grasp",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemPietysMercy",
+    "source": "https://poe2db.tw/us/Dominus_Grasp",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Einhar's Beastrite",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gems/SupportGemEinharsBeastrite",
+    "source": "https://poe2db.tw/us/Einhars_Beastrite",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Eonyr's Thunder",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gems/SupportGemEonyrsThunder",
+    "source": "https://poe2db.tw/us/Eonyrs_Thunder",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Esh's Prowess",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemEshsProwess",
+    "source": "https://poe2db.tw/us/Eshs_Prowess",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Esh's Radiance",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemEshsRadiance",
+    "source": "https://poe2db.tw/us/Eshs_Radiance",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Garukhan's Resolve",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemGarukhansResolve",
+    "source": "https://poe2db.tw/us/Garukhans_Resolve",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Guatelitzi's Ablation",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemGuatelitzi",
+    "source": "https://poe2db.tw/us/Guatelitzis_Ablation",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Hayoxi's Fulmination",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemHayoxisFulmination",
+    "source": "https://poe2db.tw/us/Hayoxis_Fulmination",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Helbrym's Hide",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemHelbrymsHide",
+    "source": "https://poe2db.tw/us/Helbryms_Hide",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Her Declaration",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemHerDeclaration",
+    "source": "https://poe2db.tw/us/Her_Declaration",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Ixchel's Torment",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemFlukeTwo",
+    "source": "https://poe2db.tw/us/Ixchels_Torment",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Kalisa's Crescendo",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemKalisasCrescendo",
+    "source": "https://poe2db.tw/us/Kalisas_Crescendo",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Kaom's Madness",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemKaomsMadness",
+    "source": "https://poe2db.tw/us/Kaoms_Madness",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Khatal's Rejuvenation",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemKhatalsRejuvenation",
+    "source": "https://poe2db.tw/us/Khatals_Rejuvenation",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Kulemak's Dominion",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemKulemaksDominion",
+    "source": "https://poe2db.tw/us/Kulemaks_Dominion",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Kurgal's Leash",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemKurgalsLeash",
+    "source": "https://poe2db.tw/us/Kurgals_Leash",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Medved's Felling",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemMedvedsFelling",
+    "source": "https://poe2db.tw/us/Medveds_Felling",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Morgana's Tempest",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemMorganasTempest",
+    "source": "https://poe2db.tw/us/Morganas_Tempest",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Mórrigan's Insight",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemMorrigansInsight",
+    "source": "https://poe2db.tw/us/M%C3%B3rrigans_Insight",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Oisín's Oath",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gems/SupportGemOisinsOath",
+    "source": "https://poe2db.tw/us/Ois%C3%ADns_Oath",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Olroth's Conviction",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gems/SupportOlrothsConviction",
+    "source": "https://poe2db.tw/us/Olroths_Conviction",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Olroth's Hubris",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gems/SupportGemOlrothsHubris",
+    "source": "https://poe2db.tw/us/Olroths_Hubris",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Paquate's Pact",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gems/SupportGemCorruptingCryThree",
+    "source": "https://poe2db.tw/us/Paquates_Pact",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Prototype Seventeen",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemPrototypeSeventeen",
+    "source": "https://poe2db.tw/us/Prototype_Seventeen",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Rakiata's Flow",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemRakiatasFlow",
+    "source": "https://poe2db.tw/us/Rakiatas_Flow",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Ratha's Assault",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemCombatReload",
+    "source": "https://poe2db.tw/us/Rathas_Assault",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Rigwald's Ferocity",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemRigwaldsFerocity",
+    "source": "https://poe2db.tw/us/Rigwalds_Ferocity",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Romira's Requital",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemRomirasRequital",
+    "source": "https://poe2db.tw/us/Romiras_Requital",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Seraph's Heart",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemSeraphsHeart",
+    "source": "https://poe2db.tw/us/Seraphs_Heart",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Sione's Temper",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemWildshardsThree",
+    "source": "https://poe2db.tw/us/Siones_Temper",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Styrn's Ferocity",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemStyrnsFerocity",
+    "source": "https://poe2db.tw/us/Styrns_Ferocity",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Styrn's Mountain",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemStyrnsMountain",
+    "source": "https://poe2db.tw/us/Styrns_Mountain",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Tacati's Ire",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemTacatisIre",
+    "source": "https://poe2db.tw/us/Tacatis_Ire",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Tangmazu's Thurible",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemTangmazusThurible",
+    "source": "https://poe2db.tw/us/Tangmazus_Thurible",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Tasalio's Rhythm",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemTasaliosRhythm",
+    "source": "https://poe2db.tw/us/Tasalios_Rhythm",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Tawhoa's Tending",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemHardyTotemsThree",
+    "source": "https://poe2db.tw/us/Tawhoas_Tending",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Tecrod's Revenge",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemTecrodsRevenge",
+    "source": "https://poe2db.tw/us/Tecrods_Revenge",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Trickster's Shard",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemTrickstersShard",
+    "source": "https://poe2db.tw/us/Tricksters_Shard",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Tul's Avalanche",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemTulsAvalanche",
+    "source": "https://poe2db.tw/us/Tuls_Avalanche",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Tul's Stillness",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemTulsStillness",
+    "source": "https://poe2db.tw/us/Tuls_Stillness",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Uhtred's Augury",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemUhtredsAugury",
+    "source": "https://poe2db.tw/us/Uhtreds_Augury",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Uhtred's Constellation",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemUhtredsConstellation",
+    "source": "https://poe2db.tw/us/Uhtreds_Constellation",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Uhtred's Exodus",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemUhtredsExodus",
+    "source": "https://poe2db.tw/us/Uhtreds_Exodus",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Uhtred's Omen",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemUhtredsOmen",
+    "source": "https://poe2db.tw/us/Uhtreds_Omen",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Uhtred's Rite",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemUhtredsRite",
+    "source": "https://poe2db.tw/us/Uhtreds_Rite",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Uruk's Smelting",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gems/SupportGemUruksSmelting",
+    "source": "https://poe2db.tw/us/Uruks_Smelting",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Uul-Netol's Embrace",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemUulNetolsEmbrace",
+    "source": "https://poe2db.tw/us/Uul-Netols_Embrace",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Varashta's Blessing",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemVarashtasBlessing",
+    "source": "https://poe2db.tw/us/Varashtas_Blessing",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Vilenta's Propulsion",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gems/SupportGemVilentasPropulsion",
+    "source": "https://poe2db.tw/us/Vilentas_Propulsion",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Vorana's Siege",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemVoranasSiege",
+    "source": "https://poe2db.tw/us/Voranas_Siege",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Vruun's Aftermath",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemVruunsAftermath",
+    "source": "https://poe2db.tw/us/Vruuns_Aftermath",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Vruun's Inevitability",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemVruunsInevitability",
+    "source": "https://poe2db.tw/us/Vruuns_Inevitability",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Xibaqua's Rending",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemXibaquasRending",
+    "source": "https://poe2db.tw/us/Xibaquas_Rending",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Xoph's Pyre",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemXophsPyre",
+    "source": "https://poe2db.tw/us/Xophs_Pyre",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Zarokh's Refrain",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemZarokhsRefrain",
+    "source": "https://poe2db.tw/us/Zarokhs_Refrain",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Zarokh's Revolt",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gems/SupportGemZarokhsRevolt",
+    "source": "https://poe2db.tw/us/Zarokhs_Revolt",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "Zerphi's Infamy",
+    "item_class": "Support Gems",
+    "metadata_id": "Metadata/Items/Gem/SupportGemZerphisLegacy",
+    "source": "https://poe2db.tw/us/Zerphis_Infamy",
+    "content": "lineage_gem"
+  },
+  {
+    "base_type": "An Audience with the King",
+    "item_class": "Map Fragments",
+    "metadata_id": "Metadata/Items/MapFragments/CurrencyRitualBossFragment",
+    "source": "https://poe2db.tw/us/An_Audience_with_the_King",
+    "content": "ritual"
+  },
+  {
+    "base_type": "Call of the Shadows",
+    "item_class": "Pinnacle Keys",
+    "metadata_id": "Metadata/Items/Pinnacle/RitualPinnacleEffigyPiece",
+    "source": "https://poe2db.tw/us/Call_of_the_Shadows",
+    "content": "ritual"
+  },
+  {
+    "base_type": "Head of the King",
+    "item_class": "Map Fragments",
+    "metadata_id": "Metadata/Items/Currency/Ritual/RitualPinnacleKey",
+    "source": "https://poe2db.tw/us/Head_of_the_King",
+    "content": "ritual"
+  },
+  {
+    "base_type": "Omen of Amelioration",
+    "item_class": "Omen",
+    "metadata_id": "Metadata/Items/Currency/OmenOnDeathPreventExpLoss",
+    "source": "https://poe2db.tw/us/Omen_of_Amelioration",
+    "content": "ritual"
+  },
+  {
+    "base_type": "Omen of Answered Prayers",
+    "item_class": "Omen",
+    "metadata_id": "Metadata/Items/Currency/OmenShrineAdditionalEffect",
+    "source": "https://poe2db.tw/us/Omen_of_Answered_Prayers",
+    "content": "ritual"
+  },
+  {
+    "base_type": "Omen of Bartering",
+    "item_class": "Omen",
+    "metadata_id": "Metadata/Items/Currency/OmenSellVendorRandomise",
+    "source": "https://poe2db.tw/us/Omen_of_Bartering",
+    "content": "ritual"
+  },
+  {
+    "base_type": "Omen of Catalysing Exaltation",
+    "item_class": "Omen",
+    "metadata_id": "Metadata/Items/Currency/OmenOnExaltConsumeQuality",
+    "source": "https://poe2db.tw/us/Omen_of_Catalysing_Exaltation",
+    "content": "ritual"
+  },
+  {
+    "base_type": "Omen of Chance",
+    "item_class": "Omen",
+    "metadata_id": "Metadata/Items/Currency/OmenOnChanceNotDestroy",
+    "source": "https://poe2db.tw/us/Omen_of_Chance",
+    "content": "ritual"
+  },
+  {
+    "base_type": "Omen of Chaotic Effectiveness",
+    "item_class": "Omen",
+    "metadata_id": "Metadata/Items/Currency/OmenOnChaosMapMonsterEffectiveness",
+    "source": "https://poe2db.tw/us/Omen_of_Chaotic_Effectiveness",
+    "content": "ritual"
+  },
+  {
+    "base_type": "Omen of Chaotic Monsters",
+    "item_class": "Omen",
+    "metadata_id": "Metadata/Items/Currency/OmenOnChaosMapMonsterRarity",
+    "source": "https://poe2db.tw/us/Omen_of_Chaotic_Monsters",
+    "content": "ritual"
+  },
+  {
+    "base_type": "Omen of Chaotic Quantity",
+    "item_class": "Omen",
+    "metadata_id": "Metadata/Items/Currency/OmenOnChaosMapPackSize",
+    "source": "https://poe2db.tw/us/Omen_of_Chaotic_Quantity",
+    "content": "ritual"
+  },
+  {
+    "base_type": "Omen of Chaotic Rarity",
+    "item_class": "Omen",
+    "metadata_id": "Metadata/Items/Currency/OmenOnChaosMapItemRarity",
+    "source": "https://poe2db.tw/us/Omen_of_Chaotic_Rarity",
+    "content": "ritual"
+  },
+  {
+    "base_type": "Omen of Corruption",
+    "item_class": "Omen",
+    "metadata_id": "Metadata/Items/Currency/OmenOnVaalRemoveDoNothingOutcome",
+    "source": "https://poe2db.tw/us/Omen_of_Corruption",
+    "content": "ritual"
+  },
+  {
+    "base_type": "Omen of Dextral Alchemy",
+    "item_class": "Omen",
+    "metadata_id": "Metadata/Items/Currency/OmenOnAlchemyMaximumSuffixes",
+    "source": "https://poe2db.tw/us/Omen_of_Dextral_Alchemy",
+    "content": "ritual"
+  },
+  {
+    "base_type": "Omen of Dextral Annulment",
+    "item_class": "Omen",
+    "metadata_id": "Metadata/Items/Currency/OmenOnAnnulRemoveSuffixes",
+    "source": "https://poe2db.tw/us/Omen_of_Dextral_Annulment",
+    "content": "ritual"
+  },
+  {
+    "base_type": "Omen of Dextral Coronation",
+    "item_class": "Omen",
+    "metadata_id": "Metadata/Items/Currency/OmenOnRegalSuffix",
+    "source": "https://poe2db.tw/us/Omen_of_Dextral_Coronation",
+    "content": "ritual"
+  },
+  {
+    "base_type": "Omen of Dextral Crystallisation",
+    "item_class": "Omen",
+    "metadata_id": "Metadata/Items/Currency/OmenOnPerfectEssenceSuffix",
+    "source": "https://poe2db.tw/us/Omen_of_Dextral_Crystallisation",
+    "content": "ritual"
+  },
+  {
+    "base_type": "Omen of Dextral Erasure",
+    "item_class": "Omen",
+    "metadata_id": "Metadata/Items/Currency/OmenOnChaosSuffix",
+    "source": "https://poe2db.tw/us/Omen_of_Dextral_Erasure",
+    "content": "ritual"
+  },
+  {
+    "base_type": "Omen of Dextral Exaltation",
+    "item_class": "Omen",
+    "metadata_id": "Metadata/Items/Currency/OmenOnExaltAddSuffixes",
+    "source": "https://poe2db.tw/us/Omen_of_Dextral_Exaltation",
+    "content": "ritual"
+  },
+  {
+    "base_type": "Omen of Gambling",
+    "item_class": "Omen",
+    "metadata_id": "Metadata/Items/Currency/OmenGambleNoGoldCost",
+    "source": "https://poe2db.tw/us/Omen_of_Gambling",
+    "content": "ritual"
+  },
+  {
+    "base_type": "Omen of Greater Annulment",
+    "item_class": "Omen",
+    "metadata_id": "Metadata/Items/Currency/OmenOnAnnulRemoveTwoMods",
+    "source": "https://poe2db.tw/us/Omen_of_Greater_Annulment",
+    "content": "ritual"
+  },
+  {
+    "base_type": "Omen of Greater Exaltation",
+    "item_class": "Omen",
+    "metadata_id": "Metadata/Items/Currency/OmenOnExaltAddTwoMods",
+    "source": "https://poe2db.tw/us/Omen_of_Greater_Exaltation",
+    "content": "ritual"
+  },
+  {
+    "base_type": "Omen of Homogenising Coronation",
+    "item_class": "Omen",
+    "metadata_id": "Metadata/Items/Currency/OmenOnRegalAddExistingModType",
+    "source": "https://poe2db.tw/us/Omen_of_Homogenising_Coronation",
+    "content": "ritual"
+  },
+  {
+    "base_type": "Omen of Homogenising Exaltation",
+    "item_class": "Omen",
+    "metadata_id": "Metadata/Items/Currency/OmenOnExaltAddExistingModType",
+    "source": "https://poe2db.tw/us/Omen_of_Homogenising_Exaltation",
+    "content": "ritual"
+  },
+  {
+    "base_type": "Omen of Refreshment",
+    "item_class": "Omen",
+    "metadata_id": "Metadata/Items/Currency/OmenOnLowLifeRecoverCharges",
+    "source": "https://poe2db.tw/us/Omen_of_Refreshment",
+    "content": "ritual"
+  },
+  {
+    "base_type": "Omen of Reinforcements",
+    "item_class": "Omen",
+    "metadata_id": "Metadata/Items/Currency/OmenRogueExileSummonsPartyMember",
+    "source": "https://poe2db.tw/us/Omen_of_Reinforcements",
+    "content": "ritual"
+  },
+  {
+    "base_type": "Omen of Resurgence",
+    "item_class": "Omen",
+    "metadata_id": "Metadata/Items/Currency/OmenOnLowLifeFullyHeal",
+    "source": "https://poe2db.tw/us/Omen_of_Resurgence",
+    "content": "ritual"
+  },
+  {
+    "base_type": "Omen of Sanctification",
+    "item_class": "Omen",
+    "metadata_id": "Metadata/Items/Currency/OmenOnDivineSanctify",
+    "source": "https://poe2db.tw/us/Omen_of_Sanctification",
+    "content": "ritual"
+  },
+  {
+    "base_type": "Omen of Secret Compartments",
+    "item_class": "Omen",
+    "metadata_id": "Metadata/Items/Currency/OmenStrongboxOpenableAgain",
+    "source": "https://poe2db.tw/us/Omen_of_Secret_Compartments",
+    "content": "ritual"
+  },
+  {
+    "base_type": "Omen of Sinistral Alchemy",
+    "item_class": "Omen",
+    "metadata_id": "Metadata/Items/Currency/OmenOnAlchemyMaximumPrefixes",
+    "source": "https://poe2db.tw/us/Omen_of_Sinistral_Alchemy",
+    "content": "ritual"
+  },
+  {
+    "base_type": "Omen of Sinistral Annulment",
+    "item_class": "Omen",
+    "metadata_id": "Metadata/Items/Currency/OmenOnAnnulRemovePrefixes",
+    "source": "https://poe2db.tw/us/Omen_of_Sinistral_Annulment",
+    "content": "ritual"
+  },
+  {
+    "base_type": "Omen of Sinistral Coronation",
+    "item_class": "Omen",
+    "metadata_id": "Metadata/Items/Currency/OmenOnRegalPrefix",
+    "source": "https://poe2db.tw/us/Omen_of_Sinistral_Coronation",
+    "content": "ritual"
+  },
+  {
+    "base_type": "Omen of Sinistral Crystallisation",
+    "item_class": "Omen",
+    "metadata_id": "Metadata/Items/Currency/OmenOnPerfectEssencePrefix",
+    "source": "https://poe2db.tw/us/Omen_of_Sinistral_Crystallisation",
+    "content": "ritual"
+  },
+  {
+    "base_type": "Omen of Sinistral Erasure",
+    "item_class": "Omen",
+    "metadata_id": "Metadata/Items/Currency/OmenOnChaosPrefix",
+    "source": "https://poe2db.tw/us/Omen_of_Sinistral_Erasure",
+    "content": "ritual"
+  },
+  {
+    "base_type": "Omen of Sinistral Exaltation",
+    "item_class": "Omen",
+    "metadata_id": "Metadata/Items/Currency/OmenOnExaltAddPrefixes",
+    "source": "https://poe2db.tw/us/Omen_of_Sinistral_Exaltation",
+    "content": "ritual"
+  },
+  {
+    "base_type": "Omen of the Ancients",
+    "item_class": "Omen",
+    "metadata_id": "Metadata/Items/Currency/OmenOnChanceAncientOrb",
+    "source": "https://poe2db.tw/us/Omen_of_the_Ancients",
+    "content": "ritual"
+  },
+  {
+    "base_type": "Omen of the Blessed",
+    "item_class": "Omen",
+    "metadata_id": "Metadata/Items/Currency/OmenOnDivineRerollImplicits",
+    "source": "https://poe2db.tw/us/Omen_of_the_Blessed",
+    "content": "ritual"
+  },
+  {
+    "base_type": "Omen of the Hunt",
+    "item_class": "Omen",
+    "metadata_id": "Metadata/Items/Currency/OmenTormentedMonsterReleased",
+    "source": "https://poe2db.tw/us/Omen_of_the_Hunt",
+    "content": "ritual"
+  },
+  {
+    "base_type": "Omen of Whittling",
+    "item_class": "Omen",
+    "metadata_id": "Metadata/Items/Currency/OmenOnChaosLowestLevelMod",
+    "source": "https://poe2db.tw/us/Omen_of_Whittling",
+    "content": "ritual"
+  },
+  {
+    "base_type": "Ritual Tablet",
+    "item_class": "Tablet",
+    "metadata_id": "Metadata/Items/TowerAugment/RitualAugment",
+    "source": "https://poe2db.tw/us/Ritual_Tablet",
+    "content": "ritual"
+  },
+  {
+    "base_type": "Sacred Bloom",
+    "item_class": "Map Fragments",
+    "metadata_id": "Metadata/Items/MapFragments/CurrencyWildwoodFragment",
+    "source": "https://poe2db.tw/us/Sacred_Bloom",
+    "content": "ritual"
   },
   {
     "base_type": "Adept Rune",
@@ -2835,542 +3738,808 @@
     "content": "rune"
   },
   {
-    "base_type": "Ahn's Citadel",
-    "item_class": "Support Gems",
-    "metadata_id": "Metadata/Items/Gems/SupportGemAhnsCitadel",
-    "source": "https://poe2db.tw/us/Ahns_Citadel",
-    "content": "lineage_gem"
+    "base_type": "Atmohua's Soul Core of Retreat",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/SoulCoreSpecial4",
+    "source": "https://poe2db.tw/us/Atmohuas_Soul_Core_of_Retreat",
+    "content": "soul_core"
   },
   {
-    "base_type": "Ailith's Chimes",
-    "item_class": "Support Gems",
-    "metadata_id": "Metadata/Items/Gems/SupportGemAilithLineage",
-    "source": "https://poe2db.tw/us/Ailiths_Chimes",
-    "content": "lineage_gem"
+    "base_type": "Atziri's Soul Core of Alacrity",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/SoulCoreSpecial31",
+    "source": "https://poe2db.tw/us/Atziris_Soul_Core_of_Alacrity",
+    "content": "soul_core"
   },
   {
-    "base_type": "Amanamu's Tithe",
-    "item_class": "Support Gems",
-    "metadata_id": "Metadata/Items/Gem/SupportGemAmanamusTithe",
-    "source": "https://poe2db.tw/us/Amanamus_Tithe",
-    "content": "lineage_gem"
+    "base_type": "Atziri's Soul Core of Devotion",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/SoulCoreSpecial29",
+    "source": "https://poe2db.tw/us/Atziris_Soul_Core_of_Devotion",
+    "content": "soul_core"
   },
   {
-    "base_type": "Arakaali's Lust",
-    "item_class": "Support Gems",
-    "metadata_id": "Metadata/Items/Gem/SupportGemArakaalisLust",
-    "source": "https://poe2db.tw/us/Arakaalis_Lust",
-    "content": "lineage_gem"
+    "base_type": "Atziri's Soul Core of Inoculation",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/SoulCoreSpecial32",
+    "source": "https://poe2db.tw/us/Atziris_Soul_Core_of_Inoculation",
+    "content": "soul_core"
   },
   {
-    "base_type": "Arbiter's Ignition",
-    "item_class": "Support Gems",
-    "metadata_id": "Metadata/Items/Gem/SupportGemArbitersIgnition",
-    "source": "https://poe2db.tw/us/Arbiters_Ignition",
-    "content": "lineage_gem"
+    "base_type": "Atziri's Soul Core of Vitality",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/SoulCoreSpecial30",
+    "source": "https://poe2db.tw/us/Atziris_Soul_Core_of_Vitality",
+    "content": "soul_core"
   },
   {
-    "base_type": "Arbiter's Reach",
-    "item_class": "Support Gems",
-    "metadata_id": "Metadata/Items/Gem/SupportGemArbitersReach",
-    "source": "https://poe2db.tw/us/Arbiters_Reach",
-    "content": "lineage_gem"
+    "base_type": "Cholotl's Soul Core of War",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/SoulCoreSpecial13",
+    "source": "https://poe2db.tw/us/Cholotls_Soul_Core_of_War",
+    "content": "soul_core"
   },
   {
-    "base_type": "Arjun's Medal",
-    "item_class": "Support Gems",
-    "metadata_id": "Metadata/Items/Gem/SupportGemAmmoConservationFour",
-    "source": "https://poe2db.tw/us/Arjuns_Medal",
-    "content": "lineage_gem"
+    "base_type": "Citaqualotl's Soul Core of Foulness",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/SoulCoreSpecial14",
+    "source": "https://poe2db.tw/us/Citaqualotls_Soul_Core_of_Foulness",
+    "content": "soul_core"
   },
   {
-    "base_type": "Atalui's Bloodletting",
-    "item_class": "Support Gems",
-    "metadata_id": "Metadata/Items/Gems/SupportGemAtaluiBloodletting",
-    "source": "https://poe2db.tw/us/Ataluis_Bloodletting",
-    "content": "lineage_gem"
+    "base_type": "Estazunti's Soul Core of Convalescence",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/SoulCoreSpecial11",
+    "source": "https://poe2db.tw/us/Estazuntis_Soul_Core_of_Convalescence",
+    "content": "soul_core"
   },
   {
-    "base_type": "Atziri's Allure",
-    "item_class": "Support Gems",
-    "metadata_id": "Metadata/Items/Gem/SupportGemAtzirisAllure",
-    "source": "https://poe2db.tw/us/Atziris_Allure",
-    "content": "lineage_gem"
+    "base_type": "Guatelitzi's Soul Core of Endurance",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/SoulCoreSpecial9",
+    "source": "https://poe2db.tw/us/Guatelitzis_Soul_Core_of_Endurance",
+    "content": "soul_core"
   },
   {
-    "base_type": "Atziri's Communion",
-    "item_class": "Support Gems",
-    "metadata_id": "Metadata/Items/Gem/SupportGemAtzirisCommunion",
-    "source": "https://poe2db.tw/us/Atziris_Communion",
-    "content": "lineage_gem"
+    "base_type": "Hayoxi's Soul Core of Heatproofing",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/SoulCoreSpecial1",
+    "source": "https://poe2db.tw/us/Hayoxis_Soul_Core_of_Heatproofing",
+    "content": "soul_core"
   },
   {
-    "base_type": "Atziri's Impatience",
-    "item_class": "Support Gems",
-    "metadata_id": "Metadata/Items/Gem/SupportGemAtzirisImpatience",
-    "source": "https://poe2db.tw/us/Atziris_Impatience",
-    "content": "lineage_gem"
+    "base_type": "Jiquani's Soul Core of Abundance",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/SoulCoreSpecial26",
+    "source": "https://poe2db.tw/us/Jiquanis_Soul_Core_of_Abundance",
+    "content": "soul_core"
   },
   {
-    "base_type": "Bhatair's Vengeance",
-    "item_class": "Support Gems",
-    "metadata_id": "Metadata/Items/Gems/SupportGemBhatairsVengeance",
-    "source": "https://poe2db.tw/us/Bhatairs_Vengeance",
-    "content": "lineage_gem"
+    "base_type": "Jiquani's Soul Core of Automation",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/SoulCoreSpecial16",
+    "source": "https://poe2db.tw/us/Jiquanis_Soul_Core_of_Automation",
+    "content": "soul_core"
   },
   {
-    "base_type": "Breachlord's Amalgam",
-    "item_class": "Support Gems",
-    "metadata_id": "Metadata/Items/Gem/SupportGemBreachlordsAmalgam",
-    "source": "https://poe2db.tw/us/Breachlords_Amalgam",
-    "content": "lineage_gem"
+    "base_type": "Jiquani's Soul Core of Malediction",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/SoulCoreSpecial17",
+    "source": "https://poe2db.tw/us/Jiquanis_Soul_Core_of_Malediction",
+    "content": "soul_core"
   },
   {
-    "base_type": "Breachlord's Rift",
-    "item_class": "Support Gems",
-    "metadata_id": "Metadata/Items/Gem/SupportGemBreachlordsRift",
-    "source": "https://poe2db.tw/us/Breachlords_Rift",
-    "content": "lineage_gem"
+    "base_type": "Jiquani's Soul Core of Munitions",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/SoulCoreSpecial24",
+    "source": "https://poe2db.tw/us/Jiquanis_Soul_Core_of_Munitions",
+    "content": "soul_core"
   },
   {
-    "base_type": "Brutus' Brain",
-    "item_class": "Support Gems",
-    "metadata_id": "Metadata/Items/Gems/SupportGemBrutusBrain",
-    "source": "https://poe2db.tw/us/Brutus_Brain",
-    "content": "lineage_gem"
+    "base_type": "Jiquani's Soul Core of Quaking",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/SoulCoreSpecial23",
+    "source": "https://poe2db.tw/us/Jiquanis_Soul_Core_of_Quaking",
+    "content": "soul_core"
   },
   {
-    "base_type": "Catha's Brilliance",
-    "item_class": "Support Gems",
-    "metadata_id": "Metadata/Items/Gem/SupportGemCathasBrilliance",
-    "source": "https://poe2db.tw/us/Cathas_Brilliance",
-    "content": "lineage_gem"
+    "base_type": "Jiquani's Soul Core of Radiance",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/SoulCoreSpecial20",
+    "source": "https://poe2db.tw/us/Jiquanis_Soul_Core_of_Radiance",
+    "content": "soul_core"
   },
   {
-    "base_type": "Cirel's Cultivation",
-    "item_class": "Support Gems",
-    "metadata_id": "Metadata/Items/Gem/SupportGemGreatwood",
-    "source": "https://poe2db.tw/us/Cirels_Cultivation",
-    "content": "lineage_gem"
+    "base_type": "Jiquani's Soul Core of Rallying",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/SoulCoreSpecial19",
+    "source": "https://poe2db.tw/us/Jiquanis_Soul_Core_of_Rallying",
+    "content": "soul_core"
   },
   {
-    "base_type": "Daresso's Passion",
-    "item_class": "Support Gems",
-    "metadata_id": "Metadata/Items/Gem/SupportGemDaressosPassion",
-    "source": "https://poe2db.tw/us/Daressos_Passion",
-    "content": "lineage_gem"
+    "base_type": "Jiquani's Soul Core of Rippling",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/SoulCoreSpecial22",
+    "source": "https://poe2db.tw/us/Jiquanis_Soul_Core_of_Rippling",
+    "content": "soul_core"
   },
   {
-    "base_type": "Dialla's Desire",
-    "item_class": "Support Gems",
-    "metadata_id": "Metadata/Items/Gem/SupportGemDiallasDesire",
-    "source": "https://poe2db.tw/us/Diallas_Desire",
-    "content": "lineage_gem"
+    "base_type": "Jiquani's Soul Core of Severing",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/SoulCoreSpecial21",
+    "source": "https://poe2db.tw/us/Jiquanis_Soul_Core_of_Severing",
+    "content": "soul_core"
   },
   {
-    "base_type": "Doedre's Undoing",
-    "item_class": "Support Gems",
-    "metadata_id": "Metadata/Items/Gem/SupportGemDoedresUndoing",
-    "source": "https://poe2db.tw/us/Doedres_Undoing",
-    "content": "lineage_gem"
+    "base_type": "Jiquani's Soul Core of Snares",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/SoulCoreSpecial25",
+    "source": "https://poe2db.tw/us/Jiquanis_Soul_Core_of_Snares",
+    "content": "soul_core"
   },
   {
-    "base_type": "Dominus' Grasp",
-    "item_class": "Support Gems",
-    "metadata_id": "Metadata/Items/Gem/SupportGemPietysMercy",
-    "source": "https://poe2db.tw/us/Dominus_Grasp",
-    "content": "lineage_gem"
+    "base_type": "Jiquani's Soul Core of Squalls",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/SoulCoreSpecial27",
+    "source": "https://poe2db.tw/us/Jiquanis_Soul_Core_of_Squalls",
+    "content": "soul_core"
   },
   {
-    "base_type": "Einhar's Beastrite",
-    "item_class": "Support Gems",
-    "metadata_id": "Metadata/Items/Gems/SupportGemEinharsBeastrite",
-    "source": "https://poe2db.tw/us/Einhars_Beastrite",
-    "content": "lineage_gem"
+    "base_type": "Jiquani's Soul Core of Targeting",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/SoulCoreSpecial18",
+    "source": "https://poe2db.tw/us/Jiquanis_Soul_Core_of_Targeting",
+    "content": "soul_core"
   },
   {
-    "base_type": "Eonyr's Thunder",
-    "item_class": "Support Gems",
-    "metadata_id": "Metadata/Items/Gems/SupportGemEonyrsThunder",
-    "source": "https://poe2db.tw/us/Eonyrs_Thunder",
-    "content": "lineage_gem"
+    "base_type": "Jiquani's Soul Core of Thundering",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/SoulCoreSpecial28",
+    "source": "https://poe2db.tw/us/Jiquanis_Soul_Core_of_Thundering",
+    "content": "soul_core"
   },
   {
-    "base_type": "Esh's Prowess",
-    "item_class": "Support Gems",
-    "metadata_id": "Metadata/Items/Gem/SupportGemEshsProwess",
-    "source": "https://poe2db.tw/us/Eshs_Prowess",
-    "content": "lineage_gem"
+    "base_type": "Opiloti's Soul Core of Assault",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/SoulCoreSpecial8",
+    "source": "https://poe2db.tw/us/Opilotis_Soul_Core_of_Assault",
+    "content": "soul_core"
   },
   {
-    "base_type": "Esh's Radiance",
-    "item_class": "Support Gems",
-    "metadata_id": "Metadata/Items/Gem/SupportGemEshsRadiance",
-    "source": "https://poe2db.tw/us/Eshs_Radiance",
-    "content": "lineage_gem"
+    "base_type": "Quipolatl's Soul Core of Flow",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/SoulCoreSpecial5",
+    "source": "https://poe2db.tw/us/Quipolatls_Soul_Core_of_Flow",
+    "content": "soul_core"
   },
   {
-    "base_type": "Garukhan's Resolve",
-    "item_class": "Support Gems",
-    "metadata_id": "Metadata/Items/Gem/SupportGemGarukhansResolve",
-    "source": "https://poe2db.tw/us/Garukhans_Resolve",
-    "content": "lineage_gem"
+    "base_type": "Soul Core of Atmohua",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/SoulCoreStrength",
+    "source": "https://poe2db.tw/us/Soul_Core_of_Atmohua",
+    "content": "soul_core"
   },
   {
-    "base_type": "Guatelitzi's Ablation",
-    "item_class": "Support Gems",
-    "metadata_id": "Metadata/Items/Gem/SupportGemGuatelitzi",
-    "source": "https://poe2db.tw/us/Guatelitzis_Ablation",
-    "content": "lineage_gem"
+    "base_type": "Soul Core of Azcapa",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/SoulCoreLight",
+    "source": "https://poe2db.tw/us/Soul_Core_of_Azcapa",
+    "content": "soul_core"
   },
   {
-    "base_type": "Hayoxi's Fulmination",
-    "item_class": "Support Gems",
-    "metadata_id": "Metadata/Items/Gem/SupportGemHayoxisFulmination",
-    "source": "https://poe2db.tw/us/Hayoxis_Fulmination",
-    "content": "lineage_gem"
+    "base_type": "Soul Core of Cholotl",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/SoulCoreDexterity",
+    "source": "https://poe2db.tw/us/Soul_Core_of_Cholotl",
+    "content": "soul_core"
   },
   {
-    "base_type": "Helbrym's Hide",
-    "item_class": "Support Gems",
-    "metadata_id": "Metadata/Items/Gem/SupportGemHelbrymsHide",
-    "source": "https://poe2db.tw/us/Helbryms_Hide",
-    "content": "lineage_gem"
+    "base_type": "Soul Core of Citaqualotl",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/SoulCoreEnlighten",
+    "source": "https://poe2db.tw/us/Soul_Core_of_Citaqualotl",
+    "content": "soul_core"
   },
   {
-    "base_type": "Her Declaration",
-    "item_class": "Support Gems",
-    "metadata_id": "Metadata/Items/Gem/SupportGemHerDeclaration",
-    "source": "https://poe2db.tw/us/Her_Declaration",
-    "content": "lineage_gem"
+    "base_type": "Soul Core of Jiquani",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/SoulCoreMaxLife",
+    "source": "https://poe2db.tw/us/Soul_Core_of_Jiquani",
+    "content": "soul_core"
   },
   {
-    "base_type": "Ixchel's Torment",
-    "item_class": "Support Gems",
-    "metadata_id": "Metadata/Items/Gem/SupportGemFlukeTwo",
-    "source": "https://poe2db.tw/us/Ixchels_Torment",
-    "content": "lineage_gem"
+    "base_type": "Soul Core of Opiloti",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/SoulCoreBleed",
+    "source": "https://poe2db.tw/us/Soul_Core_of_Opiloti",
+    "content": "soul_core"
   },
   {
-    "base_type": "Kalisa's Crescendo",
-    "item_class": "Support Gems",
-    "metadata_id": "Metadata/Items/Gem/SupportGemKalisasCrescendo",
-    "source": "https://poe2db.tw/us/Kalisas_Crescendo",
-    "content": "lineage_gem"
+    "base_type": "Soul Core of Puhuarte",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/SoulCoreIgnite",
+    "source": "https://poe2db.tw/us/Soul_Core_of_Puhuarte",
+    "content": "soul_core"
   },
   {
-    "base_type": "Kaom's Madness",
-    "item_class": "Support Gems",
-    "metadata_id": "Metadata/Items/Gem/SupportGemKaomsMadness",
-    "source": "https://poe2db.tw/us/Kaoms_Madness",
-    "content": "lineage_gem"
+    "base_type": "Soul Core of Quipolatl",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/SoulCoreSpeed",
+    "source": "https://poe2db.tw/us/Soul_Core_of_Quipolatl",
+    "content": "soul_core"
   },
   {
-    "base_type": "Khatal's Rejuvenation",
-    "item_class": "Support Gems",
-    "metadata_id": "Metadata/Items/Gem/SupportGemKhatalsRejuvenation",
-    "source": "https://poe2db.tw/us/Khatals_Rejuvenation",
-    "content": "lineage_gem"
+    "base_type": "Soul Core of Tacati",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/SoulCoreChaos",
+    "source": "https://poe2db.tw/us/Soul_Core_of_Tacati",
+    "content": "soul_core"
   },
   {
-    "base_type": "Kulemak's Dominion",
-    "item_class": "Support Gems",
-    "metadata_id": "Metadata/Items/Gem/SupportGemKulemaksDominion",
-    "source": "https://poe2db.tw/us/Kulemaks_Dominion",
-    "content": "lineage_gem"
+    "base_type": "Soul Core of Ticaba",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/SoulCoreCrit",
+    "source": "https://poe2db.tw/us/Soul_Core_of_Ticaba",
+    "content": "soul_core"
   },
   {
-    "base_type": "Kurgal's Leash",
-    "item_class": "Support Gems",
-    "metadata_id": "Metadata/Items/Gem/SupportGemKurgalsLeash",
-    "source": "https://poe2db.tw/us/Kurgals_Leash",
-    "content": "lineage_gem"
+    "base_type": "Soul Core of Topotante",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/SoulCoreElemental",
+    "source": "https://poe2db.tw/us/Soul_Core_of_Topotante",
+    "content": "soul_core"
   },
   {
-    "base_type": "Medved's Felling",
-    "item_class": "Support Gems",
-    "metadata_id": "Metadata/Items/Gem/SupportGemMedvedsFelling",
-    "source": "https://poe2db.tw/us/Medveds_Felling",
-    "content": "lineage_gem"
+    "base_type": "Soul Core of Tzamoto",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/SoulCoreFreeze",
+    "source": "https://poe2db.tw/us/Soul_Core_of_Tzamoto",
+    "content": "soul_core"
   },
   {
-    "base_type": "Morgana's Tempest",
-    "item_class": "Support Gems",
-    "metadata_id": "Metadata/Items/Gem/SupportGemMorganasTempest",
-    "source": "https://poe2db.tw/us/Morganas_Tempest",
-    "content": "lineage_gem"
+    "base_type": "Soul Core of Xopec",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/SoulCoreShock",
+    "source": "https://poe2db.tw/us/Soul_Core_of_Xopec",
+    "content": "soul_core"
   },
   {
-    "base_type": "Mórrigan's Insight",
-    "item_class": "Support Gems",
-    "metadata_id": "Metadata/Items/Gem/SupportGemMorrigansInsight",
-    "source": "https://poe2db.tw/us/M%C3%B3rrigans_Insight",
-    "content": "lineage_gem"
+    "base_type": "Soul Core of Zalatl",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/SoulCoreMaxMana",
+    "source": "https://poe2db.tw/us/Soul_Core_of_Zalatl",
+    "content": "soul_core"
   },
   {
-    "base_type": "Oisín's Oath",
-    "item_class": "Support Gems",
-    "metadata_id": "Metadata/Items/Gems/SupportGemOisinsOath",
-    "source": "https://poe2db.tw/us/Ois%C3%ADns_Oath",
-    "content": "lineage_gem"
+    "base_type": "Soul Core of Zantipi",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/SoulCoreIntelligence",
+    "source": "https://poe2db.tw/us/Soul_Core_of_Zantipi",
+    "content": "soul_core"
   },
   {
-    "base_type": "Olroth's Conviction",
-    "item_class": "Support Gems",
-    "metadata_id": "Metadata/Items/Gems/SupportOlrothsConviction",
-    "source": "https://poe2db.tw/us/Olroths_Conviction",
-    "content": "lineage_gem"
+    "base_type": "Tacati's Soul Core of Affliction",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/SoulCoreSpecial12",
+    "source": "https://poe2db.tw/us/Tacatis_Soul_Core_of_Affliction",
+    "content": "soul_core"
   },
   {
-    "base_type": "Olroth's Hubris",
-    "item_class": "Support Gems",
-    "metadata_id": "Metadata/Items/Gems/SupportGemOlrothsHubris",
-    "source": "https://poe2db.tw/us/Olroths_Hubris",
-    "content": "lineage_gem"
+    "base_type": "Topotante's Soul Core of Dampening",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/SoulCoreSpecial3",
+    "source": "https://poe2db.tw/us/Topotantes_Soul_Core_of_Dampening",
+    "content": "soul_core"
   },
   {
-    "base_type": "Paquate's Pact",
-    "item_class": "Support Gems",
-    "metadata_id": "Metadata/Items/Gems/SupportGemCorruptingCryThree",
-    "source": "https://poe2db.tw/us/Paquates_Pact",
-    "content": "lineage_gem"
+    "base_type": "Tzamoto's Soul Core of Ferocity",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/SoulCoreSpecial6",
+    "source": "https://poe2db.tw/us/Tzamotos_Soul_Core_of_Ferocity",
+    "content": "soul_core"
   },
   {
-    "base_type": "Prototype Seventeen",
-    "item_class": "Support Gems",
-    "metadata_id": "Metadata/Items/Gem/SupportGemPrototypeSeventeen",
-    "source": "https://poe2db.tw/us/Prototype_Seventeen",
-    "content": "lineage_gem"
+    "base_type": "Uromoti's Soul Core of Attenuation",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/SoulCoreSpecial7",
+    "source": "https://poe2db.tw/us/Uromotis_Soul_Core_of_Attenuation",
+    "content": "soul_core"
   },
   {
-    "base_type": "Rakiata's Flow",
-    "item_class": "Support Gems",
-    "metadata_id": "Metadata/Items/Gem/SupportGemRakiatasFlow",
-    "source": "https://poe2db.tw/us/Rakiatas_Flow",
-    "content": "lineage_gem"
+    "base_type": "Xipocado's Soul Core of Dominion",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/SoulCoreSpecial15",
+    "source": "https://poe2db.tw/us/Xipocados_Soul_Core_of_Dominion",
+    "content": "soul_core"
   },
   {
-    "base_type": "Ratha's Assault",
-    "item_class": "Support Gems",
-    "metadata_id": "Metadata/Items/Gem/SupportGemCombatReload",
-    "source": "https://poe2db.tw/us/Rathas_Assault",
-    "content": "lineage_gem"
+    "base_type": "Xopec's Soul Core of Power",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/SoulCoreSpecial10",
+    "source": "https://poe2db.tw/us/Xopecs_Soul_Core_of_Power",
+    "content": "soul_core"
   },
   {
-    "base_type": "Rigwald's Ferocity",
-    "item_class": "Support Gems",
-    "metadata_id": "Metadata/Items/Gem/SupportGemRigwaldsFerocity",
-    "source": "https://poe2db.tw/us/Rigwalds_Ferocity",
-    "content": "lineage_gem"
+    "base_type": "Zalatl's Soul Core of Insulation",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/SoulCoreSpecial2",
+    "source": "https://poe2db.tw/us/Zalatls_Soul_Core_of_Insulation",
+    "content": "soul_core"
   },
   {
-    "base_type": "Romira's Requital",
-    "item_class": "Support Gems",
-    "metadata_id": "Metadata/Items/Gem/SupportGemRomirasRequital",
-    "source": "https://poe2db.tw/us/Romiras_Requital",
-    "content": "lineage_gem"
+    "base_type": "Ancient Infuser",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyIncursionCorruptTablet",
+    "source": "https://poe2db.tw/us/Ancient_Infuser",
+    "content": "temple"
   },
   {
-    "base_type": "Seraph's Heart",
-    "item_class": "Support Gems",
-    "metadata_id": "Metadata/Items/Gem/SupportGemSeraphsHeart",
-    "source": "https://poe2db.tw/us/Seraphs_Heart",
-    "content": "lineage_gem"
+    "base_type": "Architect's Orb",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyIncursionDoubleCorrupt",
+    "source": "https://poe2db.tw/us/Architects_Orb",
+    "content": "temple"
   },
   {
-    "base_type": "Sione's Temper",
-    "item_class": "Support Gems",
-    "metadata_id": "Metadata/Items/Gem/SupportGemWildshardsThree",
-    "source": "https://poe2db.tw/us/Siones_Temper",
-    "content": "lineage_gem"
+    "base_type": "Citaqualotl's Thesis",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/ThesisOfSacrifice",
+    "source": "https://poe2db.tw/us/Citaqualotls_Thesis",
+    "content": "temple"
   },
   {
-    "base_type": "Styrn's Ferocity",
-    "item_class": "Support Gems",
-    "metadata_id": "Metadata/Items/Gem/SupportGemStyrnsFerocity",
-    "source": "https://poe2db.tw/us/Styrns_Ferocity",
-    "content": "lineage_gem"
+    "base_type": "Core Destabiliser",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyIncursionModifySoulCore",
+    "source": "https://poe2db.tw/us/Core_Destabiliser",
+    "content": "temple"
   },
   {
-    "base_type": "Styrn's Mountain",
-    "item_class": "Support Gems",
-    "metadata_id": "Metadata/Items/Gem/SupportGemStyrnsMountain",
-    "source": "https://poe2db.tw/us/Styrns_Mountain",
-    "content": "lineage_gem"
+    "base_type": "Crystallised Corruption",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyIncursionDoubleCorruptGem",
+    "source": "https://poe2db.tw/us/Crystallised_Corruption",
+    "content": "temple"
   },
   {
-    "base_type": "Tacati's Ire",
-    "item_class": "Support Gems",
-    "metadata_id": "Metadata/Items/Gem/SupportGemTacatisIre",
-    "source": "https://poe2db.tw/us/Tacatis_Ire",
-    "content": "lineage_gem"
+    "base_type": "Guatelitzi's Thesis",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/ThesisOfBlood",
+    "source": "https://poe2db.tw/us/Guatelitzis_Thesis",
+    "content": "temple"
   },
   {
-    "base_type": "Tangmazu's Thurible",
-    "item_class": "Support Gems",
-    "metadata_id": "Metadata/Items/Gem/SupportGemTangmazusThurible",
-    "source": "https://poe2db.tw/us/Tangmazus_Thurible",
-    "content": "lineage_gem"
+    "base_type": "Jiquani's Thesis",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/ThesisOfSouls",
+    "source": "https://poe2db.tw/us/Jiquanis_Thesis",
+    "content": "temple"
   },
   {
-    "base_type": "Tasalio's Rhythm",
-    "item_class": "Support Gems",
-    "metadata_id": "Metadata/Items/Gem/SupportGemTasaliosRhythm",
-    "source": "https://poe2db.tw/us/Tasalios_Rhythm",
-    "content": "lineage_gem"
+    "base_type": "Kamasa's Orb of Sacrifice",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyIncursionMutateCorruptionEnchantJewellery",
+    "source": "https://poe2db.tw/us/Kamasas_Orb_of_Sacrifice",
+    "content": "temple"
   },
   {
-    "base_type": "Tawhoa's Tending",
-    "item_class": "Support Gems",
-    "metadata_id": "Metadata/Items/Gem/SupportGemHardyTotemsThree",
-    "source": "https://poe2db.tw/us/Tawhoas_Tending",
-    "content": "lineage_gem"
+    "base_type": "Kopec's Orb of Sacrifice",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyIncursionMutateCorruptionEnchantArmour",
+    "source": "https://poe2db.tw/us/Kopecs_Orb_of_Sacrifice",
+    "content": "temple"
   },
   {
-    "base_type": "Tecrod's Revenge",
-    "item_class": "Support Gems",
-    "metadata_id": "Metadata/Items/Gem/SupportGemTecrodsRevenge",
-    "source": "https://poe2db.tw/us/Tecrods_Revenge",
-    "content": "lineage_gem"
+    "base_type": "Orb of Extraction",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyIncursionExtractAllSocketablesCurrency",
+    "source": "https://poe2db.tw/us/Orb_of_Extraction",
+    "content": "temple"
   },
   {
-    "base_type": "Trickster's Shard",
-    "item_class": "Support Gems",
-    "metadata_id": "Metadata/Items/Gem/SupportGemTrickstersShard",
-    "source": "https://poe2db.tw/us/Tricksters_Shard",
-    "content": "lineage_gem"
+    "base_type": "Quipolatl's Thesis",
+    "item_class": "Augment",
+    "metadata_id": "Metadata/Items/SoulCores/ThesisOfExperiments",
+    "source": "https://poe2db.tw/us/Quipolatls_Thesis",
+    "content": "temple"
   },
   {
-    "base_type": "Tul's Avalanche",
-    "item_class": "Support Gems",
-    "metadata_id": "Metadata/Items/Gem/SupportGemTulsAvalanche",
-    "source": "https://poe2db.tw/us/Tuls_Avalanche",
-    "content": "lineage_gem"
+    "base_type": "Temple Tablet",
+    "item_class": "Tablet",
+    "metadata_id": "Metadata/Items/TowerAugment/IncursionAugment",
+    "source": "https://poe2db.tw/us/Temple_Tablet",
+    "content": "temple"
   },
   {
-    "base_type": "Tul's Stillness",
-    "item_class": "Support Gems",
-    "metadata_id": "Metadata/Items/Gem/SupportGemTulsStillness",
-    "source": "https://poe2db.tw/us/Tuls_Stillness",
-    "content": "lineage_gem"
+    "base_type": "Vaal Arcanist's Infuser",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyIncursionCasterWeaponQuality",
+    "source": "https://poe2db.tw/us/Vaal_Arcanists_Infuser",
+    "content": "temple"
   },
   {
-    "base_type": "Uhtred's Augury",
-    "item_class": "Support Gems",
-    "metadata_id": "Metadata/Items/Gem/SupportGemUhtredsAugury",
-    "source": "https://poe2db.tw/us/Uhtreds_Augury",
-    "content": "lineage_gem"
+    "base_type": "Vaal Armourer's Infuser",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyIncursionWeaponOrArmourQualityHigh",
+    "source": "https://poe2db.tw/us/Vaal_Armourers_Infuser",
+    "content": "temple"
   },
   {
-    "base_type": "Uhtred's Constellation",
-    "item_class": "Support Gems",
-    "metadata_id": "Metadata/Items/Gem/SupportGemUhtredsConstellation",
-    "source": "https://poe2db.tw/us/Uhtreds_Constellation",
-    "content": "lineage_gem"
+    "base_type": "Vaal Blacksmith's Infuser",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyIncursionMartialWeaponQuality",
+    "source": "https://poe2db.tw/us/Vaal_Blacksmiths_Infuser",
+    "content": "temple"
   },
   {
-    "base_type": "Uhtred's Exodus",
-    "item_class": "Support Gems",
-    "metadata_id": "Metadata/Items/Gem/SupportGemUhtredsExodus",
-    "source": "https://poe2db.tw/us/Uhtreds_Exodus",
-    "content": "lineage_gem"
+    "base_type": "Vaal Catalysing Infuser",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyIncursionJewelleryQuality",
+    "source": "https://poe2db.tw/us/Vaal_Catalysing_Infuser",
+    "content": "temple"
   },
   {
-    "base_type": "Uhtred's Omen",
-    "item_class": "Support Gems",
-    "metadata_id": "Metadata/Items/Gem/SupportGemUhtredsOmen",
-    "source": "https://poe2db.tw/us/Uhtreds_Omen",
-    "content": "lineage_gem"
+    "base_type": "Vaal Cultivation Orb",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyIncursionMutateUnique",
+    "source": "https://poe2db.tw/us/Vaal_Cultivation_Orb",
+    "content": "temple"
   },
   {
-    "base_type": "Uhtred's Rite",
-    "item_class": "Support Gems",
-    "metadata_id": "Metadata/Items/Gem/SupportGemUhtredsRite",
-    "source": "https://poe2db.tw/us/Uhtreds_Rite",
-    "content": "lineage_gem"
+    "base_type": "Vaal Siphoner",
+    "item_class": "Incubators",
+    "metadata_id": "Metadata/Items/Currency/CurrencyIncursionVaalIncubator",
+    "source": "https://poe2db.tw/us/Vaal_Siphoner",
+    "content": "temple"
   },
   {
-    "base_type": "Uruk's Smelting",
-    "item_class": "Support Gems",
-    "metadata_id": "Metadata/Items/Gems/SupportGemUruksSmelting",
-    "source": "https://poe2db.tw/us/Uruks_Smelting",
-    "content": "lineage_gem"
+    "base_type": "Yaomac's Orb of Sacrifice",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyIncursionMutateCorruptionEnchantWeapon",
+    "source": "https://poe2db.tw/us/Yaomacs_Orb_of_Sacrifice",
+    "content": "temple"
   },
   {
-    "base_type": "Uul-Netol's Embrace",
-    "item_class": "Support Gems",
-    "metadata_id": "Metadata/Items/Gem/SupportGemUulNetolsEmbrace",
-    "source": "https://poe2db.tw/us/Uul-Netols_Embrace",
-    "content": "lineage_gem"
+    "base_type": "Yugul's Orb of Sacrifice",
+    "item_class": "Stackable Currency",
+    "metadata_id": "Metadata/Items/Currency/CurrencyIncursionMutateCorruptionEnchantJewel",
+    "source": "https://poe2db.tw/us/Yuguls_Orb_of_Sacrifice",
+    "content": "temple"
   },
   {
-    "base_type": "Varashta's Blessing",
-    "item_class": "Support Gems",
-    "metadata_id": "Metadata/Items/Gem/SupportGemVarashtasBlessing",
-    "source": "https://poe2db.tw/us/Varashtas_Blessing",
-    "content": "lineage_gem"
+    "base_type": "Uncut Skill Gem (Level 1)",
+    "item_class": "Uncut Skill Gems",
+    "metadata_id": "Metadata/Items/Gems/SkillGemUncut1",
+    "source": "https://poe2db.tw/us/Currency_Exchange",
+    "content": "uncut_gem",
+    "gem_level": 1
   },
   {
-    "base_type": "Vilenta's Propulsion",
-    "item_class": "Support Gems",
-    "metadata_id": "Metadata/Items/Gems/SupportGemVilentasPropulsion",
-    "source": "https://poe2db.tw/us/Vilentas_Propulsion",
-    "content": "lineage_gem"
+    "base_type": "Uncut Skill Gem (Level 10)",
+    "item_class": "Uncut Skill Gems",
+    "metadata_id": "Metadata/Items/Gems/SkillGemUncut10",
+    "source": "https://poe2db.tw/us/Currency_Exchange",
+    "content": "uncut_gem",
+    "gem_level": 10
   },
   {
-    "base_type": "Vorana's Siege",
-    "item_class": "Support Gems",
-    "metadata_id": "Metadata/Items/Gem/SupportGemVoranasSiege",
-    "source": "https://poe2db.tw/us/Voranas_Siege",
-    "content": "lineage_gem"
+    "base_type": "Uncut Skill Gem (Level 11)",
+    "item_class": "Uncut Skill Gems",
+    "metadata_id": "Metadata/Items/Gems/SkillGemUncut11",
+    "source": "https://poe2db.tw/us/Currency_Exchange",
+    "content": "uncut_gem",
+    "gem_level": 11
   },
   {
-    "base_type": "Vruun's Aftermath",
-    "item_class": "Support Gems",
-    "metadata_id": "Metadata/Items/Gem/SupportGemVruunsAftermath",
-    "source": "https://poe2db.tw/us/Vruuns_Aftermath",
-    "content": "lineage_gem"
+    "base_type": "Uncut Skill Gem (Level 12)",
+    "item_class": "Uncut Skill Gems",
+    "metadata_id": "Metadata/Items/Gems/SkillGemUncut12",
+    "source": "https://poe2db.tw/us/Currency_Exchange",
+    "content": "uncut_gem",
+    "gem_level": 12
   },
   {
-    "base_type": "Vruun's Inevitability",
-    "item_class": "Support Gems",
-    "metadata_id": "Metadata/Items/Gem/SupportGemVruunsInevitability",
-    "source": "https://poe2db.tw/us/Vruuns_Inevitability",
-    "content": "lineage_gem"
+    "base_type": "Uncut Skill Gem (Level 13)",
+    "item_class": "Uncut Skill Gems",
+    "metadata_id": "Metadata/Items/Gems/SkillGemUncut13",
+    "source": "https://poe2db.tw/us/Currency_Exchange",
+    "content": "uncut_gem",
+    "gem_level": 13
   },
   {
-    "base_type": "Xibaqua's Rending",
-    "item_class": "Support Gems",
-    "metadata_id": "Metadata/Items/Gem/SupportGemXibaquasRending",
-    "source": "https://poe2db.tw/us/Xibaquas_Rending",
-    "content": "lineage_gem"
+    "base_type": "Uncut Skill Gem (Level 14)",
+    "item_class": "Uncut Skill Gems",
+    "metadata_id": "Metadata/Items/Gems/SkillGemUncut14",
+    "source": "https://poe2db.tw/us/Currency_Exchange",
+    "content": "uncut_gem",
+    "gem_level": 14
   },
   {
-    "base_type": "Xoph's Pyre",
-    "item_class": "Support Gems",
-    "metadata_id": "Metadata/Items/Gem/SupportGemXophsPyre",
-    "source": "https://poe2db.tw/us/Xophs_Pyre",
-    "content": "lineage_gem"
+    "base_type": "Uncut Skill Gem (Level 15)",
+    "item_class": "Uncut Skill Gems",
+    "metadata_id": "Metadata/Items/Gems/SkillGemUncut15",
+    "source": "https://poe2db.tw/us/Currency_Exchange",
+    "content": "uncut_gem",
+    "gem_level": 15
   },
   {
-    "base_type": "Zarokh's Refrain",
-    "item_class": "Support Gems",
-    "metadata_id": "Metadata/Items/Gem/SupportGemZarokhsRefrain",
-    "source": "https://poe2db.tw/us/Zarokhs_Refrain",
-    "content": "lineage_gem"
+    "base_type": "Uncut Skill Gem (Level 16)",
+    "item_class": "Uncut Skill Gems",
+    "metadata_id": "Metadata/Items/Gems/SkillGemUncut16",
+    "source": "https://poe2db.tw/us/Currency_Exchange",
+    "content": "uncut_gem",
+    "gem_level": 16
   },
   {
-    "base_type": "Zarokh's Revolt",
-    "item_class": "Support Gems",
-    "metadata_id": "Metadata/Items/Gems/SupportGemZarokhsRevolt",
-    "source": "https://poe2db.tw/us/Zarokhs_Revolt",
-    "content": "lineage_gem"
+    "base_type": "Uncut Skill Gem (Level 17)",
+    "item_class": "Uncut Skill Gems",
+    "metadata_id": "Metadata/Items/Gems/SkillGemUncut17",
+    "source": "https://poe2db.tw/us/Currency_Exchange",
+    "content": "uncut_gem",
+    "gem_level": 17
   },
   {
-    "base_type": "Zerphi's Infamy",
-    "item_class": "Support Gems",
-    "metadata_id": "Metadata/Items/Gem/SupportGemZerphisLegacy",
-    "source": "https://poe2db.tw/us/Zerphis_Infamy",
-    "content": "lineage_gem"
+    "base_type": "Uncut Skill Gem (Level 18)",
+    "item_class": "Uncut Skill Gems",
+    "metadata_id": "Metadata/Items/Gems/SkillGemUncut18",
+    "source": "https://poe2db.tw/us/Currency_Exchange",
+    "content": "uncut_gem",
+    "gem_level": 18
+  },
+  {
+    "base_type": "Uncut Skill Gem (Level 19)",
+    "item_class": "Uncut Skill Gems",
+    "metadata_id": "Metadata/Items/Gems/SkillGemUncut19",
+    "source": "https://poe2db.tw/us/Currency_Exchange",
+    "content": "uncut_gem",
+    "gem_level": 19
+  },
+  {
+    "base_type": "Uncut Skill Gem (Level 2)",
+    "item_class": "Uncut Skill Gems",
+    "metadata_id": "Metadata/Items/Gems/SkillGemUncut2",
+    "source": "https://poe2db.tw/us/Currency_Exchange",
+    "content": "uncut_gem",
+    "gem_level": 2
+  },
+  {
+    "base_type": "Uncut Skill Gem (Level 20)",
+    "item_class": "Uncut Skill Gems",
+    "metadata_id": "Metadata/Items/Gems/SkillGemUncut20",
+    "source": "https://poe2db.tw/us/Currency_Exchange",
+    "content": "uncut_gem",
+    "gem_level": 20
+  },
+  {
+    "base_type": "Uncut Skill Gem (Level 3)",
+    "item_class": "Uncut Skill Gems",
+    "metadata_id": "Metadata/Items/Gems/SkillGemUncut3",
+    "source": "https://poe2db.tw/us/Currency_Exchange",
+    "content": "uncut_gem",
+    "gem_level": 3
+  },
+  {
+    "base_type": "Uncut Skill Gem (Level 4)",
+    "item_class": "Uncut Skill Gems",
+    "metadata_id": "Metadata/Items/Gems/SkillGemUncut4",
+    "source": "https://poe2db.tw/us/Currency_Exchange",
+    "content": "uncut_gem",
+    "gem_level": 4
+  },
+  {
+    "base_type": "Uncut Skill Gem (Level 5)",
+    "item_class": "Uncut Skill Gems",
+    "metadata_id": "Metadata/Items/Gems/SkillGemUncut5",
+    "source": "https://poe2db.tw/us/Currency_Exchange",
+    "content": "uncut_gem",
+    "gem_level": 5
+  },
+  {
+    "base_type": "Uncut Skill Gem (Level 6)",
+    "item_class": "Uncut Skill Gems",
+    "metadata_id": "Metadata/Items/Gems/SkillGemUncut6",
+    "source": "https://poe2db.tw/us/Currency_Exchange",
+    "content": "uncut_gem",
+    "gem_level": 6
+  },
+  {
+    "base_type": "Uncut Skill Gem (Level 7)",
+    "item_class": "Uncut Skill Gems",
+    "metadata_id": "Metadata/Items/Gems/SkillGemUncut7",
+    "source": "https://poe2db.tw/us/Currency_Exchange",
+    "content": "uncut_gem",
+    "gem_level": 7
+  },
+  {
+    "base_type": "Uncut Skill Gem (Level 8)",
+    "item_class": "Uncut Skill Gems",
+    "metadata_id": "Metadata/Items/Gems/SkillGemUncut8",
+    "source": "https://poe2db.tw/us/Currency_Exchange",
+    "content": "uncut_gem",
+    "gem_level": 8
+  },
+  {
+    "base_type": "Uncut Skill Gem (Level 9)",
+    "item_class": "Uncut Skill Gems",
+    "metadata_id": "Metadata/Items/Gems/SkillGemUncut9",
+    "source": "https://poe2db.tw/us/Currency_Exchange",
+    "content": "uncut_gem",
+    "gem_level": 9
+  },
+  {
+    "base_type": "Uncut Spirit Gem (Level 10)",
+    "item_class": "Uncut Spirit Gems",
+    "metadata_id": "Metadata/Items/Gems/ReservationGemUncut10",
+    "source": "https://poe2db.tw/us/Currency_Exchange",
+    "content": "uncut_gem",
+    "gem_level": 10
+  },
+  {
+    "base_type": "Uncut Spirit Gem (Level 11)",
+    "item_class": "Uncut Spirit Gems",
+    "metadata_id": "Metadata/Items/Gems/ReservationGemUncut11",
+    "source": "https://poe2db.tw/us/Currency_Exchange",
+    "content": "uncut_gem",
+    "gem_level": 11
+  },
+  {
+    "base_type": "Uncut Spirit Gem (Level 12)",
+    "item_class": "Uncut Spirit Gems",
+    "metadata_id": "Metadata/Items/Gems/ReservationGemUncut12",
+    "source": "https://poe2db.tw/us/Currency_Exchange",
+    "content": "uncut_gem",
+    "gem_level": 12
+  },
+  {
+    "base_type": "Uncut Spirit Gem (Level 13)",
+    "item_class": "Uncut Spirit Gems",
+    "metadata_id": "Metadata/Items/Gems/ReservationGemUncut13",
+    "source": "https://poe2db.tw/us/Currency_Exchange",
+    "content": "uncut_gem",
+    "gem_level": 13
+  },
+  {
+    "base_type": "Uncut Spirit Gem (Level 14)",
+    "item_class": "Uncut Spirit Gems",
+    "metadata_id": "Metadata/Items/Gems/ReservationGemUncut14",
+    "source": "https://poe2db.tw/us/Currency_Exchange",
+    "content": "uncut_gem",
+    "gem_level": 14
+  },
+  {
+    "base_type": "Uncut Spirit Gem (Level 15)",
+    "item_class": "Uncut Spirit Gems",
+    "metadata_id": "Metadata/Items/Gems/ReservationGemUncut15",
+    "source": "https://poe2db.tw/us/Currency_Exchange",
+    "content": "uncut_gem",
+    "gem_level": 15
+  },
+  {
+    "base_type": "Uncut Spirit Gem (Level 16)",
+    "item_class": "Uncut Spirit Gems",
+    "metadata_id": "Metadata/Items/Gems/ReservationGemUncut16",
+    "source": "https://poe2db.tw/us/Currency_Exchange",
+    "content": "uncut_gem",
+    "gem_level": 16
+  },
+  {
+    "base_type": "Uncut Spirit Gem (Level 17)",
+    "item_class": "Uncut Spirit Gems",
+    "metadata_id": "Metadata/Items/Gems/ReservationGemUncut17",
+    "source": "https://poe2db.tw/us/Currency_Exchange",
+    "content": "uncut_gem",
+    "gem_level": 17
+  },
+  {
+    "base_type": "Uncut Spirit Gem (Level 18)",
+    "item_class": "Uncut Spirit Gems",
+    "metadata_id": "Metadata/Items/Gems/ReservationGemUncut18",
+    "source": "https://poe2db.tw/us/Currency_Exchange",
+    "content": "uncut_gem",
+    "gem_level": 18
+  },
+  {
+    "base_type": "Uncut Spirit Gem (Level 19)",
+    "item_class": "Uncut Spirit Gems",
+    "metadata_id": "Metadata/Items/Gems/ReservationGemUncut19",
+    "source": "https://poe2db.tw/us/Currency_Exchange",
+    "content": "uncut_gem",
+    "gem_level": 19
+  },
+  {
+    "base_type": "Uncut Spirit Gem (Level 20)",
+    "item_class": "Uncut Spirit Gems",
+    "metadata_id": "Metadata/Items/Gems/ReservationGemUncut20",
+    "source": "https://poe2db.tw/us/Currency_Exchange",
+    "content": "uncut_gem",
+    "gem_level": 20
+  },
+  {
+    "base_type": "Uncut Spirit Gem (Level 4)",
+    "item_class": "Uncut Spirit Gems",
+    "metadata_id": "Metadata/Items/Gems/ReservationGemUncut4",
+    "source": "https://poe2db.tw/us/Currency_Exchange",
+    "content": "uncut_gem",
+    "gem_level": 4
+  },
+  {
+    "base_type": "Uncut Spirit Gem (Level 5)",
+    "item_class": "Uncut Spirit Gems",
+    "metadata_id": "Metadata/Items/Gems/ReservationGemUncut5",
+    "source": "https://poe2db.tw/us/Currency_Exchange",
+    "content": "uncut_gem",
+    "gem_level": 5
+  },
+  {
+    "base_type": "Uncut Spirit Gem (Level 6)",
+    "item_class": "Uncut Spirit Gems",
+    "metadata_id": "Metadata/Items/Gems/ReservationGemUncut6",
+    "source": "https://poe2db.tw/us/Currency_Exchange",
+    "content": "uncut_gem",
+    "gem_level": 6
+  },
+  {
+    "base_type": "Uncut Spirit Gem (Level 7)",
+    "item_class": "Uncut Spirit Gems",
+    "metadata_id": "Metadata/Items/Gems/ReservationGemUncut7",
+    "source": "https://poe2db.tw/us/Currency_Exchange",
+    "content": "uncut_gem",
+    "gem_level": 7
+  },
+  {
+    "base_type": "Uncut Spirit Gem (Level 8)",
+    "item_class": "Uncut Spirit Gems",
+    "metadata_id": "Metadata/Items/Gems/ReservationGemUncut8",
+    "source": "https://poe2db.tw/us/Currency_Exchange",
+    "content": "uncut_gem",
+    "gem_level": 8
+  },
+  {
+    "base_type": "Uncut Spirit Gem (Level 9)",
+    "item_class": "Uncut Spirit Gems",
+    "metadata_id": "Metadata/Items/Gems/ReservationGemUncut9",
+    "source": "https://poe2db.tw/us/Currency_Exchange",
+    "content": "uncut_gem",
+    "gem_level": 9
+  },
+  {
+    "base_type": "Uncut Support Gem (Level 1)",
+    "item_class": "Uncut Support Gems",
+    "metadata_id": "Metadata/Items/Gems/SupportGemUncut1",
+    "source": "https://poe2db.tw/us/Currency_Exchange",
+    "content": "uncut_gem",
+    "gem_level": 1
+  },
+  {
+    "base_type": "Uncut Support Gem (Level 2)",
+    "item_class": "Uncut Support Gems",
+    "metadata_id": "Metadata/Items/Gems/SupportGemUncut2",
+    "source": "https://poe2db.tw/us/Currency_Exchange",
+    "content": "uncut_gem",
+    "gem_level": 2
+  },
+  {
+    "base_type": "Uncut Support Gem (Level 3)",
+    "item_class": "Uncut Support Gems",
+    "metadata_id": "Metadata/Items/Gems/SupportGemUncut3",
+    "source": "https://poe2db.tw/us/Currency_Exchange",
+    "content": "uncut_gem",
+    "gem_level": 3
+  },
+  {
+    "base_type": "Uncut Support Gem (Level 4)",
+    "item_class": "Uncut Support Gems",
+    "metadata_id": "Metadata/Items/Gems/SupportGemUncut4",
+    "source": "https://poe2db.tw/us/Currency_Exchange",
+    "content": "uncut_gem",
+    "gem_level": 4
+  },
+  {
+    "base_type": "Uncut Support Gem (Level 5)",
+    "item_class": "Uncut Support Gems",
+    "metadata_id": "Metadata/Items/Gems/SupportGemUncut5",
+    "source": "https://poe2db.tw/us/Currency_Exchange",
+    "content": "uncut_gem",
+    "gem_level": 5
   }
 ]

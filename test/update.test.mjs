@@ -37,20 +37,28 @@ test('project validates pinned sources and all four profiles', async () => {
   const project = await loadProject();
   assert.equal(project.sources.size, 2);
   assert.equal(ABYSS_ITEMS.length, 26);
+  assert.equal(LEAGUE_ITEMS.length, 643);
+  assert.equal(project.mapping.length, 698);
   assert.equal(project.mapping.length, 55 + LEAGUE_ITEMS.length);
   for (const item of ABYSS_ITEMS) {
     const mapped = project.mapping.find(mapped => mapped.metadata_id === item.metadata_id);
     for (const key of ['base_type', 'metadata_id', 'item_class']) assert.equal(mapped?.[key], item[key]);
     assert.notEqual(item.item_class, 'Quest Items');
   }
-  const contentClasses = ['Stackable Currency', 'Tablet', 'Map Fragments', 'Breachstones', 'Augment', 'Incubators', 'Pinnacle Keys', 'Omen', 'Expedition Logbook', 'Support Gems'];
+  const contentClasses = ['Stackable Currency', 'Tablet', 'Map Fragments', 'Breachstones', 'Augment', 'Incubators', 'Pinnacle Keys', 'Omen', 'Expedition Logbook', 'Support Gems',
+    'Vault Keys', 'Uncut Skill Gems', 'Uncut Spirit Gems', 'Uncut Support Gems'];
   assert.deepEqual([...new Set(LEAGUE_ITEMS.map(item => item.item_class))].sort(), [...contentClasses].sort());
   assert.deepEqual([...new Set(LEAGUE_ITEMS.map(item => item.content))].sort(),
-    ['breach', 'temple', 'ritual', 'delirium', 'expedition', 'soul_core', 'idol', 'rune', 'lineage_gem'].sort());
+    ['breach', 'temple', 'ritual', 'delirium', 'expedition', 'soul_core', 'idol', 'rune', 'lineage_gem',
+      'currency', 'essence', 'fragments', 'uncut_gem'].sort());
   for (const item of LEAGUE_ITEMS) {
     const mapped = project.mapping.find(mapped => mapped.metadata_id === item.metadata_id);
-    for (const key of ['base_type', 'metadata_id', 'item_class']) assert.equal(mapped?.[key], item[key]);
+    for (const key of ['base_type', 'metadata_id', 'item_class', 'gem_level']) assert.equal(mapped?.[key], item[key]);
     assert.ok(contentClasses.includes(item.item_class), `${item.base_type}: only non-equipment content classes`);
+  }
+  for (const [Class, min, max] of [['Uncut Skill Gems', 1, 20], ['Uncut Spirit Gems', 4, 20], ['Uncut Support Gems', 1, 5]]) {
+    assert.deepEqual(LEAGUE_ITEMS.filter(item => item.item_class === Class).map(item => item.gem_level).sort((a, b) => a - b),
+      Array.from({ length: max - min + 1 }, (_, i) => min + i), `${Class}: each supported level has its own mapping`);
   }
   for (const name of ["Mórrigan's Insight", "Oisín's Oath", 'Thaumaturgic Flux (Level 20)']) {
     assert.ok(project.mapping.some(item => item.base_type === name), `${name}: canonical Unicode and level suffix accepted`);

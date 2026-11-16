@@ -244,7 +244,8 @@ test('Faded Crisis Fragment is a separate S+ Pinnacle Key at one Divine in every
 test('content prices require exact trading identity and never accept equipment classes', () => {
   const representatives = [...new Map(LEAGUE_ITEMS.map(item => [item.item_class, item])).values()];
   for (const item of representatives) {
-    const price = { BaseType: item.base_type, ItemClass: item.item_class, MetadataId: item.metadata_id, DivinePerItem: 1 };
+    const price = { BaseType: item.base_type, ItemClass: item.item_class, MetadataId: item.metadata_id,
+      DivinePerItem: 1, ...(item.gem_level === undefined ? {} : { GemLevel: item.gem_level }) };
     for (const invalid of [
       { ...price, ItemClass: 'Quest Items' },
       { ...price, ItemClass: undefined },
@@ -258,6 +259,24 @@ test('content prices require exact trading identity and never accept equipment c
     assert.throws(() => render(config.profiles[2], {
       prices: [{ BaseType, ItemClass, MetadataId: 'Metadata/Items/Currency/UntrustedEquipment', DivinePerItem: 100 }],
     }), /Invalid\/unrecognized currency price/);
+  }
+});
+
+test('Chaos promotions reject malformed values and preserve registered gem level identities', () => {
+  const gem = LEAGUE_ITEMS.find(item => item.item_class === 'Uncut Skill Gems' && item.gem_level === 18);
+  const price = { BaseType: gem.base_type, ItemClass: gem.item_class, MetadataId: gem.metadata_id,
+    GemLevel: gem.gem_level, DivinePerItem: 0.01, ChaosPerItem: 1 };
+  const invalids = [
+    ...[undefined, 17, 19, '18', null, NaN].map(GemLevel => ({ ...price, GemLevel })),
+    ...[NaN, Infinity, -1, '1', null].map(ChaosPerItem => ({ ...price, ChaosPerItem })),
+    { ...price, ItemClass: 'Quest Items' },
+    { ...price, MetadataId: 'Metadata/Items/Gems/SkillGemUncut19' },
+    { ...price, BaseType: 'Uncut Skill Gem (Level 19)' },
+    { BaseType: 'Vaal Orb', DivinePerItem: 0.01, ChaosPerItem: 1, GemLevel: 18 },
+  ];
+  for (const profile of config.profiles) {
+    assert.doesNotThrow(() => render(profile, { prices: [price] }));
+    for (const invalid of invalids) assert.throws(() => render(profile, { prices: [invalid] }), /Invalid\/unrecognized currency price/);
   }
 });
 

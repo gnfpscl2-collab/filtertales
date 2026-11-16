@@ -4,7 +4,7 @@ import leagueItems from '../league-items.json' with { type: 'json' };
 export const ABYSS_ITEMS = Object.freeze(abyssItems.map(Object.freeze));
 export const LEAGUE_ITEMS = Object.freeze(leagueItems.map(Object.freeze));
 const specialItems = [...ABYSS_ITEMS, ...LEAGUE_ITEMS];
-const isSpecialItem = item => specialItems.some(known => ['base_type', 'item_class', 'metadata_id'].every(key => known[key] === item[key]));
+const isSpecialItem = item => specialItems.some(known => ['base_type', 'item_class', 'metadata_id', 'gem_level'].every(key => known[key] === item[key]));
 
 const equipmentClasses = [
   'Amulets', 'Belts', 'Body Armours', 'Boots', 'Bows', 'Bucklers',
@@ -398,6 +398,34 @@ export function applyCategorySounds(source, sounds = DEFAULT_SOUNDS) {
   });
 }
 
+function chaosProtection(source, price, nativeB, customSounds, sounds) {
+  const template = [...source.matchAll(showBlocks)].map(match => match[0]).filter(block => {
+    const header = block.split(/\r?\n/, 1)[0];
+    if (!/\$type->(?:currency(?: |->(?:essence|catalysts|emotions|omen|splinter) )|sockets->general |fragments->generic |xenotiering |gems->lineage |maplike->special |verisium )/.test(header)
+      || /^[ \t]*Rarity Unique[ \t]*\r?$/m.test(block)) return false;
+    const classLines = block.match(/^[ \t]*Class[^\r\n]+/gm) ?? [];
+    if (!classLines.every(line => {
+      const exact = /\bClass == /.test(line);
+      return [...line.matchAll(/"([^"]+)"/g)].some(match => exact
+        ? match[1] === (price.ItemClass ?? 'Stackable Currency')
+        : (price.ItemClass ?? 'Stackable Currency').includes(match[1]));
+    })) return false;
+    const names = block.match(/^[ \t]*BaseType == ([^\r\n]+)/m)?.[1];
+    return names && [...names.matchAll(/"([^"]+)"/g)].some(match => match[1] === price.BaseType);
+  }).sort((a, b) => Number(/^[ \t]*Class\b/m.test(a)) - Number(/^[ \t]*Class\b/m.test(b))).at(-1);
+  const header = template?.split(/\r?\n/, 1)[0].replace(/^Show[^$]*/, '') ?? '$type->currency $tier->b';
+  const actions = template?.split(/\r?\n/).filter(line => /^[ \t]*(?:Set\w+|Play\w+|MinimapIcon)\b/.test(line))
+    ?? Object.entries(nativeB).map(([action, value]) => `    ${action} ${value}`);
+  const lines = [`Show # PT Verified unit value >= 1 Chaos; ${header}`,
+    `    Class == ${quoteNames([price.ItemClass ?? 'Stackable Currency'])}`,
+    `    BaseType ${price.GemLevel === undefined ? '== ' : ''}${quoteNames([price.GemLevel === undefined ? price.BaseType : price.BaseType.replace(/ \(Level \d+\)$/, '')])}`];
+  if (price.GemLevel !== undefined) lines.push(`    GemLevel == ${price.GemLevel}`);
+  if (price.ItemClass === 'Tablet') lines.push('    Rarity Normal Magic Rare');
+  let rule = applyVisualPolicy([...lines, ...actions, ''].join('\n'));
+  if (customSounds) rule = applyCategorySounds(rule, sounds);
+  return applyAbyssVisuals(rule);
+}
+
 export function renderFilter({ source, prices, league, profile, release, dataLabel, customSounds = false, sounds = DEFAULT_SOUNDS }) {
   if (typeof customSounds !== 'boolean') throw new Error('customSounds must be a boolean.');
   if (profile.strictEndgame !== undefined && typeof profile.strictEndgame !== 'boolean') throw new Error('strictEndgame must be a boolean.');
@@ -411,20 +439,22 @@ export function renderFilter({ source, prices, league, profile, release, dataLab
   for (const price of prices) {
     const pinnacle = price.BaseType === FADED_CRISIS_FRAGMENT.base_type
       && price.MetadataId === FADED_CRISIS_FRAGMENT.metadata_id && price.ItemClass === FADED_CRISIS_FRAGMENT.item_class
-      && source.includes('Class == "Pinnacle Keys"');
-    const special = isSpecialItem({ base_type: price.BaseType, item_class: price.ItemClass, metadata_id: price.MetadataId });
+      && price.GemLevel === undefined && source.includes('Class == "Pinnacle Keys"');
+    const special = isSpecialItem({ base_type: price.BaseType, item_class: price.ItemClass, metadata_id: price.MetadataId, gem_level: price.GemLevel });
     const specialCandidate = specialItems.some(item => item.base_type === price.BaseType || item.metadata_id === price.MetadataId);
-    const currency = !specialCandidate && (!price.ItemClass || price.ItemClass === 'Stackable Currency') && source.includes(`"${price.BaseType}"`);
-    if (!/^[\p{L}][\p{L}\p{M}0-9 ',()\-]{1,90}$/u.test(price.BaseType)
+    const currency = !specialCandidate && price.GemLevel === undefined && (!price.ItemClass || price.ItemClass === 'Stackable Currency') && source.includes(`"${price.BaseType}"`);
+    if (!/^[\p{L}][\p{L}\p{M}0-9 ',():\-]{1,90}$/u.test(price.BaseType)
       || !Number.isFinite(price.DivinePerItem) || price.DivinePerItem < 0
+      || (price.ChaosPerItem !== undefined && (!Number.isFinite(price.ChaosPerItem) || price.ChaosPerItem < 0))
       || !(pinnacle || special || currency)) throw new Error('Invalid/unrecognized currency price.');
   }
   const fixed = ['Mirror of Kalandra', "Hinekora's Lock", 'Divine Orb'];
   const rareGroups = new Map();
   for (const price of prices.filter(price => price.DivinePerItem >= 1 && !fixed.includes(price.BaseType))) {
     const itemClass = price.ItemClass ?? 'Stackable Currency';
-    if (!rareGroups.has(itemClass)) rareGroups.set(itemClass, []);
-    rareGroups.get(itemClass).push(price.BaseType);
+    const key = `${itemClass}|${price.GemLevel ?? ''}`;
+    if (!rareGroups.has(key)) rareGroups.set(key, { itemClass, gemLevel: price.GemLevel, names: [] });
+    rareGroups.get(key).names.push(price.BaseType);
   }
   const groups = new Map([[1, []], [2, []]]);
   for (const price of prices) {
@@ -444,10 +474,12 @@ export function renderFilter({ source, prices, league, profile, release, dataLab
     `# Custom sounds: ${customSounds ? 'enabled' : 'disabled; built-in PoE2 alerts only'}`,
     '# Fixed S+ personal priority (independent of price data)',
   ];
-  const addRule = (label, names, actions, filename, areaLevel = false, itemClass = 'Stackable Currency') => {
+  const addRule = (label, names, actions, filename, areaLevel = false, itemClass = 'Stackable Currency', gemLevel) => {
     lines.push(`Show # ${label}`);
     if (areaLevel) lines.push('    AreaLevel >= 65');
-    lines.push(`    Class == ${quoteNames([itemClass])}`, `    BaseType == ${quoteNames(names)}`);
+    lines.push(`    Class == ${quoteNames([itemClass])}`,
+      `    BaseType ${gemLevel === undefined ? '== ' : ''}${quoteNames(gemLevel === undefined ? names : names.map(name => name.replace(/ \(Level \d+\)$/, '')))}`);
+    if (gemLevel !== undefined) lines.push(`    GemLevel == ${gemLevel}`);
     if (itemClass === 'Tablet') lines.push('    Rarity Normal Magic Rare');
     for (const [action, value] of Object.entries(actions)) lines.push(`    ${action} ${value}`);
     if (customSounds) lines.push(`    CustomAlertSoundOptional "sounds/${filename}" 250`);
@@ -456,9 +488,16 @@ export function renderFilter({ source, prices, league, profile, release, dataLab
   addRule('S+ Mirror of Kalandra and Hinekora\'s Lock', fixed.slice(0, 2), { ...sActions, PlayAlertSound: '6 250' }, sounds.pinnacle);
   addRule('S+ Divine Orb = one Divine, all areas', ['Divine Orb'], { ...sActions, PlayAlertSound: '1 250' }, sounds.value);
   lines.push('# BEGIN PERSONAL ECONOMY');
-  for (const [itemClass, names] of rareGroups) {
+  for (const { itemClass, gemLevel, names } of rareGroups.values()) {
     addRule('S+ Verified unit value >= 1 Divine, regardless of upstream tier, all areas', names,
-      { ...sActions, PlayAlertSound: '1 250' }, sounds.value, false, itemClass);
+      { ...sActions, PlayAlertSound: '1 250' }, sounds.value, false, itemClass, gemLevel);
+  }
+  if (profile.selectiveLoot) {
+    // Same-hour conversions can round an exact one-Chaos rate a few machine steps below one.
+    for (const price of prices.filter(price => price.ChaosPerItem >= 1 - 8 * Number.EPSILON && price.DivinePerItem < 1
+      && ![...fixed, 'Chaos Orb', 'Gold'].includes(price.BaseType))) {
+      lines.push(chaosProtection(source, price, nativeB, customSounds, sounds));
+    }
   }
   if (profile.strictEndgame) {
     for (const name of ['Inscribed Ultimatum', 'Djinn Barya']) {

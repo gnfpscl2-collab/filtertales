@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
+import { getPrices, CHAOS, DIVINE } from '../src/economy.mjs';
 import { applyEndgameVisibility, applySelectiveLoot, materialHideRules, renderFilter, FADED_CRISIS_FRAGMENT, ABYSS_ITEMS, LEAGUE_ITEMS } from '../src/filter.mjs';
 
 const root = new URL('../', import.meta.url);
@@ -73,6 +74,14 @@ const render = (profile = config.profiles[2], customSounds = true, prices = []) 
   release: config.upstream.release, dataLabel: 'strict visibility fixture',
 });
 
+const exchangePrice = (item, DivinePerItem, ChaosPerItem) => ({ BaseType: item.base_type,
+  ItemClass: item.item_class ?? 'Stackable Currency', MetadataId: item.metadata_id, DivinePerItem,
+  ...(item.gem_level === undefined ? {} : { GemLevel: item.gem_level }),
+  ...(ChaosPerItem === undefined ? {} : { ChaosPerItem }),
+});
+const exchangeDrop = item => ({ BaseType: item.base_type, Class: item.item_class ?? 'Stackable Currency',
+  Rarity: 'Normal', ...(item.gem_level === undefined ? {} : { GemLevel: item.gem_level }) });
+
 const abyssPrice = (name, DivinePerItem) => {
   const item = ABYSS_ITEMS.find(item => item.base_type === name);
   assert.ok(item, name);
@@ -85,8 +94,7 @@ const assertAbyssColours = block => {
 };
 
 test('verified one-Divine league consumables use S+ without repricing quest items or equipment', () => {
-  const prices = LEAGUE_ITEMS.map(item => ({ BaseType: item.base_type, ItemClass: item.item_class,
-    MetadataId: item.metadata_id, DivinePerItem: 1 }));
+  const prices = LEAGUE_ITEMS.map(item => exchangePrice(item, 1));
   const questVariants = [...new Map(LEAGUE_ITEMS.map(item => [item.item_class, item])).values()];
   const equipment = [
     { BaseType: 'Crude Bow', Class: 'Bows', Rarity: 'Magic' },
@@ -104,7 +112,7 @@ test('verified one-Divine league consumables use S+ without repricing quest item
       const high = render(profile, customSounds, prices);
       const baseline = render(profile, customSounds, []);
       for (const item of LEAGUE_ITEMS) {
-        const result = firstTerminal(high, { BaseType: item.base_type, Class: item.item_class, Rarity: 'Normal' });
+        const result = firstTerminal(high, exchangeDrop(item));
         const label = `${profile.file}: ${item.base_type}`;
         assert.equal(result.action, 'Show', label);
         assert.match(result.header, /S\+ Verified unit value/, label);
@@ -895,5 +903,137 @@ test('PT one-Divine exchange items override its narrower baseline without repric
       assert.doesNotMatch(firstTerminal(high, { ...fixture, Class: 'Quest Items' }).header,
         /S\+ Verified unit value/, 'same-name quest item cannot enter an exchange rule');
     }
+  }
+});
+
+test('PT protects every registered exchange identity at one Chaos, including each uncut gem level', () => {
+  const currency = JSON.parse(readFileSync(new URL('currency-map.json', root), 'utf8'));
+  const mapping = [...currency, ...ABYSS_ITEMS, ...LEAGUE_ITEMS];
+  const profile = config.profiles.find(profile => profile.selectiveLoot);
+  const fixed = new Set(['Divine Orb', 'Mirror of Kalandra', "Hinekora's Lock"]);
+  for (const customSounds of [false, true]) {
+    const filter = render(profile, customSounds, mapping.map(item => exchangePrice(item, 0.01, 1)));
+    for (const item of mapping) {
+      const result = firstTerminal(filter, { ...exchangeDrop(item), AreaLevel: 1 });
+      assert.equal(result.action, 'Show', item.base_type);
+      if (fixed.has(item.base_type)) continue;
+      assert.match(result.header, item.base_type === 'Chaos Orb' ? /Chaos category/ : /PT Verified unit value >= 1 Chaos/, item.base_type);
+      if (item.base_type === 'Chaos Orb' && customSounds) assert.match(result.block, /sounds\/0090\.wav/);
+      if (item.gem_level !== undefined) {
+        assert.match(result.block, new RegExp(`GemLevel == ${item.gem_level}(?:\\r?\\n|$)`));
+        assert.doesNotMatch(result.block, /^\s*BaseType ==/m);
+      }
+      if (ABYSS_ITEMS.some(abyss => abyss.metadata_id === item.metadata_id)) assertAbyssColours(result.block);
+      assert.doesNotMatch(result.block, /sounds\/0161\.wav/, 'one Chaos does not imply one Divine');
+      if (!customSounds) assert.doesNotMatch(result.block, /CustomAlertSound/);
+      const quest = firstTerminal(filter, { ...exchangeDrop(item), Class: 'Quest Items' });
+      assert.doesNotMatch(quest.header, /PT Verified unit value >= 1 Chaos/);
+    }
+  }
+});
+
+test('PT Chaos boundaries cover all requested content types before material, gem and final hides', () => {
+  const currency = JSON.parse(readFileSync(new URL('currency-map.json', root), 'utf8'));
+  const mapping = [...currency, ...ABYSS_ITEMS, ...LEAGUE_ITEMS];
+  const names = ['Breachstone', 'Gnawed Rib', 'Simulacrum', 'Lesser Essence of Abrasion', 'Regal Orb',
+    'Vaal Siphoner', 'Faded Crisis Fragment', 'Sacred Bloom', 'Soul Core of Zalatl', 'Ox Idol',
+    'Uncut Skill Gem (Level 18)', 'Expedition Logbook', "Mórrigan's Insight"];
+  const items = names.map(name => {
+    const item = mapping.find(item => item.base_type === name);
+    assert.ok(item, name);
+    return item;
+  });
+  for (const customSounds of [false, true]) {
+    for (const profile of config.profiles) {
+      const unpriced = items.map(item => exchangePrice(item, 0.01));
+      const baseline = render(profile, customSounds, unpriced);
+      const below = render(profile, customSounds, items.map(item => exchangePrice(item, 0.01, 0.999)));
+      const equal = render(profile, customSounds, items.map(item => exchangePrice(item, 0.01, 1)));
+      const above = render(profile, customSounds, items.map(item => exchangePrice(item, 0.01, 1.001)));
+      assert.equal(below, baseline, `${profile.file}: below one Chaos makes no new protection`);
+      if (!profile.selectiveLoot) {
+        assert.equal(equal, baseline);
+        assert.equal(above, baseline);
+        continue;
+      }
+      assert.equal(equal, above, 'the exact threshold and just above it use the same protection');
+      for (const item of items) {
+        const drop = { ...exchangeDrop(item), AreaLevel: 1, StackSize: 1 };
+        const result = firstTerminal(equal, drop);
+        if (['Breachstone', 'Gnawed Rib', 'Regal Orb', 'Uncut Skill Gem (Level 18)'].includes(item.base_type)) {
+          assert.equal(firstTerminal(baseline, drop).action, 'Hide', item.base_type);
+        }
+        assert.equal(result.action, 'Show', item.base_type);
+        assert.match(result.header, /PT Verified unit value >= 1 Chaos/);
+        assert.doesNotMatch(result.block, /sounds\/0161\.wav/);
+      }
+    }
+  }
+});
+
+test('PT Chaos protection keeps native currency presentation, tablet audio and the superior Divine tier', () => {
+  const profile = config.profiles.find(profile => profile.selectiveLoot);
+  const currency = JSON.parse(readFileSync(new URL('currency-map.json', root), 'utf8'));
+  const regal = currency.find(item => item.base_type === 'Regal Orb');
+  const tablets = ['Breach Tablet', 'Ritual Tablet', 'Temple Tablet'].map(name => LEAGUE_ITEMS.find(item => item.base_type === name));
+  const presentation = result => result.block.split(/\r?\n/).map(line => line.trim())
+    .filter(line => /^(?:Set\w+|Play\w+|CustomAlertSound\w*|MinimapIcon)\b/.test(line));
+  for (const customSounds of [false, true]) {
+    const baseline = render(profile, customSounds);
+    const priced = render(profile, customSounds, [regal, ...tablets].map(item => exchangePrice(item, 0.01, 1)));
+    const nativeRegal = firstTerminal(render(config.profiles[0], customSounds), exchangeDrop(regal));
+    assert.deepEqual(presentation(firstTerminal(priced, exchangeDrop(regal))), presentation(nativeRegal));
+    for (const item of tablets) {
+      const ordinary = firstTerminal(priced, exchangeDrop(item));
+      assert.equal(ordinary.action, 'Show');
+      if (customSounds) assert.match(ordinary.block, /sounds\/0398\.wav/);
+      assert.deepEqual(firstTerminal(priced, { ...exchangeDrop(item), Rarity: 'Unique' }),
+        firstTerminal(baseline, { ...exchangeDrop(item), Rarity: 'Unique' }));
+    }
+    const high = render(profile, customSounds, [regal, ...tablets].map(item => exchangePrice(item, 1, 1)));
+    for (const item of [regal, ...tablets]) {
+      const result = firstTerminal(high, exchangeDrop(item));
+      assert.match(result.header, /S\+ Verified unit value/);
+      if (customSounds) assert.match(result.block, /sounds\/0161\.wav/);
+    }
+  }
+});
+
+test('gem level pricing protects only the matching level for Chaos and Divine promotions', () => {
+  const profile = config.profiles.find(profile => profile.selectiveLoot);
+  for (const Class of ['Uncut Skill Gems', 'Uncut Spirit Gems']) {
+    const gems = [18, 19, 20].map(level => LEAGUE_ITEMS.find(item => item.item_class === Class && item.gem_level === level));
+    assert.ok(gems.every(Boolean));
+    for (const customSounds of [false, true]) {
+      const chaos = render(profile, customSounds, [exchangePrice(gems[0], 0.01, 1), exchangePrice(gems[2], 0.01, 0.999)]);
+      for (const [i, gem] of gems.entries()) {
+        const result = firstTerminal(chaos, exchangeDrop(gem));
+        assert.equal(result.action, i === 0 ? 'Show' : 'Hide', `${Class} level ${gem.gem_level}`);
+      }
+      const divine = render(profile, customSounds, [exchangePrice(gems[0], 1), exchangePrice(gems[2], 1)]);
+      for (const [i, gem] of gems.entries()) {
+        const result = firstTerminal(divine, exchangeDrop(gem));
+        assert.equal(result.action, i === 1 ? 'Hide' : 'Show');
+        if (i !== 1) {
+          assert.match(result.header, /S\+ Verified unit value/);
+          assert.match(result.block, new RegExp(`GemLevel == ${gem.gem_level}(?:\\r?\\n|$)`));
+          if (customSounds) assert.match(result.block, /sounds\/0161\.wav/);
+        }
+      }
+    }
+  }
+});
+
+test('same-hour conversion at exactly one Chaos survives floating-point roundoff in PT', () => {
+  const market = id => ({ league: 'Fixture League', market_pair: [id, DIVINE], volume_traded: { [id]: 93, [DIVINE]: 1 } });
+  const hours = [10800, 7200, 3600].map(Hour => ({ Hour,
+    Data: { markets: [market(CHAOS), market(FADED_CRISIS_FRAGMENT.metadata_id)] } }));
+  const prices = getPrices(hours, 'Fixture League', [FADED_CRISIS_FRAGMENT]);
+  assert.ok(Math.abs(prices[0].ChaosPerItem - 1) < 2e-15);
+  const profile = config.profiles.find(profile => profile.selectiveLoot);
+  for (const customSounds of [false, true]) {
+    const result = firstTerminal(render(profile, customSounds, prices), exchangeDrop(FADED_CRISIS_FRAGMENT));
+    assert.equal(result.action, 'Show');
+    assert.match(result.header, /PT Verified unit value >= 1 Chaos/);
   }
 });

@@ -4,6 +4,8 @@
 
 기존 hell은 **tw_hell_CT**로 이어지고 **tw_hell_PT**를 추가합니다. CT는 기존 수집 조건에 기회의 오브용 베이스를 보호하며, PT는 화폐·특출난 베이스/상태·상위 고유·기회의 오브용 베이스·서판·경로석으로 표시 범위를 좁힙니다. 정확한 PT 허용 분류는 [HELL-MODES.ko.md](HELL-MODES.ko.md)에 기록합니다.
 
+**PT 가격 보호는 개당 1 Chaos 이상부터 적용합니다.** 같은 리그에서 검증된 교환 품목은 콘텐츠 선별·하위 재료·젬 숨김보다 먼저 표시하고, 개당 1 Divine 이상 S+·0161.wav가 최우선입니다. 이 하한은 스택 총액이 아닌 1개당 가치이며 normal·hard·CT의 표시 하한을 변경하지 않습니다.
+
 ## 표시 우선순위
 
 | 단계 | 대상 기준 | 글씨 | 테두리 | 배경 |
@@ -142,23 +144,25 @@ tw-normal에는 이 제한이 없습니다. tw-hard는 **materialTier: "greater"
 
 일반 화폐는 NeverSink S/A/B를 남기고 C/D/E·공급 목록을 숨깁니다. hard는 해당 목록의 Greater 제작 오브를 예외로 남기고 두 hell은 Perfect 진화·확장 오브도 숨깁니다. hard와 두 hell 모두 룬·소울코어 C/D/E·저가 공급·육성 목록, 에센스 C/D/E, 촉매 C, 액체 감정 C/D를 숨깁니다. 이 이름 목록 자체는 서판·경로석·퀘스트·피나클 열쇠·금화를 통째로 숨기지 않습니다. CT의 고급 S/A/B 재료·미등록 경고는 유지하며 PT에는 추가 허용 분류가 적용됩니다.
 
-**아이템 종류와 고정 NeverSink 등급을 사용하는 기준이며 Greater Exalted Orb의 실제 시세 이상을 보장하지 않습니다.** 검증 매핑 537종 중 개당 1 Divine 이상인 S+는 이 제한보다 먼저 표시하고 0161.wav를 사용합니다. 그 아래 0.1·0.01 Divine 표시 승격은 숨김을 우회하지 않습니다. 심연은 1 Divine 미만·미검증일 때 공통 심연 기본색을 적용합니다. 음원 6개의 공통 경로와 홈페이지 등록용 전체 TXT 생성은 그대로 유지합니다.
+**아이템 종류와 고정 NeverSink 등급을 사용하는 기준이며 Greater Exalted Orb의 실제 시세 이상을 보장하지 않습니다.** 등록된 검증 매핑 중 개당 1 Divine 이상인 S+는 이 제한보다 먼저 표시하고 0161.wav를 사용합니다. 그 아래 0.1·0.01 Divine 표시 승격은 normal·hard·CT의 숨김을 우회하지 않습니다. PT는 검증된 개당 1 Chaos 이상 교환 품목을 먼저 보호합니다. 심연은 1 Divine 미만·미검증일 때 공통 심연 기본색을 적용합니다. 음원 6개의 공통 경로와 홈페이지 등록용 전체 TXT 생성은 그대로 유지합니다.
 
 ## 가격과 검증 범위
 
-**균열·사원·의식·환영·탐험·영혼 핵·우상·룬·혈통 젬의 등록 482종은 검증된 개당 단가가 1 Divine 이상일 때만 normal·hard·hell_CT·hell_PT 모두, 모든 지역에서 S+·빨간 글씨/테두리·흰 배경·0161.wav를 적용하고 하위 재료 숨김과 PT 선별보다 먼저 표시합니다.** 1 Divine 미만·미검증 품목은 각 필터의 표시·숨김·음원을 따르며 0.1·0.01 Divine 승격을 추가하지 않습니다. 정확한 품목명·클래스·거래 메타데이터 조합만 허용하고 동명 퀘스트 변형은 제외합니다. Sacred Bloom은 의식의 Map Fragments 품목으로 평가합니다. 분류별 범위 표는 [README.md](README.md)의 시세 데이터 절을 참고하세요. 혈통 젬은 Support Gems 클래스의 등록 77종이며, CT의 미가공 스킬·정신력 젬 레벨 19 조건과 별개입니다. PT는 일반 젬을 레벨만으로 표시하지 않습니다.
+**등록된 콘텐츠 품목은 검증된 개당 단가가 1 Divine 이상일 때만 normal·hard·hell_CT·hell_PT 모두, 모든 지역에서 S+·빨간 글씨/테두리·흰 배경·0161.wav를 적용하고 하위 재료 숨김과 PT 선별보다 먼저 표시합니다.** 1 Divine 미만에는 S+를 추가하지 않습니다. PT의 검증 개당 1 Chaos 이상 품목은 별도 표시 보호를 적용하며, 그 밖의 품목은 각 필터의 표시·숨김·음원을 따릅니다. 정확한 품목명·클래스·거래 메타데이터 조합만 허용하고 시세 매핑에서 퀘스트용 메타데이터를 제외합니다. Sacred Bloom은 의식의 Map Fragments 품목으로 평가합니다. 분류별 범위 표는 [README.md](README.md)의 시세 데이터 절을 참고하세요. 혈통 젬은 Support Gems 클래스의 등록 77종입니다. 미가공 젬 42종은 Uncut Skill Gems·Uncut Spirit Gems·Uncut Support Gems로 구분하고 레벨별 거래 식별자·gem_level을 등록합니다. 필터는 부분 BaseType과 정확한 GemLevel을 함께 사용합니다. CT의 기본 미가공 스킬·정신력 젬 레벨 19 조건은 유지하며, PT는 검증된 개당 1 Chaos 이상이면 가격 보호로 먼저 표시합니다.
 
 무기·방어구와 고유 주얼·반지·목걸이·허리띠는 경제 매핑 대상이 아닙니다. 기존 NeverSink 기반 장비·고유 선별을 따르고 표시되는 일반 고유는 0103.wav·원본이 판별한 특출난 드롭은 0397.wav를 사용합니다.
 
-자동 가격 검증 매핑은 **currency-map.json의 기존 29종(일반 화폐 28종·빛바랜 위기 조각 1종) + abyss-items.json의 심연 26종 + league-items.json의 아홉 콘텐츠 482종 = 537종**입니다. 뼈·징조·응시·거래용 초대장·서판은 정확한 품목명·클래스·거래 메타데이터를 함께 검증합니다. 조각은 **Pinnacle Keys** 클래스·**Metadata/Items/Pinnacle/BurningMonolithKey2**로 한정하고 동명의 퀘스트 아이템은 제외합니다. Kulemak's Invitation도 거래용 Map Fragments·Metadata/Items/Currency/Abyss/AbyssPinnacleKey로 한정하고 동명 Quest Items를 제외합니다. 미등록 아이템을 자동 등록하지 않습니다. [조각 자료](https://poe2db.tw/us/Faded_Crisis_Fragment), [초대장 자료](https://poe2db.tw/us/Kulemaks_Invitation)
+자동 가격 검증 매핑은 **currency-map.json의 기존 29종(일반 화폐 28종·빛바랜 위기 조각 1종) + abyss-items.json의 심연 26종 + league-items.json의 콘텐츠 643종 = 698종**입니다. PoE2DB 화폐교환 목록 687개 품목의 매핑 누락을 채우고 기존 보호 품목 11개를 유지합니다. 분류별 등록 수와 범위는 README의 시세 데이터 절에 있습니다. 뼈·징조·응시·거래용 초대장·서판은 정확한 품목명·클래스·거래 메타데이터를 함께 검증합니다. 빛바랜 위기 조각은 **Pinnacle Keys** 클래스·**Metadata/Items/Pinnacle/BurningMonolithKey2**로 한정하고 동명의 퀘스트 아이템은 제외합니다. Kulemak's Invitation도 거래용 Map Fragments·Metadata/Items/Currency/Abyss/AbyssPinnacleKey로 한정하고 동명 Quest Items를 제외합니다. 미등록 아이템을 자동 등록하지 않습니다. [조각 자료](https://poe2db.tw/us/Faded_Crisis_Fragment), [초대장 자료](https://poe2db.tw/us/Kulemaks_Invitation)
 
 혈통 젬은 기본 종류 ID의 시간별 실체결가로 평가하며, 옵션·타락 상태별 개별 감정은 지원하지 않습니다.
 
-537종 전부가 매번 채택되는 것은 아닙니다. 거래 자료가 없거나 표본 수량·시간·안정성 조건에 미달하면 가격을 만들지 않습니다. Abyss Tablet은 확인한 거래 집계에 관측이 없어 기본색으로 남을 수 있습니다. 분류별 등록 수는 last-update.json의 MappingCounts로, 실제 가격 산출 품목은 AcceptedPrices로 확인합니다. 심연과 아홉 콘텐츠 모두 같은 공식 최근 3개 완료 시간 집계를 사용하므로 요청을 늘리지 않으며 실행당 최대 3회·기존 시세 알고리즘을 유지합니다.
+등록 품목 전부가 매번 채택되는 것은 아닙니다. 거래 자료가 없거나 표본 수량·시간·안정성 조건에 미달하면 가격을 만들지 않습니다. Abyss Tablet은 확인한 거래 집계에 관측이 없어 기본색으로 남을 수 있습니다. 분류별 등록 수는 last-update.json의 MappingCounts로, 실제 가격 산출 품목은 AcceptedPrices로 확인합니다. 전체 등록 품목이 같은 공식 최근 3개 완료 시간 집계를 사용하므로 요청을 늘리지 않으며 실행당 최대 3회·기존 시세 알고리즘을 유지합니다.
 
-**Divine 직접·Chaos 경유·Exalted 경유**를 모두 개당 Divine 단가로 환산하고 각각 독립 검증합니다. 같은 리그·같은 시간의 환율만 사용하며 경로마다 최소 2개 완료 시간, 합산 대상 수량 10개, 합산 1 Divine 상당 거래 규모, 시간별 단가 최대/최소 3배 이하가 필요합니다. 경로별로 아이템 수량을 가중해 구한 단가 중 **검증을 통과한 가장 높은 값**을 채택합니다. 시간별 유리한 경로를 섞거나 다른 경로의 수량을 중복 합산하지 않습니다.
+**Divine 직접·Chaos 경유·Exalted 경유**를 모두 개당 Divine 단가로 환산하고 각각 독립 검증합니다. PT용 `ChaosPerItem`도 같은 리그·같은 시간·같은 경로에서 별도로 계산·검증하며 집계 Divine 단가를 집계 Chaos 가격으로 단순히 나누지 않습니다. 같은 리그·같은 시간의 환율만 사용하며 경로마다 최소 2개 완료 시간, 합산 대상 수량 10개, 합산 1 Divine 상당 거래 규모, 시간별 단가 최대/최소 3배 이하가 필요합니다. 경로별로 아이템 수량을 가중해 구한 단가 중 **검증을 통과한 가장 높은 값**을 채택합니다. 시간별 유리한 경로를 섞거나 다른 경로의 수량을 중복 합산하지 않습니다.
 
-직접 1 Divine·Chaos 경유 1.2 Divine이 모두 검증됐다면 1.2 Divine을 채택해 **S+·0161.wav**를 적용합니다. 현재 시세가 아닌 계산 예시입니다. 거울·히네코라는 777.wav를 유지합니다. 결과의 **CandidatePrices**에서 경로별 후보와 Divine 단가, **Routes**에서 채택 경로를 확인합니다.
+직접 1 Divine·Chaos 경유 1.2 Divine이 모두 검증됐다면 1.2 Divine을 채택해 **S+·0161.wav**를 적용합니다. 현재 시세가 아닌 계산 예시입니다. 거울·히네코라는 777.wav를 유지합니다. PT의 1 Chaos 이상·1 Divine 미만 보호는 원본의 정확한 품목 분류가 있으면 그 색상·음원을 재사용하고, 없으면 NeverSink 화폐 B 표시·0103.wav를 사용합니다. 심연 기본색·서판 0398.wav·S+ 0161.wav 등 지정 예외는 유지합니다. 유효한 Chaos 환산 경로나 거래 표본이 부족하면 가격을 추정하지 않으며 PT 기본 선별을 따릅니다.
+
+결과의 **CandidatePrices**에서 경로별 후보와 Divine 단가, **Routes**에서 채택 Divine 경로를 확인합니다. **ChaosPerItem·ChaosRoutes**는 검증한 Chaos 단가와 경로입니다.
 
 고유 아이템과 장비의 정확한 실거래가를 자동 판정하는 기능은 없습니다. 가격 자료는 완료된 시간별 체결 집계이며 실시간 호가가 아닙니다. 자료 시간·계산 방식·사용 리그는 결과의 last-update.json에서 확인합니다. 생성 결과의 직접 수정은 다음 생성에서 유지되지 않으므로 지속할 변경은 config.json, src/filter.mjs, assets/sounds와 이 문서에서 관리합니다.
 
